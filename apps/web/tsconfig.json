@@ -4,7 +4,6 @@
     "baseUrl": ".",
     "module": "ES2020",
     "paths": {
-      "tldjs": ["../../libs/common/src/misc/tldjs.noop"],
       "src/*": ["src/*"],
       "@bitwarden/common/*": ["../../libs/common/src/*"],
       "@bitwarden/angular/*": ["../../libs/angular/src/*"],
