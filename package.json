@@ -186,6 +186,7 @@
     "rxjs": "^7.5.5",
     "sweetalert2": "^10.16.6",
     "tldjs": "^2.3.1",
+    "tldts": "^5.7.84",
     "utf-8-validate": "^5.0.9",
     "web-animations-js": "^2.3.2",
     "whatwg-fetch": "^3.6.2",

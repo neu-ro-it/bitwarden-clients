@@ -68,6 +68,7 @@
     "proper-lockfile": "^4.1.2",
     "rxjs": "^7.5.5",
     "tldjs": "^2.3.1",
+    "tldts": "^5.7.84",
     "zxcvbn": "^4.4.2"
   }
 }
