@@ -14,6 +14,12 @@ describe("Utils Service", () => {
       expect(Utils.getDomain("data:image/jpeg;base64,AAA")).toBeNull();
     });
 
+    it("should fail for about urls", () => {
+      expect(Utils.getDomain("about")).toBeNull();
+      expect(Utils.getDomain("about:")).toBeNull();
+      expect(Utils.getDomain("about:blank")).toBeNull();
+    });
+
     it("should handle urls without protocol", () => {
       expect(Utils.getDomain("bitwarden.com")).toBe("bitwarden.com");
       expect(Utils.getDomain("wrong://bitwarden.com")).toBe("bitwarden.com");

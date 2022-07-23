@@ -234,6 +234,10 @@ export class Utils {
       return null;
     }
 
+    if (uriString.startsWith("about:")) {
+      return null;
+    }
+
     try {
       const parseResult = parse(uriString, { validHosts: this.validHosts });
       if (parseResult != null && parseResult.hostname != null) {
