@@ -31,7 +31,7 @@ import { IndividualVaultModule } from "./modules/vault/modules/individual-vault/
 import { OrganizationsRoutingModule } from "./organizations/organization-routing.module";
 import { AcceptFamilySponsorshipComponent } from "./organizations/sponsorships/accept-family-sponsorship.component";
 import { FamiliesForEnterpriseSetupComponent } from "./organizations/sponsorships/families-for-enterprise-setup.component";
-import { ReportsRoutingModule } from "./reports/reports-routing.module";
+import { ReportsModule } from "./reports";
 import { AccessComponent } from "./send/access.component";
 import { SendComponent } from "./send/send.component";
 import { AccountComponent } from "./settings/account.component";
@@ -63,10 +63,16 @@ const routes: Routes = [
       { path: "2fa", component: TwoFactorComponent, canActivate: [UnauthGuard] },
       {
         path: "register",
-        component: flagEnabled("showTrial") ? TrialInitiationComponent : RegisterComponent,
+        component: RegisterComponent,
         canActivate: [UnauthGuard],
         data: { titleId: "createAccount" },
       },
+      buildFlaggedRoute("showTrial", {
+        path: "trial",
+        component: TrialInitiationComponent,
+        canActivate: [UnauthGuard],
+        data: { titleId: "startTrial" },
+      }),
       {
         path: "sso",
         component: SsoComponent,
@@ -232,7 +238,7 @@ const routes: Routes = [
       },
       {
         path: "reports",
-        loadChildren: () => ReportsRoutingModule,
+        loadChildren: () => ReportsModule,
       },
       { path: "setup/families-for-enterprise", component: FamiliesForEnterpriseSetupComponent },
     ],
