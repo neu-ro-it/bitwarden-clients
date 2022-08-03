@@ -14,8 +14,6 @@ import { EncryptedExportType } from "@bitwarden/common/enums/EncryptedExportType
 import { EventType } from "@bitwarden/common/enums/eventType";
 import { PolicyType } from "@bitwarden/common/enums/policyType";
 
-import { ModalService } from "../services/modal.service";
-
 @Directive()
 export class ExportComponent implements OnInit {
   @Output() onSaved = new EventEmitter();
@@ -28,7 +26,7 @@ export class ExportComponent implements OnInit {
     secret: [""],
     filePassword: [""],
     confirmFilePassword: [""],
-    fileEncryptionType: [""],
+    fileEncryptionType: [],
   });
 
   formatOptions = [
@@ -48,8 +46,7 @@ export class ExportComponent implements OnInit {
     private logService: LogService,
     private userVerificationService: UserVerificationService,
     private formBuilder: UntypedFormBuilder,
-    protected fileDownloadService: FileDownloadService,
-    protected modalService: ModalService
+    protected fileDownloadService: FileDownloadService
   ) {}
 
   async ngOnInit() {
@@ -163,9 +160,8 @@ export class ExportComponent implements OnInit {
   }
 
   protected getExportData() {
-    return (this.fileEncryptionType != EncryptedExportType.FileEncrypted.toString() &&
-      this.filePassword == undefined) ||
-      this.filePassword == ""
+    //todo ensure this is working.
+    return this.fileEncryptionType != EncryptedExportType.FileEncrypted
       ? this.exportService.getExport(this.format, null)
       : this.exportService.getPasswordProtectedExport(this.filePassword);
   }

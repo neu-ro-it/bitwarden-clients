@@ -381,6 +381,7 @@ export const LOG_MAC_FAILURES = new InjectionToken<string>("LOG_MAC_FAILURES");
         CipherServiceAbstraction,
         ApiServiceAbstraction,
         CryptoServiceAbstraction,
+        CryptoFunctionServiceAbstraction,
       ],
     },
     {
