@@ -59,10 +59,14 @@ export class ExportComponent extends BaseExportComponent {
       return;
     }
 
-    const confirmDescription =
-      this.exportForm.get("fileEncryptionType").value == EncryptedExportType.FileEncrypted
-        ? "FileEncryptedExportWarningDesc"
-        : "encExportKeyWarningDesc";
+    let confirmDescription = "exportWarningDesc";
+
+    if (this.exportForm.get("format").value === "encrypted_json") {
+      confirmDescription =
+        this.exportForm.get("fileEncryptionType").value == EncryptedExportType.FileEncrypted
+          ? "FileEncryptedExportWarningDesc"
+          : "encExportKeyWarningDesc";
+    }
 
     const ref = this.modalService.open(UserVerificationPromptComponent, {
       allowMultipleModals: true,

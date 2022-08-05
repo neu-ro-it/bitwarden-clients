@@ -51,9 +51,7 @@ export class ExportComponent implements OnInit {
 
   async ngOnInit() {
     await this.checkExportDisabled();
-    this.exportForm
-      .get("fileEncryptionType")
-      .setValue(EncryptedExportType.AccountEncrypted.toString());
+    this.exportForm.get("fileEncryptionType").setValue(EncryptedExportType.AccountEncrypted);
   }
 
   async checkExportDisabled() {
@@ -85,9 +83,9 @@ export class ExportComponent implements OnInit {
       this.downloadFile(data);
       this.saved();
       await this.collectEvent();
-      this.exportForm.get("secret").setValue("");
-      this.exportForm.get("filePassword").setValue("");
-      this.exportForm.get("confirmFilePassword").setValue("");
+      this.exportForm.clearValidators();
+
+      this.exportForm.get("fileEncryptionType").setValue(EncryptedExportType.AccountEncrypted);
     } catch (e) {
       this.logService.error(e);
     }
@@ -160,10 +158,15 @@ export class ExportComponent implements OnInit {
   }
 
   protected getExportData() {
-    //todo ensure this is working.
-    return this.fileEncryptionType != EncryptedExportType.FileEncrypted
-      ? this.exportService.getExport(this.format, null)
-      : this.exportService.getPasswordProtectedExport(this.filePassword);
+    //If we're dealing with an encrypted option then we need to check if its acct encrypted or file password encrypted
+    if (this.format === "encrypted_json") {
+      return this.fileEncryptionType == EncryptedExportType.AccountEncrypted
+        ? this.exportService.getExport(this.format, null)
+        : this.exportService.getPasswordProtectedExport(this.filePassword);
+    } else {
+      //not dealing with encrypted, do the odl way which would be getExport in that format.
+      return this.exportService.getExport(this.format, null);
+    }
   }
 
   protected getFileName(prefix?: string) {
