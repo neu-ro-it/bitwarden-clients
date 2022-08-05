@@ -76,21 +76,22 @@ export class ExportComponent implements OnInit {
       );
       return;
     }
+    this.doExport();
+  }
 
+  async doExport() {
     try {
       this.formPromise = this.getExportData();
       const data = await this.formPromise;
       this.downloadFile(data);
       this.saved();
       await this.collectEvent();
+      this.exportForm.get("secret").setValue("");
       this.exportForm.clearValidators();
-
-      this.exportForm.get("fileEncryptionType").setValue(EncryptedExportType.AccountEncrypted);
     } catch (e) {
       this.logService.error(e);
     }
   }
-
   async submit() {
     if (this.disabledByPolicy) {
       this.platformUtilsService.showToast(
@@ -117,16 +118,7 @@ export class ExportComponent implements OnInit {
       return;
     }
 
-    try {
-      this.formPromise = this.getExportData();
-      const data = await this.formPromise;
-      this.downloadFile(data);
-      this.saved();
-      await this.collectEvent();
-      this.exportForm.get("secret").setValue("");
-    } catch (e) {
-      this.logService.error(e);
-    }
+    this.doExport();
   }
 
   async warningDialog() {
