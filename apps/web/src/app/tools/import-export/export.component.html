@@ -31,7 +31,7 @@
     <div class="form-group col-6">
       <ng-container *ngIf="format === 'encrypted_json'">
         <div role="radiogroup" aria-labelledby="fileTypeHeading">
-          <label id="fileTypeHeading" class="tw-text-sm tw-semi-bold">
+          <label id="fileTypeHeading" class="tw-semi-bold tw-text-sm">
             {{ "fileTypeHeading" | i18n }}
           </label>
 
@@ -44,14 +44,15 @@
                 id="AccountEncrypted"
                 [value]="encryptedExportType.AccountEncrypted"
                 formControlName="fileEncryptionType"
+                [checked]="fileEncryptionType === encryptedExportType.AccountEncrypted"
               />
             </div>
             <div>
-              <label class="tw-text-xs tw-semi-bold tw-ml-1"> {{ "accountBackup" | i18n }} </label>
+              <label class="tw-semi-bold tw-ml-1 tw-text-xs"> {{ "accountBackup" | i18n }} </label>
             </div>
           </div>
 
-          <div class="tw-text-xs tw-regular ml-3 pb-2">
+          <div class="tw-regular ml-3 pb-2 tw-text-xs">
             {{ "accountBackupOptionDescription" | i18n }}
           </div>
 
@@ -64,16 +65,17 @@
                 id="FileEncrypted"
                 [value]="encryptedExportType.FileEncrypted"
                 formControlName="fileEncryptionType"
+                [checked]="fileEncryptionType === encryptedExportType.FileEncrypted"
               />
             </div>
             <div>
-              <label class="tw-text-xs tw-semi-bold tw-ml-1">{{
+              <label class="tw-semi-bold tw-ml-1 tw-text-xs">{{
                 "passwordProtected" | i18n
               }}</label>
             </div>
           </div>
 
-          <div class="tw-text-xs tw-regular ml-3 pb-2">
+          <div class="tw-regular ml-3 pb-2 tw-text-xs">
             {{ "passwordProtectedOptionDescription" | i18n }}
           </div>
         </div>
@@ -81,7 +83,7 @@
 
         <ng-container *ngIf="fileEncryptionType == encryptedExportType.FileEncrypted">
           <div class="input-group">
-            <bit-form-field>
+            <bit-form-field class="tw-w-full">
               <bit-label>{{ "filePassword" | i18n }}</bit-label>
               <input
                 bitInput
@@ -101,6 +103,7 @@
                   appA11yTitle="{{ 'toggleVisibility' | i18n }}"
                   [attr.aria-pressed]="showFilePassword"
                   (click)="toggleFilePassword()"
+                  (keyup.enter)="(submit)"
                 >
                   <i
                     class="bwi bwi-lg"
@@ -114,10 +117,8 @@
           <div class="small text-muted">
             {{ "exportPasswordDescription" | i18n }}
           </div>
-          <br />
-
-          <div class="input-group">
-            <bit-form-field>
+          <div class="input-group tw-mt-4">
+            <bit-form-field class="tw-w-full">
               <bit-label>{{ "confirmFilePassword" | i18n }}</bit-label>
               <input
                 bitInput
@@ -126,8 +127,8 @@
                 id="confirmFilePassword"
                 formControlName="confirmFilePassword"
                 name="confirmFilePassword"
+                (keyup.enter)="(submit)"
               />
-
               <div class="input-group-append">
                 <button
                   bitSuffix

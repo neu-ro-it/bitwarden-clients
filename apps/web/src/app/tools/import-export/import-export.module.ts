@@ -2,6 +2,7 @@ import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
+
 import { JslibModule } from "@bitwarden/angular/jslib.module";
 import { ApiService } from "@bitwarden/common/abstractions/api.service";
 import { CipherService } from "@bitwarden/common/abstractions/cipher.service";
@@ -17,6 +18,7 @@ import { SharedModule } from "src/app/modules/shared.module";
 
 import { LooseComponentsModule } from "../../modules/loose-components.module";
 
+import { ExportComponent } from "./export.component";
 import { ImportExportRoutingModule } from "./import-export-routing.module";
 import { ImportComponent } from "./import.component";
 
@@ -30,7 +32,7 @@ import { ImportComponent } from "./import.component";
     ImportExportRoutingModule,
     SharedModule,
   ],
-  declarations: [ImportComponent],
+  declarations: [ImportComponent, ExportComponent],
   providers: [
     {
       provide: ImportServiceAbstraction,
