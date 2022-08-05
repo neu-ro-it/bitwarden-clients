@@ -105,7 +105,7 @@ export class ExportComponent extends BaseExportComponent {
 
   get validForm() {
     if (
-      this.fileEncryptionType == EncryptedExportType.FileEncrypted.toString() &&
+      this.fileEncryptionType == EncryptedExportType.FileEncrypted &&
       this.format == "encrypted_json"
     ) {
       if (this.filePassword.length > 0 || this.confirmFilePassword.length > 0) {
