@@ -2,7 +2,6 @@ import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
-
 import { JslibModule } from "@bitwarden/angular/jslib.module";
 import { ApiService } from "@bitwarden/common/abstractions/api.service";
 import { CipherService } from "@bitwarden/common/abstractions/cipher.service";

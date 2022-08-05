@@ -158,13 +158,12 @@ export class ExportComponent implements OnInit {
   }
 
   protected getExportData() {
-    //If we're dealing with an encrypted option then we need to check if its acct encrypted or file password encrypted
-    if (this.format === "encrypted_json") {
-      return this.fileEncryptionType == EncryptedExportType.AccountEncrypted
-        ? this.exportService.getExport(this.format, null)
-        : this.exportService.getPasswordProtectedExport(this.filePassword);
+    if (
+      this.format === "encrypted_json" &&
+      this.fileEncryptionType == EncryptedExportType.FileEncrypted
+    ) {
+      this.exportService.getPasswordProtectedExport(this.filePassword);
     } else {
-      //not dealing with encrypted, do the odl way which would be getExport in that format.
       return this.exportService.getExport(this.format, null);
     }
   }
