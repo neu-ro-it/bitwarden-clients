@@ -60,8 +60,7 @@ export class ExportComponent extends BaseExportComponent {
     }
 
     const confirmDescription =
-      this.exportForm.get("fileEncryptionType").value ===
-      EncryptedExportType.FileEncrypted.toString()
+      this.exportForm.get("fileEncryptionType").value == EncryptedExportType.FileEncrypted
         ? "FileEncryptedExportWarningDesc"
         : "encExportKeyWarningDesc";
 
