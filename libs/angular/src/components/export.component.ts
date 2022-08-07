@@ -152,7 +152,7 @@ export class ExportComponent implements OnInit {
   protected getExportData() {
     if (
       this.format === "encrypted_json" &&
-      this.fileEncryptionType == EncryptedExportType.FileEncrypted
+      this.fileEncryptionType === EncryptedExportType.FileEncrypted
     ) {
       return this.exportService.getPasswordProtectedExport(this.filePassword);
     } else {
