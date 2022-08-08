@@ -14,8 +14,6 @@ import { PolicyService } from "@bitwarden/common/abstractions/policy.service";
 import { UserVerificationService } from "@bitwarden/common/abstractions/userVerification.service";
 import { EncryptedExportType } from "@bitwarden/common/enums/EncryptedExportType";
 
-import { UserVerificationPromptComponent } from "src/app/components/user-verification-prompt.component";
-
 @Component({
   selector: "app-export",
   templateUrl: "export.component.html",
@@ -37,7 +35,7 @@ export class ExportComponent extends BaseExportComponent {
     userVerificationService: UserVerificationService,
     formBuilder: UntypedFormBuilder,
     fileDownloadService: FileDownloadService,
-    private modalService: ModalService
+    modalService: ModalService
   ) {
     super(
       cryptoService,
@@ -50,42 +48,9 @@ export class ExportComponent extends BaseExportComponent {
       logService,
       userVerificationService,
       formBuilder,
-      fileDownloadService
+      fileDownloadService,
+      modalService
     );
-  }
-
-  async submit() {
-    if (!this.validForm) {
-      return;
-    }
-
-    let confirmDescription = "exportWarningDesc";
-
-    if (this.exportForm.get("format").value === "encrypted_json") {
-      confirmDescription =
-        this.exportForm.get("fileEncryptionType").value == EncryptedExportType.FileEncrypted
-          ? "FileEncryptedExportWarningDesc"
-          : "encExportKeyWarningDesc";
-    }
-
-    const ref = this.modalService.open(UserVerificationPromptComponent, {
-      allowMultipleModals: true,
-      data: {
-        confirmDescription: confirmDescription,
-        confirmButtonText: "exportVault",
-        modalTitle: "confirmVaultExport",
-      },
-    });
-
-    if (ref == null) {
-      return;
-    }
-
-    const userVerified = await ref.onClosedPromise();
-    if (userVerified) {
-      //successful
-      this.submitWithSecretAlreadyVerified();
-    }
   }
 
   toggleFilePassword() {

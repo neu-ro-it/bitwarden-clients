@@ -14,6 +14,10 @@ import { EncryptedExportType } from "@bitwarden/common/enums/EncryptedExportType
 import { EventType } from "@bitwarden/common/enums/eventType";
 import { PolicyType } from "@bitwarden/common/enums/policyType";
 
+import { ModalService } from "../services/modal.service";
+
+import { UserVerificationPromptComponent } from "./user-verification-prompt.component";
+
 @Directive()
 export class ExportComponent implements OnInit {
   @Output() onSaved = new EventEmitter();
@@ -46,7 +50,8 @@ export class ExportComponent implements OnInit {
     private logService: LogService,
     private userVerificationService: UserVerificationService,
     private formBuilder: UntypedFormBuilder,
-    protected fileDownloadService: FileDownloadService
+    protected fileDownloadService: FileDownloadService,
+    protected modalService: ModalService
   ) {}
 
   async ngOnInit() {
@@ -92,34 +97,69 @@ export class ExportComponent implements OnInit {
       this.logService.error(e);
     }
   }
+
   async submit() {
-    if (this.disabledByPolicy) {
-      this.platformUtilsService.showToast(
-        "error",
-        null,
-        this.i18nService.t("personalVaultExportPolicyInEffect")
-      );
+    // if (!this.validForm) {
+    //   return;
+    // }
+
+    let confirmDescription = "exportWarningDesc";
+
+    if (this.exportForm.get("format").value === "encrypted_json") {
+      confirmDescription =
+        this.exportForm.get("fileEncryptionType").value == EncryptedExportType.FileEncrypted
+          ? "FileEncryptedExportWarningDesc"
+          : "encExportKeyWarningDesc";
+    }
+
+    const ref = this.modalService.open(UserVerificationPromptComponent, {
+      allowMultipleModals: true,
+      data: {
+        confirmDescription: confirmDescription,
+        confirmButtonText: "exportVault",
+        modalTitle: "confirmVaultExport",
+      },
+    });
+
+    if (ref == null) {
       return;
     }
 
-    const acceptedWarning = await this.warningDialog();
-    if (!acceptedWarning) {
-      return;
+    const userVerified = await ref.onClosedPromise();
+    if (userVerified) {
+      //successful
+      this.submitWithSecretAlreadyVerified();
     }
-    const secret = this.exportForm.get("secret").value;
-
-    const successfulVerification = await this.userVerificationService.verifyUser(secret);
-    if (!successfulVerification) {
-      this.platformUtilsService.showToast(
-        "error",
-        this.i18nService.t("error"),
-        this.i18nService.t("invalidMasterPassword")
-      );
-      return;
-    }
-
-    this.doExport();
   }
+
+  // async submit() {
+  //   if (this.disabledByPolicy) {
+  //     this.platformUtilsService.showToast(
+  //       "error",
+  //       null,
+  //       this.i18nService.t("personalVaultExportPolicyInEffect")
+  //     );
+  //     return;
+  //   }
+
+  //   const acceptedWarning = await this.warningDialog();
+  //   if (!acceptedWarning) {
+  //     return;
+  //   }
+  //   const secret = this.exportForm.get("secret").value;
+
+  //   const successfulVerification = await this.userVerificationService.verifyUser(secret);
+  //   if (!successfulVerification) {
+  //     this.platformUtilsService.showToast(
+  //       "error",
+  //       this.i18nService.t("error"),
+  //       this.i18nService.t("invalidMasterPassword")
+  //     );
+  //     return;
+  //   }
+
+  //   this.doExport();
+  // }
 
   async warningDialog() {
     if (this.encryptedFormat) {
