@@ -14,16 +14,14 @@ import { EncryptedExportType } from "@bitwarden/common/enums/EncryptedExportType
 import { EventType } from "@bitwarden/common/enums/eventType";
 import { PolicyType } from "@bitwarden/common/enums/policyType";
 
-import { ModalService } from "../services/modal.service";
-
-import { UserVerificationPromptComponent } from "./user-verification-prompt.component";
-
 @Directive()
 export class ExportComponent implements OnInit {
   @Output() onSaved = new EventEmitter();
 
   formPromise: Promise<string>;
   disabledByPolicy = false;
+  showFilePassword: boolean;
+  showConfirmFilePassword: boolean;
 
   exportForm = this.formBuilder.group({
     format: ["json"],
@@ -50,8 +48,7 @@ export class ExportComponent implements OnInit {
     private logService: LogService,
     private userVerificationService: UserVerificationService,
     private formBuilder: UntypedFormBuilder,
-    protected fileDownloadService: FileDownloadService,
-    protected modalService: ModalService
+    protected fileDownloadService: FileDownloadService
   ) {}
 
   async ngOnInit() {
@@ -84,7 +81,7 @@ export class ExportComponent implements OnInit {
     this.doExport();
   }
 
-  async doExport() {
+  protected async doExport() {
     try {
       this.formPromise = this.getExportData();
       const data = await this.formPromise;
@@ -99,67 +96,33 @@ export class ExportComponent implements OnInit {
   }
 
   async submit() {
-    // if (!this.validForm) {
-    //   return;
-    // }
-
-    let confirmDescription = "exportWarningDesc";
-
-    if (this.exportForm.get("format").value === "encrypted_json") {
-      confirmDescription =
-        this.exportForm.get("fileEncryptionType").value == EncryptedExportType.FileEncrypted
-          ? "FileEncryptedExportWarningDesc"
-          : "encExportKeyWarningDesc";
-    }
-
-    const ref = this.modalService.open(UserVerificationPromptComponent, {
-      allowMultipleModals: true,
-      data: {
-        confirmDescription: confirmDescription,
-        confirmButtonText: "exportVault",
-        modalTitle: "confirmVaultExport",
-      },
-    });
-
-    if (ref == null) {
+    if (this.disabledByPolicy) {
+      this.platformUtilsService.showToast(
+        "error",
+        null,
+        this.i18nService.t("personalVaultExportPolicyInEffect")
+      );
       return;
     }
 
-    const userVerified = await ref.onClosedPromise();
-    if (userVerified) {
-      //successful
-      this.submitWithSecretAlreadyVerified();
+    const acceptedWarning = await this.warningDialog();
+    if (!acceptedWarning) {
+      return;
     }
+    const secret = this.exportForm.get("secret").value;
+
+    const successfulVerification = await this.userVerificationService.verifyUser(secret);
+    if (!successfulVerification) {
+      this.platformUtilsService.showToast(
+        "error",
+        this.i18nService.t("error"),
+        this.i18nService.t("invalidMasterPassword")
+      );
+      return;
+    }
+
+    this.doExport();
   }
-
-  // async submit() {
-  //   if (this.disabledByPolicy) {
-  //     this.platformUtilsService.showToast(
-  //       "error",
-  //       null,
-  //       this.i18nService.t("personalVaultExportPolicyInEffect")
-  //     );
-  //     return;
-  //   }
-
-  //   const acceptedWarning = await this.warningDialog();
-  //   if (!acceptedWarning) {
-  //     return;
-  //   }
-  //   const secret = this.exportForm.get("secret").value;
-
-  //   const successfulVerification = await this.userVerificationService.verifyUser(secret);
-  //   if (!successfulVerification) {
-  //     this.platformUtilsService.showToast(
-  //       "error",
-  //       this.i18nService.t("error"),
-  //       this.i18nService.t("invalidMasterPassword")
-  //     );
-  //     return;
-  //   }
-
-  //   this.doExport();
-  // }
 
   async warningDialog() {
     if (this.encryptedFormat) {
@@ -233,6 +196,16 @@ export class ExportComponent implements OnInit {
     return this.exportForm.get("fileEncryptionType").value;
   }
 
+  toggleFilePassword() {
+    this.showFilePassword = !this.showFilePassword;
+    document.getElementById("filePassword").focus();
+  }
+
+  toggleConfirmFilePassword() {
+    this.showConfirmFilePassword = !this.showConfirmFilePassword;
+    document.getElementById("confirmFilePassword").focus();
+  }
+
   private downloadFile(csv: string): void {
     const fileName = this.getFileName();
     this.fileDownloadService.download({
@@ -240,5 +213,27 @@ export class ExportComponent implements OnInit {
       blobData: csv,
       blobOptions: { type: "text/plain" },
     });
+  }
+
+  get validFilePassword() {
+    if (
+      this.fileEncryptionType == EncryptedExportType.FileEncrypted &&
+      this.format == "encrypted_json"
+    ) {
+      if (this.filePassword.length > 0 || this.confirmFilePassword.length > 0) {
+        if (this.filePassword != this.confirmFilePassword) {
+          this.platformUtilsService.showToast(
+            "error",
+            this.i18nService.t("errorOccurred"),
+            this.i18nService.t("filePasswordAndConfirmFilePasswordDoNotMatch")
+          );
+          return false;
+        }
+
+        return true;
+      }
+    } else {
+      return true;
+    }
   }
 }

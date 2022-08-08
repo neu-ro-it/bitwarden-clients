@@ -42,7 +42,7 @@ export class FilePasswordPromptComponent {
       this.filePassword.value
     );
 
-    const passwordError = this.importService.import(
+    const passwordError = await this.importService.import(
       importerPassword,
       this.fileContents,
       this.organizationId

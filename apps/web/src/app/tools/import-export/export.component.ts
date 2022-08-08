@@ -14,14 +14,14 @@ import { PolicyService } from "@bitwarden/common/abstractions/policy.service";
 import { UserVerificationService } from "@bitwarden/common/abstractions/userVerification.service";
 import { EncryptedExportType } from "@bitwarden/common/enums/EncryptedExportType";
 
+import { UserVerificationPromptComponent } from "src/app/components/user-verification-prompt.component";
+
 @Component({
   selector: "app-export",
   templateUrl: "export.component.html",
 })
 export class ExportComponent extends BaseExportComponent {
   organizationId: string;
-  showFilePassword: boolean;
-  showConfirmFilePassword: boolean;
   encryptedExportType = EncryptedExportType;
 
   constructor(
@@ -35,7 +35,7 @@ export class ExportComponent extends BaseExportComponent {
     userVerificationService: UserVerificationService,
     formBuilder: UntypedFormBuilder,
     fileDownloadService: FileDownloadService,
-    modalService: ModalService
+    private modalService: ModalService
   ) {
     super(
       cryptoService,
@@ -48,45 +48,46 @@ export class ExportComponent extends BaseExportComponent {
       logService,
       userVerificationService,
       formBuilder,
-      fileDownloadService,
-      modalService
+      fileDownloadService
     );
   }
 
-  toggleFilePassword() {
-    this.showFilePassword = !this.showFilePassword;
-    document.getElementById("filePassword").focus();
-  }
+  async submit() {
+    if (!this.validFilePassword) {
+      return;
+    }
 
-  toggleConfirmFilePassword() {
-    this.showConfirmFilePassword = !this.showConfirmFilePassword;
-    document.getElementById("confirmFilePassword").focus();
+    let confirmDescription = "exportWarningDesc";
+
+    if (this.exportForm.get("format").value === "encrypted_json") {
+      confirmDescription =
+        this.exportForm.get("fileEncryptionType").value == EncryptedExportType.FileEncrypted
+          ? "FileEncryptedExportWarningDesc"
+          : "encExportKeyWarningDesc";
+    }
+
+    const ref = this.modalService.open(UserVerificationPromptComponent, {
+      allowMultipleModals: true,
+      data: {
+        confirmDescription: confirmDescription,
+        confirmButtonText: "exportVault",
+        modalTitle: "confirmVaultExport",
+      },
+    });
+
+    if (ref == null) {
+      return;
+    }
+
+    const userVerified = await ref.onClosedPromise();
+    if (userVerified) {
+      //successful
+      this.submitWithSecretAlreadyVerified();
+    }
   }
 
   protected saved() {
     super.saved();
     this.platformUtilsService.showToast("success", null, this.i18nService.t("exportSuccess"));
-  }
-
-  get validForm() {
-    if (
-      this.fileEncryptionType == EncryptedExportType.FileEncrypted &&
-      this.format == "encrypted_json"
-    ) {
-      if (this.filePassword.length > 0 || this.confirmFilePassword.length > 0) {
-        if (this.filePassword != this.confirmFilePassword) {
-          this.platformUtilsService.showToast(
-            "error",
-            this.i18nService.t("errorOccurred"),
-            this.i18nService.t("filePasswordAndConfirmFilePasswordDoNotMatch")
-          );
-          return false;
-        }
-
-        return true;
-      }
-    } else {
-      return true;
-    }
   }
 }
