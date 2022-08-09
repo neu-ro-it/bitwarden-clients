@@ -60,6 +60,7 @@ export class ImportComponent implements OnInit {
     }
 
     this.loading = true;
+
     const importer = this.importService.getImporter(this.format, this.organizationId);
     if (importer === null) {
       this.platformUtilsService.showToast(

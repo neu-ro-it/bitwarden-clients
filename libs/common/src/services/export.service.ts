@@ -41,6 +41,7 @@ export class ExportService implements ExportServiceAbstraction {
     if (organizationId) {
       return await this.getOrganizationExport(organizationId, format);
     }
+
     if (format === "encrypted_json") {
       return this.getEncryptedExport();
     } else {
