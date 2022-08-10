@@ -16,7 +16,6 @@ import { EncryptedExportType } from "@bitwarden/common/enums/EncryptedExportType
 
 import { UserVerificationPromptComponent } from "src/app/components/user-verification-prompt.component";
 
-
 @Component({
   selector: "app-export",
   templateUrl: "export.component.html",
