@@ -12,7 +12,7 @@ import { LogService } from "@bitwarden/common/abstractions/log.service";
 import { PlatformUtilsService } from "@bitwarden/common/abstractions/platformUtils.service";
 import { PolicyService } from "@bitwarden/common/abstractions/policy/policy.service.abstraction";
 import { UserVerificationService } from "@bitwarden/common/abstractions/userVerification/userVerification.service.abstraction";
-import { EncryptedExportType } from "@bitwarden/common/enums/EncryptedExportType";
+import { EncryptedExportType } from "@bitwarden/common/enums/encryptedExportType";
 
 import { UserVerificationPromptComponent } from "src/app/components/user-verification-prompt.component";
 
