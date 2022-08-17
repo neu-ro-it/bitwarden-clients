@@ -1,34 +1,35 @@
-import { Directive } from "@angular/core";
-import { FormBuilder, FormControl } from "@angular/forms";
+import { Component } from "@angular/core";
+import { FormControl } from "@angular/forms";
 
+import { ModalRef } from "@bitwarden/angular/components/modal/modal.ref";
+import { ModalConfig } from "@bitwarden/angular/services/modal.service";
 import { I18nService } from "@bitwarden/common/abstractions/i18n.service";
 import { ImportService } from "@bitwarden/common/abstractions/import.service";
 import { PlatformUtilsService } from "@bitwarden/common/abstractions/platformUtils.service";
 
-import { ModalConfig } from "../services/modal.service";
 
-import { ModalRef } from "./modal/modal.ref";
 
-/**
- * Used to verify the user's File password to import their encyrpted export file" feature only.
- */
-@Directive()
+@Component({
+  templateUrl: "file-password-prompt.component.html",
+})
 export class FilePasswordPromptComponent {
   showFilePassword: boolean;
   filePassword = new FormControl("");
   organizationId: string;
   fileContents: string;
+  importService: ImportService;
 
   constructor(
     private modalRef: ModalRef,
     private platformUtilsService: PlatformUtilsService,
     private i18nService: I18nService,
-    private importService: ImportService,
-    config: ModalConfig,
-    protected formBuilder: FormBuilder
+    config: ModalConfig
   ) {
     this.fileContents = config.data.fileContents;
     this.organizationId = config.data.organizationId;
+
+    // ImportService is scoped to the import/export feature module and isn't injected by modalService.open
+    this.importService = config.data.importService;
   }
 
   toggleFilePassword() {

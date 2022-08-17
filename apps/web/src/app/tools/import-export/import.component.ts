@@ -13,7 +13,7 @@ import { ImportOption, ImportType } from "@bitwarden/common/enums/importOptions"
 import { PolicyType } from "@bitwarden/common/enums/policyType";
 import { ImportError } from "@bitwarden/common/importers/importError";
 
-import { FilePasswordPromptComponent } from "src/app/components/file-password-prompt.component";
+import { FilePasswordPromptComponent } from "./file-password-prompt.component";
 
 @Component({
   selector: "app-import",
@@ -246,6 +246,7 @@ export class ImportComponent implements OnInit {
     const ref = await this.modalService.open(FilePasswordPromptComponent, {
       allowMultipleModals: true,
       data: {
+        importService: this.importService,
         fileContents: fcontents,
         organizationId: organizationId,
       },
