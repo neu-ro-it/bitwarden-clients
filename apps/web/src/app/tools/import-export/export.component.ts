@@ -62,7 +62,7 @@ export class ExportComponent extends BaseExportComponent {
     if (this.exportForm.get("format").value === "encrypted_json") {
       confirmDescription =
         this.exportForm.get("fileEncryptionType").value == EncryptedExportType.FileEncrypted
-          ? "FileEncryptedExportWarningDesc"
+          ? "fileEncryptedExportWarningDesc"
           : "encExportKeyWarningDesc";
     }
 

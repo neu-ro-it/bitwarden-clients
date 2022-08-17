@@ -7,8 +7,6 @@ import { I18nService } from "@bitwarden/common/abstractions/i18n.service";
 import { ImportService } from "@bitwarden/common/abstractions/import.service";
 import { PlatformUtilsService } from "@bitwarden/common/abstractions/platformUtils.service";
 
-
-
 @Component({
   templateUrl: "file-password-prompt.component.html",
 })
