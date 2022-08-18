@@ -69,7 +69,7 @@
               />
             </div>
             <div>
-              <label class="tw-semi-bold tw-ml-1 tw-text-xs">{{
+              <label class="tw-semi-bold tw-ml-1 tw-text-xs" for="FileEncrypted">{{
                 "passwordProtected" | i18n
               }}</label>
             </div>
@@ -87,7 +87,6 @@
               <bit-label>{{ "filePassword" | i18n }}</bit-label>
               <input
                 bitInput
-                required
                 type="{{ showFilePassword ? 'text' : 'password' }}"
                 id="filePassword"
                 formControlName="filePassword"
@@ -103,7 +102,7 @@
                   appA11yTitle="{{ 'toggleVisibility' | i18n }}"
                   [attr.aria-pressed]="showFilePassword"
                   (click)="toggleFilePassword()"
-                  (keyup.enter)="(submit)"
+                  type="button"
                 >
                   <i
                     class="bwi bwi-lg"
@@ -122,12 +121,10 @@
               <bit-label>{{ "confirmFilePassword" | i18n }}</bit-label>
               <input
                 bitInput
-                required
                 type="{{ showConfirmFilePassword ? 'text' : 'password' }}"
                 id="confirmFilePassword"
                 formControlName="confirmFilePassword"
                 name="confirmFilePassword"
-                (keyup.enter)="(submit)"
               />
               <div class="input-group-append">
                 <button
@@ -138,6 +135,7 @@
                   appA11yTitle="{{ 'toggleVisibility' | i18n }}"
                   [attr.aria-pressed]="showConfirmFilePassword"
                   (click)="toggleConfirmFilePassword()"
+                  type="button"
                 >
                   <i
                     class="bwi bwi-lg"

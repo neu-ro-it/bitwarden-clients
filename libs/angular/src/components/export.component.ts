@@ -1,5 +1,5 @@
 import { Directive, EventEmitter, OnInit, Output } from "@angular/core";
-import { UntypedFormBuilder } from "@angular/forms";
+import { UntypedFormBuilder, Validators } from "@angular/forms";
 
 import { CryptoService } from "@bitwarden/common/abstractions/crypto.service";
 import { EventService } from "@bitwarden/common/abstractions/event.service";
@@ -26,8 +26,8 @@ export class ExportComponent implements OnInit {
   exportForm = this.formBuilder.group({
     format: ["json"],
     secret: [""],
-    filePassword: [""],
-    confirmFilePassword: [""],
+    filePassword: ["", Validators.required],
+    confirmFilePassword: ["", Validators.required],
     fileEncryptionType: [],
   });
 
@@ -69,18 +69,6 @@ export class ExportComponent implements OnInit {
     return this.format === "encrypted_json";
   }
 
-  async submitWithSecretAlreadyVerified() {
-    if (this.disabledByPolicy) {
-      this.platformUtilsService.showToast(
-        "error",
-        null,
-        this.i18nService.t("personalVaultExportPolicyInEffect")
-      );
-      return;
-    }
-    this.doExport();
-  }
-
   protected async doExport() {
     try {
       this.formPromise = this.getExportData();
@@ -96,6 +84,10 @@ export class ExportComponent implements OnInit {
   }
 
   async submit() {
+    if (!this.validFilePassword) {
+      return;
+    }
+
     if (this.disabledByPolicy) {
       this.platformUtilsService.showToast(
         "error",
@@ -220,16 +212,14 @@ export class ExportComponent implements OnInit {
       this.fileEncryptionType == EncryptedExportType.FileEncrypted &&
       this.format == "encrypted_json"
     ) {
-      if (this.filePassword.length > 0 || this.confirmFilePassword.length > 0) {
-        if (this.filePassword != this.confirmFilePassword) {
-          this.platformUtilsService.showToast(
-            "error",
-            this.i18nService.t("errorOccurred"),
-            this.i18nService.t("filePasswordAndConfirmFilePasswordDoNotMatch")
-          );
-          return false;
-        }
-
+      if (this.filePassword != this.confirmFilePassword) {
+        this.platformUtilsService.showToast(
+          "error",
+          this.i18nService.t("errorOccurred"),
+          this.i18nService.t("filePasswordAndConfirmFilePasswordDoNotMatch")
+        );
+        return false;
+      } else {
         return true;
       }
     } else {

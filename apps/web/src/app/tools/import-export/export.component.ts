@@ -53,7 +53,18 @@ export class ExportComponent extends BaseExportComponent {
   }
 
   async submit() {
-    if (!this.validFilePassword) {
+    this.exportForm.markAllAsTouched();
+
+    if (!this.exportForm.valid) {
+      return;
+    }
+
+    if (this.disabledByPolicy) {
+      this.platformUtilsService.showToast(
+        "error",
+        null,
+        this.i18nService.t("personalVaultExportPolicyInEffect")
+      );
       return;
     }
 
@@ -82,7 +93,7 @@ export class ExportComponent extends BaseExportComponent {
     const userVerified = await ref.onClosedPromise();
     if (userVerified) {
       //successful
-      this.submitWithSecretAlreadyVerified();
+      this.doExport();
     }
   }
 
