@@ -26,35 +26,37 @@ export class UpdateBadge {
   private badgeAction: any;
   private sidebarAction: any;
 
-  static registerListeners() {
-    chrome.tabs.onActivated.addListener(async (activeInfo) => {
-      await new UpdateBadge()
-        .initServices()
-        .run({ tabId: activeInfo.tabId, windowId: activeInfo.windowId });
-    });
-    chrome.tabs.onReplaced.addListener(async (addedTabId, removedTabId) => {
-      await new UpdateBadge().initServices().run({ tabId: addedTabId });
-    });
-    chrome.tabs.onUpdated.addListener(async (tabId) => {
-      await new UpdateBadge().initServices().run({ tabId });
-    });
-    BrowserApi.messageListener("runtime.badge", async (message) => {
-      if (message.command != "updateBadge") {
-        return;
-      }
-
-      await new UpdateBadge().initServices().run({ tabId: message.tabId });
-    });
+  static async tabsOnActivatedListener(activeInfo: chrome.tabs.TabActiveInfo) {
+    await new UpdateBadge().initServices().run({ tabId: activeInfo.tabId });
   }
 
-  constructor() {
+  static async tabsOnReplacedListener(addedTabId: number, removedTabId: number) {
+    await new UpdateBadge().initServices().run({ tabId: addedTabId });
+  }
+
+  static async tabsOnUpdatedListener(tabId: number) {
+    await new UpdateBadge().initServices().run({ tabId });
+  }
+
+  static async messageListener(
+    serviceCache: Record<string, unknown>,
+    message: { command: string; tabId: number }
+  ) {
+    if (message.command != "updateBadge") {
+      return;
+    }
+
+    await new UpdateBadge().initServices(serviceCache).run({ tabId: message.tabId });
+  }
+
+  constructor(existingServiceCache?: Record<string, unknown>) {
     //eslint-disable-next-line no-console
     console.log("UpdateBadge");
-    this.initServices();
+    this.initServices(existingServiceCache);
   }
 
-  private initServices(): UpdateBadge {
-    const serviceCache: Record<string, unknown> = {};
+  private initServices(existingServiceCache?: Record<string, unknown>): UpdateBadge {
+    const serviceCache: Record<string, unknown> = existingServiceCache || {};
     const opts = {
       cryptoFunctionServiceOptions: { win: self },
       encryptServiceOptions: { logMacFailures: false },
