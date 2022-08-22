@@ -53,9 +53,9 @@ export class ExportComponent extends BaseExportComponent {
   }
 
   async submit() {
-    if (this.exportForm.get("fileEncryptionType").value == EncryptedExportType.FileEncrypted) {
-      this.exportForm.controls.filePassword.enable();
-      this.exportForm.controls.confirmFilePassword.enable();
+    if (this.fileEncryptionType != EncryptedExportType.FileEncrypted) {
+      this.exportForm.controls.filePassword.disable();
+      this.exportForm.controls.confirmFilePassword.disable();
     }
 
     this.exportForm.markAllAsTouched();
