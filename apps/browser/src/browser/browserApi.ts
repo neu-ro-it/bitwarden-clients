@@ -8,6 +8,10 @@ export class BrowserApi {
   static isFirefoxOnAndroid: boolean =
     navigator.userAgent.indexOf("Firefox/") !== -1 && navigator.userAgent.indexOf("Android") !== -1;
 
+  static get manifestVersion() {
+    return chrome.runtime.getManifest().manifest_version;
+  }
+
   static async getTabFromCurrentWindowId(): Promise<chrome.tabs.Tab> | null {
     return await BrowserApi.tabsQueryFirst({
       active: true,

@@ -184,6 +184,10 @@ export default class MainBackground {
   constructor(public isPrivateMode: boolean = false) {
     // Services
     const lockedCallback = async (userId?: string) => {
+      if (BrowserApi.manifestVersion === 3) {
+        BrowserApi.sendMessage("updateBadge");
+      }
+
       if (this.notificationsService != null) {
         this.notificationsService.updateConnection(false);
       }
@@ -244,7 +248,8 @@ export default class MainBackground {
 
           return promise.then((result) => result.response === "unlocked");
         }
-      }
+      },
+      window
     );
     this.i18nService = new I18nService(BrowserApi.getUILanguage(window));
     this.encryptService = new EncryptService(this.cryptoFunctionService, this.logService, true);
@@ -647,6 +652,9 @@ export default class MainBackground {
       this.messagingService.send("doneLoggingOut", { expired: expired, userId: userId });
     }
 
+    if (BrowserApi.manifestVersion === 3) {
+      BrowserApi.sendMessage("updateBadge");
+    }
     await this.setIcon();
     await this.refreshBadgeAndMenu(true);
     await this.reseedStorage();
