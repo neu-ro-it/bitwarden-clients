@@ -111,44 +111,46 @@ export class UpdateBadge {
     console.log("UpdateBadge.run");
 
     const authStatus = await this.authService.getAuthStatus();
+    const tab = await this.getTabForUpdate(opts);
 
     switch (authStatus) {
       case AuthenticationStatus.LoggedOut: {
-        await this.setBadgeIcon("_gray", opts.windowId);
-        await this.setBadgeText("", opts.tabId);
+        await this.setBadgeIcon("_gray", tab);
+        await this.setBadgeText("", tab);
         break;
       }
       case AuthenticationStatus.Locked: {
-        await this.setBadgeIcon("_locked", opts.windowId);
-        await this.setBadgeText("", opts.tabId);
+        await this.setBadgeIcon("_locked", tab);
+        await this.setBadgeText("", tab);
         break;
       }
       case AuthenticationStatus.Unlocked: {
-        await this.setBadgeIcon("", opts.windowId);
+        await this.setBadgeIcon("", tab);
 
         const disableBadgeCounter = await this.stateService.getDisableBadgeCounter();
         if (disableBadgeCounter) {
           break;
         }
 
-        const tabs = await BrowserApi.getActiveTabs();
-        let url: string;
-        if (opts.tabId && tabs.some((tab) => tab.id === opts.tabId)) {
-          url = tabs.find((tab) => tab.id === opts.tabId)?.url;
-        } else if (opts.windowId && tabs.some((tab) => tab.windowId === opts.windowId)) {
-          url = tabs.find((tab) => tab.windowId === opts.windowId)?.url;
-        } else {
-          url = (await this.currentTab())?.url;
-        }
-
-        const ciphers = await this.cipherService.getAllDecryptedForUrl(url);
+        const ciphers = await this.cipherService.getAllDecryptedForUrl(tab.url);
         let countText = ciphers.length == 0 ? "" : ciphers.length.toString();
         if (ciphers.length > 9) {
           countText = "9+";
         }
-        await this.setBadgeText(countText, opts.tabId);
+        await this.setBadgeText(countText, tab);
         break;
       }
+    }
+  }
+
+  private async getTabForUpdate(opts: { tabId?: number; windowId?: number }) {
+    const tabs = await BrowserApi.getActiveTabs();
+    if (opts.tabId && tabs.some((tab) => tab.id === opts.tabId)) {
+      return tabs.find((tab) => tab.id === opts.tabId);
+    } else if (opts.windowId && tabs.some((tab) => tab.windowId === opts.windowId)) {
+      return tabs.find((tab) => tab.windowId === opts.windowId);
+    } else {
+      return await this.currentTab();
     }
   }
 
@@ -167,25 +169,25 @@ export class UpdateBadge {
     this.sidebarAction?.setBadgeBackgroundColor?.call({ color });
   }
 
-  setBadgeText(text: string, tabId?: number) {
+  setBadgeText(text: string, tab?: chrome.tabs.Tab) {
     //eslint-disable-next-line no-console
-    console.log("UpdateBadge.setBadgeText\t" + text + "\t" + tabId);
+    console.log("UpdateBadge.setBadgeText\t" + text + "\t" + tab?.id);
 
     if (this.badgeAction?.setBadgeText) {
-      this.badgeAction.setBadgeText({ text, tabId });
+      this.badgeAction.setBadgeText({ text, tabId: tab?.id });
     }
 
     if (this.sidebarAction?.setBadgeText) {
-      this.sidebarAction?.setBadgeText({ text, tabId });
+      this.sidebarAction?.setBadgeText({ text, tabId: tab?.id });
     } else if (this.sidebarAction?.setTitle) {
       const title = `Bitwarden${Utils.isNullOrEmpty(text) ? "" : ` [${text}]`}`;
-      this.sidebarAction?.setTitle({ title, tabId });
+      this.sidebarAction?.setTitle({ title, tabId: tab?.id });
     }
   }
 
-  async setBadgeIcon(iconSuffix: string, windowId?: number) {
+  async setBadgeIcon(iconSuffix: string, tab?: chrome.tabs.Tab) {
     //eslint-disable-next-line no-console
-    console.log("UpdateBadge.setBadgeIcon\t" + iconSuffix + "\t" + windowId);
+    console.log("UpdateBadge.setBadgeIcon\t" + iconSuffix + "\t" + tab?.windowId);
 
     const options: IconDetails = {
       path: {
@@ -195,7 +197,7 @@ export class UpdateBadge {
     };
 
     if (this.platformUtilsService.isFirefox()) {
-      options.windowId = windowId;
+      options.windowId = tab?.windowId;
     }
 
     if (this.platformUtilsService.isSafari()) {
