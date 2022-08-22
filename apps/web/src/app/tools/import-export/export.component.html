@@ -18,9 +18,9 @@
   ></app-export-scope-callout>
 
   <div class="row">
-    <div class="form-group col-6">
+    <div class="col-6">
       <bit-form-field>
-        <bit-label for="format">{{ "fileFormat" | i18n }}</bit-label>
+        <bit-label class="tw-text-lg" for="format">{{ "fileFormat" | i18n }}</bit-label>
         <select bitInput name="format" formControlName="format">
           <option *ngFor="let f of formatOptions" [value]="f.value">{{ f.name }}</option>
         </select>
@@ -31,7 +31,7 @@
     <div class="form-group col-6">
       <ng-container *ngIf="format === 'encrypted_json'">
         <div role="radiogroup" aria-labelledby="fileTypeHeading">
-          <label id="fileTypeHeading" class="tw-semi-bold tw-text-sm">
+          <label id="fileTypeHeading" class="tw-semi-bold tw-text-lg">
             {{ "fileTypeHeading" | i18n }}
           </label>
 
@@ -48,11 +48,13 @@
               />
             </div>
             <div>
-              <label class="tw-semi-bold tw-ml-1 tw-text-xs"> {{ "accountBackup" | i18n }} </label>
+              <label class="tw-semi-bold tw-text-md tw-ml-1 tw-mt-1 tw-mb-1">
+                {{ "accountBackup" | i18n }}
+              </label>
             </div>
           </div>
 
-          <div class="tw-regular ml-3 pb-2 tw-text-xs">
+          <div class="tw-regular ml-3 pb-2 tw-text-sm">
             {{ "accountBackupOptionDescription" | i18n }}
           </div>
 
@@ -69,13 +71,13 @@
               />
             </div>
             <div>
-              <label class="tw-semi-bold tw-ml-1 tw-text-xs" for="FileEncrypted">{{
+              <label class="tw-semi-bold tw-text-md tw-ml-1 tw-mt-1 tw-mb-1" for="FileEncrypted">{{
                 "passwordProtected" | i18n
               }}</label>
             </div>
           </div>
 
-          <div class="tw-regular ml-3 pb-2 tw-text-xs">
+          <div class="tw-regular ml-3 tw-text-sm">
             {{ "passwordProtectedOptionDescription" | i18n }}
           </div>
         </div>
@@ -112,9 +114,9 @@
                 </button>
               </div>
             </bit-form-field>
-          </div>
-          <div class="small text-muted">
-            {{ "exportPasswordDescription" | i18n }}
+            <div class="small text-muted">
+              {{ "exportPasswordDescription" | i18n }}
+            </div>
           </div>
           <div class="input-group tw-mt-4">
             <bit-form-field class="tw-w-full">
