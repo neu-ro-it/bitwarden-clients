@@ -1,5 +1,6 @@
-import { Directive, EventEmitter, OnInit, Output } from "@angular/core";
+import { Directive, EventEmitter, OnDestroy, OnInit, Output } from "@angular/core";
 import { UntypedFormBuilder, Validators } from "@angular/forms";
+import { merge, takeUntil, Subject, startWith } from "rxjs";
 
 import { CryptoService } from "@bitwarden/common/abstractions/crypto.service";
 import { EventService } from "@bitwarden/common/abstractions/event.service";
@@ -15,7 +16,7 @@ import { EventType } from "@bitwarden/common/enums/eventType";
 import { PolicyType } from "@bitwarden/common/enums/policyType";
 
 @Directive()
-export class ExportComponent implements OnInit {
+export class ExportComponent implements OnInit, OnDestroy {
   @Output() onSaved = new EventEmitter();
 
   formPromise: Promise<string>;
@@ -37,6 +38,8 @@ export class ExportComponent implements OnInit {
     { name: ".json (Encrypted)", value: "encrypted_json" },
   ];
 
+  private destroy$ = new Subject<void>();
+
   constructor(
     protected cryptoService: CryptoService,
     protected i18nService: I18nService,
@@ -53,7 +56,18 @@ export class ExportComponent implements OnInit {
 
   async ngOnInit() {
     await this.checkExportDisabled();
-    this.adjustValidators();
+
+    merge(
+      this.exportForm.get("format").valueChanges,
+      this.exportForm.get("fileEncryptionType").valueChanges
+    )
+      .pipe(takeUntil(this.destroy$))
+      .pipe(startWith(0))
+      .subscribe(() => this.adjustValidators());
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
   }
 
   async checkExportDisabled() {
