@@ -53,16 +53,16 @@ export class ExportComponent extends BaseExportComponent {
   }
 
   async submit() {
-    if (this.isFileEncryptedExport) {
-      if (this.filePassword != this.confirmFilePassword) {
-        this.platformUtilsService.showToast(
-          "error",
-          this.i18nService.t("errorOccurred"),
-          this.i18nService.t("filePasswordAndConfirmFilePasswordDoNotMatch")
-        );
-        return;
-      }
-    } else {
+    if (this.isFileEncryptedExport && this.filePassword != this.confirmFilePassword) {
+      this.platformUtilsService.showToast(
+        "error",
+        this.i18nService.t("errorOccurred"),
+        this.i18nService.t("filePasswordAndConfirmFilePasswordDoNotMatch")
+      );
+      return;
+    }
+
+    if (!this.isFileEncryptedExport) {
       this.exportForm.controls.filePassword.disable();
       this.exportForm.controls.confirmFilePassword.disable();
     }
@@ -81,13 +81,25 @@ export class ExportComponent extends BaseExportComponent {
       return;
     }
 
-    let confirmDescription = "exportWarningDesc";
+    const userVerified = await this.verifyUser();
+    if (!userVerified) {
+      return;
+    }
 
-    if (this.exportForm.get("format").value === "encrypted_json") {
-      confirmDescription =
-        this.exportForm.get("fileEncryptionType").value == EncryptedExportType.FileEncrypted
-          ? "fileEncryptedExportWarningDesc"
-          : "encExportKeyWarningDesc";
+    this.doExport();
+  }
+
+  protected saved() {
+    super.saved();
+    this.platformUtilsService.showToast("success", null, this.i18nService.t("exportSuccess"));
+  }
+
+  private verifyUser() {
+    let confirmDescription = "exportWarningDesc";
+    if (this.isFileEncryptedExport) {
+      confirmDescription = "fileEncryptedExportWarningDesc";
+    } else if (this.isAccountEncryptedExport) {
+      confirmDescription = "encExportKeyWarningDesc";
     }
 
     const ref = this.modalService.open(UserVerificationPromptComponent, {
@@ -103,22 +115,20 @@ export class ExportComponent extends BaseExportComponent {
       return;
     }
 
-    const userVerified = await ref.onClosedPromise();
-    if (userVerified) {
-      //successful
-      this.doExport();
-    }
-  }
-
-  protected saved() {
-    super.saved();
-    this.platformUtilsService.showToast("success", null, this.i18nService.t("exportSuccess"));
+    return ref.onClosedPromise();
   }
 
   get isFileEncryptedExport() {
     return (
       this.format === "encrypted_json" &&
       this.fileEncryptionType === EncryptedExportType.FileEncrypted
+    );
+  }
+
+  get isAccountEncryptedExport() {
+    return (
+      this.format === "encrypted_json" &&
+      this.fileEncryptionType === EncryptedExportType.AccountEncrypted
     );
   }
 }
