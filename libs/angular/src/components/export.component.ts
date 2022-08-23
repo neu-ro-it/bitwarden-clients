@@ -28,7 +28,7 @@ export class ExportComponent implements OnInit {
     secret: [""],
     filePassword: ["", Validators.required],
     confirmFilePassword: ["", Validators.required],
-    fileEncryptionType: [],
+    fileEncryptionType: [EncryptedExportType.AccountEncrypted],
   });
 
   formatOptions = [
@@ -53,7 +53,6 @@ export class ExportComponent implements OnInit {
 
   async ngOnInit() {
     await this.checkExportDisabled();
-    this.exportForm.get("fileEncryptionType").setValue(EncryptedExportType.AccountEncrypted);
   }
 
   async checkExportDisabled() {
@@ -84,8 +83,9 @@ export class ExportComponent implements OnInit {
   }
 
   async submit() {
-    if (!this.validFilePassword) {
-      return;
+    if (this.fileEncryptionType != EncryptedExportType.FileEncrypted) {
+      this.exportForm.controls.filePassword.disable();
+      this.exportForm.controls.confirmFilePassword.disable();
     }
 
     if (this.disabledByPolicy) {
@@ -103,14 +103,10 @@ export class ExportComponent implements OnInit {
     }
     const secret = this.exportForm.get("secret").value;
 
-    const successfulVerification = await this.userVerificationService.verifyUser(secret);
-    if (!successfulVerification) {
-      this.platformUtilsService.showToast(
-        "error",
-        this.i18nService.t("error"),
-        this.i18nService.t("invalidMasterPassword")
-      );
-      return;
+    try {
+      await this.userVerificationService.verifyUser(secret);
+    } catch (e) {
+      this.platformUtilsService.showToast("error", this.i18nService.t("errorOccurred"), e.message);
     }
 
     this.doExport();
@@ -205,25 +201,5 @@ export class ExportComponent implements OnInit {
       blobData: csv,
       blobOptions: { type: "text/plain" },
     });
-  }
-
-  get validFilePassword() {
-    if (
-      this.fileEncryptionType == EncryptedExportType.FileEncrypted &&
-      this.format == "encrypted_json"
-    ) {
-      if (this.filePassword != this.confirmFilePassword) {
-        this.platformUtilsService.showToast(
-          "error",
-          this.i18nService.t("errorOccurred"),
-          this.i18nService.t("filePasswordAndConfirmFilePasswordDoNotMatch")
-        );
-        return false;
-      } else {
-        return true;
-      }
-    } else {
-      return true;
-    }
   }
 }
