@@ -53,17 +53,21 @@ export class ExportComponent extends BaseExportComponent {
   }
 
   async submit() {
-    if (!this.validFilePassword) {
-      return;
-    }
-
-    if (this.fileEncryptionType != EncryptedExportType.FileEncrypted) {
+    if (this.isFileEncryptedExport) {
+      if (this.filePassword != this.confirmFilePassword) {
+        this.platformUtilsService.showToast(
+          "error",
+          this.i18nService.t("errorOccurred"),
+          this.i18nService.t("filePasswordAndConfirmFilePasswordDoNotMatch")
+        );
+        return;
+      }
+    } else {
       this.exportForm.controls.filePassword.disable();
       this.exportForm.controls.confirmFilePassword.disable();
     }
 
     this.exportForm.markAllAsTouched();
-
     if (!this.exportForm.valid) {
       return;
     }
@@ -111,23 +115,10 @@ export class ExportComponent extends BaseExportComponent {
     this.platformUtilsService.showToast("success", null, this.i18nService.t("exportSuccess"));
   }
 
-  get validFilePassword() {
-    if (
-      this.fileEncryptionType == EncryptedExportType.FileEncrypted &&
-      this.format == "encrypted_json"
-    ) {
-      if (this.filePassword != this.confirmFilePassword) {
-        this.platformUtilsService.showToast(
-          "error",
-          this.i18nService.t("errorOccurred"),
-          this.i18nService.t("filePasswordAndConfirmFilePasswordDoNotMatch")
-        );
-        return false;
-      } else {
-        return true;
-      }
-    } else {
-      return true;
-    }
+  get isFileEncryptedExport() {
+    return (
+      this.format === "encrypted_json" &&
+      this.fileEncryptionType === EncryptedExportType.FileEncrypted
+    );
   }
 }
