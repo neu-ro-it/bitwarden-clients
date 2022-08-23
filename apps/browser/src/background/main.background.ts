@@ -205,23 +205,7 @@ export default class MainBackground {
     const logoutCallback = async (expired: boolean, userId?: string) =>
       await this.logout(expired, userId);
 
-    const services: Record<string, unknown> = {};
-    const factoryOptions = {
-      logServiceOptions: {
-        isDev: false,
-      },
-      cryptoFunctionServiceOptions: {
-        win: window,
-      },
-      stateMigrationServiceOptions: {
-        stateFactory: new StateFactory(GlobalState, Account),
-      },
-      stateServiceOptions: {
-        stateFactory: new StateFactory(GlobalState, Account),
-      },
-    };
-
-    this.messagingService = this.popupOnlyContext
+    this.messagingService = isPrivateMode
       ? new BrowserMessagingPrivateModeBackgroundService()
       : new BrowserMessagingService();
     this.logService = new ConsoleLogService(false);

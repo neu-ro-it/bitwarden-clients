@@ -26,36 +26,46 @@ export class UpdateBadge {
   private badgeAction: any;
   private sidebarAction: any;
 
+  private static readonly listenedToCommands = [
+    "updateBadge",
+    "loggedIn",
+    "unlocked",
+    "syncCompleted",
+    "bgUpdateContextMenu",
+    "editedCipher",
+    "addedCipher",
+    "deletedCipher",
+  ];
+
   static async tabsOnActivatedListener(activeInfo: chrome.tabs.TabActiveInfo) {
-    await new UpdateBadge().run({ tabId: activeInfo.tabId });
+    await new UpdateBadge().initServices().then((x) => x.run({ tabId: activeInfo.tabId }));
   }
 
   static async tabsOnReplacedListener(addedTabId: number, removedTabId: number) {
-    await new UpdateBadge().run({ tabId: addedTabId });
+    await new UpdateBadge().initServices().then((x) => x.run({ tabId: addedTabId }));
   }
 
   static async tabsOnUpdatedListener(tabId: number) {
-    await new UpdateBadge().run({ tabId });
+    await new UpdateBadge().initServices().then((x) => x.run({ tabId }));
   }
 
   static async messageListener(
     serviceCache: Record<string, unknown>,
     message: { command: string; tabId: number }
   ) {
-    if (message.command != "updateBadge") {
+    if (!UpdateBadge.listenedToCommands.includes(message.command)) {
       return;
     }
 
-    await new UpdateBadge(serviceCache).run({ tabId: message.tabId });
+    await new UpdateBadge(serviceCache).initServices().then((x) => x.run());
   }
 
   constructor(existingServiceCache?: Record<string, unknown>) {
     //eslint-disable-next-line no-console
     console.log("UpdateBadge");
-    this.initServices(existingServiceCache);
   }
 
-  private initServices(existingServiceCache?: Record<string, unknown>): UpdateBadge {
+  async initServices(existingServiceCache?: Record<string, unknown>): Promise<UpdateBadge> {
     const serviceCache: Record<string, unknown> = existingServiceCache || {};
     const opts = {
       cryptoFunctionServiceOptions: { win: self },
@@ -86,10 +96,10 @@ export class UpdateBadge {
         searchServiceFactory: null as any, // Do not initialize searchService here.
       },
     };
-    this.platformUtilsService = platformUtilsServiceFactory(serviceCache, opts);
-    this.stateService = stateServiceFactory(serviceCache, opts);
-    this.authService = authServiceFactory(serviceCache, opts);
-    this.cipherService = cipherServiceFactory(serviceCache, opts);
+    this.platformUtilsService = await platformUtilsServiceFactory(serviceCache, opts);
+    this.stateService = await stateServiceFactory(serviceCache, opts);
+    this.authService = await authServiceFactory(serviceCache, opts);
+    this.cipherService = await cipherServiceFactory(serviceCache, opts);
 
     this.badgeAction = chrome.action;
     this.sidebarAction = this.platformUtilsService.isSafari()
@@ -114,17 +124,17 @@ export class UpdateBadge {
 
     switch (authStatus) {
       case AuthenticationStatus.LoggedOut: {
-        await this.setBadgeIcon("_gray", opts.windowId);
-        await this.setBadgeText("", opts.tabId);
+        await this.setBadgeIcon("_gray", opts?.windowId);
+        await this.setBadgeText("", opts?.tabId);
         break;
       }
       case AuthenticationStatus.Locked: {
-        await this.setBadgeIcon("_locked", opts.windowId);
-        await this.setBadgeText("", opts.tabId);
+        await this.setBadgeIcon("_locked", opts?.windowId);
+        await this.setBadgeText("", opts?.tabId);
         break;
       }
       case AuthenticationStatus.Unlocked: {
-        await this.setBadgeIcon("", opts.windowId);
+        await this.setBadgeIcon("", opts?.windowId);
 
         const disableBadgeCounter = await this.stateService.getDisableBadgeCounter();
         if (disableBadgeCounter) {
@@ -133,10 +143,10 @@ export class UpdateBadge {
 
         const tabs = await BrowserApi.getActiveTabs();
         let url: string;
-        if (opts.tabId && tabs.some((tab) => tab.id === opts.tabId)) {
-          url = tabs.find((tab) => tab.id === opts.tabId)?.url;
-        } else if (opts.windowId && tabs.some((tab) => tab.windowId === opts.windowId)) {
-          url = tabs.find((tab) => tab.windowId === opts.windowId)?.url;
+        if (opts?.tabId && tabs.some((tab) => tab.id === opts?.tabId)) {
+          url = tabs.find((tab) => tab.id === opts?.tabId)?.url;
+        } else if (opts?.windowId && tabs.some((tab) => tab.windowId === opts?.windowId)) {
+          url = tabs.find((tab) => tab.windowId === opts?.windowId)?.url;
         } else {
           url = (await this.currentTab())?.url;
         }
@@ -146,7 +156,7 @@ export class UpdateBadge {
         if (ciphers.length > 9) {
           countText = "9+";
         }
-        await this.setBadgeText(countText, opts.tabId);
+        await this.setBadgeText(countText, opts?.tabId);
         break;
       }
     }
