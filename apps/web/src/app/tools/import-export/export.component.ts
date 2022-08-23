@@ -62,11 +62,6 @@ export class ExportComponent extends BaseExportComponent {
       return;
     }
 
-    if (!this.isFileEncryptedExport) {
-      this.exportForm.controls.filePassword.disable();
-      this.exportForm.controls.confirmFilePassword.disable();
-    }
-
     this.exportForm.markAllAsTouched();
     if (!this.exportForm.valid) {
       return;

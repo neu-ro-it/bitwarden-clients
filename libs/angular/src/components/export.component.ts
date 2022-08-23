@@ -53,6 +53,7 @@ export class ExportComponent implements OnInit {
 
   async ngOnInit() {
     await this.checkExportDisabled();
+    this.adjustValidators();
   }
 
   async checkExportDisabled() {
@@ -83,11 +84,6 @@ export class ExportComponent implements OnInit {
   }
 
   async submit() {
-    if (this.fileEncryptionType != EncryptedExportType.FileEncrypted) {
-      this.exportForm.controls.filePassword.disable();
-      this.exportForm.controls.confirmFilePassword.disable();
-    }
-
     if (this.disabledByPolicy) {
       this.platformUtilsService.showToast(
         "error",
@@ -192,6 +188,19 @@ export class ExportComponent implements OnInit {
   toggleConfirmFilePassword() {
     this.showConfirmFilePassword = !this.showConfirmFilePassword;
     document.getElementById("confirmFilePassword").focus();
+  }
+
+  adjustValidators() {
+    this.exportForm.get("confirmFilePassword").reset();
+    this.exportForm.get("filePassword").reset();
+
+    if (this.encryptedFormat && this.fileEncryptionType == EncryptedExportType.FileEncrypted) {
+      this.exportForm.controls.filePassword.enable();
+      this.exportForm.controls.confirmFilePassword.enable();
+    } else {
+      this.exportForm.controls.filePassword.disable();
+      this.exportForm.controls.confirmFilePassword.disable();
+    }
   }
 
   private downloadFile(csv: string): void {

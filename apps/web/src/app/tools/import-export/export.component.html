@@ -21,7 +21,12 @@
     <div class="col-6">
       <bit-form-field>
         <bit-label class="tw-text-lg" for="format">{{ "fileFormat" | i18n }}</bit-label>
-        <select bitInput name="format" formControlName="format">
+        <select
+          bitInput
+          name="format"
+          formControlName="format"
+          (ngModelChange)="adjustValidators()"
+        >
           <option *ngFor="let f of formatOptions" [value]="f.value">{{ f.name }}</option>
         </select>
       </bit-form-field>
@@ -45,6 +50,7 @@
                 [value]="encryptedExportType.AccountEncrypted"
                 formControlName="fileEncryptionType"
                 [checked]="fileEncryptionType === encryptedExportType.AccountEncrypted"
+                (ngModelChange)="adjustValidators()"
               />
             </div>
             <div>
@@ -68,6 +74,7 @@
                 [value]="encryptedExportType.FileEncrypted"
                 formControlName="fileEncryptionType"
                 [checked]="fileEncryptionType === encryptedExportType.FileEncrypted"
+                (ngModelChange)="adjustValidators()"
               />
             </div>
             <div>
