@@ -180,8 +180,11 @@ export default class MainBackground {
   private syncTimeout: any;
   private isSafari: boolean;
   private nativeMessagingBackground: NativeMessagingBackground;
+  popupOnlyContext: boolean;
 
   constructor(public isPrivateMode: boolean = false) {
+    this.popupOnlyContext = isPrivateMode || BrowserApi.manifestVersion === 3;
+
     // Services
     const lockedCallback = async (userId?: string) => {
       if (BrowserApi.manifestVersion === 3) {
@@ -202,7 +205,23 @@ export default class MainBackground {
     const logoutCallback = async (expired: boolean, userId?: string) =>
       await this.logout(expired, userId);
 
-    this.messagingService = isPrivateMode
+    const services: Record<string, unknown> = {};
+    const factoryOptions = {
+      logServiceOptions: {
+        isDev: false,
+      },
+      cryptoFunctionServiceOptions: {
+        win: window,
+      },
+      stateMigrationServiceOptions: {
+        stateFactory: new StateFactory(GlobalState, Account),
+      },
+      stateServiceOptions: {
+        stateFactory: new StateFactory(GlobalState, Account),
+      },
+    };
+
+    this.messagingService = this.popupOnlyContext
       ? new BrowserMessagingPrivateModeBackgroundService()
       : new BrowserMessagingService();
     this.logService = new ConsoleLogService(false);

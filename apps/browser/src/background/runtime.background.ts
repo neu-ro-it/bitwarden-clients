@@ -52,7 +52,7 @@ export default class RuntimeBackground {
     };
 
     BrowserApi.messageListener("runtime.background", backgroundMessageListener);
-    if (this.main.isPrivateMode) {
+    if (this.main.popupOnlyContext) {
       (window as any).bitwardenBackgroundMessageListener = backgroundMessageListener;
     }
   }
