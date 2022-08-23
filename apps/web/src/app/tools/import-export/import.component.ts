@@ -111,20 +111,22 @@ export class ImportComponent implements OnInit {
 
     try {
       this.formPromise = this.importService.import(importer, fileContents, this.organizationId);
-      const error = await this.formPromise;
-      if (error != null) {
-        //Check if the error is that a password is required
-        if (error.passwordRequired) {
-          if (!(await this.showFilePasswordPrompt(fileContents, this.organizationId))) {
-            //failed - File Password issues
-            this.loading = false;
-            return;
-          }
-        } else {
-          this.error(error);
+      let error = await this.formPromise;
+
+      if (error?.passwordRequired) {
+        const filePassword = await this.getFilePassword();
+        if (filePassword == null) {
           this.loading = false;
           return;
         }
+
+        error = await this.doPasswordProtectedImport(filePassword, fileContents);
+      }
+
+      if (error != null) {
+        this.error(error);
+        this.loading = false;
+        return;
       }
 
       //No errors, display success message
@@ -242,20 +244,28 @@ export class ImportComponent implements OnInit {
       );
   }
 
-  async showFilePasswordPrompt(fcontents: string, organizationId: string) {
-    const ref = await this.modalService.open(FilePasswordPromptComponent, {
+  async getFilePassword(): Promise<string> {
+    const ref = this.modalService.open(FilePasswordPromptComponent, {
       allowMultipleModals: true,
-      data: {
-        importService: this.importService,
-        fileContents: fcontents,
-        organizationId: organizationId,
-      },
     });
 
     if (ref == null) {
-      return false;
+      return null;
     }
 
     return await ref.onClosedPromise();
+  }
+
+  async doPasswordProtectedImport(
+    filePassword: string,
+    fileContents: string
+  ): Promise<ImportError> {
+    const passwordProtectedImporter = this.importService.getImporter(
+      "bitwardenpasswordprotected",
+      this.organizationId,
+      filePassword
+    );
+
+    return this.importService.import(passwordProtectedImporter, fileContents, this.organizationId);
   }
 }
