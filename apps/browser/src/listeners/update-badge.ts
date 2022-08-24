@@ -18,13 +18,23 @@ import { BrowserApi } from "../browser/browserApi";
 import { Account } from "../models/account";
 import { StateService } from "../services/abstractions/state.service";
 
+type BadgeUpdateType = {
+  setBadgeText: (textDetails: { text: string; tabId: number }) => Promise<void>;
+  setIcon: (iconDetails: { path: any; windowId?: number }, callback?: () => void) => void;
+  setBadgeBackgroundColor: (colorDetails: { color: string; tabId?: number }) => Promise<void>;
+};
+
+type SideBarType = {
+  setTitle: (titleDetails: { title: string; tabId: number }) => Promise<void>;
+};
+
 export class UpdateBadge {
   private authService: AuthService;
   private platformUtilsService: PlatformUtilsService;
   private stateService: StateService;
   private cipherService: CipherService;
-  private badgeAction: any;
-  private sidebarAction: any;
+  private badgeAction: BadgeUpdateType;
+  private sidebarAction: BadgeUpdateType & SideBarType;
 
   private static readonly listenedToCommands = [
     "updateBadge",
@@ -57,12 +67,7 @@ export class UpdateBadge {
       return;
     }
 
-    await new UpdateBadge(serviceCache).initServices().then((x) => x.run());
-  }
-
-  constructor(existingServiceCache?: Record<string, unknown>) {
-    //eslint-disable-next-line no-console
-    console.log("UpdateBadge");
+    await new UpdateBadge().initServices(serviceCache).then((x) => x.run());
   }
 
   async initServices(existingServiceCache?: Record<string, unknown>): Promise<UpdateBadge> {
@@ -101,7 +106,12 @@ export class UpdateBadge {
     this.authService = await authServiceFactory(serviceCache, opts);
     this.cipherService = await cipherServiceFactory(serviceCache, opts);
 
-    this.badgeAction = chrome.action;
+    if (BrowserApi.manifestVersion === 3) {
+      this.badgeAction = chrome.action;
+    } else {
+      this.badgeAction = chrome.browserAction;
+    }
+
     this.sidebarAction = this.platformUtilsService.isSafari()
       ? null
       : typeof opr !== "undefined" && opr.sidebarAction
@@ -117,24 +127,25 @@ export class UpdateBadge {
   }
 
   async run(opts?: { tabId?: number; windowId?: number }): Promise<void> {
-    //eslint-disable-next-line no-console
-    console.log("UpdateBadge.run");
-
     const authStatus = await this.authService.getAuthStatus();
+
+    const tab = await this.currentTab();
+
+    await this.setBadgeBackgroundColor();
 
     switch (authStatus) {
       case AuthenticationStatus.LoggedOut: {
-        await this.setBadgeIcon("_gray", opts?.windowId);
-        await this.setBadgeText("", opts?.tabId);
+        await this.setBadgeIcon("_gray", opts?.windowId ?? tab?.windowId);
+        await this.setBadgeText("", opts?.tabId ?? tab?.id);
         break;
       }
       case AuthenticationStatus.Locked: {
-        await this.setBadgeIcon("_locked", opts?.windowId);
-        await this.setBadgeText("", opts?.tabId);
+        await this.setBadgeIcon("_locked", opts?.windowId ?? tab?.windowId);
+        await this.setBadgeText("", opts?.tabId ?? tab?.id);
         break;
       }
       case AuthenticationStatus.Unlocked: {
-        await this.setBadgeIcon("", opts?.windowId);
+        await this.setBadgeIcon("", opts?.windowId ?? tab?.windowId);
 
         const disableBadgeCounter = await this.stateService.getDisableBadgeCounter();
         if (disableBadgeCounter) {
@@ -148,7 +159,7 @@ export class UpdateBadge {
         } else if (opts?.windowId && tabs.some((tab) => tab.windowId === opts?.windowId)) {
           url = tabs.find((tab) => tab.windowId === opts?.windowId)?.url;
         } else {
-          url = (await this.currentTab())?.url;
+          url = tab?.url;
         }
 
         const ciphers = await this.cipherService.getAllDecryptedForUrl(url);
@@ -156,7 +167,7 @@ export class UpdateBadge {
         if (ciphers.length > 9) {
           countText = "9+";
         }
-        await this.setBadgeText(countText, opts?.tabId);
+        await this.setBadgeText(countText, opts?.tabId ?? tab.id);
         break;
       }
     }
@@ -165,22 +176,23 @@ export class UpdateBadge {
   private async currentTab() {
     const queryOptions = { active: true, lastFocusedWindow: true };
     // `tab` will either be a `tabs.Tab` instance or `undefined`.
-    const [tab] = await chrome.tabs.query(queryOptions);
+    let [tab] = await chrome.tabs.query(queryOptions);
+    if (!tab) {
+      tab = await (await chrome.tabs.query({ active: true })).find((tab) => true);
+    }
     return tab;
   }
 
   setBadgeBackgroundColor(color = "#294e5f") {
-    //eslint-disable-next-line no-console
-    console.log("UpdateBadge.setBadgeBackgroundColor");
-
-    this.badgeAction?.setBadgeBackgroundColor?.call({ color });
-    this.sidebarAction?.setBadgeBackgroundColor?.call({ color });
+    if (this.badgeAction?.setBadgeBackgroundColor) {
+      this.badgeAction.setBadgeBackgroundColor({ color });
+    }
+    if (this.sidebarAction?.setBadgeBackgroundColor) {
+      this.sidebarAction.setBadgeBackgroundColor({ color });
+    }
   }
 
   setBadgeText(text: string, tabId?: number) {
-    //eslint-disable-next-line no-console
-    console.log("UpdateBadge.setBadgeText\t" + text + "\t" + tabId);
-
     if (this.badgeAction?.setBadgeText) {
       this.badgeAction.setBadgeText({ text, tabId });
     }
@@ -194,9 +206,6 @@ export class UpdateBadge {
   }
 
   async setBadgeIcon(iconSuffix: string, windowId?: number) {
-    //eslint-disable-next-line no-console
-    console.log("UpdateBadge.setBadgeIcon\t" + iconSuffix + "\t" + windowId);
-
     const options: IconDetails = {
       path: {
         19: "images/icon19" + iconSuffix + ".png",
@@ -211,16 +220,18 @@ export class UpdateBadge {
     if (this.platformUtilsService.isSafari()) {
       // Workaround since Safari 14.0.3 returns a pending promise
       // which doesn't resolve within a reasonable time.
-      this.badgeAction?.setIcon?.call(options);
-      this.sidebarAction?.setIcon?.call(options);
+      if (this.badgeAction?.setIcon) {
+        this.badgeAction.setIcon(options);
+      }
+      if (this.sidebarAction?.setIcon) {
+        this.sidebarAction.setIcon(options);
+      }
     } else {
       if (this.badgeAction?.setIcon) {
-        await this.badgeAction.setIcon(options);
-      } else if (this.badgeAction?.setBadgeIcon) {
-        await this.badgeAction.setBadgeIcon(options);
+        await new Promise<void>((resolve) => this.badgeAction.setIcon(options, () => resolve()));
       }
-      if (this.sidebarAction?.setBadgeIcon) {
-        await this.sidebarAction.setBadgeIcon(options);
+      if (this.sidebarAction?.setIcon) {
+        await new Promise<void>((resolve) => this.sidebarAction.setIcon(options, () => resolve()));
       }
     }
   }
