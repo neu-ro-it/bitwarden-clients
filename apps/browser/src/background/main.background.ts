@@ -80,6 +80,7 @@ import { WebCryptoFunctionService } from "@bitwarden/common/services/webCryptoFu
 
 import { BrowserApi } from "../browser/browserApi";
 import { SafariApp } from "../browser/safariApp";
+import { UpdateBadge } from "../listeners/update-badge";
 import { Account } from "../models/account";
 import { PopupUtilsService } from "../popup/services/popup-utils.service";
 import { AutofillService as AutofillServiceAbstraction } from "../services/abstractions/autofill.service";
@@ -195,7 +196,8 @@ export default class MainBackground {
         this.notificationsService.updateConnection(false);
       }
       await this.setIcon();
-      await this.refreshBadgeAndMenu(true);
+      await this.refreshBadge();
+      await this.refreshMenu(true);
       if (this.systemService != null) {
         await this.systemService.clearPendingClipboard();
         await this.systemService.startProcessReload(this.authService);
@@ -606,7 +608,11 @@ export default class MainBackground {
     await this.actionSetIcon(this.sidebarAction, suffix);
   }
 
-  async refreshBadgeAndMenu(forLocked = false) {
+  async refreshBadge() {
+    (await new UpdateBadge().initServices(this as any)).run();
+  }
+
+  async refreshMenu(forLocked = false) {
     if (!chrome.windows || !chrome.contextMenus) {
       return;
     }
@@ -619,7 +625,7 @@ export default class MainBackground {
     }
 
     if (forLocked) {
-      await this.loadMenuAndUpdateBadgeForNoAccessState(!menuDisabled);
+      await this.loadMenuForNoAccessState(!menuDisabled);
       this.onUpdatedRan = this.onReplacedRan = false;
       return;
     }
@@ -659,7 +665,8 @@ export default class MainBackground {
       BrowserApi.sendMessage("updateBadge");
     }
     await this.setIcon();
-    await this.refreshBadgeAndMenu(true);
+    await this.refreshBadge();
+    await this.refreshMenu(true);
     await this.reseedStorage();
     this.notificationsService.updateConnection(false);
     await this.systemService.clearPendingClipboard();
@@ -807,17 +814,14 @@ export default class MainBackground {
   }
 
   private async contextMenuReady(tab: any, contextMenuEnabled: boolean) {
-    await this.loadMenuAndUpdateBadge(tab.url, tab.id, contextMenuEnabled);
+    await this.loadMenu(tab.url, tab.id, contextMenuEnabled);
     this.onUpdatedRan = this.onReplacedRan = false;
   }
 
-  private async loadMenuAndUpdateBadge(url: string, tabId: number, contextMenuEnabled: boolean) {
+  private async loadMenu(url: string, tabId: number, contextMenuEnabled: boolean) {
     if (!url || (!chrome.browserAction && !this.sidebarAction)) {
       return;
     }
-
-    this.actionSetBadgeBackgroundColor(chrome.browserAction);
-    this.actionSetBadgeBackgroundColor(this.sidebarAction);
 
     this.menuOptionsLoaded = [];
     const authStatus = await this.authService.getAuthStatus();
@@ -832,23 +836,9 @@ export default class MainBackground {
           });
         }
 
-        const disableBadgeCounter = await this.stateService.getDisableBadgeCounter();
-        let theText = "";
-
-        if (!disableBadgeCounter) {
-          if (ciphers.length > 0 && ciphers.length <= 9) {
-            theText = ciphers.length.toString();
-          } else if (ciphers.length > 0) {
-            theText = "9+";
-          }
-        }
-
         if (contextMenuEnabled && ciphers.length === 0) {
           await this.loadNoLoginsContextMenuOptions(this.i18nService.t("noMatchingLogins"));
         }
-
-        this.sidebarActionSetBadgeText(theText, tabId);
-        this.browserActionSetBadgeText(theText, tabId);
 
         return;
       } catch (e) {
@@ -856,25 +846,15 @@ export default class MainBackground {
       }
     }
 
-    await this.loadMenuAndUpdateBadgeForNoAccessState(contextMenuEnabled);
+    await this.loadMenuForNoAccessState(contextMenuEnabled);
   }
 
-  private async loadMenuAndUpdateBadgeForNoAccessState(contextMenuEnabled: boolean) {
+  private async loadMenuForNoAccessState(contextMenuEnabled: boolean) {
     if (contextMenuEnabled) {
       const authed = await this.stateService.getIsAuthenticated();
       await this.loadNoLoginsContextMenuOptions(
         this.i18nService.t(authed ? "unlockVaultMenu" : "loginToVaultMenu")
       );
-    }
-
-    const tabs = await BrowserApi.getActiveTabs();
-    if (tabs != null) {
-      tabs.forEach((tab) => {
-        if (tab.id != null) {
-          this.browserActionSetBadgeText("", tab.id);
-          this.sidebarActionSetBadgeText("", tab.id);
-        }
-      });
     }
   }
 
@@ -1029,44 +1009,6 @@ export default class MainBackground {
     } else {
       return new Promise<void>((resolve) => {
         theAction.setIcon(options, () => resolve());
-      });
-    }
-  }
-
-  private actionSetBadgeBackgroundColor(action: any) {
-    if (action && action.setBadgeBackgroundColor) {
-      action.setBadgeBackgroundColor({ color: "#294e5f" });
-    }
-  }
-
-  private browserActionSetBadgeText(text: string, tabId: number) {
-    if (chrome.browserAction && chrome.browserAction.setBadgeText) {
-      chrome.browserAction.setBadgeText({
-        text: text,
-        tabId: tabId,
-      });
-    }
-  }
-
-  private sidebarActionSetBadgeText(text: string, tabId: number) {
-    if (!this.sidebarAction) {
-      return;
-    }
-
-    if (this.sidebarAction.setBadgeText) {
-      this.sidebarAction.setBadgeText({
-        text: text,
-        tabId: tabId,
-      });
-    } else if (this.sidebarAction.setTitle) {
-      let title = "Bitwarden";
-      if (text && text !== "") {
-        title += " [" + text + "]";
-      }
-
-      this.sidebarAction.setTitle({
-        title: title,
-        tabId: tabId,
       });
     }
   }

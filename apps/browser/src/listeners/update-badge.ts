@@ -175,11 +175,9 @@ export class UpdateBadge {
 
   private async currentTab() {
     const queryOptions = { active: true, lastFocusedWindow: true };
-    // `tab` will either be a `tabs.Tab` instance or `undefined`.
-    let [tab] = await chrome.tabs.query(queryOptions);
-    if (!tab) {
-      tab = await (await chrome.tabs.query({ active: true })).find((tab) => true);
-    }
+    const tab =
+      (await BrowserApi.tabsQueryFirst(queryOptions)) ??
+      (await BrowserApi.tabsQueryFirst({ active: true }));
     return tab;
   }
 
