@@ -16,6 +16,7 @@ import { CipherService } from "@bitwarden/common/abstractions/cipher.service";
 import { CryptoService } from "@bitwarden/common/abstractions/crypto.service";
 import { EventService } from "@bitwarden/common/abstractions/event.service";
 import { FileDownloadService } from "@bitwarden/common/abstractions/fileDownload/fileDownload.service";
+import { FolderService } from "@bitwarden/common/abstractions/folder/folder.service.abstraction";
 import { I18nService } from "@bitwarden/common/abstractions/i18n.service";
 import { LogService } from "@bitwarden/common/abstractions/log.service";
 import { PasswordRepromptService } from "@bitwarden/common/abstractions/passwordReprompt.service";
@@ -64,6 +65,7 @@ export class ViewComponent implements OnDestroy, OnInit {
 
   constructor(
     protected cipherService: CipherService,
+    protected folderService: FolderService,
     protected totpService: TotpService,
     protected tokenService: TokenService,
     protected i18nService: I18nService,
