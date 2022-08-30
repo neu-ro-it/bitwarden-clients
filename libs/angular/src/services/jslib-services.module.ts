@@ -30,6 +30,7 @@ import { LogService } from "@bitwarden/common/abstractions/log.service";
 import { MessagingService as MessagingServiceAbstraction } from "@bitwarden/common/abstractions/messaging.service";
 import { NotificationsService as NotificationsServiceAbstraction } from "@bitwarden/common/abstractions/notifications.service";
 import { OrganizationService as OrganizationServiceAbstraction } from "@bitwarden/common/abstractions/organization.service";
+import { OrganizationApiServiceAbstraction } from "@bitwarden/common/abstractions/organization/organization-api.service.abstraction";
 import { PasswordGenerationService as PasswordGenerationServiceAbstraction } from "@bitwarden/common/abstractions/passwordGeneration.service";
 import { PasswordRepromptService as PasswordRepromptServiceAbstraction } from "@bitwarden/common/abstractions/passwordReprompt.service";
 import { PlatformUtilsService as PlatformUtilsServiceAbstraction } from "@bitwarden/common/abstractions/platformUtils.service";
@@ -45,7 +46,7 @@ import { SettingsService as SettingsServiceAbstraction } from "@bitwarden/common
 import { StateService as StateServiceAbstraction } from "@bitwarden/common/abstractions/state.service";
 import { StateMigrationService as StateMigrationServiceAbstraction } from "@bitwarden/common/abstractions/stateMigration.service";
 import { AbstractStorageService } from "@bitwarden/common/abstractions/storage.service";
-import { SyncService as SyncServiceAbstraction } from "@bitwarden/common/abstractions/sync.service";
+import { SyncService as SyncServiceAbstraction } from "@bitwarden/common/abstractions/sync/sync.service.abstraction";
 import { TokenService as TokenServiceAbstraction } from "@bitwarden/common/abstractions/token.service";
 import { TotpService as TotpServiceAbstraction } from "@bitwarden/common/abstractions/totp.service";
 import { TwoFactorService as TwoFactorServiceAbstraction } from "@bitwarden/common/abstractions/twoFactor.service";
@@ -77,6 +78,7 @@ import { FormValidationErrorsService } from "@bitwarden/common/services/formVali
 import { KeyConnectorService } from "@bitwarden/common/services/keyConnector.service";
 import { NotificationsService } from "@bitwarden/common/services/notifications.service";
 import { OrganizationService } from "@bitwarden/common/services/organization.service";
+import { OrganizationApiService } from "@bitwarden/common/services/organization/organization-api.service";
 import { PasswordGenerationService } from "@bitwarden/common/services/passwordGeneration.service";
 import { PolicyApiService } from "@bitwarden/common/services/policy/policy-api.service";
 import { PolicyService } from "@bitwarden/common/services/policy/policy.service";
@@ -86,7 +88,7 @@ import { SendService } from "@bitwarden/common/services/send.service";
 import { SettingsService } from "@bitwarden/common/services/settings.service";
 import { StateService } from "@bitwarden/common/services/state.service";
 import { StateMigrationService } from "@bitwarden/common/services/stateMigration.service";
-import { SyncService } from "@bitwarden/common/services/sync.service";
+import { SyncService } from "@bitwarden/common/services/sync/sync.service";
 import { TokenService } from "@bitwarden/common/services/token.service";
 import { TotpService } from "@bitwarden/common/services/totp.service";
 import { TwoFactorService } from "@bitwarden/common/services/twoFactor.service";
@@ -512,6 +514,11 @@ export const LOG_MAC_FAILURES = new InjectionToken<string>("LOG_MAC_FAILURES");
     {
       provide: UserVerificationApiServiceAbstraction,
       useClass: UserVerificationApiService,
+      deps: [ApiServiceAbstraction],
+    },
+    {
+      provide: OrganizationApiServiceAbstraction,
+      useClass: OrganizationApiService,
       deps: [ApiServiceAbstraction],
     },
   ],
