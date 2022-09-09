@@ -8,6 +8,7 @@ import {
   OnInit,
   Output,
 } from "@angular/core";
+import { firstValueFrom } from "rxjs";
 
 import { ApiService } from "@bitwarden/common/abstractions/api.service";
 import { AuditService } from "@bitwarden/common/abstractions/audit.service";
@@ -32,6 +33,7 @@ import { EncArrayBuffer } from "@bitwarden/common/models/domain/encArrayBuffer";
 import { ErrorResponse } from "@bitwarden/common/models/response/errorResponse";
 import { AttachmentView } from "@bitwarden/common/models/view/attachmentView";
 import { CipherView } from "@bitwarden/common/models/view/cipherView";
+import { FolderView } from "@bitwarden/common/models/view/folderView";
 import { LoginUriView } from "@bitwarden/common/models/view/loginUriView";
 
 const BroadcasterSubscriptionId = "ViewComponent";
@@ -58,6 +60,7 @@ export class ViewComponent implements OnDestroy, OnInit {
   totpLow: boolean;
   fieldType = FieldType;
   checkPasswordPromise: Promise<number>;
+  folder: FolderView;
 
   private totpInterval: any;
   private previousCipherId: string;
@@ -110,6 +113,10 @@ export class ViewComponent implements OnDestroy, OnInit {
     const cipher = await this.cipherService.get(this.cipherId);
     this.cipher = await cipher.decrypt();
     this.canAccessPremium = await this.stateService.getCanAccessPremium();
+
+    this.folder = await (
+      await firstValueFrom(this.folderService.folderViews$)
+    ).find((f) => f.id == this.cipher.folderId);
 
     if (
       this.cipher.type === CipherType.Login &&
