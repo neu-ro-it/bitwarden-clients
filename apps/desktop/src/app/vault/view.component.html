@@ -320,6 +320,14 @@
         </div>
       </div>
     </div>
+    <div class="box" *ngIf="cipher.folderId">
+      <div class="box-content">
+        <div class="box-content-row">
+          <span class="row-label">{{ "folder" | i18n }}</span>
+          {{ folder.name }}
+        </div>
+      </div>
+    </div>
     <div class="box" *ngIf="cipher.notes">
       <h2 class="box-header">
         {{ "notes" | i18n }}
