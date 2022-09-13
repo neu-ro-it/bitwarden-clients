@@ -1,6 +1,6 @@
 use anyhow::Result;
 use windows::{
-    core::factory, Foundation::IAsyncOperation, Security::Credentials::UI::*,
+    core::{factory, HSTRING}, Foundation::IAsyncOperation, Security::Credentials::UI::*,
     Win32::Foundation::HWND, Win32::System::WinRT::IUserConsentVerifierInterop,
 };
 
@@ -11,7 +11,7 @@ pub fn prompt(hwnd: Vec<u8>, message: String) -> Result<bool> {
     let window = HWND(h);
 
     let operation: IAsyncOperation<UserConsentVerificationResult> =
-        unsafe { interop.RequestVerificationForWindowAsync(window, message)? };
+        unsafe { interop.RequestVerificationForWindowAsync(window, &HSTRING::from(message))? };
 
     let result: UserConsentVerificationResult = operation.get()?;
 
