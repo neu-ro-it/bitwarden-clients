@@ -471,7 +471,12 @@
   <div class="box" *ngIf="cipher.folderId">
     <div class="box-content">
       <div class="box-content-row">
-        <span class="row-label">{{ "folder" | i18n }}</span>
+        <span
+          class="row-label draggable"
+          draggable="true"
+          (dragstart)="setTextDataOnDrag($event, folder.name)"
+          >{{ "folder" | i18n }}</span
+        >
         {{ folder.name }}
       </div>
     </div>
