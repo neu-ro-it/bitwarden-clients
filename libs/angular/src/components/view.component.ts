@@ -53,6 +53,7 @@ export class ViewComponent implements OnDestroy, OnInit {
   showCardNumber: boolean;
   showCardCode: boolean;
   canAccessPremium: boolean;
+  showPremiumRequiredTotp: boolean;
   totpCode: string;
   totpCodeFormatted: string;
   totpDash: number;
@@ -113,6 +114,8 @@ export class ViewComponent implements OnDestroy, OnInit {
     const cipher = await this.cipherService.get(this.cipherId);
     this.cipher = await cipher.decrypt();
     this.canAccessPremium = await this.stateService.getCanAccessPremium();
+    this.showPremiumRequiredTotp =
+      this.cipher.login.totp && !this.canAccessPremium && !this.cipher.organizationUseTotp;
 
     this.folder = await (
       await firstValueFrom(this.folderService.folderViews$)
