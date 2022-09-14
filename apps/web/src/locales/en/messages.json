@@ -71,7 +71,7 @@
     "message": "Company"
   },
   "ssn": {
-    "message": "Social Security Number"
+    "message": "Social security number"
   },
   "passportNumber": {
     "message": "Passport number"
@@ -209,7 +209,7 @@
     "description": "A programming term, also known as 'RegEx'."
   },
   "matchDetection": {
-    "message": "Match Detection",
+    "message": "Match detection",
     "description": "URI match detection for auto-fill."
   },
   "defaultMatchDetection": {
@@ -510,16 +510,16 @@
     }
   },
   "deleteItem": {
-    "message": "Delete Item"
+    "message": "Delete item"
   },
   "deleteFolder": {
-    "message": "Delete Folder"
+    "message": "Delete folder"
   },
   "deleteAttachment": {
-    "message": "Delete Attachment"
+    "message": "Delete attachment"
   },
   "deleteItemConfirmation": {
-    "message": "Do you really want to Send to the trash?"
+    "message": "Do you really want to send to the trash?"
   },
   "deletedItem": {
     "message": "Item sent to trash"
@@ -876,7 +876,7 @@
     "message": "Confirm Vault export"
   },
   "exportWarningDesc": {
-    "message": "This export contains your Vault data in an unencrypted format. You should not store or Send the exported file over unsecure channels (such as email). Delete it immediately after you are done using it."
+    "message": "This export contains your Vault data in an unencrypted format. You should not store or send the exported file over unsecure channels (such as email). Delete it immediately after you are done using it."
   },
   "encExportKeyWarningDesc": {
     "message": "This export encrypts your data using your account's encryption key. If you ever rotate your account's encryption key you should export again since you will not be able to decrypt this export file."
@@ -1037,10 +1037,10 @@
     "message": "Change master password"
   },
   "masterPasswordChanged": {
-    "message": "Master password Changed"
+    "message": "Master password saved"
   },
   "currentMasterPass": {
-    "message": "Current Master Password"
+    "message": "Current master password"
   },
   "newMasterPass": {
     "message": "New master password"
@@ -1094,7 +1094,7 @@
     "message": "Concerned your account is logged in on another device? Proceed below to deauthorize all computers or devices that you have previously used. This security step is recommended if you previously used a public computer or accidentally saved your password on a device that isn't yours. This step will also clear all previously remembered two-step login sessions."
   },
   "deauthorizeSessionsWarning": {
-    "message": "Proceeding will also log you out of your current session, requiring you to log back in. You will also be prompted for two-step login again, if enabled. Active sessions on other devices may continue to remain active for up to one hour."
+    "message": "Proceeding will also log you out of your current session, requiring you to log back in. You will also be prompted for two-step login again, if setup. Active sessions on other devices may continue to remain active for up to one hour."
   },
   "sessionsDeauthorized": {
     "message": "All sessions deauthorized"
@@ -1551,13 +1551,13 @@
     "message": "Inactive two-step login"
   },
   "inactive2faReportDesc": {
-    "message": "Two-step Login adds a layer of protection to your accounts. Turn on Two-Step Login using Bitwarden Authenticator for these accounts or use an alternative method."
+    "message": "Two-step Login adds a layer of protection to your accounts. Turn on two-wtep login using Bitwarden Authenticator for these accounts or use an alternative method."
   },
   "inactive2faFound": {
     "message": "Logins without 2FA found"
   },
   "inactive2faFoundDesc": {
-    "message": "We found $COUNT$ website(s) in your Vault that may not be configured with two-factor authentication (according to 2fa.directory). To further protect these accounts, you should enable two-factor authentication.",
+    "message": "We found $COUNT$ website(s) in your Vault that may not be configured with two-factor authentication (according to 2fa.directory). To further protect these accounts, you should set up two-factor authentication.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1608,7 +1608,7 @@
     "message": "Weak passwords"
   },
   "weakPasswordsReportDesc": {
-    "message": "Weak passwords can be easily guessed by attackers. Change these passwords to strong ones using the Password Generator."
+    "message": "Weak passwords can be easily guessed by attackers. Change these passwords to strong ones using the password generator."
   },
   "weakPasswordsFound": {
     "message": "Weak passwords found"
@@ -1904,7 +1904,7 @@
     "message": "Are you sure you want to cancel? You will lose access to all of this subscription's features at the end of this billing cycle."
   },
   "canceledSubscription": {
-    "message": "The subscription has been canceled."
+    "message": "Subscription canceled"
   },
   "neverExpires": {
     "message": "Never expires"
@@ -2188,7 +2188,7 @@
     "message": "Add and share with unlimited users"
   },
   "createUnlimitedCollections": {
-    "message": "Create unlimited Collections"
+    "message": "Create unlimited collections"
   },
   "gbEncryptedFileStorage": {
     "message": "$SIZE$ encrypted file storage",
@@ -2260,7 +2260,7 @@
     "message": "Annual"
   },
   "basePrice": {
-    "message": "Base Price"
+    "message": "Base price"
   },
   "organizationCreated": {
     "message": "Organization created"
@@ -2845,7 +2845,7 @@
     "message": "Edit the groups that this user belongs to."
   },
   "invitedUsers": {
-    "message": "Invited user(s)."
+    "message": "User(s) invited"
   },
   "resendInvitation": {
     "message": "Resend invitation"
@@ -2854,7 +2854,7 @@
     "message": "Resend email"
   },
   "hasBeenReinvited": {
-    "message": "$USER$ has been reinvited.",
+    "message": "$USER$ reinvited",
     "placeholders": {
       "user": {
         "content": "$1",
@@ -2908,7 +2908,7 @@
     "message": "Unable to verify your email. Try sending a new verification email."
   },
   "emailVerificationRequired": {
-    "message": "Email Verification Required"
+    "message": "Email verification required"
   },
   "emailVerificationRequiredDesc": {
     "message": "You must verify your email to use this feature."
@@ -2950,7 +2950,7 @@
     "message": "If you cannot access your account through your normal two-step login methods, you can use your two-step login recovery code to disable all two-step providers on your account."
   },
   "recoverAccountTwoStep": {
-    "message": "Recover Account Two-Step Login"
+    "message": "Recover account twoo-step login"
   },
   "twoStepRecoverDisabled": {
     "message": "Two-step login has been disabled on your account."
@@ -3079,10 +3079,10 @@
     "message": "Account type"
   },
   "bankAccountTypeCompany": {
-    "message": "Company (Business)"
+    "message": "Company (business)"
   },
   "bankAccountTypeIndividual": {
-    "message": "Individual (Personal)"
+    "message": "Individual (personal)"
   },
   "enterInstallationId": {
     "message": "Enter your installation id"
@@ -3373,7 +3373,7 @@
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "dontAskFingerprintAgain": {
-    "message": "Never prompt to verify fingerprint phrases for invited users (Not recommended)",
+    "message": "Never prompt to verify fingerprint phrases for invited users (not recommended)",
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "free": {
@@ -4433,7 +4433,7 @@
     "message": "Error"
   },
   "resetPasswordManageUsers": {
-    "message": "Manage Users must also be enabled with the Manage Password Reset permission"
+    "message": "Manage users must also be enabled with the manage password reset permission"
   },
   "setupProvider": {
     "message": "Provider setup"
@@ -4557,13 +4557,13 @@
     "message": "Master password saved"
   },
   "updateMasterPassword": {
-    "message": "Update Master Password"
+    "message": "Update master password"
   },
   "updateMasterPasswordWarning": {
-    "message": "Your Master Password was recently changed by an administrator in your organization. In order to access the Vault, you must update your Master Password now. Proceeding will log you out of your current session, requiring you to log back in. Active sessions on other devices may continue to remain active for up to one hour."
+    "message": "Your master password was recently changed by an administrator in your organization. In order to access the Vault, you must update your master password now. Proceeding will log you out of your current session, requiring you to log back in. Active sessions on other devices may continue to remain active for up to one hour."
   },
   "masterPasswordInvalidWarning": {
-    "message": "Your Master Password does not meet the policy requirements of this organization. In order to join the organization, you must update your Master Password now. Proceeding will log you out of your current session, requiring you to log back in. Active sessions on other devices may continue to remain active for up to one hour."
+    "message": "Your master password does not meet the policy requirements of this organization. In order to join the organization, you must update your master password now. Proceeding will log you out of your current session, requiring you to log back in. Active sessions on other devices may continue to remain active for up to one hour."
   },
   "maximumVaultTimeout": {
     "message": "Vault timeout"
@@ -4732,7 +4732,7 @@
     "message": "Sign authentication requests"
   },
   "ssoSettingsSaved": {
-    "message": "Single Sign-On configuration was saved."
+    "message": "Single sign-on configuration was saved."
   },
   "sponsoredFamilies": {
     "message": "Free Bitwarden Families"
@@ -4918,13 +4918,13 @@
     "message": "Member decryption options"
   },
   "memberDecryptionPassDesc": {
-    "message": "Once authenticated, members will decrypt Vault data using their Master Passwords."
+    "message": "Once authenticated, members will decrypt Vault data using their master passwords."
   },
   "keyConnector": {
     "message": "Key connector"
   },
   "memberDecryptionKeyConnectorDesc": {
-    "message": "Connect Login with SSO to your self-hosted decryption key server. Using this option, members won’t need to use their Master Passwords to decrypt Vault data. Contact Bitwarden Support for set up assistance."
+    "message": "Connect Login with SSO to your self-hosted decryption key server. Using this option, members won’t need to use their master passwords to decrypt Vault data. Contact Bitwarden Support for set up assistance."
   },
   "keyConnectorPolicyRestriction": {
     "message": "\"Login with SSO and Key Connector Decryption\" is enabled. This policy will only apply to owners and admins."
@@ -4942,7 +4942,7 @@
     "message": "Disabled key connector"
   },
   "keyConnectorWarning": {
-    "message": "Once members begin using Key Connector, your organization cannot revert to Master Password decryption. Proceed only if you are comfortable deploying and managing a key server."
+    "message": "Once members begin using key connector, your organization cannot revert to master password decryption. Proceed only if you are comfortable deploying and managing a key server."
   },
   "migratedKeyConnector": {
     "message": "Migrated to key connector"
@@ -5035,7 +5035,7 @@
     "message": "Inactive"
   },
   "sentAwaitingSync": {
-    "message": "Sent (Awaiting Sync)"
+    "message": "Sent (awaiting sync)"
   },
   "sent": {
     "message": "Sent"
