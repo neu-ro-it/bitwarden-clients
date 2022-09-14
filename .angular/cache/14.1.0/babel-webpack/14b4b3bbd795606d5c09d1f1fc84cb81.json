@@ -1,0 +1,17 @@
+{
+  "ast": null,
+  "code": "import { withLinks } from './index';\nexport var decorators = [withLinks];",
+  "map": {
+    "version": 3,
+    "names": ["withLinks", "decorators"],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/@storybook/addon-links/dist/esm/preview.js"
+    ],
+    "sourcesContent": [
+      "import { withLinks } from './index';\nexport var decorators = [withLinks];"
+    ],
+    "mappings": "AAAA,SAASA,SAAT,QAA0B,SAA1B;AACA,OAAO,IAAIC,UAAU,GAAG,CAACD,SAAD,CAAjB"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

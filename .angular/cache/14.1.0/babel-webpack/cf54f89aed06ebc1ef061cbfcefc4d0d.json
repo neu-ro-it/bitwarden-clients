@@ -1,0 +1,37 @@
+{
+  "ast": null,
+  "code": "import \"core-js/modules/es.array.slice.js\";\nimport \"core-js/modules/es.object.freeze.js\";\n\nvar _templateObject;\n\nfunction _taggedTemplateLiteral(strings, raw) {\n  if (!raw) {\n    raw = strings.slice(0);\n  }\n\n  return Object.freeze(Object.defineProperties(strings, {\n    raw: {\n      value: Object.freeze(raw)\n    }\n  }));\n}\n\nimport React from 'react';\nimport deprecate from 'util-deprecate';\nimport dedent from 'ts-dedent';\nimport { ArgsTable } from './ArgsTable';\nimport { CURRENT_SELECTION } from './types';\nexport var Props = deprecate(function (props) {\n  return /*#__PURE__*/React.createElement(ArgsTable, props);\n}, dedent(_templateObject || (_templateObject = _taggedTemplateLiteral([\"\\n    Props doc block has been renamed to ArgsTable.\\n\\n    https://github.com/storybookjs/storybook/blob/next/MIGRATION.md#previewprops-renamed\\n  \"])))); // @ts-ignore\n\nProps.defaultProps = {\n  of: CURRENT_SELECTION\n};",
+  "map": {
+    "version": 3,
+    "names": [
+      "_templateObject",
+      "_taggedTemplateLiteral",
+      "strings",
+      "raw",
+      "slice",
+      "Object",
+      "freeze",
+      "defineProperties",
+      "value",
+      "React",
+      "deprecate",
+      "dedent",
+      "ArgsTable",
+      "CURRENT_SELECTION",
+      "Props",
+      "props",
+      "createElement",
+      "defaultProps",
+      "of"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/@storybook/addon-docs/dist/esm/blocks/Props.js"
+    ],
+    "sourcesContent": [
+      "import \"core-js/modules/es.array.slice.js\";\nimport \"core-js/modules/es.object.freeze.js\";\n\nvar _templateObject;\n\nfunction _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }\n\nimport React from 'react';\nimport deprecate from 'util-deprecate';\nimport dedent from 'ts-dedent';\nimport { ArgsTable } from './ArgsTable';\nimport { CURRENT_SELECTION } from './types';\nexport var Props = deprecate(function (props) {\n  return /*#__PURE__*/React.createElement(ArgsTable, props);\n}, dedent(_templateObject || (_templateObject = _taggedTemplateLiteral([\"\\n    Props doc block has been renamed to ArgsTable.\\n\\n    https://github.com/storybookjs/storybook/blob/next/MIGRATION.md#previewprops-renamed\\n  \"])))); // @ts-ignore\n\nProps.defaultProps = {\n  of: CURRENT_SELECTION\n};"
+    ],
+    "mappings": "AAAA,OAAO,mCAAP;AACA,OAAO,qCAAP;;AAEA,IAAIA,eAAJ;;AAEA,SAASC,sBAAT,CAAgCC,OAAhC,EAAyCC,GAAzC,EAA8C;EAAE,IAAI,CAACA,GAAL,EAAU;IAAEA,GAAG,GAAGD,OAAO,CAACE,KAAR,CAAc,CAAd,CAAN;EAAyB;;EAAC,OAAOC,MAAM,CAACC,MAAP,CAAcD,MAAM,CAACE,gBAAP,CAAwBL,OAAxB,EAAiC;IAAEC,GAAG,EAAE;MAAEK,KAAK,EAAEH,MAAM,CAACC,MAAP,CAAcH,GAAd;IAAT;EAAP,CAAjC,CAAd,CAAP;AAAiG;;AAEvL,OAAOM,KAAP,MAAkB,OAAlB;AACA,OAAOC,SAAP,MAAsB,gBAAtB;AACA,OAAOC,MAAP,MAAmB,WAAnB;AACA,SAASC,SAAT,QAA0B,aAA1B;AACA,SAASC,iBAAT,QAAkC,SAAlC;AACA,OAAO,IAAIC,KAAK,GAAGJ,SAAS,CAAC,UAAUK,KAAV,EAAiB;EAC5C,OAAO,aAAaN,KAAK,CAACO,aAAN,CAAoBJ,SAApB,EAA+BG,KAA/B,CAApB;AACD,CAF2B,EAEzBJ,MAAM,CAACX,eAAe,KAAKA,eAAe,GAAGC,sBAAsB,CAAC,CAAC,sJAAD,CAAD,CAA7C,CAAhB,CAFmB,CAArB,C,CAE8N;;AAErOa,KAAK,CAACG,YAAN,GAAqB;EACnBC,EAAE,EAAEL;AADe,CAArB"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

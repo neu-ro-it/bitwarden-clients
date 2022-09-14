@@ -1,0 +1,37 @@
+{
+  "ast": null,
+  "code": "import { __read, __spreadArray } from \"tslib\";\nimport { Subscription } from '../Subscription';\nexport var animationFrameProvider = {\n  schedule: function (callback) {\n    var request = requestAnimationFrame;\n    var cancel = cancelAnimationFrame;\n    var delegate = animationFrameProvider.delegate;\n\n    if (delegate) {\n      request = delegate.requestAnimationFrame;\n      cancel = delegate.cancelAnimationFrame;\n    }\n\n    var handle = request(function (timestamp) {\n      cancel = undefined;\n      callback(timestamp);\n    });\n    return new Subscription(function () {\n      return cancel === null || cancel === void 0 ? void 0 : cancel(handle);\n    });\n  },\n  requestAnimationFrame: function () {\n    var args = [];\n\n    for (var _i = 0; _i < arguments.length; _i++) {\n      args[_i] = arguments[_i];\n    }\n\n    var delegate = animationFrameProvider.delegate;\n    return ((delegate === null || delegate === void 0 ? void 0 : delegate.requestAnimationFrame) || requestAnimationFrame).apply(void 0, __spreadArray([], __read(args)));\n  },\n  cancelAnimationFrame: function () {\n    var args = [];\n\n    for (var _i = 0; _i < arguments.length; _i++) {\n      args[_i] = arguments[_i];\n    }\n\n    var delegate = animationFrameProvider.delegate;\n    return ((delegate === null || delegate === void 0 ? void 0 : delegate.cancelAnimationFrame) || cancelAnimationFrame).apply(void 0, __spreadArray([], __read(args)));\n  },\n  delegate: undefined\n}; //# sourceMappingURL=animationFrameProvider.js.map",
+  "map": {
+    "version": 3,
+    "names": [
+      "__read",
+      "__spreadArray",
+      "Subscription",
+      "animationFrameProvider",
+      "schedule",
+      "callback",
+      "request",
+      "requestAnimationFrame",
+      "cancel",
+      "cancelAnimationFrame",
+      "delegate",
+      "handle",
+      "timestamp",
+      "undefined",
+      "args",
+      "_i",
+      "arguments",
+      "length",
+      "apply"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/esm5/internal/scheduler/animationFrameProvider.js"
+    ],
+    "sourcesContent": [
+      "import { __read, __spreadArray } from \"tslib\";\nimport { Subscription } from '../Subscription';\nexport var animationFrameProvider = {\n    schedule: function (callback) {\n        var request = requestAnimationFrame;\n        var cancel = cancelAnimationFrame;\n        var delegate = animationFrameProvider.delegate;\n        if (delegate) {\n            request = delegate.requestAnimationFrame;\n            cancel = delegate.cancelAnimationFrame;\n        }\n        var handle = request(function (timestamp) {\n            cancel = undefined;\n            callback(timestamp);\n        });\n        return new Subscription(function () { return cancel === null || cancel === void 0 ? void 0 : cancel(handle); });\n    },\n    requestAnimationFrame: function () {\n        var args = [];\n        for (var _i = 0; _i < arguments.length; _i++) {\n            args[_i] = arguments[_i];\n        }\n        var delegate = animationFrameProvider.delegate;\n        return ((delegate === null || delegate === void 0 ? void 0 : delegate.requestAnimationFrame) || requestAnimationFrame).apply(void 0, __spreadArray([], __read(args)));\n    },\n    cancelAnimationFrame: function () {\n        var args = [];\n        for (var _i = 0; _i < arguments.length; _i++) {\n            args[_i] = arguments[_i];\n        }\n        var delegate = animationFrameProvider.delegate;\n        return ((delegate === null || delegate === void 0 ? void 0 : delegate.cancelAnimationFrame) || cancelAnimationFrame).apply(void 0, __spreadArray([], __read(args)));\n    },\n    delegate: undefined,\n};\n//# sourceMappingURL=animationFrameProvider.js.map"
+    ],
+    "mappings": "AAAA,SAASA,MAAT,EAAiBC,aAAjB,QAAsC,OAAtC;AACA,SAASC,YAAT,QAA6B,iBAA7B;AACA,OAAO,IAAIC,sBAAsB,GAAG;EAChCC,QAAQ,EAAE,UAAUC,QAAV,EAAoB;IAC1B,IAAIC,OAAO,GAAGC,qBAAd;IACA,IAAIC,MAAM,GAAGC,oBAAb;IACA,IAAIC,QAAQ,GAAGP,sBAAsB,CAACO,QAAtC;;IACA,IAAIA,QAAJ,EAAc;MACVJ,OAAO,GAAGI,QAAQ,CAACH,qBAAnB;MACAC,MAAM,GAAGE,QAAQ,CAACD,oBAAlB;IACH;;IACD,IAAIE,MAAM,GAAGL,OAAO,CAAC,UAAUM,SAAV,EAAqB;MACtCJ,MAAM,GAAGK,SAAT;MACAR,QAAQ,CAACO,SAAD,CAAR;IACH,CAHmB,CAApB;IAIA,OAAO,IAAIV,YAAJ,CAAiB,YAAY;MAAE,OAAOM,MAAM,KAAK,IAAX,IAAmBA,MAAM,KAAK,KAAK,CAAnC,GAAuC,KAAK,CAA5C,GAAgDA,MAAM,CAACG,MAAD,CAA7D;IAAwE,CAAvG,CAAP;EACH,CAd+B;EAehCJ,qBAAqB,EAAE,YAAY;IAC/B,IAAIO,IAAI,GAAG,EAAX;;IACA,KAAK,IAAIC,EAAE,GAAG,CAAd,EAAiBA,EAAE,GAAGC,SAAS,CAACC,MAAhC,EAAwCF,EAAE,EAA1C,EAA8C;MAC1CD,IAAI,CAACC,EAAD,CAAJ,GAAWC,SAAS,CAACD,EAAD,CAApB;IACH;;IACD,IAAIL,QAAQ,GAAGP,sBAAsB,CAACO,QAAtC;IACA,OAAO,CAAC,CAACA,QAAQ,KAAK,IAAb,IAAqBA,QAAQ,KAAK,KAAK,CAAvC,GAA2C,KAAK,CAAhD,GAAoDA,QAAQ,CAACH,qBAA9D,KAAwFA,qBAAzF,EAAgHW,KAAhH,CAAsH,KAAK,CAA3H,EAA8HjB,aAAa,CAAC,EAAD,EAAKD,MAAM,CAACc,IAAD,CAAX,CAA3I,CAAP;EACH,CAtB+B;EAuBhCL,oBAAoB,EAAE,YAAY;IAC9B,IAAIK,IAAI,GAAG,EAAX;;IACA,KAAK,IAAIC,EAAE,GAAG,CAAd,EAAiBA,EAAE,GAAGC,SAAS,CAACC,MAAhC,EAAwCF,EAAE,EAA1C,EAA8C;MAC1CD,IAAI,CAACC,EAAD,CAAJ,GAAWC,SAAS,CAACD,EAAD,CAApB;IACH;;IACD,IAAIL,QAAQ,GAAGP,sBAAsB,CAACO,QAAtC;IACA,OAAO,CAAC,CAACA,QAAQ,KAAK,IAAb,IAAqBA,QAAQ,KAAK,KAAK,CAAvC,GAA2C,KAAK,CAAhD,GAAoDA,QAAQ,CAACD,oBAA9D,KAAuFA,oBAAxF,EAA8GS,KAA9G,CAAoH,KAAK,CAAzH,EAA4HjB,aAAa,CAAC,EAAD,EAAKD,MAAM,CAACc,IAAD,CAAX,CAAzI,CAAP;EACH,CA9B+B;EA+BhCJ,QAAQ,EAAEG;AA/BsB,CAA7B,C,CAiCP"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

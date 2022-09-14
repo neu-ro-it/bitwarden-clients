@@ -1,0 +1,25 @@
+{
+  "ast": null,
+  "code": "import { createContext } from 'react';\nimport { window as globalWindow } from 'global'; // We add DocsContext to window. The reason is that in case DocsContext.ts is\n// imported multiple times (maybe once directly, and another time from a minified bundle)\n// we will have multiple DocsContext definitions - leading to lost context in\n// the React component tree.\n// This was specifically a problem with the Vite builder.\n\n/* eslint-disable no-underscore-dangle */\n\nif (globalWindow && globalWindow.__DOCS_CONTEXT__ === undefined) {\n  globalWindow.__DOCS_CONTEXT__ = /*#__PURE__*/createContext({});\n  globalWindow.__DOCS_CONTEXT__.displayName = 'DocsContext';\n}\n\nexport var DocsContext = globalWindow ? globalWindow.__DOCS_CONTEXT__ : /*#__PURE__*/createContext({});",
+  "map": {
+    "version": 3,
+    "names": [
+      "createContext",
+      "window",
+      "globalWindow",
+      "__DOCS_CONTEXT__",
+      "undefined",
+      "displayName",
+      "DocsContext"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/@storybook/addon-docs/dist/esm/blocks/DocsContext.js"
+    ],
+    "sourcesContent": [
+      "import { createContext } from 'react';\nimport { window as globalWindow } from 'global';\n\n// We add DocsContext to window. The reason is that in case DocsContext.ts is\n// imported multiple times (maybe once directly, and another time from a minified bundle)\n// we will have multiple DocsContext definitions - leading to lost context in\n// the React component tree.\n// This was specifically a problem with the Vite builder.\n\n/* eslint-disable no-underscore-dangle */\nif (globalWindow && globalWindow.__DOCS_CONTEXT__ === undefined) {\n  globalWindow.__DOCS_CONTEXT__ = /*#__PURE__*/createContext({});\n  globalWindow.__DOCS_CONTEXT__.displayName = 'DocsContext';\n}\n\nexport var DocsContext = globalWindow ? globalWindow.__DOCS_CONTEXT__ : /*#__PURE__*/createContext({});"
+    ],
+    "mappings": "AAAA,SAASA,aAAT,QAA8B,OAA9B;AACA,SAASC,MAAM,IAAIC,YAAnB,QAAuC,QAAvC,C,CAEA;AACA;AACA;AACA;AACA;;AAEA;;AACA,IAAIA,YAAY,IAAIA,YAAY,CAACC,gBAAb,KAAkCC,SAAtD,EAAiE;EAC/DF,YAAY,CAACC,gBAAb,GAAgC,aAAaH,aAAa,CAAC,EAAD,CAA1D;EACAE,YAAY,CAACC,gBAAb,CAA8BE,WAA9B,GAA4C,aAA5C;AACD;;AAED,OAAO,IAAIC,WAAW,GAAGJ,YAAY,GAAGA,YAAY,CAACC,gBAAhB,GAAmC,aAAaH,aAAa,CAAC,EAAD,CAA3F"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

@@ -1,0 +1,38 @@
+{
+  "ast": null,
+  "code": "\"use strict\";\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.TestTools = exports.Immediate = void 0;\nvar nextHandle = 1;\nvar resolved;\nvar activeHandles = {};\n\nfunction findAndClearHandle(handle) {\n  if (handle in activeHandles) {\n    delete activeHandles[handle];\n    return true;\n  }\n\n  return false;\n}\n\nexports.Immediate = {\n  setImmediate: function (cb) {\n    var handle = nextHandle++;\n    activeHandles[handle] = true;\n\n    if (!resolved) {\n      resolved = Promise.resolve();\n    }\n\n    resolved.then(function () {\n      return findAndClearHandle(handle) && cb();\n    });\n    return handle;\n  },\n  clearImmediate: function (handle) {\n    findAndClearHandle(handle);\n  }\n};\nexports.TestTools = {\n  pending: function () {\n    return Object.keys(activeHandles).length;\n  }\n}; //# sourceMappingURL=Immediate.js.map",
+  "map": {
+    "version": 3,
+    "names": [
+      "Object",
+      "defineProperty",
+      "exports",
+      "value",
+      "TestTools",
+      "Immediate",
+      "nextHandle",
+      "resolved",
+      "activeHandles",
+      "findAndClearHandle",
+      "handle",
+      "setImmediate",
+      "cb",
+      "Promise",
+      "resolve",
+      "then",
+      "clearImmediate",
+      "pending",
+      "keys",
+      "length"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/cjs/internal/util/Immediate.js"
+    ],
+    "sourcesContent": [
+      "\"use strict\";\nObject.defineProperty(exports, \"__esModule\", { value: true });\nexports.TestTools = exports.Immediate = void 0;\nvar nextHandle = 1;\nvar resolved;\nvar activeHandles = {};\nfunction findAndClearHandle(handle) {\n    if (handle in activeHandles) {\n        delete activeHandles[handle];\n        return true;\n    }\n    return false;\n}\nexports.Immediate = {\n    setImmediate: function (cb) {\n        var handle = nextHandle++;\n        activeHandles[handle] = true;\n        if (!resolved) {\n            resolved = Promise.resolve();\n        }\n        resolved.then(function () { return findAndClearHandle(handle) && cb(); });\n        return handle;\n    },\n    clearImmediate: function (handle) {\n        findAndClearHandle(handle);\n    },\n};\nexports.TestTools = {\n    pending: function () {\n        return Object.keys(activeHandles).length;\n    }\n};\n//# sourceMappingURL=Immediate.js.map"
+    ],
+    "mappings": "AAAA;;AACAA,MAAM,CAACC,cAAP,CAAsBC,OAAtB,EAA+B,YAA/B,EAA6C;EAAEC,KAAK,EAAE;AAAT,CAA7C;AACAD,OAAO,CAACE,SAAR,GAAoBF,OAAO,CAACG,SAAR,GAAoB,KAAK,CAA7C;AACA,IAAIC,UAAU,GAAG,CAAjB;AACA,IAAIC,QAAJ;AACA,IAAIC,aAAa,GAAG,EAApB;;AACA,SAASC,kBAAT,CAA4BC,MAA5B,EAAoC;EAChC,IAAIA,MAAM,IAAIF,aAAd,EAA6B;IACzB,OAAOA,aAAa,CAACE,MAAD,CAApB;IACA,OAAO,IAAP;EACH;;EACD,OAAO,KAAP;AACH;;AACDR,OAAO,CAACG,SAAR,GAAoB;EAChBM,YAAY,EAAE,UAAUC,EAAV,EAAc;IACxB,IAAIF,MAAM,GAAGJ,UAAU,EAAvB;IACAE,aAAa,CAACE,MAAD,CAAb,GAAwB,IAAxB;;IACA,IAAI,CAACH,QAAL,EAAe;MACXA,QAAQ,GAAGM,OAAO,CAACC,OAAR,EAAX;IACH;;IACDP,QAAQ,CAACQ,IAAT,CAAc,YAAY;MAAE,OAAON,kBAAkB,CAACC,MAAD,CAAlB,IAA8BE,EAAE,EAAvC;IAA4C,CAAxE;IACA,OAAOF,MAAP;EACH,CATe;EAUhBM,cAAc,EAAE,UAAUN,MAAV,EAAkB;IAC9BD,kBAAkB,CAACC,MAAD,CAAlB;EACH;AAZe,CAApB;AAcAR,OAAO,CAACE,SAAR,GAAoB;EAChBa,OAAO,EAAE,YAAY;IACjB,OAAOjB,MAAM,CAACkB,IAAP,CAAYV,aAAZ,EAA2BW,MAAlC;EACH;AAHe,CAApB,C,CAKA"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

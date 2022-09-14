@@ -1,0 +1,17 @@
+{
+  "ast": null,
+  "code": "import { AsyncSubject } from '../AsyncSubject';\nimport { ConnectableObservable } from '../observable/ConnectableObservable';\nexport function publishLast() {\n  return function (source) {\n    var subject = new AsyncSubject();\n    return new ConnectableObservable(source, function () {\n      return subject;\n    });\n  };\n} //# sourceMappingURL=publishLast.js.map",
+  "map": {
+    "version": 3,
+    "names": ["AsyncSubject", "ConnectableObservable", "publishLast", "source", "subject"],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/esm5/internal/operators/publishLast.js"
+    ],
+    "sourcesContent": [
+      "import { AsyncSubject } from '../AsyncSubject';\nimport { ConnectableObservable } from '../observable/ConnectableObservable';\nexport function publishLast() {\n    return function (source) {\n        var subject = new AsyncSubject();\n        return new ConnectableObservable(source, function () { return subject; });\n    };\n}\n//# sourceMappingURL=publishLast.js.map"
+    ],
+    "mappings": "AAAA,SAASA,YAAT,QAA6B,iBAA7B;AACA,SAASC,qBAAT,QAAsC,qCAAtC;AACA,OAAO,SAASC,WAAT,GAAuB;EAC1B,OAAO,UAAUC,MAAV,EAAkB;IACrB,IAAIC,OAAO,GAAG,IAAIJ,YAAJ,EAAd;IACA,OAAO,IAAIC,qBAAJ,CAA0BE,MAA1B,EAAkC,YAAY;MAAE,OAAOC,OAAP;IAAiB,CAAjE,CAAP;EACH,CAHD;AAIH,C,CACD"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

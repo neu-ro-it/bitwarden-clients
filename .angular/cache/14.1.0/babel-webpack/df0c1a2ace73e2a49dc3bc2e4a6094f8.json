@@ -1,0 +1,32 @@
+{
+  "ast": null,
+  "code": "\"use strict\";\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.reduce = void 0;\n\nvar scanInternals_1 = require(\"./scanInternals\");\n\nvar lift_1 = require(\"../util/lift\");\n\nfunction reduce(accumulator, seed) {\n  return lift_1.operate(scanInternals_1.scanInternals(accumulator, seed, arguments.length >= 2, false, true));\n}\n\nexports.reduce = reduce; //# sourceMappingURL=reduce.js.map",
+  "map": {
+    "version": 3,
+    "names": [
+      "Object",
+      "defineProperty",
+      "exports",
+      "value",
+      "reduce",
+      "scanInternals_1",
+      "require",
+      "lift_1",
+      "accumulator",
+      "seed",
+      "operate",
+      "scanInternals",
+      "arguments",
+      "length"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/cjs/internal/operators/reduce.js"
+    ],
+    "sourcesContent": [
+      "\"use strict\";\nObject.defineProperty(exports, \"__esModule\", { value: true });\nexports.reduce = void 0;\nvar scanInternals_1 = require(\"./scanInternals\");\nvar lift_1 = require(\"../util/lift\");\nfunction reduce(accumulator, seed) {\n    return lift_1.operate(scanInternals_1.scanInternals(accumulator, seed, arguments.length >= 2, false, true));\n}\nexports.reduce = reduce;\n//# sourceMappingURL=reduce.js.map"
+    ],
+    "mappings": "AAAA;;AACAA,MAAM,CAACC,cAAP,CAAsBC,OAAtB,EAA+B,YAA/B,EAA6C;EAAEC,KAAK,EAAE;AAAT,CAA7C;AACAD,OAAO,CAACE,MAAR,GAAiB,KAAK,CAAtB;;AACA,IAAIC,eAAe,GAAGC,OAAO,CAAC,iBAAD,CAA7B;;AACA,IAAIC,MAAM,GAAGD,OAAO,CAAC,cAAD,CAApB;;AACA,SAASF,MAAT,CAAgBI,WAAhB,EAA6BC,IAA7B,EAAmC;EAC/B,OAAOF,MAAM,CAACG,OAAP,CAAeL,eAAe,CAACM,aAAhB,CAA8BH,WAA9B,EAA2CC,IAA3C,EAAiDG,SAAS,CAACC,MAAV,IAAoB,CAArE,EAAwE,KAAxE,EAA+E,IAA/E,CAAf,CAAP;AACH;;AACDX,OAAO,CAACE,MAAR,GAAiBA,MAAjB,C,CACA"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

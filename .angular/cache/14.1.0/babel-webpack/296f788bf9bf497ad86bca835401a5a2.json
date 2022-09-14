@@ -1,0 +1,35 @@
+{
+  "ast": null,
+  "code": "\"use strict\";\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.captureError = exports.errorContext = void 0;\n\nvar config_1 = require(\"../config\");\n\nvar context = null;\n\nfunction errorContext(cb) {\n  if (config_1.config.useDeprecatedSynchronousErrorHandling) {\n    var isRoot = !context;\n\n    if (isRoot) {\n      context = {\n        errorThrown: false,\n        error: null\n      };\n    }\n\n    cb();\n\n    if (isRoot) {\n      var _a = context,\n          errorThrown = _a.errorThrown,\n          error = _a.error;\n      context = null;\n\n      if (errorThrown) {\n        throw error;\n      }\n    }\n  } else {\n    cb();\n  }\n}\n\nexports.errorContext = errorContext;\n\nfunction captureError(err) {\n  if (config_1.config.useDeprecatedSynchronousErrorHandling && context) {\n    context.errorThrown = true;\n    context.error = err;\n  }\n}\n\nexports.captureError = captureError; //# sourceMappingURL=errorContext.js.map",
+  "map": {
+    "version": 3,
+    "names": [
+      "Object",
+      "defineProperty",
+      "exports",
+      "value",
+      "captureError",
+      "errorContext",
+      "config_1",
+      "require",
+      "context",
+      "cb",
+      "config",
+      "useDeprecatedSynchronousErrorHandling",
+      "isRoot",
+      "errorThrown",
+      "error",
+      "_a",
+      "err"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/cjs/internal/util/errorContext.js"
+    ],
+    "sourcesContent": [
+      "\"use strict\";\nObject.defineProperty(exports, \"__esModule\", { value: true });\nexports.captureError = exports.errorContext = void 0;\nvar config_1 = require(\"../config\");\nvar context = null;\nfunction errorContext(cb) {\n    if (config_1.config.useDeprecatedSynchronousErrorHandling) {\n        var isRoot = !context;\n        if (isRoot) {\n            context = { errorThrown: false, error: null };\n        }\n        cb();\n        if (isRoot) {\n            var _a = context, errorThrown = _a.errorThrown, error = _a.error;\n            context = null;\n            if (errorThrown) {\n                throw error;\n            }\n        }\n    }\n    else {\n        cb();\n    }\n}\nexports.errorContext = errorContext;\nfunction captureError(err) {\n    if (config_1.config.useDeprecatedSynchronousErrorHandling && context) {\n        context.errorThrown = true;\n        context.error = err;\n    }\n}\nexports.captureError = captureError;\n//# sourceMappingURL=errorContext.js.map"
+    ],
+    "mappings": "AAAA;;AACAA,MAAM,CAACC,cAAP,CAAsBC,OAAtB,EAA+B,YAA/B,EAA6C;EAAEC,KAAK,EAAE;AAAT,CAA7C;AACAD,OAAO,CAACE,YAAR,GAAuBF,OAAO,CAACG,YAAR,GAAuB,KAAK,CAAnD;;AACA,IAAIC,QAAQ,GAAGC,OAAO,CAAC,WAAD,CAAtB;;AACA,IAAIC,OAAO,GAAG,IAAd;;AACA,SAASH,YAAT,CAAsBI,EAAtB,EAA0B;EACtB,IAAIH,QAAQ,CAACI,MAAT,CAAgBC,qCAApB,EAA2D;IACvD,IAAIC,MAAM,GAAG,CAACJ,OAAd;;IACA,IAAII,MAAJ,EAAY;MACRJ,OAAO,GAAG;QAAEK,WAAW,EAAE,KAAf;QAAsBC,KAAK,EAAE;MAA7B,CAAV;IACH;;IACDL,EAAE;;IACF,IAAIG,MAAJ,EAAY;MACR,IAAIG,EAAE,GAAGP,OAAT;MAAA,IAAkBK,WAAW,GAAGE,EAAE,CAACF,WAAnC;MAAA,IAAgDC,KAAK,GAAGC,EAAE,CAACD,KAA3D;MACAN,OAAO,GAAG,IAAV;;MACA,IAAIK,WAAJ,EAAiB;QACb,MAAMC,KAAN;MACH;IACJ;EACJ,CAbD,MAcK;IACDL,EAAE;EACL;AACJ;;AACDP,OAAO,CAACG,YAAR,GAAuBA,YAAvB;;AACA,SAASD,YAAT,CAAsBY,GAAtB,EAA2B;EACvB,IAAIV,QAAQ,CAACI,MAAT,CAAgBC,qCAAhB,IAAyDH,OAA7D,EAAsE;IAClEA,OAAO,CAACK,WAAR,GAAsB,IAAtB;IACAL,OAAO,CAACM,KAAR,GAAgBE,GAAhB;EACH;AACJ;;AACDd,OAAO,CAACE,YAAR,GAAuBA,YAAvB,C,CACA"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

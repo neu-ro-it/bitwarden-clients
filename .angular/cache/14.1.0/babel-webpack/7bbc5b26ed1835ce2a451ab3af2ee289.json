@@ -1,0 +1,17 @@
+{
+  "ast": null,
+  "code": "'use strict';\n\nrequire('array.prototype.flat/auto');\n\nrequire('array.prototype.flatmap/auto');\n\nrequire('symbol.prototype.description/auto');\n\nrequire('object.fromentries/auto');\n\nrequire('./es2020');",
+  "map": {
+    "version": 3,
+    "names": ["require"],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/airbnb-js-shims/target/es2019.js"
+    ],
+    "sourcesContent": [
+      "'use strict';\n\nrequire('array.prototype.flat/auto');\nrequire('array.prototype.flatmap/auto');\n\nrequire('symbol.prototype.description/auto');\n\nrequire('object.fromentries/auto');\n\nrequire('./es2020');\n"
+    ],
+    "mappings": "AAAA;;AAEAA,OAAO,CAAC,2BAAD,CAAP;;AACAA,OAAO,CAAC,8BAAD,CAAP;;AAEAA,OAAO,CAAC,mCAAD,CAAP;;AAEAA,OAAO,CAAC,yBAAD,CAAP;;AAEAA,OAAO,CAAC,UAAD,CAAP"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

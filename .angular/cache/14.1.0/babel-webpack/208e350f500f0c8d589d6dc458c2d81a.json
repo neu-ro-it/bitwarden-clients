@@ -1,0 +1,41 @@
+{
+  "ast": null,
+  "code": "\"use strict\";\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.skipLast = void 0;\n\nvar identity_1 = require(\"../util/identity\");\n\nvar lift_1 = require(\"../util/lift\");\n\nvar OperatorSubscriber_1 = require(\"./OperatorSubscriber\");\n\nfunction skipLast(skipCount) {\n  return skipCount <= 0 ? identity_1.identity : lift_1.operate(function (source, subscriber) {\n    var ring = new Array(skipCount);\n    var seen = 0;\n    source.subscribe(OperatorSubscriber_1.createOperatorSubscriber(subscriber, function (value) {\n      var valueIndex = seen++;\n\n      if (valueIndex < skipCount) {\n        ring[valueIndex] = value;\n      } else {\n        var index = valueIndex % skipCount;\n        var oldValue = ring[index];\n        ring[index] = value;\n        subscriber.next(oldValue);\n      }\n    }));\n    return function () {\n      ring = null;\n    };\n  });\n}\n\nexports.skipLast = skipLast; //# sourceMappingURL=skipLast.js.map",
+  "map": {
+    "version": 3,
+    "names": [
+      "Object",
+      "defineProperty",
+      "exports",
+      "value",
+      "skipLast",
+      "identity_1",
+      "require",
+      "lift_1",
+      "OperatorSubscriber_1",
+      "skipCount",
+      "identity",
+      "operate",
+      "source",
+      "subscriber",
+      "ring",
+      "Array",
+      "seen",
+      "subscribe",
+      "createOperatorSubscriber",
+      "valueIndex",
+      "index",
+      "oldValue",
+      "next"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/cjs/internal/operators/skipLast.js"
+    ],
+    "sourcesContent": [
+      "\"use strict\";\nObject.defineProperty(exports, \"__esModule\", { value: true });\nexports.skipLast = void 0;\nvar identity_1 = require(\"../util/identity\");\nvar lift_1 = require(\"../util/lift\");\nvar OperatorSubscriber_1 = require(\"./OperatorSubscriber\");\nfunction skipLast(skipCount) {\n    return skipCount <= 0\n        ?\n            identity_1.identity\n        : lift_1.operate(function (source, subscriber) {\n            var ring = new Array(skipCount);\n            var seen = 0;\n            source.subscribe(OperatorSubscriber_1.createOperatorSubscriber(subscriber, function (value) {\n                var valueIndex = seen++;\n                if (valueIndex < skipCount) {\n                    ring[valueIndex] = value;\n                }\n                else {\n                    var index = valueIndex % skipCount;\n                    var oldValue = ring[index];\n                    ring[index] = value;\n                    subscriber.next(oldValue);\n                }\n            }));\n            return function () {\n                ring = null;\n            };\n        });\n}\nexports.skipLast = skipLast;\n//# sourceMappingURL=skipLast.js.map"
+    ],
+    "mappings": "AAAA;;AACAA,MAAM,CAACC,cAAP,CAAsBC,OAAtB,EAA+B,YAA/B,EAA6C;EAAEC,KAAK,EAAE;AAAT,CAA7C;AACAD,OAAO,CAACE,QAAR,GAAmB,KAAK,CAAxB;;AACA,IAAIC,UAAU,GAAGC,OAAO,CAAC,kBAAD,CAAxB;;AACA,IAAIC,MAAM,GAAGD,OAAO,CAAC,cAAD,CAApB;;AACA,IAAIE,oBAAoB,GAAGF,OAAO,CAAC,sBAAD,CAAlC;;AACA,SAASF,QAAT,CAAkBK,SAAlB,EAA6B;EACzB,OAAOA,SAAS,IAAI,CAAb,GAECJ,UAAU,CAACK,QAFZ,GAGDH,MAAM,CAACI,OAAP,CAAe,UAAUC,MAAV,EAAkBC,UAAlB,EAA8B;IAC3C,IAAIC,IAAI,GAAG,IAAIC,KAAJ,CAAUN,SAAV,CAAX;IACA,IAAIO,IAAI,GAAG,CAAX;IACAJ,MAAM,CAACK,SAAP,CAAiBT,oBAAoB,CAACU,wBAArB,CAA8CL,UAA9C,EAA0D,UAAUV,KAAV,EAAiB;MACxF,IAAIgB,UAAU,GAAGH,IAAI,EAArB;;MACA,IAAIG,UAAU,GAAGV,SAAjB,EAA4B;QACxBK,IAAI,CAACK,UAAD,CAAJ,GAAmBhB,KAAnB;MACH,CAFD,MAGK;QACD,IAAIiB,KAAK,GAAGD,UAAU,GAAGV,SAAzB;QACA,IAAIY,QAAQ,GAAGP,IAAI,CAACM,KAAD,CAAnB;QACAN,IAAI,CAACM,KAAD,CAAJ,GAAcjB,KAAd;QACAU,UAAU,CAACS,IAAX,CAAgBD,QAAhB;MACH;IACJ,CAXgB,CAAjB;IAYA,OAAO,YAAY;MACfP,IAAI,GAAG,IAAP;IACH,CAFD;EAGH,CAlBC,CAHN;AAsBH;;AACDZ,OAAO,CAACE,QAAR,GAAmBA,QAAnB,C,CACA"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

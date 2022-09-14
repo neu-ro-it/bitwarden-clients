@@ -1,0 +1,34 @@
+{
+  "ast": null,
+  "code": "'use strict';\n\nvar GetIntrinsic = require('get-intrinsic');\n\nvar $TypeError = GetIntrinsic('%TypeError%');\n\nvar DefineOwnProperty = require('../helpers/DefineOwnProperty');\n\nvar FromPropertyDescriptor = require('./FromPropertyDescriptor');\n\nvar IsDataDescriptor = require('./IsDataDescriptor');\n\nvar IsPropertyKey = require('./IsPropertyKey');\n\nvar SameValue = require('./SameValue');\n\nvar Type = require('./Type'); // https://ecma-international.org/ecma-262/6.0/#sec-createmethodproperty\n\n\nmodule.exports = function CreateMethodProperty(O, P, V) {\n  if (Type(O) !== 'Object') {\n    throw new $TypeError('Assertion failed: Type(O) is not Object');\n  }\n\n  if (!IsPropertyKey(P)) {\n    throw new $TypeError('Assertion failed: IsPropertyKey(P) is not true');\n  }\n\n  var newDesc = {\n    '[[Configurable]]': true,\n    '[[Enumerable]]': false,\n    '[[Value]]': V,\n    '[[Writable]]': true\n  };\n  return DefineOwnProperty(IsDataDescriptor, SameValue, FromPropertyDescriptor, O, P, newDesc);\n};",
+  "map": {
+    "version": 3,
+    "names": [
+      "GetIntrinsic",
+      "require",
+      "$TypeError",
+      "DefineOwnProperty",
+      "FromPropertyDescriptor",
+      "IsDataDescriptor",
+      "IsPropertyKey",
+      "SameValue",
+      "Type",
+      "module",
+      "exports",
+      "CreateMethodProperty",
+      "O",
+      "P",
+      "V",
+      "newDesc"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/es-abstract/2021/CreateMethodProperty.js"
+    ],
+    "sourcesContent": [
+      "'use strict';\n\nvar GetIntrinsic = require('get-intrinsic');\n\nvar $TypeError = GetIntrinsic('%TypeError%');\n\nvar DefineOwnProperty = require('../helpers/DefineOwnProperty');\n\nvar FromPropertyDescriptor = require('./FromPropertyDescriptor');\nvar IsDataDescriptor = require('./IsDataDescriptor');\nvar IsPropertyKey = require('./IsPropertyKey');\nvar SameValue = require('./SameValue');\nvar Type = require('./Type');\n\n// https://ecma-international.org/ecma-262/6.0/#sec-createmethodproperty\n\nmodule.exports = function CreateMethodProperty(O, P, V) {\n\tif (Type(O) !== 'Object') {\n\t\tthrow new $TypeError('Assertion failed: Type(O) is not Object');\n\t}\n\n\tif (!IsPropertyKey(P)) {\n\t\tthrow new $TypeError('Assertion failed: IsPropertyKey(P) is not true');\n\t}\n\n\tvar newDesc = {\n\t\t'[[Configurable]]': true,\n\t\t'[[Enumerable]]': false,\n\t\t'[[Value]]': V,\n\t\t'[[Writable]]': true\n\t};\n\treturn DefineOwnProperty(\n\t\tIsDataDescriptor,\n\t\tSameValue,\n\t\tFromPropertyDescriptor,\n\t\tO,\n\t\tP,\n\t\tnewDesc\n\t);\n};\n"
+    ],
+    "mappings": "AAAA;;AAEA,IAAIA,YAAY,GAAGC,OAAO,CAAC,eAAD,CAA1B;;AAEA,IAAIC,UAAU,GAAGF,YAAY,CAAC,aAAD,CAA7B;;AAEA,IAAIG,iBAAiB,GAAGF,OAAO,CAAC,8BAAD,CAA/B;;AAEA,IAAIG,sBAAsB,GAAGH,OAAO,CAAC,0BAAD,CAApC;;AACA,IAAII,gBAAgB,GAAGJ,OAAO,CAAC,oBAAD,CAA9B;;AACA,IAAIK,aAAa,GAAGL,OAAO,CAAC,iBAAD,CAA3B;;AACA,IAAIM,SAAS,GAAGN,OAAO,CAAC,aAAD,CAAvB;;AACA,IAAIO,IAAI,GAAGP,OAAO,CAAC,QAAD,CAAlB,C,CAEA;;;AAEAQ,MAAM,CAACC,OAAP,GAAiB,SAASC,oBAAT,CAA8BC,CAA9B,EAAiCC,CAAjC,EAAoCC,CAApC,EAAuC;EACvD,IAAIN,IAAI,CAACI,CAAD,CAAJ,KAAY,QAAhB,EAA0B;IACzB,MAAM,IAAIV,UAAJ,CAAe,yCAAf,CAAN;EACA;;EAED,IAAI,CAACI,aAAa,CAACO,CAAD,CAAlB,EAAuB;IACtB,MAAM,IAAIX,UAAJ,CAAe,gDAAf,CAAN;EACA;;EAED,IAAIa,OAAO,GAAG;IACb,oBAAoB,IADP;IAEb,kBAAkB,KAFL;IAGb,aAAaD,CAHA;IAIb,gBAAgB;EAJH,CAAd;EAMA,OAAOX,iBAAiB,CACvBE,gBADuB,EAEvBE,SAFuB,EAGvBH,sBAHuB,EAIvBQ,CAJuB,EAKvBC,CALuB,EAMvBE,OANuB,CAAxB;AAQA,CAvBD"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

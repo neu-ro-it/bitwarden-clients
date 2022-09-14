@@ -1,0 +1,28 @@
+{
+  "ast": null,
+  "code": "import { __read, __spreadArray } from \"tslib\";\nimport { argsOrArgArray } from '../util/argsOrArgArray';\nimport { raceWith } from './raceWith';\nexport function race() {\n  var args = [];\n\n  for (var _i = 0; _i < arguments.length; _i++) {\n    args[_i] = arguments[_i];\n  }\n\n  return raceWith.apply(void 0, __spreadArray([], __read(argsOrArgArray(args))));\n} //# sourceMappingURL=race.js.map",
+  "map": {
+    "version": 3,
+    "names": [
+      "__read",
+      "__spreadArray",
+      "argsOrArgArray",
+      "raceWith",
+      "race",
+      "args",
+      "_i",
+      "arguments",
+      "length",
+      "apply"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/esm5/internal/operators/race.js"
+    ],
+    "sourcesContent": [
+      "import { __read, __spreadArray } from \"tslib\";\nimport { argsOrArgArray } from '../util/argsOrArgArray';\nimport { raceWith } from './raceWith';\nexport function race() {\n    var args = [];\n    for (var _i = 0; _i < arguments.length; _i++) {\n        args[_i] = arguments[_i];\n    }\n    return raceWith.apply(void 0, __spreadArray([], __read(argsOrArgArray(args))));\n}\n//# sourceMappingURL=race.js.map"
+    ],
+    "mappings": "AAAA,SAASA,MAAT,EAAiBC,aAAjB,QAAsC,OAAtC;AACA,SAASC,cAAT,QAA+B,wBAA/B;AACA,SAASC,QAAT,QAAyB,YAAzB;AACA,OAAO,SAASC,IAAT,GAAgB;EACnB,IAAIC,IAAI,GAAG,EAAX;;EACA,KAAK,IAAIC,EAAE,GAAG,CAAd,EAAiBA,EAAE,GAAGC,SAAS,CAACC,MAAhC,EAAwCF,EAAE,EAA1C,EAA8C;IAC1CD,IAAI,CAACC,EAAD,CAAJ,GAAWC,SAAS,CAACD,EAAD,CAApB;EACH;;EACD,OAAOH,QAAQ,CAACM,KAAT,CAAe,KAAK,CAApB,EAAuBR,aAAa,CAAC,EAAD,EAAKD,MAAM,CAACE,cAAc,CAACG,IAAD,CAAf,CAAX,CAApC,CAAP;AACH,C,CACD"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

@@ -1,0 +1,46 @@
+{
+  "ast": null,
+  "code": "/* eslint-env browser */\nimport { useEffect } from '@storybook/addons';\nimport { drawSelectedElement } from './box-model/visualizer';\nimport { init, rescale, destroy } from './box-model/canvas';\nimport { deepElementFromPoint } from './util';\nvar nodeAtPointerRef;\nvar pointer = {\n  x: 0,\n  y: 0\n};\n\nfunction findAndDrawElement(x, y) {\n  nodeAtPointerRef = deepElementFromPoint(x, y);\n  drawSelectedElement(nodeAtPointerRef);\n}\n\nexport var withMeasure = function withMeasure(StoryFn, context) {\n  var measureEnabled = context.globals.measureEnabled;\n  useEffect(function () {\n    var onMouseMove = function onMouseMove(event) {\n      window.requestAnimationFrame(function () {\n        event.stopPropagation();\n        pointer.x = event.clientX;\n        pointer.y = event.clientY;\n      });\n    };\n\n    document.addEventListener('mousemove', onMouseMove);\n    return function () {\n      document.removeEventListener('mousemove', onMouseMove);\n    };\n  }, []);\n  useEffect(function () {\n    var onMouseOver = function onMouseOver(event) {\n      window.requestAnimationFrame(function () {\n        event.stopPropagation();\n        findAndDrawElement(event.clientX, event.clientY);\n      });\n    };\n\n    var onResize = function onResize() {\n      window.requestAnimationFrame(function () {\n        rescale();\n      });\n    };\n\n    if (measureEnabled) {\n      document.addEventListener('mouseover', onMouseOver);\n      init();\n      window.addEventListener('resize', onResize); // Draw the element below the pointer when first enabled\n\n      findAndDrawElement(pointer.x, pointer.y);\n    }\n\n    return function () {\n      window.removeEventListener('resize', onResize);\n      destroy();\n    };\n  }, [measureEnabled]);\n  return StoryFn();\n};",
+  "map": {
+    "version": 3,
+    "names": [
+      "useEffect",
+      "drawSelectedElement",
+      "init",
+      "rescale",
+      "destroy",
+      "deepElementFromPoint",
+      "nodeAtPointerRef",
+      "pointer",
+      "x",
+      "y",
+      "findAndDrawElement",
+      "withMeasure",
+      "StoryFn",
+      "context",
+      "measureEnabled",
+      "globals",
+      "onMouseMove",
+      "event",
+      "window",
+      "requestAnimationFrame",
+      "stopPropagation",
+      "clientX",
+      "clientY",
+      "document",
+      "addEventListener",
+      "removeEventListener",
+      "onMouseOver",
+      "onResize"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/@storybook/addon-measure/dist/esm/withMeasure.js"
+    ],
+    "sourcesContent": [
+      "/* eslint-env browser */\nimport { useEffect } from '@storybook/addons';\nimport { drawSelectedElement } from './box-model/visualizer';\nimport { init, rescale, destroy } from './box-model/canvas';\nimport { deepElementFromPoint } from './util';\nvar nodeAtPointerRef;\nvar pointer = {\n  x: 0,\n  y: 0\n};\n\nfunction findAndDrawElement(x, y) {\n  nodeAtPointerRef = deepElementFromPoint(x, y);\n  drawSelectedElement(nodeAtPointerRef);\n}\n\nexport var withMeasure = function withMeasure(StoryFn, context) {\n  var measureEnabled = context.globals.measureEnabled;\n  useEffect(function () {\n    var onMouseMove = function onMouseMove(event) {\n      window.requestAnimationFrame(function () {\n        event.stopPropagation();\n        pointer.x = event.clientX;\n        pointer.y = event.clientY;\n      });\n    };\n\n    document.addEventListener('mousemove', onMouseMove);\n    return function () {\n      document.removeEventListener('mousemove', onMouseMove);\n    };\n  }, []);\n  useEffect(function () {\n    var onMouseOver = function onMouseOver(event) {\n      window.requestAnimationFrame(function () {\n        event.stopPropagation();\n        findAndDrawElement(event.clientX, event.clientY);\n      });\n    };\n\n    var onResize = function onResize() {\n      window.requestAnimationFrame(function () {\n        rescale();\n      });\n    };\n\n    if (measureEnabled) {\n      document.addEventListener('mouseover', onMouseOver);\n      init();\n      window.addEventListener('resize', onResize); // Draw the element below the pointer when first enabled\n\n      findAndDrawElement(pointer.x, pointer.y);\n    }\n\n    return function () {\n      window.removeEventListener('resize', onResize);\n      destroy();\n    };\n  }, [measureEnabled]);\n  return StoryFn();\n};"
+    ],
+    "mappings": "AAAA;AACA,SAASA,SAAT,QAA0B,mBAA1B;AACA,SAASC,mBAAT,QAAoC,wBAApC;AACA,SAASC,IAAT,EAAeC,OAAf,EAAwBC,OAAxB,QAAuC,oBAAvC;AACA,SAASC,oBAAT,QAAqC,QAArC;AACA,IAAIC,gBAAJ;AACA,IAAIC,OAAO,GAAG;EACZC,CAAC,EAAE,CADS;EAEZC,CAAC,EAAE;AAFS,CAAd;;AAKA,SAASC,kBAAT,CAA4BF,CAA5B,EAA+BC,CAA/B,EAAkC;EAChCH,gBAAgB,GAAGD,oBAAoB,CAACG,CAAD,EAAIC,CAAJ,CAAvC;EACAR,mBAAmB,CAACK,gBAAD,CAAnB;AACD;;AAED,OAAO,IAAIK,WAAW,GAAG,SAASA,WAAT,CAAqBC,OAArB,EAA8BC,OAA9B,EAAuC;EAC9D,IAAIC,cAAc,GAAGD,OAAO,CAACE,OAAR,CAAgBD,cAArC;EACAd,SAAS,CAAC,YAAY;IACpB,IAAIgB,WAAW,GAAG,SAASA,WAAT,CAAqBC,KAArB,EAA4B;MAC5CC,MAAM,CAACC,qBAAP,CAA6B,YAAY;QACvCF,KAAK,CAACG,eAAN;QACAb,OAAO,CAACC,CAAR,GAAYS,KAAK,CAACI,OAAlB;QACAd,OAAO,CAACE,CAAR,GAAYQ,KAAK,CAACK,OAAlB;MACD,CAJD;IAKD,CAND;;IAQAC,QAAQ,CAACC,gBAAT,CAA0B,WAA1B,EAAuCR,WAAvC;IACA,OAAO,YAAY;MACjBO,QAAQ,CAACE,mBAAT,CAA6B,WAA7B,EAA0CT,WAA1C;IACD,CAFD;EAGD,CAbQ,EAaN,EAbM,CAAT;EAcAhB,SAAS,CAAC,YAAY;IACpB,IAAI0B,WAAW,GAAG,SAASA,WAAT,CAAqBT,KAArB,EAA4B;MAC5CC,MAAM,CAACC,qBAAP,CAA6B,YAAY;QACvCF,KAAK,CAACG,eAAN;QACAV,kBAAkB,CAACO,KAAK,CAACI,OAAP,EAAgBJ,KAAK,CAACK,OAAtB,CAAlB;MACD,CAHD;IAID,CALD;;IAOA,IAAIK,QAAQ,GAAG,SAASA,QAAT,GAAoB;MACjCT,MAAM,CAACC,qBAAP,CAA6B,YAAY;QACvChB,OAAO;MACR,CAFD;IAGD,CAJD;;IAMA,IAAIW,cAAJ,EAAoB;MAClBS,QAAQ,CAACC,gBAAT,CAA0B,WAA1B,EAAuCE,WAAvC;MACAxB,IAAI;MACJgB,MAAM,CAACM,gBAAP,CAAwB,QAAxB,EAAkCG,QAAlC,EAHkB,CAG2B;;MAE7CjB,kBAAkB,CAACH,OAAO,CAACC,CAAT,EAAYD,OAAO,CAACE,CAApB,CAAlB;IACD;;IAED,OAAO,YAAY;MACjBS,MAAM,CAACO,mBAAP,CAA2B,QAA3B,EAAqCE,QAArC;MACAvB,OAAO;IACR,CAHD;EAID,CA1BQ,EA0BN,CAACU,cAAD,CA1BM,CAAT;EA2BA,OAAOF,OAAO,EAAd;AACD,CA5CM"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

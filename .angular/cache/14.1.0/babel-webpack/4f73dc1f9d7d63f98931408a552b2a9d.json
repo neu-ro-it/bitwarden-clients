@@ -1,0 +1,37 @@
+{
+  "ast": null,
+  "code": "import \"core-js/modules/es.regexp.exec.js\";\nimport \"core-js/modules/es.string.split.js\";\nimport \"core-js/modules/es.string.trim.js\";\nimport React, { useContext } from 'react';\nimport { Title as PureTitle } from '@storybook/components';\nimport { DocsContext } from './DocsContext';\nvar STORY_KIND_PATH_SEPARATOR = /\\s*\\/\\s*/;\nexport var extractTitle = function extractTitle(_ref) {\n  var title = _ref.title;\n  var groups = title.trim().split(STORY_KIND_PATH_SEPARATOR);\n  return groups && groups[groups.length - 1] || title;\n};\nexport var Title = function Title(_ref2) {\n  var children = _ref2.children;\n  var context = useContext(DocsContext);\n  var text = children;\n\n  if (!text) {\n    text = extractTitle(context);\n  }\n\n  return text ? /*#__PURE__*/React.createElement(PureTitle, {\n    className: \"sbdocs-title\"\n  }, text) : null;\n};",
+  "map": {
+    "version": 3,
+    "names": [
+      "React",
+      "useContext",
+      "Title",
+      "PureTitle",
+      "DocsContext",
+      "STORY_KIND_PATH_SEPARATOR",
+      "extractTitle",
+      "_ref",
+      "title",
+      "groups",
+      "trim",
+      "split",
+      "length",
+      "_ref2",
+      "children",
+      "context",
+      "text",
+      "createElement",
+      "className"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/@storybook/addon-docs/dist/esm/blocks/Title.js"
+    ],
+    "sourcesContent": [
+      "import \"core-js/modules/es.regexp.exec.js\";\nimport \"core-js/modules/es.string.split.js\";\nimport \"core-js/modules/es.string.trim.js\";\nimport React, { useContext } from 'react';\nimport { Title as PureTitle } from '@storybook/components';\nimport { DocsContext } from './DocsContext';\nvar STORY_KIND_PATH_SEPARATOR = /\\s*\\/\\s*/;\nexport var extractTitle = function extractTitle(_ref) {\n  var title = _ref.title;\n  var groups = title.trim().split(STORY_KIND_PATH_SEPARATOR);\n  return groups && groups[groups.length - 1] || title;\n};\nexport var Title = function Title(_ref2) {\n  var children = _ref2.children;\n  var context = useContext(DocsContext);\n  var text = children;\n\n  if (!text) {\n    text = extractTitle(context);\n  }\n\n  return text ? /*#__PURE__*/React.createElement(PureTitle, {\n    className: \"sbdocs-title\"\n  }, text) : null;\n};"
+    ],
+    "mappings": "AAAA,OAAO,mCAAP;AACA,OAAO,oCAAP;AACA,OAAO,mCAAP;AACA,OAAOA,KAAP,IAAgBC,UAAhB,QAAkC,OAAlC;AACA,SAASC,KAAK,IAAIC,SAAlB,QAAmC,uBAAnC;AACA,SAASC,WAAT,QAA4B,eAA5B;AACA,IAAIC,yBAAyB,GAAG,UAAhC;AACA,OAAO,IAAIC,YAAY,GAAG,SAASA,YAAT,CAAsBC,IAAtB,EAA4B;EACpD,IAAIC,KAAK,GAAGD,IAAI,CAACC,KAAjB;EACA,IAAIC,MAAM,GAAGD,KAAK,CAACE,IAAN,GAAaC,KAAb,CAAmBN,yBAAnB,CAAb;EACA,OAAOI,MAAM,IAAIA,MAAM,CAACA,MAAM,CAACG,MAAP,GAAgB,CAAjB,CAAhB,IAAuCJ,KAA9C;AACD,CAJM;AAKP,OAAO,IAAIN,KAAK,GAAG,SAASA,KAAT,CAAeW,KAAf,EAAsB;EACvC,IAAIC,QAAQ,GAAGD,KAAK,CAACC,QAArB;EACA,IAAIC,OAAO,GAAGd,UAAU,CAACG,WAAD,CAAxB;EACA,IAAIY,IAAI,GAAGF,QAAX;;EAEA,IAAI,CAACE,IAAL,EAAW;IACTA,IAAI,GAAGV,YAAY,CAACS,OAAD,CAAnB;EACD;;EAED,OAAOC,IAAI,GAAG,aAAahB,KAAK,CAACiB,aAAN,CAAoBd,SAApB,EAA+B;IACxDe,SAAS,EAAE;EAD6C,CAA/B,EAExBF,IAFwB,CAAhB,GAEA,IAFX;AAGD,CAZM"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

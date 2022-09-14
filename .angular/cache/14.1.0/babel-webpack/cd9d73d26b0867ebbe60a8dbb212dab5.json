@@ -1,0 +1,30 @@
+{
+  "ast": null,
+  "code": "\"use strict\";\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.from = void 0;\n\nvar scheduled_1 = require(\"../scheduled/scheduled\");\n\nvar innerFrom_1 = require(\"./innerFrom\");\n\nfunction from(input, scheduler) {\n  return scheduler ? scheduled_1.scheduled(input, scheduler) : innerFrom_1.innerFrom(input);\n}\n\nexports.from = from; //# sourceMappingURL=from.js.map",
+  "map": {
+    "version": 3,
+    "names": [
+      "Object",
+      "defineProperty",
+      "exports",
+      "value",
+      "from",
+      "scheduled_1",
+      "require",
+      "innerFrom_1",
+      "input",
+      "scheduler",
+      "scheduled",
+      "innerFrom"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/cjs/internal/observable/from.js"
+    ],
+    "sourcesContent": [
+      "\"use strict\";\nObject.defineProperty(exports, \"__esModule\", { value: true });\nexports.from = void 0;\nvar scheduled_1 = require(\"../scheduled/scheduled\");\nvar innerFrom_1 = require(\"./innerFrom\");\nfunction from(input, scheduler) {\n    return scheduler ? scheduled_1.scheduled(input, scheduler) : innerFrom_1.innerFrom(input);\n}\nexports.from = from;\n//# sourceMappingURL=from.js.map"
+    ],
+    "mappings": "AAAA;;AACAA,MAAM,CAACC,cAAP,CAAsBC,OAAtB,EAA+B,YAA/B,EAA6C;EAAEC,KAAK,EAAE;AAAT,CAA7C;AACAD,OAAO,CAACE,IAAR,GAAe,KAAK,CAApB;;AACA,IAAIC,WAAW,GAAGC,OAAO,CAAC,wBAAD,CAAzB;;AACA,IAAIC,WAAW,GAAGD,OAAO,CAAC,aAAD,CAAzB;;AACA,SAASF,IAAT,CAAcI,KAAd,EAAqBC,SAArB,EAAgC;EAC5B,OAAOA,SAAS,GAAGJ,WAAW,CAACK,SAAZ,CAAsBF,KAAtB,EAA6BC,SAA7B,CAAH,GAA6CF,WAAW,CAACI,SAAZ,CAAsBH,KAAtB,CAA7D;AACH;;AACDN,OAAO,CAACE,IAAR,GAAeA,IAAf,C,CACA"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

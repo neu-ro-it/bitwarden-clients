@@ -1,0 +1,32 @@
+{
+  "ast": null,
+  "code": "\"use strict\";\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.executeSchedule = void 0;\n\nfunction executeSchedule(parentSubscription, scheduler, work, delay, repeat) {\n  if (delay === void 0) {\n    delay = 0;\n  }\n\n  if (repeat === void 0) {\n    repeat = false;\n  }\n\n  var scheduleSubscription = scheduler.schedule(function () {\n    work();\n\n    if (repeat) {\n      parentSubscription.add(this.schedule(null, delay));\n    } else {\n      this.unsubscribe();\n    }\n  }, delay);\n  parentSubscription.add(scheduleSubscription);\n\n  if (!repeat) {\n    return scheduleSubscription;\n  }\n}\n\nexports.executeSchedule = executeSchedule; //# sourceMappingURL=executeSchedule.js.map",
+  "map": {
+    "version": 3,
+    "names": [
+      "Object",
+      "defineProperty",
+      "exports",
+      "value",
+      "executeSchedule",
+      "parentSubscription",
+      "scheduler",
+      "work",
+      "delay",
+      "repeat",
+      "scheduleSubscription",
+      "schedule",
+      "add",
+      "unsubscribe"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/cjs/internal/util/executeSchedule.js"
+    ],
+    "sourcesContent": [
+      "\"use strict\";\nObject.defineProperty(exports, \"__esModule\", { value: true });\nexports.executeSchedule = void 0;\nfunction executeSchedule(parentSubscription, scheduler, work, delay, repeat) {\n    if (delay === void 0) { delay = 0; }\n    if (repeat === void 0) { repeat = false; }\n    var scheduleSubscription = scheduler.schedule(function () {\n        work();\n        if (repeat) {\n            parentSubscription.add(this.schedule(null, delay));\n        }\n        else {\n            this.unsubscribe();\n        }\n    }, delay);\n    parentSubscription.add(scheduleSubscription);\n    if (!repeat) {\n        return scheduleSubscription;\n    }\n}\nexports.executeSchedule = executeSchedule;\n//# sourceMappingURL=executeSchedule.js.map"
+    ],
+    "mappings": "AAAA;;AACAA,MAAM,CAACC,cAAP,CAAsBC,OAAtB,EAA+B,YAA/B,EAA6C;EAAEC,KAAK,EAAE;AAAT,CAA7C;AACAD,OAAO,CAACE,eAAR,GAA0B,KAAK,CAA/B;;AACA,SAASA,eAAT,CAAyBC,kBAAzB,EAA6CC,SAA7C,EAAwDC,IAAxD,EAA8DC,KAA9D,EAAqEC,MAArE,EAA6E;EACzE,IAAID,KAAK,KAAK,KAAK,CAAnB,EAAsB;IAAEA,KAAK,GAAG,CAAR;EAAY;;EACpC,IAAIC,MAAM,KAAK,KAAK,CAApB,EAAuB;IAAEA,MAAM,GAAG,KAAT;EAAiB;;EAC1C,IAAIC,oBAAoB,GAAGJ,SAAS,CAACK,QAAV,CAAmB,YAAY;IACtDJ,IAAI;;IACJ,IAAIE,MAAJ,EAAY;MACRJ,kBAAkB,CAACO,GAAnB,CAAuB,KAAKD,QAAL,CAAc,IAAd,EAAoBH,KAApB,CAAvB;IACH,CAFD,MAGK;MACD,KAAKK,WAAL;IACH;EACJ,CAR0B,EAQxBL,KARwB,CAA3B;EASAH,kBAAkB,CAACO,GAAnB,CAAuBF,oBAAvB;;EACA,IAAI,CAACD,MAAL,EAAa;IACT,OAAOC,oBAAP;EACH;AACJ;;AACDR,OAAO,CAACE,eAAR,GAA0BA,eAA1B,C,CACA"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

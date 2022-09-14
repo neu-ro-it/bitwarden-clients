@@ -1,0 +1,17 @@
+{
+  "ast": null,
+  "code": "// eslint-disable-next-line @typescript-eslint/no-empty-interface\n// export type DocgenType = DocgenPropType | DocgenFlowType | DocgenTypeScriptType;\nexport var TypeSystem;\n\n(function (TypeSystem) {\n  TypeSystem[\"JAVASCRIPT\"] = \"JavaScript\";\n  TypeSystem[\"FLOW\"] = \"Flow\";\n  TypeSystem[\"TYPESCRIPT\"] = \"TypeScript\";\n  TypeSystem[\"UNKNOWN\"] = \"Unknown\";\n})(TypeSystem || (TypeSystem = {}));",
+  "map": {
+    "version": 3,
+    "names": ["TypeSystem"],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/@storybook/docs-tools/dist/esm/argTypes/docgen/types.js"
+    ],
+    "sourcesContent": [
+      "// eslint-disable-next-line @typescript-eslint/no-empty-interface\n// export type DocgenType = DocgenPropType | DocgenFlowType | DocgenTypeScriptType;\nexport var TypeSystem;\n\n(function (TypeSystem) {\n  TypeSystem[\"JAVASCRIPT\"] = \"JavaScript\";\n  TypeSystem[\"FLOW\"] = \"Flow\";\n  TypeSystem[\"TYPESCRIPT\"] = \"TypeScript\";\n  TypeSystem[\"UNKNOWN\"] = \"Unknown\";\n})(TypeSystem || (TypeSystem = {}));"
+    ],
+    "mappings": "AAAA;AACA;AACA,OAAO,IAAIA,UAAJ;;AAEP,CAAC,UAAUA,UAAV,EAAsB;EACrBA,UAAU,CAAC,YAAD,CAAV,GAA2B,YAA3B;EACAA,UAAU,CAAC,MAAD,CAAV,GAAqB,MAArB;EACAA,UAAU,CAAC,YAAD,CAAV,GAA2B,YAA3B;EACAA,UAAU,CAAC,SAAD,CAAV,GAAwB,SAAxB;AACD,CALD,EAKGA,UAAU,KAAKA,UAAU,GAAG,EAAlB,CALb"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

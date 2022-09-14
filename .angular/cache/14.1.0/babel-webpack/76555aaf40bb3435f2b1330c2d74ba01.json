@@ -1,0 +1,28 @@
+{
+  "ast": null,
+  "code": "import \"core-js/modules/es.symbol.js\";\nimport \"core-js/modules/es.symbol.description.js\";\nimport { createType } from './createType';\nimport { createDefaultValue } from './createDefaultValue';\nexport var createTsPropDef = function createTsPropDef(propName, docgenInfo) {\n  var description = docgenInfo.description,\n      required = docgenInfo.required;\n  return {\n    name: propName,\n    type: createType(docgenInfo),\n    required: required,\n    description: description,\n    defaultValue: createDefaultValue(docgenInfo)\n  };\n};",
+  "map": {
+    "version": 3,
+    "names": [
+      "createType",
+      "createDefaultValue",
+      "createTsPropDef",
+      "propName",
+      "docgenInfo",
+      "description",
+      "required",
+      "name",
+      "type",
+      "defaultValue"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/@storybook/docs-tools/dist/esm/argTypes/docgen/typeScript/createPropDef.js"
+    ],
+    "sourcesContent": [
+      "import \"core-js/modules/es.symbol.js\";\nimport \"core-js/modules/es.symbol.description.js\";\nimport { createType } from './createType';\nimport { createDefaultValue } from './createDefaultValue';\nexport var createTsPropDef = function createTsPropDef(propName, docgenInfo) {\n  var description = docgenInfo.description,\n      required = docgenInfo.required;\n  return {\n    name: propName,\n    type: createType(docgenInfo),\n    required: required,\n    description: description,\n    defaultValue: createDefaultValue(docgenInfo)\n  };\n};"
+    ],
+    "mappings": "AAAA,OAAO,8BAAP;AACA,OAAO,0CAAP;AACA,SAASA,UAAT,QAA2B,cAA3B;AACA,SAASC,kBAAT,QAAmC,sBAAnC;AACA,OAAO,IAAIC,eAAe,GAAG,SAASA,eAAT,CAAyBC,QAAzB,EAAmCC,UAAnC,EAA+C;EAC1E,IAAIC,WAAW,GAAGD,UAAU,CAACC,WAA7B;EAAA,IACIC,QAAQ,GAAGF,UAAU,CAACE,QAD1B;EAEA,OAAO;IACLC,IAAI,EAAEJ,QADD;IAELK,IAAI,EAAER,UAAU,CAACI,UAAD,CAFX;IAGLE,QAAQ,EAAEA,QAHL;IAILD,WAAW,EAAEA,WAJR;IAKLI,YAAY,EAAER,kBAAkB,CAACG,UAAD;EAL3B,CAAP;AAOD,CAVM"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

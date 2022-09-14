@@ -1,0 +1,27 @@
+{
+  "ast": null,
+  "code": "import { __read, __spreadArray } from \"tslib\";\nimport { combineLatest } from './combineLatest';\nexport function combineLatestWith() {\n  var otherSources = [];\n\n  for (var _i = 0; _i < arguments.length; _i++) {\n    otherSources[_i] = arguments[_i];\n  }\n\n  return combineLatest.apply(void 0, __spreadArray([], __read(otherSources)));\n} //# sourceMappingURL=combineLatestWith.js.map",
+  "map": {
+    "version": 3,
+    "names": [
+      "__read",
+      "__spreadArray",
+      "combineLatest",
+      "combineLatestWith",
+      "otherSources",
+      "_i",
+      "arguments",
+      "length",
+      "apply"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/esm5/internal/operators/combineLatestWith.js"
+    ],
+    "sourcesContent": [
+      "import { __read, __spreadArray } from \"tslib\";\nimport { combineLatest } from './combineLatest';\nexport function combineLatestWith() {\n    var otherSources = [];\n    for (var _i = 0; _i < arguments.length; _i++) {\n        otherSources[_i] = arguments[_i];\n    }\n    return combineLatest.apply(void 0, __spreadArray([], __read(otherSources)));\n}\n//# sourceMappingURL=combineLatestWith.js.map"
+    ],
+    "mappings": "AAAA,SAASA,MAAT,EAAiBC,aAAjB,QAAsC,OAAtC;AACA,SAASC,aAAT,QAA8B,iBAA9B;AACA,OAAO,SAASC,iBAAT,GAA6B;EAChC,IAAIC,YAAY,GAAG,EAAnB;;EACA,KAAK,IAAIC,EAAE,GAAG,CAAd,EAAiBA,EAAE,GAAGC,SAAS,CAACC,MAAhC,EAAwCF,EAAE,EAA1C,EAA8C;IAC1CD,YAAY,CAACC,EAAD,CAAZ,GAAmBC,SAAS,CAACD,EAAD,CAA5B;EACH;;EACD,OAAOH,aAAa,CAACM,KAAd,CAAoB,KAAK,CAAzB,EAA4BP,aAAa,CAAC,EAAD,EAAKD,MAAM,CAACI,YAAD,CAAX,CAAzC,CAAP;AACH,C,CACD"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

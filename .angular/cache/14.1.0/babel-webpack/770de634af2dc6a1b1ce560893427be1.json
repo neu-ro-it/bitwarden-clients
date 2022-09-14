@@ -1,0 +1,35 @@
+{
+  "ast": null,
+  "code": "\"use strict\";\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.scheduleArray = void 0;\n\nvar Observable_1 = require(\"../Observable\");\n\nfunction scheduleArray(input, scheduler) {\n  return new Observable_1.Observable(function (subscriber) {\n    var i = 0;\n    return scheduler.schedule(function () {\n      if (i === input.length) {\n        subscriber.complete();\n      } else {\n        subscriber.next(input[i++]);\n\n        if (!subscriber.closed) {\n          this.schedule();\n        }\n      }\n    });\n  });\n}\n\nexports.scheduleArray = scheduleArray; //# sourceMappingURL=scheduleArray.js.map",
+  "map": {
+    "version": 3,
+    "names": [
+      "Object",
+      "defineProperty",
+      "exports",
+      "value",
+      "scheduleArray",
+      "Observable_1",
+      "require",
+      "input",
+      "scheduler",
+      "Observable",
+      "subscriber",
+      "i",
+      "schedule",
+      "length",
+      "complete",
+      "next",
+      "closed"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/cjs/internal/scheduled/scheduleArray.js"
+    ],
+    "sourcesContent": [
+      "\"use strict\";\nObject.defineProperty(exports, \"__esModule\", { value: true });\nexports.scheduleArray = void 0;\nvar Observable_1 = require(\"../Observable\");\nfunction scheduleArray(input, scheduler) {\n    return new Observable_1.Observable(function (subscriber) {\n        var i = 0;\n        return scheduler.schedule(function () {\n            if (i === input.length) {\n                subscriber.complete();\n            }\n            else {\n                subscriber.next(input[i++]);\n                if (!subscriber.closed) {\n                    this.schedule();\n                }\n            }\n        });\n    });\n}\nexports.scheduleArray = scheduleArray;\n//# sourceMappingURL=scheduleArray.js.map"
+    ],
+    "mappings": "AAAA;;AACAA,MAAM,CAACC,cAAP,CAAsBC,OAAtB,EAA+B,YAA/B,EAA6C;EAAEC,KAAK,EAAE;AAAT,CAA7C;AACAD,OAAO,CAACE,aAAR,GAAwB,KAAK,CAA7B;;AACA,IAAIC,YAAY,GAAGC,OAAO,CAAC,eAAD,CAA1B;;AACA,SAASF,aAAT,CAAuBG,KAAvB,EAA8BC,SAA9B,EAAyC;EACrC,OAAO,IAAIH,YAAY,CAACI,UAAjB,CAA4B,UAAUC,UAAV,EAAsB;IACrD,IAAIC,CAAC,GAAG,CAAR;IACA,OAAOH,SAAS,CAACI,QAAV,CAAmB,YAAY;MAClC,IAAID,CAAC,KAAKJ,KAAK,CAACM,MAAhB,EAAwB;QACpBH,UAAU,CAACI,QAAX;MACH,CAFD,MAGK;QACDJ,UAAU,CAACK,IAAX,CAAgBR,KAAK,CAACI,CAAC,EAAF,CAArB;;QACA,IAAI,CAACD,UAAU,CAACM,MAAhB,EAAwB;UACpB,KAAKJ,QAAL;QACH;MACJ;IACJ,CAVM,CAAP;EAWH,CAbM,CAAP;AAcH;;AACDV,OAAO,CAACE,aAAR,GAAwBA,aAAxB,C,CACA"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

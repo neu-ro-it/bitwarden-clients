@@ -1,0 +1,59 @@
+{
+  "ast": null,
+  "code": "'use strict'; // var Construct = require('es-abstract/2021/Construct');\n\nvar CreateRegExpStringIterator = require('es-abstract/2021/CreateRegExpStringIterator');\n\nvar Get = require('es-abstract/2021/Get');\n\nvar Set = require('es-abstract/2021/Set');\n\nvar SpeciesConstructor = require('es-abstract/2021/SpeciesConstructor');\n\nvar ToLength = require('es-abstract/2021/ToLength');\n\nvar ToString = require('es-abstract/2021/ToString');\n\nvar Type = require('es-abstract/2021/Type');\n\nvar flagsGetter = require('regexp.prototype.flags');\n\nvar callBound = require('call-bind/callBound');\n\nvar $indexOf = callBound('String.prototype.indexOf');\nvar OrigRegExp = RegExp;\nvar supportsConstructingWithFlags = ('flags' in RegExp.prototype);\n\nvar constructRegexWithFlags = function constructRegex(C, R) {\n  var matcher; // workaround for older engines that lack RegExp.prototype.flags\n\n  var flags = 'flags' in R ? Get(R, 'flags') : ToString(flagsGetter(R));\n\n  if (supportsConstructingWithFlags && typeof flags === 'string') {\n    matcher = new C(R, flags);\n  } else if (C === OrigRegExp) {\n    // workaround for older engines that can not construct a RegExp with flags\n    matcher = new C(R.source, flags);\n  } else {\n    matcher = new C(R, flags);\n  }\n\n  return {\n    flags: flags,\n    matcher: matcher\n  };\n};\n\nvar regexMatchAll = function SymbolMatchAll(string) {\n  var R = this;\n\n  if (Type(R) !== 'Object') {\n    throw new TypeError('\"this\" value must be an Object');\n  }\n\n  var S = ToString(string);\n  var C = SpeciesConstructor(R, OrigRegExp);\n  var tmp = constructRegexWithFlags(C, R); // var flags = ToString(Get(R, 'flags'));\n\n  var flags = tmp.flags; // var matcher = Construct(C, [R, flags]);\n\n  var matcher = tmp.matcher;\n  var lastIndex = ToLength(Get(R, 'lastIndex'));\n  Set(matcher, 'lastIndex', lastIndex, true);\n  var global = $indexOf(flags, 'g') > -1;\n  var fullUnicode = $indexOf(flags, 'u') > -1;\n  return CreateRegExpStringIterator(matcher, S, global, fullUnicode);\n};\n\nvar defineP = Object.defineProperty;\nvar gOPD = Object.getOwnPropertyDescriptor;\n\nif (defineP && gOPD) {\n  var desc = gOPD(regexMatchAll, 'name');\n\n  if (desc && desc.configurable) {\n    defineP(regexMatchAll, 'name', {\n      value: '[Symbol.matchAll]'\n    });\n  }\n}\n\nmodule.exports = regexMatchAll;",
+  "map": {
+    "version": 3,
+    "names": [
+      "CreateRegExpStringIterator",
+      "require",
+      "Get",
+      "Set",
+      "SpeciesConstructor",
+      "ToLength",
+      "ToString",
+      "Type",
+      "flagsGetter",
+      "callBound",
+      "$indexOf",
+      "OrigRegExp",
+      "RegExp",
+      "supportsConstructingWithFlags",
+      "prototype",
+      "constructRegexWithFlags",
+      "constructRegex",
+      "C",
+      "R",
+      "matcher",
+      "flags",
+      "source",
+      "regexMatchAll",
+      "SymbolMatchAll",
+      "string",
+      "TypeError",
+      "S",
+      "tmp",
+      "lastIndex",
+      "global",
+      "fullUnicode",
+      "defineP",
+      "Object",
+      "defineProperty",
+      "gOPD",
+      "getOwnPropertyDescriptor",
+      "desc",
+      "configurable",
+      "value",
+      "module",
+      "exports"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/string.prototype.matchall/regexp-matchall.js"
+    ],
+    "sourcesContent": [
+      "'use strict';\n\n// var Construct = require('es-abstract/2021/Construct');\nvar CreateRegExpStringIterator = require('es-abstract/2021/CreateRegExpStringIterator');\nvar Get = require('es-abstract/2021/Get');\nvar Set = require('es-abstract/2021/Set');\nvar SpeciesConstructor = require('es-abstract/2021/SpeciesConstructor');\nvar ToLength = require('es-abstract/2021/ToLength');\nvar ToString = require('es-abstract/2021/ToString');\nvar Type = require('es-abstract/2021/Type');\nvar flagsGetter = require('regexp.prototype.flags');\nvar callBound = require('call-bind/callBound');\n\nvar $indexOf = callBound('String.prototype.indexOf');\n\nvar OrigRegExp = RegExp;\n\nvar supportsConstructingWithFlags = 'flags' in RegExp.prototype;\n\nvar constructRegexWithFlags = function constructRegex(C, R) {\n\tvar matcher;\n\t// workaround for older engines that lack RegExp.prototype.flags\n\tvar flags = 'flags' in R ? Get(R, 'flags') : ToString(flagsGetter(R));\n\tif (supportsConstructingWithFlags && typeof flags === 'string') {\n\t\tmatcher = new C(R, flags);\n\t} else if (C === OrigRegExp) {\n\t\t// workaround for older engines that can not construct a RegExp with flags\n\t\tmatcher = new C(R.source, flags);\n\t} else {\n\t\tmatcher = new C(R, flags);\n\t}\n\treturn { flags: flags, matcher: matcher };\n};\n\nvar regexMatchAll = function SymbolMatchAll(string) {\n\tvar R = this;\n\tif (Type(R) !== 'Object') {\n\t\tthrow new TypeError('\"this\" value must be an Object');\n\t}\n\tvar S = ToString(string);\n\tvar C = SpeciesConstructor(R, OrigRegExp);\n\n\tvar tmp = constructRegexWithFlags(C, R);\n\t// var flags = ToString(Get(R, 'flags'));\n\tvar flags = tmp.flags;\n\t// var matcher = Construct(C, [R, flags]);\n\tvar matcher = tmp.matcher;\n\n\tvar lastIndex = ToLength(Get(R, 'lastIndex'));\n\tSet(matcher, 'lastIndex', lastIndex, true);\n\tvar global = $indexOf(flags, 'g') > -1;\n\tvar fullUnicode = $indexOf(flags, 'u') > -1;\n\treturn CreateRegExpStringIterator(matcher, S, global, fullUnicode);\n};\n\nvar defineP = Object.defineProperty;\nvar gOPD = Object.getOwnPropertyDescriptor;\n\nif (defineP && gOPD) {\n\tvar desc = gOPD(regexMatchAll, 'name');\n\tif (desc && desc.configurable) {\n\t\tdefineP(regexMatchAll, 'name', { value: '[Symbol.matchAll]' });\n\t}\n}\n\nmodule.exports = regexMatchAll;\n"
+    ],
+    "mappings": "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"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

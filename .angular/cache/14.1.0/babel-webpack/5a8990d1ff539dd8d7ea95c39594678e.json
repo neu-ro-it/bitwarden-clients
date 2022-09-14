@@ -1,0 +1,17 @@
+{
+  "ast": null,
+  "code": "import { filter } from './filter';\nexport function skip(count) {\n  return filter(function (_, index) {\n    return count <= index;\n  });\n} //# sourceMappingURL=skip.js.map",
+  "map": {
+    "version": 3,
+    "names": ["filter", "skip", "count", "_", "index"],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/esm5/internal/operators/skip.js"
+    ],
+    "sourcesContent": [
+      "import { filter } from './filter';\nexport function skip(count) {\n    return filter(function (_, index) { return count <= index; });\n}\n//# sourceMappingURL=skip.js.map"
+    ],
+    "mappings": "AAAA,SAASA,MAAT,QAAuB,UAAvB;AACA,OAAO,SAASC,IAAT,CAAcC,KAAd,EAAqB;EACxB,OAAOF,MAAM,CAAC,UAAUG,CAAV,EAAaC,KAAb,EAAoB;IAAE,OAAOF,KAAK,IAAIE,KAAhB;EAAwB,CAA/C,CAAb;AACH,C,CACD"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

@@ -1,0 +1,34 @@
+{
+  "ast": null,
+  "code": "\"use strict\";\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.toArray = void 0;\n\nvar reduce_1 = require(\"./reduce\");\n\nvar lift_1 = require(\"../util/lift\");\n\nvar arrReducer = function (arr, value) {\n  return arr.push(value), arr;\n};\n\nfunction toArray() {\n  return lift_1.operate(function (source, subscriber) {\n    reduce_1.reduce(arrReducer, [])(source).subscribe(subscriber);\n  });\n}\n\nexports.toArray = toArray; //# sourceMappingURL=toArray.js.map",
+  "map": {
+    "version": 3,
+    "names": [
+      "Object",
+      "defineProperty",
+      "exports",
+      "value",
+      "toArray",
+      "reduce_1",
+      "require",
+      "lift_1",
+      "arrReducer",
+      "arr",
+      "push",
+      "operate",
+      "source",
+      "subscriber",
+      "reduce",
+      "subscribe"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/cjs/internal/operators/toArray.js"
+    ],
+    "sourcesContent": [
+      "\"use strict\";\nObject.defineProperty(exports, \"__esModule\", { value: true });\nexports.toArray = void 0;\nvar reduce_1 = require(\"./reduce\");\nvar lift_1 = require(\"../util/lift\");\nvar arrReducer = function (arr, value) { return (arr.push(value), arr); };\nfunction toArray() {\n    return lift_1.operate(function (source, subscriber) {\n        reduce_1.reduce(arrReducer, [])(source).subscribe(subscriber);\n    });\n}\nexports.toArray = toArray;\n//# sourceMappingURL=toArray.js.map"
+    ],
+    "mappings": "AAAA;;AACAA,MAAM,CAACC,cAAP,CAAsBC,OAAtB,EAA+B,YAA/B,EAA6C;EAAEC,KAAK,EAAE;AAAT,CAA7C;AACAD,OAAO,CAACE,OAAR,GAAkB,KAAK,CAAvB;;AACA,IAAIC,QAAQ,GAAGC,OAAO,CAAC,UAAD,CAAtB;;AACA,IAAIC,MAAM,GAAGD,OAAO,CAAC,cAAD,CAApB;;AACA,IAAIE,UAAU,GAAG,UAAUC,GAAV,EAAeN,KAAf,EAAsB;EAAE,OAAQM,GAAG,CAACC,IAAJ,CAASP,KAAT,GAAiBM,GAAzB;AAAgC,CAAzE;;AACA,SAASL,OAAT,GAAmB;EACf,OAAOG,MAAM,CAACI,OAAP,CAAe,UAAUC,MAAV,EAAkBC,UAAlB,EAA8B;IAChDR,QAAQ,CAACS,MAAT,CAAgBN,UAAhB,EAA4B,EAA5B,EAAgCI,MAAhC,EAAwCG,SAAxC,CAAkDF,UAAlD;EACH,CAFM,CAAP;AAGH;;AACDX,OAAO,CAACE,OAAR,GAAkBA,OAAlB,C,CACA"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

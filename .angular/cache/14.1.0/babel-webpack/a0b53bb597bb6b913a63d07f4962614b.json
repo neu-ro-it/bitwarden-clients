@@ -1,0 +1,44 @@
+{
+  "ast": null,
+  "code": "\"use strict\";\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.audit = void 0;\n\nvar lift_1 = require(\"../util/lift\");\n\nvar innerFrom_1 = require(\"../observable/innerFrom\");\n\nvar OperatorSubscriber_1 = require(\"./OperatorSubscriber\");\n\nfunction audit(durationSelector) {\n  return lift_1.operate(function (source, subscriber) {\n    var hasValue = false;\n    var lastValue = null;\n    var durationSubscriber = null;\n    var isComplete = false;\n\n    var endDuration = function () {\n      durationSubscriber === null || durationSubscriber === void 0 ? void 0 : durationSubscriber.unsubscribe();\n      durationSubscriber = null;\n\n      if (hasValue) {\n        hasValue = false;\n        var value = lastValue;\n        lastValue = null;\n        subscriber.next(value);\n      }\n\n      isComplete && subscriber.complete();\n    };\n\n    var cleanupDuration = function () {\n      durationSubscriber = null;\n      isComplete && subscriber.complete();\n    };\n\n    source.subscribe(OperatorSubscriber_1.createOperatorSubscriber(subscriber, function (value) {\n      hasValue = true;\n      lastValue = value;\n\n      if (!durationSubscriber) {\n        innerFrom_1.innerFrom(durationSelector(value)).subscribe(durationSubscriber = OperatorSubscriber_1.createOperatorSubscriber(subscriber, endDuration, cleanupDuration));\n      }\n    }, function () {\n      isComplete = true;\n      (!hasValue || !durationSubscriber || durationSubscriber.closed) && subscriber.complete();\n    }));\n  });\n}\n\nexports.audit = audit; //# sourceMappingURL=audit.js.map",
+  "map": {
+    "version": 3,
+    "names": [
+      "Object",
+      "defineProperty",
+      "exports",
+      "value",
+      "audit",
+      "lift_1",
+      "require",
+      "innerFrom_1",
+      "OperatorSubscriber_1",
+      "durationSelector",
+      "operate",
+      "source",
+      "subscriber",
+      "hasValue",
+      "lastValue",
+      "durationSubscriber",
+      "isComplete",
+      "endDuration",
+      "unsubscribe",
+      "next",
+      "complete",
+      "cleanupDuration",
+      "subscribe",
+      "createOperatorSubscriber",
+      "innerFrom",
+      "closed"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/cjs/internal/operators/audit.js"
+    ],
+    "sourcesContent": [
+      "\"use strict\";\nObject.defineProperty(exports, \"__esModule\", { value: true });\nexports.audit = void 0;\nvar lift_1 = require(\"../util/lift\");\nvar innerFrom_1 = require(\"../observable/innerFrom\");\nvar OperatorSubscriber_1 = require(\"./OperatorSubscriber\");\nfunction audit(durationSelector) {\n    return lift_1.operate(function (source, subscriber) {\n        var hasValue = false;\n        var lastValue = null;\n        var durationSubscriber = null;\n        var isComplete = false;\n        var endDuration = function () {\n            durationSubscriber === null || durationSubscriber === void 0 ? void 0 : durationSubscriber.unsubscribe();\n            durationSubscriber = null;\n            if (hasValue) {\n                hasValue = false;\n                var value = lastValue;\n                lastValue = null;\n                subscriber.next(value);\n            }\n            isComplete && subscriber.complete();\n        };\n        var cleanupDuration = function () {\n            durationSubscriber = null;\n            isComplete && subscriber.complete();\n        };\n        source.subscribe(OperatorSubscriber_1.createOperatorSubscriber(subscriber, function (value) {\n            hasValue = true;\n            lastValue = value;\n            if (!durationSubscriber) {\n                innerFrom_1.innerFrom(durationSelector(value)).subscribe((durationSubscriber = OperatorSubscriber_1.createOperatorSubscriber(subscriber, endDuration, cleanupDuration)));\n            }\n        }, function () {\n            isComplete = true;\n            (!hasValue || !durationSubscriber || durationSubscriber.closed) && subscriber.complete();\n        }));\n    });\n}\nexports.audit = audit;\n//# sourceMappingURL=audit.js.map"
+    ],
+    "mappings": "AAAA;;AACAA,MAAM,CAACC,cAAP,CAAsBC,OAAtB,EAA+B,YAA/B,EAA6C;EAAEC,KAAK,EAAE;AAAT,CAA7C;AACAD,OAAO,CAACE,KAAR,GAAgB,KAAK,CAArB;;AACA,IAAIC,MAAM,GAAGC,OAAO,CAAC,cAAD,CAApB;;AACA,IAAIC,WAAW,GAAGD,OAAO,CAAC,yBAAD,CAAzB;;AACA,IAAIE,oBAAoB,GAAGF,OAAO,CAAC,sBAAD,CAAlC;;AACA,SAASF,KAAT,CAAeK,gBAAf,EAAiC;EAC7B,OAAOJ,MAAM,CAACK,OAAP,CAAe,UAAUC,MAAV,EAAkBC,UAAlB,EAA8B;IAChD,IAAIC,QAAQ,GAAG,KAAf;IACA,IAAIC,SAAS,GAAG,IAAhB;IACA,IAAIC,kBAAkB,GAAG,IAAzB;IACA,IAAIC,UAAU,GAAG,KAAjB;;IACA,IAAIC,WAAW,GAAG,YAAY;MAC1BF,kBAAkB,KAAK,IAAvB,IAA+BA,kBAAkB,KAAK,KAAK,CAA3D,GAA+D,KAAK,CAApE,GAAwEA,kBAAkB,CAACG,WAAnB,EAAxE;MACAH,kBAAkB,GAAG,IAArB;;MACA,IAAIF,QAAJ,EAAc;QACVA,QAAQ,GAAG,KAAX;QACA,IAAIV,KAAK,GAAGW,SAAZ;QACAA,SAAS,GAAG,IAAZ;QACAF,UAAU,CAACO,IAAX,CAAgBhB,KAAhB;MACH;;MACDa,UAAU,IAAIJ,UAAU,CAACQ,QAAX,EAAd;IACH,CAVD;;IAWA,IAAIC,eAAe,GAAG,YAAY;MAC9BN,kBAAkB,GAAG,IAArB;MACAC,UAAU,IAAIJ,UAAU,CAACQ,QAAX,EAAd;IACH,CAHD;;IAIAT,MAAM,CAACW,SAAP,CAAiBd,oBAAoB,CAACe,wBAArB,CAA8CX,UAA9C,EAA0D,UAAUT,KAAV,EAAiB;MACxFU,QAAQ,GAAG,IAAX;MACAC,SAAS,GAAGX,KAAZ;;MACA,IAAI,CAACY,kBAAL,EAAyB;QACrBR,WAAW,CAACiB,SAAZ,CAAsBf,gBAAgB,CAACN,KAAD,CAAtC,EAA+CmB,SAA/C,CAA0DP,kBAAkB,GAAGP,oBAAoB,CAACe,wBAArB,CAA8CX,UAA9C,EAA0DK,WAA1D,EAAuEI,eAAvE,CAA/E;MACH;IACJ,CANgB,EAMd,YAAY;MACXL,UAAU,GAAG,IAAb;MACA,CAAC,CAACH,QAAD,IAAa,CAACE,kBAAd,IAAoCA,kBAAkB,CAACU,MAAxD,KAAmEb,UAAU,CAACQ,QAAX,EAAnE;IACH,CATgB,CAAjB;EAUH,CA9BM,CAAP;AA+BH;;AACDlB,OAAO,CAACE,KAAR,GAAgBA,KAAhB,C,CACA"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

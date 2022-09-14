@@ -1,0 +1,17 @@
+{
+  "ast": null,
+  "code": "import { switchMap } from './switchMap';\nimport { identity } from '../util/identity';\nexport function switchAll() {\n  return switchMap(identity);\n} //# sourceMappingURL=switchAll.js.map",
+  "map": {
+    "version": 3,
+    "names": ["switchMap", "identity", "switchAll"],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/esm5/internal/operators/switchAll.js"
+    ],
+    "sourcesContent": [
+      "import { switchMap } from './switchMap';\nimport { identity } from '../util/identity';\nexport function switchAll() {\n    return switchMap(identity);\n}\n//# sourceMappingURL=switchAll.js.map"
+    ],
+    "mappings": "AAAA,SAASA,SAAT,QAA0B,aAA1B;AACA,SAASC,QAAT,QAAyB,kBAAzB;AACA,OAAO,SAASC,SAAT,GAAqB;EACxB,OAAOF,SAAS,CAACC,QAAD,CAAhB;AACH,C,CACD"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

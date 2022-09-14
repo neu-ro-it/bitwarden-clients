@@ -1,0 +1,31 @@
+{
+  "ast": null,
+  "code": "\"use strict\";\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.finalize = void 0;\n\nvar lift_1 = require(\"../util/lift\");\n\nfunction finalize(callback) {\n  return lift_1.operate(function (source, subscriber) {\n    try {\n      source.subscribe(subscriber);\n    } finally {\n      subscriber.add(callback);\n    }\n  });\n}\n\nexports.finalize = finalize; //# sourceMappingURL=finalize.js.map",
+  "map": {
+    "version": 3,
+    "names": [
+      "Object",
+      "defineProperty",
+      "exports",
+      "value",
+      "finalize",
+      "lift_1",
+      "require",
+      "callback",
+      "operate",
+      "source",
+      "subscriber",
+      "subscribe",
+      "add"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/cjs/internal/operators/finalize.js"
+    ],
+    "sourcesContent": [
+      "\"use strict\";\nObject.defineProperty(exports, \"__esModule\", { value: true });\nexports.finalize = void 0;\nvar lift_1 = require(\"../util/lift\");\nfunction finalize(callback) {\n    return lift_1.operate(function (source, subscriber) {\n        try {\n            source.subscribe(subscriber);\n        }\n        finally {\n            subscriber.add(callback);\n        }\n    });\n}\nexports.finalize = finalize;\n//# sourceMappingURL=finalize.js.map"
+    ],
+    "mappings": "AAAA;;AACAA,MAAM,CAACC,cAAP,CAAsBC,OAAtB,EAA+B,YAA/B,EAA6C;EAAEC,KAAK,EAAE;AAAT,CAA7C;AACAD,OAAO,CAACE,QAAR,GAAmB,KAAK,CAAxB;;AACA,IAAIC,MAAM,GAAGC,OAAO,CAAC,cAAD,CAApB;;AACA,SAASF,QAAT,CAAkBG,QAAlB,EAA4B;EACxB,OAAOF,MAAM,CAACG,OAAP,CAAe,UAAUC,MAAV,EAAkBC,UAAlB,EAA8B;IAChD,IAAI;MACAD,MAAM,CAACE,SAAP,CAAiBD,UAAjB;IACH,CAFD,SAGQ;MACJA,UAAU,CAACE,GAAX,CAAeL,QAAf;IACH;EACJ,CAPM,CAAP;AAQH;;AACDL,OAAO,CAACE,QAAR,GAAmBA,QAAnB,C,CACA"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

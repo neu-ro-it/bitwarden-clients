@@ -1,0 +1,36 @@
+{
+  "ast": null,
+  "code": "import { __extends } from \"tslib\";\nimport { AsyncAction } from './AsyncAction';\n\nvar QueueAction = function (_super) {\n  __extends(QueueAction, _super);\n\n  function QueueAction(scheduler, work) {\n    var _this = _super.call(this, scheduler, work) || this;\n\n    _this.scheduler = scheduler;\n    _this.work = work;\n    return _this;\n  }\n\n  QueueAction.prototype.schedule = function (state, delay) {\n    if (delay === void 0) {\n      delay = 0;\n    }\n\n    if (delay > 0) {\n      return _super.prototype.schedule.call(this, state, delay);\n    }\n\n    this.delay = delay;\n    this.state = state;\n    this.scheduler.flush(this);\n    return this;\n  };\n\n  QueueAction.prototype.execute = function (state, delay) {\n    return delay > 0 || this.closed ? _super.prototype.execute.call(this, state, delay) : this._execute(state, delay);\n  };\n\n  QueueAction.prototype.requestAsyncId = function (scheduler, id, delay) {\n    if (delay === void 0) {\n      delay = 0;\n    }\n\n    if (delay != null && delay > 0 || delay == null && this.delay > 0) {\n      return _super.prototype.requestAsyncId.call(this, scheduler, id, delay);\n    }\n\n    return scheduler.flush(this);\n  };\n\n  return QueueAction;\n}(AsyncAction);\n\nexport { QueueAction }; //# sourceMappingURL=QueueAction.js.map",
+  "map": {
+    "version": 3,
+    "names": [
+      "__extends",
+      "AsyncAction",
+      "QueueAction",
+      "_super",
+      "scheduler",
+      "work",
+      "_this",
+      "call",
+      "prototype",
+      "schedule",
+      "state",
+      "delay",
+      "flush",
+      "execute",
+      "closed",
+      "_execute",
+      "requestAsyncId",
+      "id"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/esm5/internal/scheduler/QueueAction.js"
+    ],
+    "sourcesContent": [
+      "import { __extends } from \"tslib\";\nimport { AsyncAction } from './AsyncAction';\nvar QueueAction = (function (_super) {\n    __extends(QueueAction, _super);\n    function QueueAction(scheduler, work) {\n        var _this = _super.call(this, scheduler, work) || this;\n        _this.scheduler = scheduler;\n        _this.work = work;\n        return _this;\n    }\n    QueueAction.prototype.schedule = function (state, delay) {\n        if (delay === void 0) { delay = 0; }\n        if (delay > 0) {\n            return _super.prototype.schedule.call(this, state, delay);\n        }\n        this.delay = delay;\n        this.state = state;\n        this.scheduler.flush(this);\n        return this;\n    };\n    QueueAction.prototype.execute = function (state, delay) {\n        return (delay > 0 || this.closed) ?\n            _super.prototype.execute.call(this, state, delay) :\n            this._execute(state, delay);\n    };\n    QueueAction.prototype.requestAsyncId = function (scheduler, id, delay) {\n        if (delay === void 0) { delay = 0; }\n        if ((delay != null && delay > 0) || (delay == null && this.delay > 0)) {\n            return _super.prototype.requestAsyncId.call(this, scheduler, id, delay);\n        }\n        return scheduler.flush(this);\n    };\n    return QueueAction;\n}(AsyncAction));\nexport { QueueAction };\n//# sourceMappingURL=QueueAction.js.map"
+    ],
+    "mappings": "AAAA,SAASA,SAAT,QAA0B,OAA1B;AACA,SAASC,WAAT,QAA4B,eAA5B;;AACA,IAAIC,WAAW,GAAI,UAAUC,MAAV,EAAkB;EACjCH,SAAS,CAACE,WAAD,EAAcC,MAAd,CAAT;;EACA,SAASD,WAAT,CAAqBE,SAArB,EAAgCC,IAAhC,EAAsC;IAClC,IAAIC,KAAK,GAAGH,MAAM,CAACI,IAAP,CAAY,IAAZ,EAAkBH,SAAlB,EAA6BC,IAA7B,KAAsC,IAAlD;;IACAC,KAAK,CAACF,SAAN,GAAkBA,SAAlB;IACAE,KAAK,CAACD,IAAN,GAAaA,IAAb;IACA,OAAOC,KAAP;EACH;;EACDJ,WAAW,CAACM,SAAZ,CAAsBC,QAAtB,GAAiC,UAAUC,KAAV,EAAiBC,KAAjB,EAAwB;IACrD,IAAIA,KAAK,KAAK,KAAK,CAAnB,EAAsB;MAAEA,KAAK,GAAG,CAAR;IAAY;;IACpC,IAAIA,KAAK,GAAG,CAAZ,EAAe;MACX,OAAOR,MAAM,CAACK,SAAP,CAAiBC,QAAjB,CAA0BF,IAA1B,CAA+B,IAA/B,EAAqCG,KAArC,EAA4CC,KAA5C,CAAP;IACH;;IACD,KAAKA,KAAL,GAAaA,KAAb;IACA,KAAKD,KAAL,GAAaA,KAAb;IACA,KAAKN,SAAL,CAAeQ,KAAf,CAAqB,IAArB;IACA,OAAO,IAAP;EACH,CATD;;EAUAV,WAAW,CAACM,SAAZ,CAAsBK,OAAtB,GAAgC,UAAUH,KAAV,EAAiBC,KAAjB,EAAwB;IACpD,OAAQA,KAAK,GAAG,CAAR,IAAa,KAAKG,MAAnB,GACHX,MAAM,CAACK,SAAP,CAAiBK,OAAjB,CAAyBN,IAAzB,CAA8B,IAA9B,EAAoCG,KAApC,EAA2CC,KAA3C,CADG,GAEH,KAAKI,QAAL,CAAcL,KAAd,EAAqBC,KAArB,CAFJ;EAGH,CAJD;;EAKAT,WAAW,CAACM,SAAZ,CAAsBQ,cAAtB,GAAuC,UAAUZ,SAAV,EAAqBa,EAArB,EAAyBN,KAAzB,EAAgC;IACnE,IAAIA,KAAK,KAAK,KAAK,CAAnB,EAAsB;MAAEA,KAAK,GAAG,CAAR;IAAY;;IACpC,IAAKA,KAAK,IAAI,IAAT,IAAiBA,KAAK,GAAG,CAA1B,IAAiCA,KAAK,IAAI,IAAT,IAAiB,KAAKA,KAAL,GAAa,CAAnE,EAAuE;MACnE,OAAOR,MAAM,CAACK,SAAP,CAAiBQ,cAAjB,CAAgCT,IAAhC,CAAqC,IAArC,EAA2CH,SAA3C,EAAsDa,EAAtD,EAA0DN,KAA1D,CAAP;IACH;;IACD,OAAOP,SAAS,CAACQ,KAAV,CAAgB,IAAhB,CAAP;EACH,CAND;;EAOA,OAAOV,WAAP;AACH,CA/BkB,CA+BjBD,WA/BiB,CAAnB;;AAgCA,SAASC,WAAT,G,CACA"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

@@ -1,0 +1,30 @@
+{
+  "ast": null,
+  "code": "import { concat } from '../observable/concat';\nimport { popScheduler } from '../util/args';\nimport { operate } from '../util/lift';\nexport function startWith() {\n  var values = [];\n\n  for (var _i = 0; _i < arguments.length; _i++) {\n    values[_i] = arguments[_i];\n  }\n\n  var scheduler = popScheduler(values);\n  return operate(function (source, subscriber) {\n    (scheduler ? concat(values, source, scheduler) : concat(values, source)).subscribe(subscriber);\n  });\n} //# sourceMappingURL=startWith.js.map",
+  "map": {
+    "version": 3,
+    "names": [
+      "concat",
+      "popScheduler",
+      "operate",
+      "startWith",
+      "values",
+      "_i",
+      "arguments",
+      "length",
+      "scheduler",
+      "source",
+      "subscriber",
+      "subscribe"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/esm5/internal/operators/startWith.js"
+    ],
+    "sourcesContent": [
+      "import { concat } from '../observable/concat';\nimport { popScheduler } from '../util/args';\nimport { operate } from '../util/lift';\nexport function startWith() {\n    var values = [];\n    for (var _i = 0; _i < arguments.length; _i++) {\n        values[_i] = arguments[_i];\n    }\n    var scheduler = popScheduler(values);\n    return operate(function (source, subscriber) {\n        (scheduler ? concat(values, source, scheduler) : concat(values, source)).subscribe(subscriber);\n    });\n}\n//# sourceMappingURL=startWith.js.map"
+    ],
+    "mappings": "AAAA,SAASA,MAAT,QAAuB,sBAAvB;AACA,SAASC,YAAT,QAA6B,cAA7B;AACA,SAASC,OAAT,QAAwB,cAAxB;AACA,OAAO,SAASC,SAAT,GAAqB;EACxB,IAAIC,MAAM,GAAG,EAAb;;EACA,KAAK,IAAIC,EAAE,GAAG,CAAd,EAAiBA,EAAE,GAAGC,SAAS,CAACC,MAAhC,EAAwCF,EAAE,EAA1C,EAA8C;IAC1CD,MAAM,CAACC,EAAD,CAAN,GAAaC,SAAS,CAACD,EAAD,CAAtB;EACH;;EACD,IAAIG,SAAS,GAAGP,YAAY,CAACG,MAAD,CAA5B;EACA,OAAOF,OAAO,CAAC,UAAUO,MAAV,EAAkBC,UAAlB,EAA8B;IACzC,CAACF,SAAS,GAAGR,MAAM,CAACI,MAAD,EAASK,MAAT,EAAiBD,SAAjB,CAAT,GAAuCR,MAAM,CAACI,MAAD,EAASK,MAAT,CAAvD,EAAyEE,SAAzE,CAAmFD,UAAnF;EACH,CAFa,CAAd;AAGH,C,CACD"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

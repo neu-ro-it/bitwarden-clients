@@ -1,0 +1,52 @@
+{
+  "ast": null,
+  "code": "\"use strict\";\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.repeat = void 0;\n\nvar empty_1 = require(\"../observable/empty\");\n\nvar lift_1 = require(\"../util/lift\");\n\nvar OperatorSubscriber_1 = require(\"./OperatorSubscriber\");\n\nvar innerFrom_1 = require(\"../observable/innerFrom\");\n\nvar timer_1 = require(\"../observable/timer\");\n\nfunction repeat(countOrConfig) {\n  var _a;\n\n  var count = Infinity;\n  var delay;\n\n  if (countOrConfig != null) {\n    if (typeof countOrConfig === 'object') {\n      _a = countOrConfig.count, count = _a === void 0 ? Infinity : _a, delay = countOrConfig.delay;\n    } else {\n      count = countOrConfig;\n    }\n  }\n\n  return count <= 0 ? function () {\n    return empty_1.EMPTY;\n  } : lift_1.operate(function (source, subscriber) {\n    var soFar = 0;\n    var sourceSub;\n\n    var resubscribe = function () {\n      sourceSub === null || sourceSub === void 0 ? void 0 : sourceSub.unsubscribe();\n      sourceSub = null;\n\n      if (delay != null) {\n        var notifier = typeof delay === 'number' ? timer_1.timer(delay) : innerFrom_1.innerFrom(delay(soFar));\n        var notifierSubscriber_1 = OperatorSubscriber_1.createOperatorSubscriber(subscriber, function () {\n          notifierSubscriber_1.unsubscribe();\n          subscribeToSource();\n        });\n        notifier.subscribe(notifierSubscriber_1);\n      } else {\n        subscribeToSource();\n      }\n    };\n\n    var subscribeToSource = function () {\n      var syncUnsub = false;\n      sourceSub = source.subscribe(OperatorSubscriber_1.createOperatorSubscriber(subscriber, undefined, function () {\n        if (++soFar < count) {\n          if (sourceSub) {\n            resubscribe();\n          } else {\n            syncUnsub = true;\n          }\n        } else {\n          subscriber.complete();\n        }\n      }));\n\n      if (syncUnsub) {\n        resubscribe();\n      }\n    };\n\n    subscribeToSource();\n  });\n}\n\nexports.repeat = repeat; //# sourceMappingURL=repeat.js.map",
+  "map": {
+    "version": 3,
+    "names": [
+      "Object",
+      "defineProperty",
+      "exports",
+      "value",
+      "repeat",
+      "empty_1",
+      "require",
+      "lift_1",
+      "OperatorSubscriber_1",
+      "innerFrom_1",
+      "timer_1",
+      "countOrConfig",
+      "_a",
+      "count",
+      "Infinity",
+      "delay",
+      "EMPTY",
+      "operate",
+      "source",
+      "subscriber",
+      "soFar",
+      "sourceSub",
+      "resubscribe",
+      "unsubscribe",
+      "notifier",
+      "timer",
+      "innerFrom",
+      "notifierSubscriber_1",
+      "createOperatorSubscriber",
+      "subscribeToSource",
+      "subscribe",
+      "syncUnsub",
+      "undefined",
+      "complete"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/cjs/internal/operators/repeat.js"
+    ],
+    "sourcesContent": [
+      "\"use strict\";\nObject.defineProperty(exports, \"__esModule\", { value: true });\nexports.repeat = void 0;\nvar empty_1 = require(\"../observable/empty\");\nvar lift_1 = require(\"../util/lift\");\nvar OperatorSubscriber_1 = require(\"./OperatorSubscriber\");\nvar innerFrom_1 = require(\"../observable/innerFrom\");\nvar timer_1 = require(\"../observable/timer\");\nfunction repeat(countOrConfig) {\n    var _a;\n    var count = Infinity;\n    var delay;\n    if (countOrConfig != null) {\n        if (typeof countOrConfig === 'object') {\n            (_a = countOrConfig.count, count = _a === void 0 ? Infinity : _a, delay = countOrConfig.delay);\n        }\n        else {\n            count = countOrConfig;\n        }\n    }\n    return count <= 0\n        ? function () { return empty_1.EMPTY; }\n        : lift_1.operate(function (source, subscriber) {\n            var soFar = 0;\n            var sourceSub;\n            var resubscribe = function () {\n                sourceSub === null || sourceSub === void 0 ? void 0 : sourceSub.unsubscribe();\n                sourceSub = null;\n                if (delay != null) {\n                    var notifier = typeof delay === 'number' ? timer_1.timer(delay) : innerFrom_1.innerFrom(delay(soFar));\n                    var notifierSubscriber_1 = OperatorSubscriber_1.createOperatorSubscriber(subscriber, function () {\n                        notifierSubscriber_1.unsubscribe();\n                        subscribeToSource();\n                    });\n                    notifier.subscribe(notifierSubscriber_1);\n                }\n                else {\n                    subscribeToSource();\n                }\n            };\n            var subscribeToSource = function () {\n                var syncUnsub = false;\n                sourceSub = source.subscribe(OperatorSubscriber_1.createOperatorSubscriber(subscriber, undefined, function () {\n                    if (++soFar < count) {\n                        if (sourceSub) {\n                            resubscribe();\n                        }\n                        else {\n                            syncUnsub = true;\n                        }\n                    }\n                    else {\n                        subscriber.complete();\n                    }\n                }));\n                if (syncUnsub) {\n                    resubscribe();\n                }\n            };\n            subscribeToSource();\n        });\n}\nexports.repeat = repeat;\n//# sourceMappingURL=repeat.js.map"
+    ],
+    "mappings": "AAAA;;AACAA,MAAM,CAACC,cAAP,CAAsBC,OAAtB,EAA+B,YAA/B,EAA6C;EAAEC,KAAK,EAAE;AAAT,CAA7C;AACAD,OAAO,CAACE,MAAR,GAAiB,KAAK,CAAtB;;AACA,IAAIC,OAAO,GAAGC,OAAO,CAAC,qBAAD,CAArB;;AACA,IAAIC,MAAM,GAAGD,OAAO,CAAC,cAAD,CAApB;;AACA,IAAIE,oBAAoB,GAAGF,OAAO,CAAC,sBAAD,CAAlC;;AACA,IAAIG,WAAW,GAAGH,OAAO,CAAC,yBAAD,CAAzB;;AACA,IAAII,OAAO,GAAGJ,OAAO,CAAC,qBAAD,CAArB;;AACA,SAASF,MAAT,CAAgBO,aAAhB,EAA+B;EAC3B,IAAIC,EAAJ;;EACA,IAAIC,KAAK,GAAGC,QAAZ;EACA,IAAIC,KAAJ;;EACA,IAAIJ,aAAa,IAAI,IAArB,EAA2B;IACvB,IAAI,OAAOA,aAAP,KAAyB,QAA7B,EAAuC;MAClCC,EAAE,GAAGD,aAAa,CAACE,KAAnB,EAA0BA,KAAK,GAAGD,EAAE,KAAK,KAAK,CAAZ,GAAgBE,QAAhB,GAA2BF,EAA7D,EAAiEG,KAAK,GAAGJ,aAAa,CAACI,KAAxF;IACH,CAFD,MAGK;MACDF,KAAK,GAAGF,aAAR;IACH;EACJ;;EACD,OAAOE,KAAK,IAAI,CAAT,GACD,YAAY;IAAE,OAAOR,OAAO,CAACW,KAAf;EAAuB,CADpC,GAEDT,MAAM,CAACU,OAAP,CAAe,UAAUC,MAAV,EAAkBC,UAAlB,EAA8B;IAC3C,IAAIC,KAAK,GAAG,CAAZ;IACA,IAAIC,SAAJ;;IACA,IAAIC,WAAW,GAAG,YAAY;MAC1BD,SAAS,KAAK,IAAd,IAAsBA,SAAS,KAAK,KAAK,CAAzC,GAA6C,KAAK,CAAlD,GAAsDA,SAAS,CAACE,WAAV,EAAtD;MACAF,SAAS,GAAG,IAAZ;;MACA,IAAIN,KAAK,IAAI,IAAb,EAAmB;QACf,IAAIS,QAAQ,GAAG,OAAOT,KAAP,KAAiB,QAAjB,GAA4BL,OAAO,CAACe,KAAR,CAAcV,KAAd,CAA5B,GAAmDN,WAAW,CAACiB,SAAZ,CAAsBX,KAAK,CAACK,KAAD,CAA3B,CAAlE;QACA,IAAIO,oBAAoB,GAAGnB,oBAAoB,CAACoB,wBAArB,CAA8CT,UAA9C,EAA0D,YAAY;UAC7FQ,oBAAoB,CAACJ,WAArB;UACAM,iBAAiB;QACpB,CAH0B,CAA3B;QAIAL,QAAQ,CAACM,SAAT,CAAmBH,oBAAnB;MACH,CAPD,MAQK;QACDE,iBAAiB;MACpB;IACJ,CAdD;;IAeA,IAAIA,iBAAiB,GAAG,YAAY;MAChC,IAAIE,SAAS,GAAG,KAAhB;MACAV,SAAS,GAAGH,MAAM,CAACY,SAAP,CAAiBtB,oBAAoB,CAACoB,wBAArB,CAA8CT,UAA9C,EAA0Da,SAA1D,EAAqE,YAAY;QAC1G,IAAI,EAAEZ,KAAF,GAAUP,KAAd,EAAqB;UACjB,IAAIQ,SAAJ,EAAe;YACXC,WAAW;UACd,CAFD,MAGK;YACDS,SAAS,GAAG,IAAZ;UACH;QACJ,CAPD,MAQK;UACDZ,UAAU,CAACc,QAAX;QACH;MACJ,CAZ4B,CAAjB,CAAZ;;MAaA,IAAIF,SAAJ,EAAe;QACXT,WAAW;MACd;IACJ,CAlBD;;IAmBAO,iBAAiB;EACpB,CAtCC,CAFN;AAyCH;;AACD3B,OAAO,CAACE,MAAR,GAAiBA,MAAjB,C,CACA"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

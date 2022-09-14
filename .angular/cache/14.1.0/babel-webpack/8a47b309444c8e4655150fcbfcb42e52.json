@@ -1,0 +1,17 @@
+{
+  "ast": null,
+  "code": "export var ADDON_ID = 'storybook/outline';\nexport var PARAM_KEY = 'outline';",
+  "map": {
+    "version": 3,
+    "names": ["ADDON_ID", "PARAM_KEY"],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/@storybook/addon-outline/dist/esm/constants.js"
+    ],
+    "sourcesContent": [
+      "export var ADDON_ID = 'storybook/outline';\nexport var PARAM_KEY = 'outline';"
+    ],
+    "mappings": "AAAA,OAAO,IAAIA,QAAQ,GAAG,mBAAf;AACP,OAAO,IAAIC,SAAS,GAAG,SAAhB"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

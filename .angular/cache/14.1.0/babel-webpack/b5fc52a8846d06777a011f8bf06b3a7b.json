@@ -1,0 +1,55 @@
+{
+  "ast": null,
+  "code": "import { __extends } from \"tslib\";\nimport { Action } from './Action';\nimport { intervalProvider } from './intervalProvider';\nimport { arrRemove } from '../util/arrRemove';\n\nvar AsyncAction = function (_super) {\n  __extends(AsyncAction, _super);\n\n  function AsyncAction(scheduler, work) {\n    var _this = _super.call(this, scheduler, work) || this;\n\n    _this.scheduler = scheduler;\n    _this.work = work;\n    _this.pending = false;\n    return _this;\n  }\n\n  AsyncAction.prototype.schedule = function (state, delay) {\n    if (delay === void 0) {\n      delay = 0;\n    }\n\n    if (this.closed) {\n      return this;\n    }\n\n    this.state = state;\n    var id = this.id;\n    var scheduler = this.scheduler;\n\n    if (id != null) {\n      this.id = this.recycleAsyncId(scheduler, id, delay);\n    }\n\n    this.pending = true;\n    this.delay = delay;\n    this.id = this.id || this.requestAsyncId(scheduler, this.id, delay);\n    return this;\n  };\n\n  AsyncAction.prototype.requestAsyncId = function (scheduler, _id, delay) {\n    if (delay === void 0) {\n      delay = 0;\n    }\n\n    return intervalProvider.setInterval(scheduler.flush.bind(scheduler, this), delay);\n  };\n\n  AsyncAction.prototype.recycleAsyncId = function (_scheduler, id, delay) {\n    if (delay === void 0) {\n      delay = 0;\n    }\n\n    if (delay != null && this.delay === delay && this.pending === false) {\n      return id;\n    }\n\n    intervalProvider.clearInterval(id);\n    return undefined;\n  };\n\n  AsyncAction.prototype.execute = function (state, delay) {\n    if (this.closed) {\n      return new Error('executing a cancelled action');\n    }\n\n    this.pending = false;\n\n    var error = this._execute(state, delay);\n\n    if (error) {\n      return error;\n    } else if (this.pending === false && this.id != null) {\n      this.id = this.recycleAsyncId(this.scheduler, this.id, null);\n    }\n  };\n\n  AsyncAction.prototype._execute = function (state, _delay) {\n    var errored = false;\n    var errorValue;\n\n    try {\n      this.work(state);\n    } catch (e) {\n      errored = true;\n      errorValue = e ? e : new Error('Scheduled action threw falsy error');\n    }\n\n    if (errored) {\n      this.unsubscribe();\n      return errorValue;\n    }\n  };\n\n  AsyncAction.prototype.unsubscribe = function () {\n    if (!this.closed) {\n      var _a = this,\n          id = _a.id,\n          scheduler = _a.scheduler;\n\n      var actions = scheduler.actions;\n      this.work = this.state = this.scheduler = null;\n      this.pending = false;\n      arrRemove(actions, this);\n\n      if (id != null) {\n        this.id = this.recycleAsyncId(scheduler, id, null);\n      }\n\n      this.delay = null;\n\n      _super.prototype.unsubscribe.call(this);\n    }\n  };\n\n  return AsyncAction;\n}(Action);\n\nexport { AsyncAction }; //# sourceMappingURL=AsyncAction.js.map",
+  "map": {
+    "version": 3,
+    "names": [
+      "__extends",
+      "Action",
+      "intervalProvider",
+      "arrRemove",
+      "AsyncAction",
+      "_super",
+      "scheduler",
+      "work",
+      "_this",
+      "call",
+      "pending",
+      "prototype",
+      "schedule",
+      "state",
+      "delay",
+      "closed",
+      "id",
+      "recycleAsyncId",
+      "requestAsyncId",
+      "_id",
+      "setInterval",
+      "flush",
+      "bind",
+      "_scheduler",
+      "clearInterval",
+      "undefined",
+      "execute",
+      "Error",
+      "error",
+      "_execute",
+      "_delay",
+      "errored",
+      "errorValue",
+      "e",
+      "unsubscribe",
+      "_a",
+      "actions"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/esm5/internal/scheduler/AsyncAction.js"
+    ],
+    "sourcesContent": [
+      "import { __extends } from \"tslib\";\nimport { Action } from './Action';\nimport { intervalProvider } from './intervalProvider';\nimport { arrRemove } from '../util/arrRemove';\nvar AsyncAction = (function (_super) {\n    __extends(AsyncAction, _super);\n    function AsyncAction(scheduler, work) {\n        var _this = _super.call(this, scheduler, work) || this;\n        _this.scheduler = scheduler;\n        _this.work = work;\n        _this.pending = false;\n        return _this;\n    }\n    AsyncAction.prototype.schedule = function (state, delay) {\n        if (delay === void 0) { delay = 0; }\n        if (this.closed) {\n            return this;\n        }\n        this.state = state;\n        var id = this.id;\n        var scheduler = this.scheduler;\n        if (id != null) {\n            this.id = this.recycleAsyncId(scheduler, id, delay);\n        }\n        this.pending = true;\n        this.delay = delay;\n        this.id = this.id || this.requestAsyncId(scheduler, this.id, delay);\n        return this;\n    };\n    AsyncAction.prototype.requestAsyncId = function (scheduler, _id, delay) {\n        if (delay === void 0) { delay = 0; }\n        return intervalProvider.setInterval(scheduler.flush.bind(scheduler, this), delay);\n    };\n    AsyncAction.prototype.recycleAsyncId = function (_scheduler, id, delay) {\n        if (delay === void 0) { delay = 0; }\n        if (delay != null && this.delay === delay && this.pending === false) {\n            return id;\n        }\n        intervalProvider.clearInterval(id);\n        return undefined;\n    };\n    AsyncAction.prototype.execute = function (state, delay) {\n        if (this.closed) {\n            return new Error('executing a cancelled action');\n        }\n        this.pending = false;\n        var error = this._execute(state, delay);\n        if (error) {\n            return error;\n        }\n        else if (this.pending === false && this.id != null) {\n            this.id = this.recycleAsyncId(this.scheduler, this.id, null);\n        }\n    };\n    AsyncAction.prototype._execute = function (state, _delay) {\n        var errored = false;\n        var errorValue;\n        try {\n            this.work(state);\n        }\n        catch (e) {\n            errored = true;\n            errorValue = e ? e : new Error('Scheduled action threw falsy error');\n        }\n        if (errored) {\n            this.unsubscribe();\n            return errorValue;\n        }\n    };\n    AsyncAction.prototype.unsubscribe = function () {\n        if (!this.closed) {\n            var _a = this, id = _a.id, scheduler = _a.scheduler;\n            var actions = scheduler.actions;\n            this.work = this.state = this.scheduler = null;\n            this.pending = false;\n            arrRemove(actions, this);\n            if (id != null) {\n                this.id = this.recycleAsyncId(scheduler, id, null);\n            }\n            this.delay = null;\n            _super.prototype.unsubscribe.call(this);\n        }\n    };\n    return AsyncAction;\n}(Action));\nexport { AsyncAction };\n//# sourceMappingURL=AsyncAction.js.map"
+    ],
+    "mappings": "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"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

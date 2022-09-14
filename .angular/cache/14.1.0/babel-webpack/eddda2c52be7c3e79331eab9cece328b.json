@@ -1,0 +1,17 @@
+{
+  "ast": null,
+  "code": "export var performanceTimestampProvider = {\n  now: function () {\n    return (performanceTimestampProvider.delegate || performance).now();\n  },\n  delegate: undefined\n}; //# sourceMappingURL=performanceTimestampProvider.js.map",
+  "map": {
+    "version": 3,
+    "names": ["performanceTimestampProvider", "now", "delegate", "performance", "undefined"],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/esm5/internal/scheduler/performanceTimestampProvider.js"
+    ],
+    "sourcesContent": [
+      "export var performanceTimestampProvider = {\n    now: function () {\n        return (performanceTimestampProvider.delegate || performance).now();\n    },\n    delegate: undefined,\n};\n//# sourceMappingURL=performanceTimestampProvider.js.map"
+    ],
+    "mappings": "AAAA,OAAO,IAAIA,4BAA4B,GAAG;EACtCC,GAAG,EAAE,YAAY;IACb,OAAO,CAACD,4BAA4B,CAACE,QAA7B,IAAyCC,WAA1C,EAAuDF,GAAvD,EAAP;EACH,CAHqC;EAItCC,QAAQ,EAAEE;AAJ4B,CAAnC,C,CAMP"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

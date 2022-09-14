@@ -1,0 +1,17 @@
+{
+  "ast": null,
+  "code": "import { QueueAction } from './QueueAction';\nimport { QueueScheduler } from './QueueScheduler';\nexport var queueScheduler = new QueueScheduler(QueueAction);\nexport var queue = queueScheduler; //# sourceMappingURL=queue.js.map",
+  "map": {
+    "version": 3,
+    "names": ["QueueAction", "QueueScheduler", "queueScheduler", "queue"],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/esm5/internal/scheduler/queue.js"
+    ],
+    "sourcesContent": [
+      "import { QueueAction } from './QueueAction';\nimport { QueueScheduler } from './QueueScheduler';\nexport var queueScheduler = new QueueScheduler(QueueAction);\nexport var queue = queueScheduler;\n//# sourceMappingURL=queue.js.map"
+    ],
+    "mappings": "AAAA,SAASA,WAAT,QAA4B,eAA5B;AACA,SAASC,cAAT,QAA+B,kBAA/B;AACA,OAAO,IAAIC,cAAc,GAAG,IAAID,cAAJ,CAAmBD,WAAnB,CAArB;AACP,OAAO,IAAIG,KAAK,GAAGD,cAAZ,C,CACP"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

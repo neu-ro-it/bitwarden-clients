@@ -1,0 +1,53 @@
+{
+  "ast": null,
+  "code": "\"use strict\";\n\nvar __read = this && this.__read || function (o, n) {\n  var m = typeof Symbol === \"function\" && o[Symbol.iterator];\n  if (!m) return o;\n  var i = m.call(o),\n      r,\n      ar = [],\n      e;\n\n  try {\n    while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);\n  } catch (error) {\n    e = {\n      error: error\n    };\n  } finally {\n    try {\n      if (r && !r.done && (m = i[\"return\"])) m.call(i);\n    } finally {\n      if (e) throw e.error;\n    }\n  }\n\n  return ar;\n};\n\nvar __spreadArray = this && this.__spreadArray || function (to, from) {\n  for (var i = 0, il = from.length, j = to.length; i < il; i++, j++) to[j] = from[i];\n\n  return to;\n};\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.mapOneOrManyArgs = void 0;\n\nvar map_1 = require(\"../operators/map\");\n\nvar isArray = Array.isArray;\n\nfunction callOrApply(fn, args) {\n  return isArray(args) ? fn.apply(void 0, __spreadArray([], __read(args))) : fn(args);\n}\n\nfunction mapOneOrManyArgs(fn) {\n  return map_1.map(function (args) {\n    return callOrApply(fn, args);\n  });\n}\n\nexports.mapOneOrManyArgs = mapOneOrManyArgs; //# sourceMappingURL=mapOneOrManyArgs.js.map",
+  "map": {
+    "version": 3,
+    "names": [
+      "__read",
+      "o",
+      "n",
+      "m",
+      "Symbol",
+      "iterator",
+      "i",
+      "call",
+      "r",
+      "ar",
+      "e",
+      "next",
+      "done",
+      "push",
+      "value",
+      "error",
+      "__spreadArray",
+      "to",
+      "from",
+      "il",
+      "length",
+      "j",
+      "Object",
+      "defineProperty",
+      "exports",
+      "mapOneOrManyArgs",
+      "map_1",
+      "require",
+      "isArray",
+      "Array",
+      "callOrApply",
+      "fn",
+      "args",
+      "apply",
+      "map"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/cjs/internal/util/mapOneOrManyArgs.js"
+    ],
+    "sourcesContent": [
+      "\"use strict\";\nvar __read = (this && this.__read) || function (o, n) {\n    var m = typeof Symbol === \"function\" && o[Symbol.iterator];\n    if (!m) return o;\n    var i = m.call(o), r, ar = [], e;\n    try {\n        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);\n    }\n    catch (error) { e = { error: error }; }\n    finally {\n        try {\n            if (r && !r.done && (m = i[\"return\"])) m.call(i);\n        }\n        finally { if (e) throw e.error; }\n    }\n    return ar;\n};\nvar __spreadArray = (this && this.__spreadArray) || function (to, from) {\n    for (var i = 0, il = from.length, j = to.length; i < il; i++, j++)\n        to[j] = from[i];\n    return to;\n};\nObject.defineProperty(exports, \"__esModule\", { value: true });\nexports.mapOneOrManyArgs = void 0;\nvar map_1 = require(\"../operators/map\");\nvar isArray = Array.isArray;\nfunction callOrApply(fn, args) {\n    return isArray(args) ? fn.apply(void 0, __spreadArray([], __read(args))) : fn(args);\n}\nfunction mapOneOrManyArgs(fn) {\n    return map_1.map(function (args) { return callOrApply(fn, args); });\n}\nexports.mapOneOrManyArgs = mapOneOrManyArgs;\n//# sourceMappingURL=mapOneOrManyArgs.js.map"
+    ],
+    "mappings": "AAAA;;AACA,IAAIA,MAAM,GAAI,QAAQ,KAAKA,MAAd,IAAyB,UAAUC,CAAV,EAAaC,CAAb,EAAgB;EAClD,IAAIC,CAAC,GAAG,OAAOC,MAAP,KAAkB,UAAlB,IAAgCH,CAAC,CAACG,MAAM,CAACC,QAAR,CAAzC;EACA,IAAI,CAACF,CAAL,EAAQ,OAAOF,CAAP;EACR,IAAIK,CAAC,GAAGH,CAAC,CAACI,IAAF,CAAON,CAAP,CAAR;EAAA,IAAmBO,CAAnB;EAAA,IAAsBC,EAAE,GAAG,EAA3B;EAAA,IAA+BC,CAA/B;;EACA,IAAI;IACA,OAAO,CAACR,CAAC,KAAK,KAAK,CAAX,IAAgBA,CAAC,KAAK,CAAvB,KAA6B,CAAC,CAACM,CAAC,GAAGF,CAAC,CAACK,IAAF,EAAL,EAAeC,IAApD,EAA0DH,EAAE,CAACI,IAAH,CAAQL,CAAC,CAACM,KAAV;EAC7D,CAFD,CAGA,OAAOC,KAAP,EAAc;IAAEL,CAAC,GAAG;MAAEK,KAAK,EAAEA;IAAT,CAAJ;EAAuB,CAHvC,SAIQ;IACJ,IAAI;MACA,IAAIP,CAAC,IAAI,CAACA,CAAC,CAACI,IAAR,KAAiBT,CAAC,GAAGG,CAAC,CAAC,QAAD,CAAtB,CAAJ,EAAuCH,CAAC,CAACI,IAAF,CAAOD,CAAP;IAC1C,CAFD,SAGQ;MAAE,IAAII,CAAJ,EAAO,MAAMA,CAAC,CAACK,KAAR;IAAgB;EACpC;;EACD,OAAON,EAAP;AACH,CAfD;;AAgBA,IAAIO,aAAa,GAAI,QAAQ,KAAKA,aAAd,IAAgC,UAAUC,EAAV,EAAcC,IAAd,EAAoB;EACpE,KAAK,IAAIZ,CAAC,GAAG,CAAR,EAAWa,EAAE,GAAGD,IAAI,CAACE,MAArB,EAA6BC,CAAC,GAAGJ,EAAE,CAACG,MAAzC,EAAiDd,CAAC,GAAGa,EAArD,EAAyDb,CAAC,IAAIe,CAAC,EAA/D,EACIJ,EAAE,CAACI,CAAD,CAAF,GAAQH,IAAI,CAACZ,CAAD,CAAZ;;EACJ,OAAOW,EAAP;AACH,CAJD;;AAKAK,MAAM,CAACC,cAAP,CAAsBC,OAAtB,EAA+B,YAA/B,EAA6C;EAAEV,KAAK,EAAE;AAAT,CAA7C;AACAU,OAAO,CAACC,gBAAR,GAA2B,KAAK,CAAhC;;AACA,IAAIC,KAAK,GAAGC,OAAO,CAAC,kBAAD,CAAnB;;AACA,IAAIC,OAAO,GAAGC,KAAK,CAACD,OAApB;;AACA,SAASE,WAAT,CAAqBC,EAArB,EAAyBC,IAAzB,EAA+B;EAC3B,OAAOJ,OAAO,CAACI,IAAD,CAAP,GAAgBD,EAAE,CAACE,KAAH,CAAS,KAAK,CAAd,EAAiBjB,aAAa,CAAC,EAAD,EAAKhB,MAAM,CAACgC,IAAD,CAAX,CAA9B,CAAhB,GAAoED,EAAE,CAACC,IAAD,CAA7E;AACH;;AACD,SAASP,gBAAT,CAA0BM,EAA1B,EAA8B;EAC1B,OAAOL,KAAK,CAACQ,GAAN,CAAU,UAAUF,IAAV,EAAgB;IAAE,OAAOF,WAAW,CAACC,EAAD,EAAKC,IAAL,CAAlB;EAA+B,CAA3D,CAAP;AACH;;AACDR,OAAO,CAACC,gBAAR,GAA2BA,gBAA3B,C,CACA"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

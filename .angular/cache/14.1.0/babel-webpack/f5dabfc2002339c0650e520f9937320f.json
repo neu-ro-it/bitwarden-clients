@@ -1,0 +1,30 @@
+{
+  "ast": null,
+  "code": "import React from 'react';\nimport { Title } from './Title';\nimport { Subtitle } from './Subtitle';\nimport { Description } from './Description';\nimport { Primary } from './Primary';\nimport { PRIMARY_STORY } from './types';\nimport { ArgsTable } from './ArgsTable';\nimport { Stories } from './Stories';\nexport var DocsPage = function DocsPage() {\n  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Title, null), /*#__PURE__*/React.createElement(Subtitle, null), /*#__PURE__*/React.createElement(Description, null), /*#__PURE__*/React.createElement(Primary, null), /*#__PURE__*/React.createElement(ArgsTable, {\n    story: PRIMARY_STORY\n  }), /*#__PURE__*/React.createElement(Stories, null));\n};",
+  "map": {
+    "version": 3,
+    "names": [
+      "React",
+      "Title",
+      "Subtitle",
+      "Description",
+      "Primary",
+      "PRIMARY_STORY",
+      "ArgsTable",
+      "Stories",
+      "DocsPage",
+      "createElement",
+      "Fragment",
+      "story"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/@storybook/addon-docs/dist/esm/blocks/DocsPage.js"
+    ],
+    "sourcesContent": [
+      "import React from 'react';\nimport { Title } from './Title';\nimport { Subtitle } from './Subtitle';\nimport { Description } from './Description';\nimport { Primary } from './Primary';\nimport { PRIMARY_STORY } from './types';\nimport { ArgsTable } from './ArgsTable';\nimport { Stories } from './Stories';\nexport var DocsPage = function DocsPage() {\n  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Title, null), /*#__PURE__*/React.createElement(Subtitle, null), /*#__PURE__*/React.createElement(Description, null), /*#__PURE__*/React.createElement(Primary, null), /*#__PURE__*/React.createElement(ArgsTable, {\n    story: PRIMARY_STORY\n  }), /*#__PURE__*/React.createElement(Stories, null));\n};"
+    ],
+    "mappings": "AAAA,OAAOA,KAAP,MAAkB,OAAlB;AACA,SAASC,KAAT,QAAsB,SAAtB;AACA,SAASC,QAAT,QAAyB,YAAzB;AACA,SAASC,WAAT,QAA4B,eAA5B;AACA,SAASC,OAAT,QAAwB,WAAxB;AACA,SAASC,aAAT,QAA8B,SAA9B;AACA,SAASC,SAAT,QAA0B,aAA1B;AACA,SAASC,OAAT,QAAwB,WAAxB;AACA,OAAO,IAAIC,QAAQ,GAAG,SAASA,QAAT,GAAoB;EACxC,OAAO,aAAaR,KAAK,CAACS,aAAN,CAAoBT,KAAK,CAACU,QAA1B,EAAoC,IAApC,EAA0C,aAAaV,KAAK,CAACS,aAAN,CAAoBR,KAApB,EAA2B,IAA3B,CAAvD,EAAyF,aAAaD,KAAK,CAACS,aAAN,CAAoBP,QAApB,EAA8B,IAA9B,CAAtG,EAA2I,aAAaF,KAAK,CAACS,aAAN,CAAoBN,WAApB,EAAiC,IAAjC,CAAxJ,EAAgM,aAAaH,KAAK,CAACS,aAAN,CAAoBL,OAApB,EAA6B,IAA7B,CAA7M,EAAiP,aAAaJ,KAAK,CAACS,aAAN,CAAoBH,SAApB,EAA+B;IAC/SK,KAAK,EAAEN;EADwS,CAA/B,CAA9P,EAEhB,aAAaL,KAAK,CAACS,aAAN,CAAoBF,OAApB,EAA6B,IAA7B,CAFG,CAApB;AAGD,CAJM"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

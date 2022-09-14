@@ -1,0 +1,17 @@
+{
+  "ast": null,
+  "code": "import { asyncScheduler } from '../scheduler/async';\nimport { delayWhen } from './delayWhen';\nimport { timer } from '../observable/timer';\nexport function delay(due, scheduler) {\n  if (scheduler === void 0) {\n    scheduler = asyncScheduler;\n  }\n\n  var duration = timer(due, scheduler);\n  return delayWhen(function () {\n    return duration;\n  });\n} //# sourceMappingURL=delay.js.map",
+  "map": {
+    "version": 3,
+    "names": ["asyncScheduler", "delayWhen", "timer", "delay", "due", "scheduler", "duration"],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/esm5/internal/operators/delay.js"
+    ],
+    "sourcesContent": [
+      "import { asyncScheduler } from '../scheduler/async';\nimport { delayWhen } from './delayWhen';\nimport { timer } from '../observable/timer';\nexport function delay(due, scheduler) {\n    if (scheduler === void 0) { scheduler = asyncScheduler; }\n    var duration = timer(due, scheduler);\n    return delayWhen(function () { return duration; });\n}\n//# sourceMappingURL=delay.js.map"
+    ],
+    "mappings": "AAAA,SAASA,cAAT,QAA+B,oBAA/B;AACA,SAASC,SAAT,QAA0B,aAA1B;AACA,SAASC,KAAT,QAAsB,qBAAtB;AACA,OAAO,SAASC,KAAT,CAAeC,GAAf,EAAoBC,SAApB,EAA+B;EAClC,IAAIA,SAAS,KAAK,KAAK,CAAvB,EAA0B;IAAEA,SAAS,GAAGL,cAAZ;EAA6B;;EACzD,IAAIM,QAAQ,GAAGJ,KAAK,CAACE,GAAD,EAAMC,SAAN,CAApB;EACA,OAAOJ,SAAS,CAAC,YAAY;IAAE,OAAOK,QAAP;EAAkB,CAAjC,CAAhB;AACH,C,CACD"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

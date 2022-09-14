@@ -1,0 +1,13 @@
+{
+  "ast": null,
+  "code": "import '@storybook/angular';",
+  "map": {
+    "version": 3,
+    "mappings": "AAAA,OAAO,oBAAP",
+    "names": [],
+    "sources": ["/Users/danielleflinn/Documents/GitHub/clients/storybook-init-framework-entry.js"],
+    "sourcesContent": ["import '@storybook/angular';"]
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

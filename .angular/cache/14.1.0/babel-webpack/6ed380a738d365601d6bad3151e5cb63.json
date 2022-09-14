@@ -1,0 +1,26 @@
+{
+  "ast": null,
+  "code": "\"use strict\";\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.flatMap = void 0;\n\nvar mergeMap_1 = require(\"./mergeMap\");\n\nexports.flatMap = mergeMap_1.mergeMap; //# sourceMappingURL=flatMap.js.map",
+  "map": {
+    "version": 3,
+    "names": [
+      "Object",
+      "defineProperty",
+      "exports",
+      "value",
+      "flatMap",
+      "mergeMap_1",
+      "require",
+      "mergeMap"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/cjs/internal/operators/flatMap.js"
+    ],
+    "sourcesContent": [
+      "\"use strict\";\nObject.defineProperty(exports, \"__esModule\", { value: true });\nexports.flatMap = void 0;\nvar mergeMap_1 = require(\"./mergeMap\");\nexports.flatMap = mergeMap_1.mergeMap;\n//# sourceMappingURL=flatMap.js.map"
+    ],
+    "mappings": "AAAA;;AACAA,MAAM,CAACC,cAAP,CAAsBC,OAAtB,EAA+B,YAA/B,EAA6C;EAAEC,KAAK,EAAE;AAAT,CAA7C;AACAD,OAAO,CAACE,OAAR,GAAkB,KAAK,CAAvB;;AACA,IAAIC,UAAU,GAAGC,OAAO,CAAC,YAAD,CAAxB;;AACAJ,OAAO,CAACE,OAAR,GAAkBC,UAAU,CAACE,QAA7B,C,CACA"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

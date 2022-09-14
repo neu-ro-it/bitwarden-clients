@@ -1,0 +1,52 @@
+{
+  "ast": null,
+  "code": "import { __values } from \"tslib\";\nimport { Subject } from '../Subject';\nimport { operate } from '../util/lift';\nimport { createOperatorSubscriber } from './OperatorSubscriber';\nexport function windowCount(windowSize, startWindowEvery) {\n  if (startWindowEvery === void 0) {\n    startWindowEvery = 0;\n  }\n\n  var startEvery = startWindowEvery > 0 ? startWindowEvery : windowSize;\n  return operate(function (source, subscriber) {\n    var windows = [new Subject()];\n    var starts = [];\n    var count = 0;\n    subscriber.next(windows[0].asObservable());\n    source.subscribe(createOperatorSubscriber(subscriber, function (value) {\n      var e_1, _a;\n\n      try {\n        for (var windows_1 = __values(windows), windows_1_1 = windows_1.next(); !windows_1_1.done; windows_1_1 = windows_1.next()) {\n          var window_1 = windows_1_1.value;\n          window_1.next(value);\n        }\n      } catch (e_1_1) {\n        e_1 = {\n          error: e_1_1\n        };\n      } finally {\n        try {\n          if (windows_1_1 && !windows_1_1.done && (_a = windows_1.return)) _a.call(windows_1);\n        } finally {\n          if (e_1) throw e_1.error;\n        }\n      }\n\n      var c = count - windowSize + 1;\n\n      if (c >= 0 && c % startEvery === 0) {\n        windows.shift().complete();\n      }\n\n      if (++count % startEvery === 0) {\n        var window_2 = new Subject();\n        windows.push(window_2);\n        subscriber.next(window_2.asObservable());\n      }\n    }, function () {\n      while (windows.length > 0) {\n        windows.shift().complete();\n      }\n\n      subscriber.complete();\n    }, function (err) {\n      while (windows.length > 0) {\n        windows.shift().error(err);\n      }\n\n      subscriber.error(err);\n    }, function () {\n      starts = null;\n      windows = null;\n    }));\n  });\n} //# sourceMappingURL=windowCount.js.map",
+  "map": {
+    "version": 3,
+    "names": [
+      "__values",
+      "Subject",
+      "operate",
+      "createOperatorSubscriber",
+      "windowCount",
+      "windowSize",
+      "startWindowEvery",
+      "startEvery",
+      "source",
+      "subscriber",
+      "windows",
+      "starts",
+      "count",
+      "next",
+      "asObservable",
+      "subscribe",
+      "value",
+      "e_1",
+      "_a",
+      "windows_1",
+      "windows_1_1",
+      "done",
+      "window_1",
+      "e_1_1",
+      "error",
+      "return",
+      "call",
+      "c",
+      "shift",
+      "complete",
+      "window_2",
+      "push",
+      "length",
+      "err"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/esm5/internal/operators/windowCount.js"
+    ],
+    "sourcesContent": [
+      "import { __values } from \"tslib\";\nimport { Subject } from '../Subject';\nimport { operate } from '../util/lift';\nimport { createOperatorSubscriber } from './OperatorSubscriber';\nexport function windowCount(windowSize, startWindowEvery) {\n    if (startWindowEvery === void 0) { startWindowEvery = 0; }\n    var startEvery = startWindowEvery > 0 ? startWindowEvery : windowSize;\n    return operate(function (source, subscriber) {\n        var windows = [new Subject()];\n        var starts = [];\n        var count = 0;\n        subscriber.next(windows[0].asObservable());\n        source.subscribe(createOperatorSubscriber(subscriber, function (value) {\n            var e_1, _a;\n            try {\n                for (var windows_1 = __values(windows), windows_1_1 = windows_1.next(); !windows_1_1.done; windows_1_1 = windows_1.next()) {\n                    var window_1 = windows_1_1.value;\n                    window_1.next(value);\n                }\n            }\n            catch (e_1_1) { e_1 = { error: e_1_1 }; }\n            finally {\n                try {\n                    if (windows_1_1 && !windows_1_1.done && (_a = windows_1.return)) _a.call(windows_1);\n                }\n                finally { if (e_1) throw e_1.error; }\n            }\n            var c = count - windowSize + 1;\n            if (c >= 0 && c % startEvery === 0) {\n                windows.shift().complete();\n            }\n            if (++count % startEvery === 0) {\n                var window_2 = new Subject();\n                windows.push(window_2);\n                subscriber.next(window_2.asObservable());\n            }\n        }, function () {\n            while (windows.length > 0) {\n                windows.shift().complete();\n            }\n            subscriber.complete();\n        }, function (err) {\n            while (windows.length > 0) {\n                windows.shift().error(err);\n            }\n            subscriber.error(err);\n        }, function () {\n            starts = null;\n            windows = null;\n        }));\n    });\n}\n//# sourceMappingURL=windowCount.js.map"
+    ],
+    "mappings": "AAAA,SAASA,QAAT,QAAyB,OAAzB;AACA,SAASC,OAAT,QAAwB,YAAxB;AACA,SAASC,OAAT,QAAwB,cAAxB;AACA,SAASC,wBAAT,QAAyC,sBAAzC;AACA,OAAO,SAASC,WAAT,CAAqBC,UAArB,EAAiCC,gBAAjC,EAAmD;EACtD,IAAIA,gBAAgB,KAAK,KAAK,CAA9B,EAAiC;IAAEA,gBAAgB,GAAG,CAAnB;EAAuB;;EAC1D,IAAIC,UAAU,GAAGD,gBAAgB,GAAG,CAAnB,GAAuBA,gBAAvB,GAA0CD,UAA3D;EACA,OAAOH,OAAO,CAAC,UAAUM,MAAV,EAAkBC,UAAlB,EAA8B;IACzC,IAAIC,OAAO,GAAG,CAAC,IAAIT,OAAJ,EAAD,CAAd;IACA,IAAIU,MAAM,GAAG,EAAb;IACA,IAAIC,KAAK,GAAG,CAAZ;IACAH,UAAU,CAACI,IAAX,CAAgBH,OAAO,CAAC,CAAD,CAAP,CAAWI,YAAX,EAAhB;IACAN,MAAM,CAACO,SAAP,CAAiBZ,wBAAwB,CAACM,UAAD,EAAa,UAAUO,KAAV,EAAiB;MACnE,IAAIC,GAAJ,EAASC,EAAT;;MACA,IAAI;QACA,KAAK,IAAIC,SAAS,GAAGnB,QAAQ,CAACU,OAAD,CAAxB,EAAmCU,WAAW,GAAGD,SAAS,CAACN,IAAV,EAAtD,EAAwE,CAACO,WAAW,CAACC,IAArF,EAA2FD,WAAW,GAAGD,SAAS,CAACN,IAAV,EAAzG,EAA2H;UACvH,IAAIS,QAAQ,GAAGF,WAAW,CAACJ,KAA3B;UACAM,QAAQ,CAACT,IAAT,CAAcG,KAAd;QACH;MACJ,CALD,CAMA,OAAOO,KAAP,EAAc;QAAEN,GAAG,GAAG;UAAEO,KAAK,EAAED;QAAT,CAAN;MAAyB,CANzC,SAOQ;QACJ,IAAI;UACA,IAAIH,WAAW,IAAI,CAACA,WAAW,CAACC,IAA5B,KAAqCH,EAAE,GAAGC,SAAS,CAACM,MAApD,CAAJ,EAAiEP,EAAE,CAACQ,IAAH,CAAQP,SAAR;QACpE,CAFD,SAGQ;UAAE,IAAIF,GAAJ,EAAS,MAAMA,GAAG,CAACO,KAAV;QAAkB;MACxC;;MACD,IAAIG,CAAC,GAAGf,KAAK,GAAGP,UAAR,GAAqB,CAA7B;;MACA,IAAIsB,CAAC,IAAI,CAAL,IAAUA,CAAC,GAAGpB,UAAJ,KAAmB,CAAjC,EAAoC;QAChCG,OAAO,CAACkB,KAAR,GAAgBC,QAAhB;MACH;;MACD,IAAI,EAAEjB,KAAF,GAAUL,UAAV,KAAyB,CAA7B,EAAgC;QAC5B,IAAIuB,QAAQ,GAAG,IAAI7B,OAAJ,EAAf;QACAS,OAAO,CAACqB,IAAR,CAAaD,QAAb;QACArB,UAAU,CAACI,IAAX,CAAgBiB,QAAQ,CAAChB,YAAT,EAAhB;MACH;IACJ,CAxBwC,EAwBtC,YAAY;MACX,OAAOJ,OAAO,CAACsB,MAAR,GAAiB,CAAxB,EAA2B;QACvBtB,OAAO,CAACkB,KAAR,GAAgBC,QAAhB;MACH;;MACDpB,UAAU,CAACoB,QAAX;IACH,CA7BwC,EA6BtC,UAAUI,GAAV,EAAe;MACd,OAAOvB,OAAO,CAACsB,MAAR,GAAiB,CAAxB,EAA2B;QACvBtB,OAAO,CAACkB,KAAR,GAAgBJ,KAAhB,CAAsBS,GAAtB;MACH;;MACDxB,UAAU,CAACe,KAAX,CAAiBS,GAAjB;IACH,CAlCwC,EAkCtC,YAAY;MACXtB,MAAM,GAAG,IAAT;MACAD,OAAO,GAAG,IAAV;IACH,CArCwC,CAAzC;EAsCH,CA3Ca,CAAd;AA4CH,C,CACD"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

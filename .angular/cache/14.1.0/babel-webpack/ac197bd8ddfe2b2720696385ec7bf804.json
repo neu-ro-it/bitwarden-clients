@@ -1,0 +1,63 @@
+{
+  "ast": null,
+  "code": "\"use strict\";\n\nvar __awaiter = this && this.__awaiter || function (thisArg, _arguments, P, generator) {\n  function adopt(value) {\n    return value instanceof P ? value : new P(function (resolve) {\n      resolve(value);\n    });\n  }\n\n  return new (P || (P = Promise))(function (resolve, reject) {\n    function fulfilled(value) {\n      try {\n        step(generator.next(value));\n      } catch (e) {\n        reject(e);\n      }\n    }\n\n    function rejected(value) {\n      try {\n        step(generator[\"throw\"](value));\n      } catch (e) {\n        reject(e);\n      }\n    }\n\n    function step(result) {\n      result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);\n    }\n\n    step((generator = generator.apply(thisArg, _arguments || [])).next());\n  });\n};\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.renderToDOM = exports.render = exports.rendererFactory = void 0;\n\nconst helpers_1 = require(\"./angular/helpers\");\n\nconst RendererFactory_1 = require(\"./angular-beta/RendererFactory\");\n\nexports.rendererFactory = new RendererFactory_1.RendererFactory();\n\nexports.render = props => ({\n  props\n});\n\nfunction renderToDOM({\n  storyFn,\n  showMain,\n  forceRemount,\n  storyContext: {\n    parameters,\n    component\n  },\n  id\n}, element) {\n  return __awaiter(this, void 0, void 0, function* () {\n    showMain();\n\n    if (parameters.angularLegacyRendering) {\n      helpers_1.renderNgApp(storyFn, !forceRemount);\n      return;\n    }\n\n    const renderer = yield exports.rendererFactory.getRendererInstance(id, element);\n    yield renderer.render({\n      storyFnAngular: storyFn(),\n      component,\n      parameters,\n      forced: !forceRemount,\n      targetDOMNode: element\n    });\n  });\n}\n\nexports.renderToDOM = renderToDOM;",
+  "map": {
+    "version": 3,
+    "names": [
+      "__awaiter",
+      "thisArg",
+      "_arguments",
+      "P",
+      "generator",
+      "adopt",
+      "value",
+      "resolve",
+      "Promise",
+      "reject",
+      "fulfilled",
+      "step",
+      "next",
+      "e",
+      "rejected",
+      "result",
+      "done",
+      "then",
+      "apply",
+      "Object",
+      "defineProperty",
+      "exports",
+      "renderToDOM",
+      "render",
+      "rendererFactory",
+      "helpers_1",
+      "require",
+      "RendererFactory_1",
+      "RendererFactory",
+      "props",
+      "storyFn",
+      "showMain",
+      "forceRemount",
+      "storyContext",
+      "parameters",
+      "component",
+      "id",
+      "element",
+      "angularLegacyRendering",
+      "renderNgApp",
+      "renderer",
+      "getRendererInstance",
+      "storyFnAngular",
+      "forced",
+      "targetDOMNode"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/@storybook/angular/dist/ts3.9/client/preview/render.js"
+    ],
+    "sourcesContent": [
+      "\"use strict\";\nvar __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {\n    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }\n    return new (P || (P = Promise))(function (resolve, reject) {\n        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }\n        function rejected(value) { try { step(generator[\"throw\"](value)); } catch (e) { reject(e); } }\n        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }\n        step((generator = generator.apply(thisArg, _arguments || [])).next());\n    });\n};\nObject.defineProperty(exports, \"__esModule\", { value: true });\nexports.renderToDOM = exports.render = exports.rendererFactory = void 0;\nconst helpers_1 = require(\"./angular/helpers\");\nconst RendererFactory_1 = require(\"./angular-beta/RendererFactory\");\nexports.rendererFactory = new RendererFactory_1.RendererFactory();\nexports.render = (props) => ({ props });\nfunction renderToDOM({ storyFn, showMain, forceRemount, storyContext: { parameters, component }, id, }, element) {\n    return __awaiter(this, void 0, void 0, function* () {\n        showMain();\n        if (parameters.angularLegacyRendering) {\n            helpers_1.renderNgApp(storyFn, !forceRemount);\n            return;\n        }\n        const renderer = yield exports.rendererFactory.getRendererInstance(id, element);\n        yield renderer.render({\n            storyFnAngular: storyFn(),\n            component,\n            parameters,\n            forced: !forceRemount,\n            targetDOMNode: element,\n        });\n    });\n}\nexports.renderToDOM = renderToDOM;\n"
+    ],
+    "mappings": "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"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

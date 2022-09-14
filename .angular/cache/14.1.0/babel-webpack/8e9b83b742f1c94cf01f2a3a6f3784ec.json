@@ -1,0 +1,43 @@
+{
+  "ast": null,
+  "code": "\"use strict\";\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.elementAt = void 0;\n\nvar ArgumentOutOfRangeError_1 = require(\"../util/ArgumentOutOfRangeError\");\n\nvar filter_1 = require(\"./filter\");\n\nvar throwIfEmpty_1 = require(\"./throwIfEmpty\");\n\nvar defaultIfEmpty_1 = require(\"./defaultIfEmpty\");\n\nvar take_1 = require(\"./take\");\n\nfunction elementAt(index, defaultValue) {\n  if (index < 0) {\n    throw new ArgumentOutOfRangeError_1.ArgumentOutOfRangeError();\n  }\n\n  var hasDefaultValue = arguments.length >= 2;\n  return function (source) {\n    return source.pipe(filter_1.filter(function (v, i) {\n      return i === index;\n    }), take_1.take(1), hasDefaultValue ? defaultIfEmpty_1.defaultIfEmpty(defaultValue) : throwIfEmpty_1.throwIfEmpty(function () {\n      return new ArgumentOutOfRangeError_1.ArgumentOutOfRangeError();\n    }));\n  };\n}\n\nexports.elementAt = elementAt; //# sourceMappingURL=elementAt.js.map",
+  "map": {
+    "version": 3,
+    "names": [
+      "Object",
+      "defineProperty",
+      "exports",
+      "value",
+      "elementAt",
+      "ArgumentOutOfRangeError_1",
+      "require",
+      "filter_1",
+      "throwIfEmpty_1",
+      "defaultIfEmpty_1",
+      "take_1",
+      "index",
+      "defaultValue",
+      "ArgumentOutOfRangeError",
+      "hasDefaultValue",
+      "arguments",
+      "length",
+      "source",
+      "pipe",
+      "filter",
+      "v",
+      "i",
+      "take",
+      "defaultIfEmpty",
+      "throwIfEmpty"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/cjs/internal/operators/elementAt.js"
+    ],
+    "sourcesContent": [
+      "\"use strict\";\nObject.defineProperty(exports, \"__esModule\", { value: true });\nexports.elementAt = void 0;\nvar ArgumentOutOfRangeError_1 = require(\"../util/ArgumentOutOfRangeError\");\nvar filter_1 = require(\"./filter\");\nvar throwIfEmpty_1 = require(\"./throwIfEmpty\");\nvar defaultIfEmpty_1 = require(\"./defaultIfEmpty\");\nvar take_1 = require(\"./take\");\nfunction elementAt(index, defaultValue) {\n    if (index < 0) {\n        throw new ArgumentOutOfRangeError_1.ArgumentOutOfRangeError();\n    }\n    var hasDefaultValue = arguments.length >= 2;\n    return function (source) {\n        return source.pipe(filter_1.filter(function (v, i) { return i === index; }), take_1.take(1), hasDefaultValue ? defaultIfEmpty_1.defaultIfEmpty(defaultValue) : throwIfEmpty_1.throwIfEmpty(function () { return new ArgumentOutOfRangeError_1.ArgumentOutOfRangeError(); }));\n    };\n}\nexports.elementAt = elementAt;\n//# sourceMappingURL=elementAt.js.map"
+    ],
+    "mappings": "AAAA;;AACAA,MAAM,CAACC,cAAP,CAAsBC,OAAtB,EAA+B,YAA/B,EAA6C;EAAEC,KAAK,EAAE;AAAT,CAA7C;AACAD,OAAO,CAACE,SAAR,GAAoB,KAAK,CAAzB;;AACA,IAAIC,yBAAyB,GAAGC,OAAO,CAAC,iCAAD,CAAvC;;AACA,IAAIC,QAAQ,GAAGD,OAAO,CAAC,UAAD,CAAtB;;AACA,IAAIE,cAAc,GAAGF,OAAO,CAAC,gBAAD,CAA5B;;AACA,IAAIG,gBAAgB,GAAGH,OAAO,CAAC,kBAAD,CAA9B;;AACA,IAAII,MAAM,GAAGJ,OAAO,CAAC,QAAD,CAApB;;AACA,SAASF,SAAT,CAAmBO,KAAnB,EAA0BC,YAA1B,EAAwC;EACpC,IAAID,KAAK,GAAG,CAAZ,EAAe;IACX,MAAM,IAAIN,yBAAyB,CAACQ,uBAA9B,EAAN;EACH;;EACD,IAAIC,eAAe,GAAGC,SAAS,CAACC,MAAV,IAAoB,CAA1C;EACA,OAAO,UAAUC,MAAV,EAAkB;IACrB,OAAOA,MAAM,CAACC,IAAP,CAAYX,QAAQ,CAACY,MAAT,CAAgB,UAAUC,CAAV,EAAaC,CAAb,EAAgB;MAAE,OAAOA,CAAC,KAAKV,KAAb;IAAqB,CAAvD,CAAZ,EAAsED,MAAM,CAACY,IAAP,CAAY,CAAZ,CAAtE,EAAsFR,eAAe,GAAGL,gBAAgB,CAACc,cAAjB,CAAgCX,YAAhC,CAAH,GAAmDJ,cAAc,CAACgB,YAAf,CAA4B,YAAY;MAAE,OAAO,IAAInB,yBAAyB,CAACQ,uBAA9B,EAAP;IAAiE,CAA3G,CAAxJ,CAAP;EACH,CAFD;AAGH;;AACDX,OAAO,CAACE,SAAR,GAAoBA,SAApB,C,CACA"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

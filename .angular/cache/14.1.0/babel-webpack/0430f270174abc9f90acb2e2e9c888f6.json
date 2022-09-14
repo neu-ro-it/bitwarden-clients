@@ -1,0 +1,17 @@
+{
+  "ast": null,
+  "code": "import { __extends } from \"tslib\";\nimport { AsyncScheduler } from './AsyncScheduler';\n\nvar QueueScheduler = function (_super) {\n  __extends(QueueScheduler, _super);\n\n  function QueueScheduler() {\n    return _super !== null && _super.apply(this, arguments) || this;\n  }\n\n  return QueueScheduler;\n}(AsyncScheduler);\n\nexport { QueueScheduler }; //# sourceMappingURL=QueueScheduler.js.map",
+  "map": {
+    "version": 3,
+    "names": ["__extends", "AsyncScheduler", "QueueScheduler", "_super", "apply", "arguments"],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/esm5/internal/scheduler/QueueScheduler.js"
+    ],
+    "sourcesContent": [
+      "import { __extends } from \"tslib\";\nimport { AsyncScheduler } from './AsyncScheduler';\nvar QueueScheduler = (function (_super) {\n    __extends(QueueScheduler, _super);\n    function QueueScheduler() {\n        return _super !== null && _super.apply(this, arguments) || this;\n    }\n    return QueueScheduler;\n}(AsyncScheduler));\nexport { QueueScheduler };\n//# sourceMappingURL=QueueScheduler.js.map"
+    ],
+    "mappings": "AAAA,SAASA,SAAT,QAA0B,OAA1B;AACA,SAASC,cAAT,QAA+B,kBAA/B;;AACA,IAAIC,cAAc,GAAI,UAAUC,MAAV,EAAkB;EACpCH,SAAS,CAACE,cAAD,EAAiBC,MAAjB,CAAT;;EACA,SAASD,cAAT,GAA0B;IACtB,OAAOC,MAAM,KAAK,IAAX,IAAmBA,MAAM,CAACC,KAAP,CAAa,IAAb,EAAmBC,SAAnB,CAAnB,IAAoD,IAA3D;EACH;;EACD,OAAOH,cAAP;AACH,CANqB,CAMpBD,cANoB,CAAtB;;AAOA,SAASC,cAAT,G,CACA"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

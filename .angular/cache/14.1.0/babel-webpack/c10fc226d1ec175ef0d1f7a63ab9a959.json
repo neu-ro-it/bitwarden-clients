@@ -1,0 +1,31 @@
+{
+  "ast": null,
+  "code": "'use strict';\n\nvar GetIntrinsic = require('../GetIntrinsic.js');\n\nvar $construct = GetIntrinsic('%Reflect.construct%', true);\n\nvar DefinePropertyOrThrow = require('./DefinePropertyOrThrow');\n\ntry {\n  DefinePropertyOrThrow({}, '', {\n    '[[Get]]': function () {}\n  });\n} catch (e) {\n  // Accessor properties aren't supported\n  DefinePropertyOrThrow = null;\n} // https://ecma-international.org/ecma-262/6.0/#sec-isconstructor\n\n\nif (DefinePropertyOrThrow && $construct) {\n  var isConstructorMarker = {};\n  var badArrayLike = {};\n  DefinePropertyOrThrow(badArrayLike, 'length', {\n    '[[Get]]': function () {\n      throw isConstructorMarker;\n    },\n    '[[Enumerable]]': true\n  });\n\n  module.exports = function IsConstructor(argument) {\n    try {\n      // `Reflect.construct` invokes `IsConstructor(target)` before `Get(args, 'length')`:\n      $construct(argument, badArrayLike);\n    } catch (err) {\n      return err === isConstructorMarker;\n    }\n  };\n} else {\n  module.exports = function IsConstructor(argument) {\n    // unfortunately there's no way to truly check this without try/catch `new argument` in old environments\n    return typeof argument === 'function' && !!argument.prototype;\n  };\n}",
+  "map": {
+    "version": 3,
+    "names": [
+      "GetIntrinsic",
+      "require",
+      "$construct",
+      "DefinePropertyOrThrow",
+      "e",
+      "isConstructorMarker",
+      "badArrayLike",
+      "module",
+      "exports",
+      "IsConstructor",
+      "argument",
+      "err",
+      "prototype"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/es-abstract/2021/IsConstructor.js"
+    ],
+    "sourcesContent": [
+      "'use strict';\n\nvar GetIntrinsic = require('../GetIntrinsic.js');\n\nvar $construct = GetIntrinsic('%Reflect.construct%', true);\n\nvar DefinePropertyOrThrow = require('./DefinePropertyOrThrow');\ntry {\n\tDefinePropertyOrThrow({}, '', { '[[Get]]': function () {} });\n} catch (e) {\n\t// Accessor properties aren't supported\n\tDefinePropertyOrThrow = null;\n}\n\n// https://ecma-international.org/ecma-262/6.0/#sec-isconstructor\n\nif (DefinePropertyOrThrow && $construct) {\n\tvar isConstructorMarker = {};\n\tvar badArrayLike = {};\n\tDefinePropertyOrThrow(badArrayLike, 'length', {\n\t\t'[[Get]]': function () {\n\t\t\tthrow isConstructorMarker;\n\t\t},\n\t\t'[[Enumerable]]': true\n\t});\n\n\tmodule.exports = function IsConstructor(argument) {\n\t\ttry {\n\t\t\t// `Reflect.construct` invokes `IsConstructor(target)` before `Get(args, 'length')`:\n\t\t\t$construct(argument, badArrayLike);\n\t\t} catch (err) {\n\t\t\treturn err === isConstructorMarker;\n\t\t}\n\t};\n} else {\n\tmodule.exports = function IsConstructor(argument) {\n\t\t// unfortunately there's no way to truly check this without try/catch `new argument` in old environments\n\t\treturn typeof argument === 'function' && !!argument.prototype;\n\t};\n}\n"
+    ],
+    "mappings": "AAAA;;AAEA,IAAIA,YAAY,GAAGC,OAAO,CAAC,oBAAD,CAA1B;;AAEA,IAAIC,UAAU,GAAGF,YAAY,CAAC,qBAAD,EAAwB,IAAxB,CAA7B;;AAEA,IAAIG,qBAAqB,GAAGF,OAAO,CAAC,yBAAD,CAAnC;;AACA,IAAI;EACHE,qBAAqB,CAAC,EAAD,EAAK,EAAL,EAAS;IAAE,WAAW,YAAY,CAAE;EAA3B,CAAT,CAArB;AACA,CAFD,CAEE,OAAOC,CAAP,EAAU;EACX;EACAD,qBAAqB,GAAG,IAAxB;AACA,C,CAED;;;AAEA,IAAIA,qBAAqB,IAAID,UAA7B,EAAyC;EACxC,IAAIG,mBAAmB,GAAG,EAA1B;EACA,IAAIC,YAAY,GAAG,EAAnB;EACAH,qBAAqB,CAACG,YAAD,EAAe,QAAf,EAAyB;IAC7C,WAAW,YAAY;MACtB,MAAMD,mBAAN;IACA,CAH4C;IAI7C,kBAAkB;EAJ2B,CAAzB,CAArB;;EAOAE,MAAM,CAACC,OAAP,GAAiB,SAASC,aAAT,CAAuBC,QAAvB,EAAiC;IACjD,IAAI;MACH;MACAR,UAAU,CAACQ,QAAD,EAAWJ,YAAX,CAAV;IACA,CAHD,CAGE,OAAOK,GAAP,EAAY;MACb,OAAOA,GAAG,KAAKN,mBAAf;IACA;EACD,CAPD;AAQA,CAlBD,MAkBO;EACNE,MAAM,CAACC,OAAP,GAAiB,SAASC,aAAT,CAAuBC,QAAvB,EAAiC;IACjD;IACA,OAAO,OAAOA,QAAP,KAAoB,UAApB,IAAkC,CAAC,CAACA,QAAQ,CAACE,SAApD;EACA,CAHD;AAIA"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

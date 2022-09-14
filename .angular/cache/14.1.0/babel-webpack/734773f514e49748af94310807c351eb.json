@@ -1,0 +1,28 @@
+{
+  "ast": null,
+  "code": "\"use strict\";\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.switchAll = void 0;\n\nvar switchMap_1 = require(\"./switchMap\");\n\nvar identity_1 = require(\"../util/identity\");\n\nfunction switchAll() {\n  return switchMap_1.switchMap(identity_1.identity);\n}\n\nexports.switchAll = switchAll; //# sourceMappingURL=switchAll.js.map",
+  "map": {
+    "version": 3,
+    "names": [
+      "Object",
+      "defineProperty",
+      "exports",
+      "value",
+      "switchAll",
+      "switchMap_1",
+      "require",
+      "identity_1",
+      "switchMap",
+      "identity"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/cjs/internal/operators/switchAll.js"
+    ],
+    "sourcesContent": [
+      "\"use strict\";\nObject.defineProperty(exports, \"__esModule\", { value: true });\nexports.switchAll = void 0;\nvar switchMap_1 = require(\"./switchMap\");\nvar identity_1 = require(\"../util/identity\");\nfunction switchAll() {\n    return switchMap_1.switchMap(identity_1.identity);\n}\nexports.switchAll = switchAll;\n//# sourceMappingURL=switchAll.js.map"
+    ],
+    "mappings": "AAAA;;AACAA,MAAM,CAACC,cAAP,CAAsBC,OAAtB,EAA+B,YAA/B,EAA6C;EAAEC,KAAK,EAAE;AAAT,CAA7C;AACAD,OAAO,CAACE,SAAR,GAAoB,KAAK,CAAzB;;AACA,IAAIC,WAAW,GAAGC,OAAO,CAAC,aAAD,CAAzB;;AACA,IAAIC,UAAU,GAAGD,OAAO,CAAC,kBAAD,CAAxB;;AACA,SAASF,SAAT,GAAqB;EACjB,OAAOC,WAAW,CAACG,SAAZ,CAAsBD,UAAU,CAACE,QAAjC,CAAP;AACH;;AACDP,OAAO,CAACE,SAAR,GAAoBA,SAApB,C,CACA"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

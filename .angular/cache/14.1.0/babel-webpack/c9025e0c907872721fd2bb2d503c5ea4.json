@@ -1,0 +1,26 @@
+{
+  "ast": null,
+  "code": "import { Observable } from '../Observable';\nexport var EMPTY = new Observable(function (subscriber) {\n  return subscriber.complete();\n});\nexport function empty(scheduler) {\n  return scheduler ? emptyScheduled(scheduler) : EMPTY;\n}\n\nfunction emptyScheduled(scheduler) {\n  return new Observable(function (subscriber) {\n    return scheduler.schedule(function () {\n      return subscriber.complete();\n    });\n  });\n} //# sourceMappingURL=empty.js.map",
+  "map": {
+    "version": 3,
+    "names": [
+      "Observable",
+      "EMPTY",
+      "subscriber",
+      "complete",
+      "empty",
+      "scheduler",
+      "emptyScheduled",
+      "schedule"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/esm5/internal/observable/empty.js"
+    ],
+    "sourcesContent": [
+      "import { Observable } from '../Observable';\nexport var EMPTY = new Observable(function (subscriber) { return subscriber.complete(); });\nexport function empty(scheduler) {\n    return scheduler ? emptyScheduled(scheduler) : EMPTY;\n}\nfunction emptyScheduled(scheduler) {\n    return new Observable(function (subscriber) { return scheduler.schedule(function () { return subscriber.complete(); }); });\n}\n//# sourceMappingURL=empty.js.map"
+    ],
+    "mappings": "AAAA,SAASA,UAAT,QAA2B,eAA3B;AACA,OAAO,IAAIC,KAAK,GAAG,IAAID,UAAJ,CAAe,UAAUE,UAAV,EAAsB;EAAE,OAAOA,UAAU,CAACC,QAAX,EAAP;AAA+B,CAAtE,CAAZ;AACP,OAAO,SAASC,KAAT,CAAeC,SAAf,EAA0B;EAC7B,OAAOA,SAAS,GAAGC,cAAc,CAACD,SAAD,CAAjB,GAA+BJ,KAA/C;AACH;;AACD,SAASK,cAAT,CAAwBD,SAAxB,EAAmC;EAC/B,OAAO,IAAIL,UAAJ,CAAe,UAAUE,UAAV,EAAsB;IAAE,OAAOG,SAAS,CAACE,QAAV,CAAmB,YAAY;MAAE,OAAOL,UAAU,CAACC,QAAX,EAAP;IAA+B,CAAhE,CAAP;EAA2E,CAAlH,CAAP;AACH,C,CACD"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

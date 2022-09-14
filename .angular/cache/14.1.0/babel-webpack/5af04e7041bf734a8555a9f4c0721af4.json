@@ -1,0 +1,17 @@
+{
+  "ast": null,
+  "code": "\"use strict\";\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.mapTo = void 0;\n\nvar map_1 = require(\"./map\");\n\nfunction mapTo(value) {\n  return map_1.map(function () {\n    return value;\n  });\n}\n\nexports.mapTo = mapTo; //# sourceMappingURL=mapTo.js.map",
+  "map": {
+    "version": 3,
+    "names": ["Object", "defineProperty", "exports", "value", "mapTo", "map_1", "require", "map"],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/cjs/internal/operators/mapTo.js"
+    ],
+    "sourcesContent": [
+      "\"use strict\";\nObject.defineProperty(exports, \"__esModule\", { value: true });\nexports.mapTo = void 0;\nvar map_1 = require(\"./map\");\nfunction mapTo(value) {\n    return map_1.map(function () { return value; });\n}\nexports.mapTo = mapTo;\n//# sourceMappingURL=mapTo.js.map"
+    ],
+    "mappings": "AAAA;;AACAA,MAAM,CAACC,cAAP,CAAsBC,OAAtB,EAA+B,YAA/B,EAA6C;EAAEC,KAAK,EAAE;AAAT,CAA7C;AACAD,OAAO,CAACE,KAAR,GAAgB,KAAK,CAArB;;AACA,IAAIC,KAAK,GAAGC,OAAO,CAAC,OAAD,CAAnB;;AACA,SAASF,KAAT,CAAeD,KAAf,EAAsB;EAClB,OAAOE,KAAK,CAACE,GAAN,CAAU,YAAY;IAAE,OAAOJ,KAAP;EAAe,CAAvC,CAAP;AACH;;AACDD,OAAO,CAACE,KAAR,GAAgBA,KAAhB,C,CACA"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

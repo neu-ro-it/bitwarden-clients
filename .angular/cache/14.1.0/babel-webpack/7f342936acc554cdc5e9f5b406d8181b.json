@@ -1,0 +1,31 @@
+{
+  "ast": null,
+  "code": "import global from 'global';\nexport var deepElementFromPoint = function deepElementFromPoint(x, y) {\n  var element = global.document.elementFromPoint(x, y);\n\n  var crawlShadows = function crawlShadows(node) {\n    if (node && node.shadowRoot) {\n      var nestedElement = node.shadowRoot.elementFromPoint(x, y); // Nested node is same as the root one\n\n      if (node.isEqualNode(nestedElement)) {\n        return node;\n      } // The nested node has shadow DOM too so continue crawling\n\n\n      if (nestedElement.shadowRoot) {\n        return crawlShadows(nestedElement);\n      } // No more shadow DOM\n\n\n      return nestedElement;\n    }\n\n    return node;\n  };\n\n  var shadowElement = crawlShadows(element);\n  return shadowElement || element;\n};",
+  "map": {
+    "version": 3,
+    "names": [
+      "global",
+      "deepElementFromPoint",
+      "x",
+      "y",
+      "element",
+      "document",
+      "elementFromPoint",
+      "crawlShadows",
+      "node",
+      "shadowRoot",
+      "nestedElement",
+      "isEqualNode",
+      "shadowElement"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/@storybook/addon-measure/dist/esm/util.js"
+    ],
+    "sourcesContent": [
+      "import global from 'global';\nexport var deepElementFromPoint = function deepElementFromPoint(x, y) {\n  var element = global.document.elementFromPoint(x, y);\n\n  var crawlShadows = function crawlShadows(node) {\n    if (node && node.shadowRoot) {\n      var nestedElement = node.shadowRoot.elementFromPoint(x, y); // Nested node is same as the root one\n\n      if (node.isEqualNode(nestedElement)) {\n        return node;\n      } // The nested node has shadow DOM too so continue crawling\n\n\n      if (nestedElement.shadowRoot) {\n        return crawlShadows(nestedElement);\n      } // No more shadow DOM\n\n\n      return nestedElement;\n    }\n\n    return node;\n  };\n\n  var shadowElement = crawlShadows(element);\n  return shadowElement || element;\n};"
+    ],
+    "mappings": "AAAA,OAAOA,MAAP,MAAmB,QAAnB;AACA,OAAO,IAAIC,oBAAoB,GAAG,SAASA,oBAAT,CAA8BC,CAA9B,EAAiCC,CAAjC,EAAoC;EACpE,IAAIC,OAAO,GAAGJ,MAAM,CAACK,QAAP,CAAgBC,gBAAhB,CAAiCJ,CAAjC,EAAoCC,CAApC,CAAd;;EAEA,IAAII,YAAY,GAAG,SAASA,YAAT,CAAsBC,IAAtB,EAA4B;IAC7C,IAAIA,IAAI,IAAIA,IAAI,CAACC,UAAjB,EAA6B;MAC3B,IAAIC,aAAa,GAAGF,IAAI,CAACC,UAAL,CAAgBH,gBAAhB,CAAiCJ,CAAjC,EAAoCC,CAApC,CAApB,CAD2B,CACiC;;MAE5D,IAAIK,IAAI,CAACG,WAAL,CAAiBD,aAAjB,CAAJ,EAAqC;QACnC,OAAOF,IAAP;MACD,CAL0B,CAKzB;;;MAGF,IAAIE,aAAa,CAACD,UAAlB,EAA8B;QAC5B,OAAOF,YAAY,CAACG,aAAD,CAAnB;MACD,CAV0B,CAUzB;;;MAGF,OAAOA,aAAP;IACD;;IAED,OAAOF,IAAP;EACD,CAlBD;;EAoBA,IAAII,aAAa,GAAGL,YAAY,CAACH,OAAD,CAAhC;EACA,OAAOQ,aAAa,IAAIR,OAAxB;AACD,CAzBM"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

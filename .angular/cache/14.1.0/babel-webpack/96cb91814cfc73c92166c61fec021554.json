@@ -1,0 +1,40 @@
+{
+  "ast": null,
+  "code": "'use strict';\n\nvar ToLength = require('es-abstract/2021/ToLength');\n\nvar ToString = require('es-abstract/2021/ToString');\n\nvar RequireObjectCoercible = require('es-abstract/2021/RequireObjectCoercible');\n\nvar callBound = require('call-bind/callBound');\n\nvar $slice = callBound('String.prototype.slice');\n\nmodule.exports = function padStart(maxLength) {\n  var O = RequireObjectCoercible(this);\n  var S = ToString(O);\n  var stringLength = ToLength(S.length);\n  var fillString;\n\n  if (arguments.length > 1) {\n    fillString = arguments[1];\n  }\n\n  var filler = typeof fillString === 'undefined' ? '' : ToString(fillString);\n\n  if (filler === '') {\n    filler = ' ';\n  }\n\n  var intMaxLength = ToLength(maxLength);\n\n  if (intMaxLength <= stringLength) {\n    return S;\n  }\n\n  var fillLen = intMaxLength - stringLength;\n\n  while (filler.length < fillLen) {\n    var fLen = filler.length;\n    var remainingCodeUnits = fillLen - fLen;\n    filler += fLen > remainingCodeUnits ? $slice(filler, 0, remainingCodeUnits) : filler;\n  }\n\n  var truncatedStringFiller = filler.length > fillLen ? $slice(filler, 0, fillLen) : filler;\n  return truncatedStringFiller + S;\n};",
+  "map": {
+    "version": 3,
+    "names": [
+      "ToLength",
+      "require",
+      "ToString",
+      "RequireObjectCoercible",
+      "callBound",
+      "$slice",
+      "module",
+      "exports",
+      "padStart",
+      "maxLength",
+      "O",
+      "S",
+      "stringLength",
+      "length",
+      "fillString",
+      "arguments",
+      "filler",
+      "intMaxLength",
+      "fillLen",
+      "fLen",
+      "remainingCodeUnits",
+      "truncatedStringFiller"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/string.prototype.padstart/implementation.js"
+    ],
+    "sourcesContent": [
+      "'use strict';\n\nvar ToLength = require('es-abstract/2021/ToLength');\nvar ToString = require('es-abstract/2021/ToString');\nvar RequireObjectCoercible = require('es-abstract/2021/RequireObjectCoercible');\n\nvar callBound = require('call-bind/callBound');\nvar $slice = callBound('String.prototype.slice');\n\nmodule.exports = function padStart(maxLength) {\n\tvar O = RequireObjectCoercible(this);\n\tvar S = ToString(O);\n\tvar stringLength = ToLength(S.length);\n\tvar fillString;\n\tif (arguments.length > 1) {\n\t\tfillString = arguments[1];\n\t}\n\tvar filler = typeof fillString === 'undefined' ? '' : ToString(fillString);\n\tif (filler === '') {\n\t\tfiller = ' ';\n\t}\n\tvar intMaxLength = ToLength(maxLength);\n\tif (intMaxLength <= stringLength) {\n\t\treturn S;\n\t}\n\tvar fillLen = intMaxLength - stringLength;\n\twhile (filler.length < fillLen) {\n\t\tvar fLen = filler.length;\n\t\tvar remainingCodeUnits = fillLen - fLen;\n\t\tfiller += fLen > remainingCodeUnits ? $slice(filler, 0, remainingCodeUnits) : filler;\n\t}\n\n\tvar truncatedStringFiller = filler.length > fillLen ? $slice(filler, 0, fillLen) : filler;\n\treturn truncatedStringFiller + S;\n};\n"
+    ],
+    "mappings": "AAAA;;AAEA,IAAIA,QAAQ,GAAGC,OAAO,CAAC,2BAAD,CAAtB;;AACA,IAAIC,QAAQ,GAAGD,OAAO,CAAC,2BAAD,CAAtB;;AACA,IAAIE,sBAAsB,GAAGF,OAAO,CAAC,yCAAD,CAApC;;AAEA,IAAIG,SAAS,GAAGH,OAAO,CAAC,qBAAD,CAAvB;;AACA,IAAII,MAAM,GAAGD,SAAS,CAAC,wBAAD,CAAtB;;AAEAE,MAAM,CAACC,OAAP,GAAiB,SAASC,QAAT,CAAkBC,SAAlB,EAA6B;EAC7C,IAAIC,CAAC,GAAGP,sBAAsB,CAAC,IAAD,CAA9B;EACA,IAAIQ,CAAC,GAAGT,QAAQ,CAACQ,CAAD,CAAhB;EACA,IAAIE,YAAY,GAAGZ,QAAQ,CAACW,CAAC,CAACE,MAAH,CAA3B;EACA,IAAIC,UAAJ;;EACA,IAAIC,SAAS,CAACF,MAAV,GAAmB,CAAvB,EAA0B;IACzBC,UAAU,GAAGC,SAAS,CAAC,CAAD,CAAtB;EACA;;EACD,IAAIC,MAAM,GAAG,OAAOF,UAAP,KAAsB,WAAtB,GAAoC,EAApC,GAAyCZ,QAAQ,CAACY,UAAD,CAA9D;;EACA,IAAIE,MAAM,KAAK,EAAf,EAAmB;IAClBA,MAAM,GAAG,GAAT;EACA;;EACD,IAAIC,YAAY,GAAGjB,QAAQ,CAACS,SAAD,CAA3B;;EACA,IAAIQ,YAAY,IAAIL,YAApB,EAAkC;IACjC,OAAOD,CAAP;EACA;;EACD,IAAIO,OAAO,GAAGD,YAAY,GAAGL,YAA7B;;EACA,OAAOI,MAAM,CAACH,MAAP,GAAgBK,OAAvB,EAAgC;IAC/B,IAAIC,IAAI,GAAGH,MAAM,CAACH,MAAlB;IACA,IAAIO,kBAAkB,GAAGF,OAAO,GAAGC,IAAnC;IACAH,MAAM,IAAIG,IAAI,GAAGC,kBAAP,GAA4Bf,MAAM,CAACW,MAAD,EAAS,CAAT,EAAYI,kBAAZ,CAAlC,GAAoEJ,MAA9E;EACA;;EAED,IAAIK,qBAAqB,GAAGL,MAAM,CAACH,MAAP,GAAgBK,OAAhB,GAA0Bb,MAAM,CAACW,MAAD,EAAS,CAAT,EAAYE,OAAZ,CAAhC,GAAuDF,MAAnF;EACA,OAAOK,qBAAqB,GAAGV,CAA/B;AACA,CAzBD"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

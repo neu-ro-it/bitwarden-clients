@@ -1,0 +1,55 @@
+{
+  "ast": null,
+  "code": "import \"core-js/modules/es.array.slice.js\";\nimport \"core-js/modules/es.object.freeze.js\";\n\nvar _templateObject;\n\nimport \"core-js/modules/es.function.name.js\";\nimport \"core-js/modules/es.array.map.js\";\n\nfunction _taggedTemplateLiteral(strings, raw) {\n  if (!raw) {\n    raw = strings.slice(0);\n  }\n\n  return Object.freeze(Object.defineProperties(strings, {\n    raw: {\n      value: Object.freeze(raw)\n    }\n  }));\n}\n\nimport stable from 'stable';\nimport dedent from 'ts-dedent';\nimport { storySort } from './storySort';\n\nvar sortStoriesCommon = function sortStoriesCommon(stories, storySortParameter, fileNameOrder) {\n  if (storySortParameter) {\n    var sortFn;\n\n    if (typeof storySortParameter === 'function') {\n      sortFn = storySortParameter;\n    } else {\n      sortFn = storySort(storySortParameter);\n    }\n\n    stable.inplace(stories, sortFn);\n  } else {\n    stable.inplace(stories, function (s1, s2) {\n      return fileNameOrder.indexOf(s1.importPath) - fileNameOrder.indexOf(s2.importPath);\n    });\n  }\n\n  return stories;\n};\n\nexport var sortStoriesV7 = function sortStoriesV7(stories, storySortParameter, fileNameOrder) {\n  try {\n    return sortStoriesCommon(stories, storySortParameter, fileNameOrder);\n  } catch (err) {\n    throw new Error(dedent(_templateObject || (_templateObject = _taggedTemplateLiteral([\"\\n    Error sorting stories with sort parameter \", \":\\n\\n    > \", \"\\n    \\n    Are you using a V6-style sort function in V7 mode?\\n\\n    More info: https://github.com/storybookjs/storybook/blob/next/MIGRATION.md#v7-style-story-sort\\n  \"])), storySortParameter, err.message));\n  }\n};\n\nvar toIndexEntry = function toIndexEntry(story) {\n  var id = story.id,\n      title = story.title,\n      name = story.name,\n      parameters = story.parameters;\n  return {\n    id: id,\n    title: title,\n    name: name,\n    importPath: parameters.fileName\n  };\n};\n\nexport var sortStoriesV6 = function sortStoriesV6(stories, storySortParameter, fileNameOrder) {\n  if (storySortParameter && typeof storySortParameter === 'function') {\n    stable.inplace(stories, storySortParameter);\n    return stories.map(function (s) {\n      return toIndexEntry(s[1]);\n    });\n  }\n\n  var storiesV7 = stories.map(function (s) {\n    return toIndexEntry(s[1]);\n  });\n  return sortStoriesCommon(storiesV7, storySortParameter, fileNameOrder);\n};",
+  "map": {
+    "version": 3,
+    "names": [
+      "_templateObject",
+      "_taggedTemplateLiteral",
+      "strings",
+      "raw",
+      "slice",
+      "Object",
+      "freeze",
+      "defineProperties",
+      "value",
+      "stable",
+      "dedent",
+      "storySort",
+      "sortStoriesCommon",
+      "stories",
+      "storySortParameter",
+      "fileNameOrder",
+      "sortFn",
+      "inplace",
+      "s1",
+      "s2",
+      "indexOf",
+      "importPath",
+      "sortStoriesV7",
+      "err",
+      "Error",
+      "message",
+      "toIndexEntry",
+      "story",
+      "id",
+      "title",
+      "name",
+      "parameters",
+      "fileName",
+      "sortStoriesV6",
+      "map",
+      "s",
+      "storiesV7"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/@storybook/store/dist/esm/sortStories.js"
+    ],
+    "sourcesContent": [
+      "import \"core-js/modules/es.array.slice.js\";\nimport \"core-js/modules/es.object.freeze.js\";\n\nvar _templateObject;\n\nimport \"core-js/modules/es.function.name.js\";\nimport \"core-js/modules/es.array.map.js\";\n\nfunction _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }\n\nimport stable from 'stable';\nimport dedent from 'ts-dedent';\nimport { storySort } from './storySort';\n\nvar sortStoriesCommon = function sortStoriesCommon(stories, storySortParameter, fileNameOrder) {\n  if (storySortParameter) {\n    var sortFn;\n\n    if (typeof storySortParameter === 'function') {\n      sortFn = storySortParameter;\n    } else {\n      sortFn = storySort(storySortParameter);\n    }\n\n    stable.inplace(stories, sortFn);\n  } else {\n    stable.inplace(stories, function (s1, s2) {\n      return fileNameOrder.indexOf(s1.importPath) - fileNameOrder.indexOf(s2.importPath);\n    });\n  }\n\n  return stories;\n};\n\nexport var sortStoriesV7 = function sortStoriesV7(stories, storySortParameter, fileNameOrder) {\n  try {\n    return sortStoriesCommon(stories, storySortParameter, fileNameOrder);\n  } catch (err) {\n    throw new Error(dedent(_templateObject || (_templateObject = _taggedTemplateLiteral([\"\\n    Error sorting stories with sort parameter \", \":\\n\\n    > \", \"\\n    \\n    Are you using a V6-style sort function in V7 mode?\\n\\n    More info: https://github.com/storybookjs/storybook/blob/next/MIGRATION.md#v7-style-story-sort\\n  \"])), storySortParameter, err.message));\n  }\n};\n\nvar toIndexEntry = function toIndexEntry(story) {\n  var id = story.id,\n      title = story.title,\n      name = story.name,\n      parameters = story.parameters;\n  return {\n    id: id,\n    title: title,\n    name: name,\n    importPath: parameters.fileName\n  };\n};\n\nexport var sortStoriesV6 = function sortStoriesV6(stories, storySortParameter, fileNameOrder) {\n  if (storySortParameter && typeof storySortParameter === 'function') {\n    stable.inplace(stories, storySortParameter);\n    return stories.map(function (s) {\n      return toIndexEntry(s[1]);\n    });\n  }\n\n  var storiesV7 = stories.map(function (s) {\n    return toIndexEntry(s[1]);\n  });\n  return sortStoriesCommon(storiesV7, storySortParameter, fileNameOrder);\n};"
+    ],
+    "mappings": "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"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

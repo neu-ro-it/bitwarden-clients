@@ -1,0 +1,42 @@
+{
+  "ast": null,
+  "code": "import { __extends } from \"tslib\";\nimport { Subscriber } from '../Subscriber';\nexport function createOperatorSubscriber(destination, onNext, onComplete, onError, onFinalize) {\n  return new OperatorSubscriber(destination, onNext, onComplete, onError, onFinalize);\n}\n\nvar OperatorSubscriber = function (_super) {\n  __extends(OperatorSubscriber, _super);\n\n  function OperatorSubscriber(destination, onNext, onComplete, onError, onFinalize, shouldUnsubscribe) {\n    var _this = _super.call(this, destination) || this;\n\n    _this.onFinalize = onFinalize;\n    _this.shouldUnsubscribe = shouldUnsubscribe;\n    _this._next = onNext ? function (value) {\n      try {\n        onNext(value);\n      } catch (err) {\n        destination.error(err);\n      }\n    } : _super.prototype._next;\n    _this._error = onError ? function (err) {\n      try {\n        onError(err);\n      } catch (err) {\n        destination.error(err);\n      } finally {\n        this.unsubscribe();\n      }\n    } : _super.prototype._error;\n    _this._complete = onComplete ? function () {\n      try {\n        onComplete();\n      } catch (err) {\n        destination.error(err);\n      } finally {\n        this.unsubscribe();\n      }\n    } : _super.prototype._complete;\n    return _this;\n  }\n\n  OperatorSubscriber.prototype.unsubscribe = function () {\n    var _a;\n\n    if (!this.shouldUnsubscribe || this.shouldUnsubscribe()) {\n      var closed_1 = this.closed;\n\n      _super.prototype.unsubscribe.call(this);\n\n      !closed_1 && ((_a = this.onFinalize) === null || _a === void 0 ? void 0 : _a.call(this));\n    }\n  };\n\n  return OperatorSubscriber;\n}(Subscriber);\n\nexport { OperatorSubscriber }; //# sourceMappingURL=OperatorSubscriber.js.map",
+  "map": {
+    "version": 3,
+    "names": [
+      "__extends",
+      "Subscriber",
+      "createOperatorSubscriber",
+      "destination",
+      "onNext",
+      "onComplete",
+      "onError",
+      "onFinalize",
+      "OperatorSubscriber",
+      "_super",
+      "shouldUnsubscribe",
+      "_this",
+      "call",
+      "_next",
+      "value",
+      "err",
+      "error",
+      "prototype",
+      "_error",
+      "unsubscribe",
+      "_complete",
+      "_a",
+      "closed_1",
+      "closed"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/esm5/internal/operators/OperatorSubscriber.js"
+    ],
+    "sourcesContent": [
+      "import { __extends } from \"tslib\";\nimport { Subscriber } from '../Subscriber';\nexport function createOperatorSubscriber(destination, onNext, onComplete, onError, onFinalize) {\n    return new OperatorSubscriber(destination, onNext, onComplete, onError, onFinalize);\n}\nvar OperatorSubscriber = (function (_super) {\n    __extends(OperatorSubscriber, _super);\n    function OperatorSubscriber(destination, onNext, onComplete, onError, onFinalize, shouldUnsubscribe) {\n        var _this = _super.call(this, destination) || this;\n        _this.onFinalize = onFinalize;\n        _this.shouldUnsubscribe = shouldUnsubscribe;\n        _this._next = onNext\n            ? function (value) {\n                try {\n                    onNext(value);\n                }\n                catch (err) {\n                    destination.error(err);\n                }\n            }\n            : _super.prototype._next;\n        _this._error = onError\n            ? function (err) {\n                try {\n                    onError(err);\n                }\n                catch (err) {\n                    destination.error(err);\n                }\n                finally {\n                    this.unsubscribe();\n                }\n            }\n            : _super.prototype._error;\n        _this._complete = onComplete\n            ? function () {\n                try {\n                    onComplete();\n                }\n                catch (err) {\n                    destination.error(err);\n                }\n                finally {\n                    this.unsubscribe();\n                }\n            }\n            : _super.prototype._complete;\n        return _this;\n    }\n    OperatorSubscriber.prototype.unsubscribe = function () {\n        var _a;\n        if (!this.shouldUnsubscribe || this.shouldUnsubscribe()) {\n            var closed_1 = this.closed;\n            _super.prototype.unsubscribe.call(this);\n            !closed_1 && ((_a = this.onFinalize) === null || _a === void 0 ? void 0 : _a.call(this));\n        }\n    };\n    return OperatorSubscriber;\n}(Subscriber));\nexport { OperatorSubscriber };\n//# sourceMappingURL=OperatorSubscriber.js.map"
+    ],
+    "mappings": "AAAA,SAASA,SAAT,QAA0B,OAA1B;AACA,SAASC,UAAT,QAA2B,eAA3B;AACA,OAAO,SAASC,wBAAT,CAAkCC,WAAlC,EAA+CC,MAA/C,EAAuDC,UAAvD,EAAmEC,OAAnE,EAA4EC,UAA5E,EAAwF;EAC3F,OAAO,IAAIC,kBAAJ,CAAuBL,WAAvB,EAAoCC,MAApC,EAA4CC,UAA5C,EAAwDC,OAAxD,EAAiEC,UAAjE,CAAP;AACH;;AACD,IAAIC,kBAAkB,GAAI,UAAUC,MAAV,EAAkB;EACxCT,SAAS,CAACQ,kBAAD,EAAqBC,MAArB,CAAT;;EACA,SAASD,kBAAT,CAA4BL,WAA5B,EAAyCC,MAAzC,EAAiDC,UAAjD,EAA6DC,OAA7D,EAAsEC,UAAtE,EAAkFG,iBAAlF,EAAqG;IACjG,IAAIC,KAAK,GAAGF,MAAM,CAACG,IAAP,CAAY,IAAZ,EAAkBT,WAAlB,KAAkC,IAA9C;;IACAQ,KAAK,CAACJ,UAAN,GAAmBA,UAAnB;IACAI,KAAK,CAACD,iBAAN,GAA0BA,iBAA1B;IACAC,KAAK,CAACE,KAAN,GAAcT,MAAM,GACd,UAAUU,KAAV,EAAiB;MACf,IAAI;QACAV,MAAM,CAACU,KAAD,CAAN;MACH,CAFD,CAGA,OAAOC,GAAP,EAAY;QACRZ,WAAW,CAACa,KAAZ,CAAkBD,GAAlB;MACH;IACJ,CARe,GASdN,MAAM,CAACQ,SAAP,CAAiBJ,KATvB;IAUAF,KAAK,CAACO,MAAN,GAAeZ,OAAO,GAChB,UAAUS,GAAV,EAAe;MACb,IAAI;QACAT,OAAO,CAACS,GAAD,CAAP;MACH,CAFD,CAGA,OAAOA,GAAP,EAAY;QACRZ,WAAW,CAACa,KAAZ,CAAkBD,GAAlB;MACH,CALD,SAMQ;QACJ,KAAKI,WAAL;MACH;IACJ,CAXiB,GAYhBV,MAAM,CAACQ,SAAP,CAAiBC,MAZvB;IAaAP,KAAK,CAACS,SAAN,GAAkBf,UAAU,GACtB,YAAY;MACV,IAAI;QACAA,UAAU;MACb,CAFD,CAGA,OAAOU,GAAP,EAAY;QACRZ,WAAW,CAACa,KAAZ,CAAkBD,GAAlB;MACH,CALD,SAMQ;QACJ,KAAKI,WAAL;MACH;IACJ,CAXuB,GAYtBV,MAAM,CAACQ,SAAP,CAAiBG,SAZvB;IAaA,OAAOT,KAAP;EACH;;EACDH,kBAAkB,CAACS,SAAnB,CAA6BE,WAA7B,GAA2C,YAAY;IACnD,IAAIE,EAAJ;;IACA,IAAI,CAAC,KAAKX,iBAAN,IAA2B,KAAKA,iBAAL,EAA/B,EAAyD;MACrD,IAAIY,QAAQ,GAAG,KAAKC,MAApB;;MACAd,MAAM,CAACQ,SAAP,CAAiBE,WAAjB,CAA6BP,IAA7B,CAAkC,IAAlC;;MACA,CAACU,QAAD,KAAc,CAACD,EAAE,GAAG,KAAKd,UAAX,MAA2B,IAA3B,IAAmCc,EAAE,KAAK,KAAK,CAA/C,GAAmD,KAAK,CAAxD,GAA4DA,EAAE,CAACT,IAAH,CAAQ,IAAR,CAA1E;IACH;EACJ,CAPD;;EAQA,OAAOJ,kBAAP;AACH,CArDyB,CAqDxBP,UArDwB,CAA1B;;AAsDA,SAASO,kBAAT,G,CACA"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

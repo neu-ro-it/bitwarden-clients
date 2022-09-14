@@ -1,0 +1,46 @@
+{
+  "ast": null,
+  "code": "\"use strict\";\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.repeatWhen = void 0;\n\nvar Subject_1 = require(\"../Subject\");\n\nvar lift_1 = require(\"../util/lift\");\n\nvar OperatorSubscriber_1 = require(\"./OperatorSubscriber\");\n\nfunction repeatWhen(notifier) {\n  return lift_1.operate(function (source, subscriber) {\n    var innerSub;\n    var syncResub = false;\n    var completions$;\n    var isNotifierComplete = false;\n    var isMainComplete = false;\n\n    var checkComplete = function () {\n      return isMainComplete && isNotifierComplete && (subscriber.complete(), true);\n    };\n\n    var getCompletionSubject = function () {\n      if (!completions$) {\n        completions$ = new Subject_1.Subject();\n        notifier(completions$).subscribe(OperatorSubscriber_1.createOperatorSubscriber(subscriber, function () {\n          if (innerSub) {\n            subscribeForRepeatWhen();\n          } else {\n            syncResub = true;\n          }\n        }, function () {\n          isNotifierComplete = true;\n          checkComplete();\n        }));\n      }\n\n      return completions$;\n    };\n\n    var subscribeForRepeatWhen = function () {\n      isMainComplete = false;\n      innerSub = source.subscribe(OperatorSubscriber_1.createOperatorSubscriber(subscriber, undefined, function () {\n        isMainComplete = true;\n        !checkComplete() && getCompletionSubject().next();\n      }));\n\n      if (syncResub) {\n        innerSub.unsubscribe();\n        innerSub = null;\n        syncResub = false;\n        subscribeForRepeatWhen();\n      }\n    };\n\n    subscribeForRepeatWhen();\n  });\n}\n\nexports.repeatWhen = repeatWhen; //# sourceMappingURL=repeatWhen.js.map",
+  "map": {
+    "version": 3,
+    "names": [
+      "Object",
+      "defineProperty",
+      "exports",
+      "value",
+      "repeatWhen",
+      "Subject_1",
+      "require",
+      "lift_1",
+      "OperatorSubscriber_1",
+      "notifier",
+      "operate",
+      "source",
+      "subscriber",
+      "innerSub",
+      "syncResub",
+      "completions$",
+      "isNotifierComplete",
+      "isMainComplete",
+      "checkComplete",
+      "complete",
+      "getCompletionSubject",
+      "Subject",
+      "subscribe",
+      "createOperatorSubscriber",
+      "subscribeForRepeatWhen",
+      "undefined",
+      "next",
+      "unsubscribe"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/cjs/internal/operators/repeatWhen.js"
+    ],
+    "sourcesContent": [
+      "\"use strict\";\nObject.defineProperty(exports, \"__esModule\", { value: true });\nexports.repeatWhen = void 0;\nvar Subject_1 = require(\"../Subject\");\nvar lift_1 = require(\"../util/lift\");\nvar OperatorSubscriber_1 = require(\"./OperatorSubscriber\");\nfunction repeatWhen(notifier) {\n    return lift_1.operate(function (source, subscriber) {\n        var innerSub;\n        var syncResub = false;\n        var completions$;\n        var isNotifierComplete = false;\n        var isMainComplete = false;\n        var checkComplete = function () { return isMainComplete && isNotifierComplete && (subscriber.complete(), true); };\n        var getCompletionSubject = function () {\n            if (!completions$) {\n                completions$ = new Subject_1.Subject();\n                notifier(completions$).subscribe(OperatorSubscriber_1.createOperatorSubscriber(subscriber, function () {\n                    if (innerSub) {\n                        subscribeForRepeatWhen();\n                    }\n                    else {\n                        syncResub = true;\n                    }\n                }, function () {\n                    isNotifierComplete = true;\n                    checkComplete();\n                }));\n            }\n            return completions$;\n        };\n        var subscribeForRepeatWhen = function () {\n            isMainComplete = false;\n            innerSub = source.subscribe(OperatorSubscriber_1.createOperatorSubscriber(subscriber, undefined, function () {\n                isMainComplete = true;\n                !checkComplete() && getCompletionSubject().next();\n            }));\n            if (syncResub) {\n                innerSub.unsubscribe();\n                innerSub = null;\n                syncResub = false;\n                subscribeForRepeatWhen();\n            }\n        };\n        subscribeForRepeatWhen();\n    });\n}\nexports.repeatWhen = repeatWhen;\n//# sourceMappingURL=repeatWhen.js.map"
+    ],
+    "mappings": "AAAA;;AACAA,MAAM,CAACC,cAAP,CAAsBC,OAAtB,EAA+B,YAA/B,EAA6C;EAAEC,KAAK,EAAE;AAAT,CAA7C;AACAD,OAAO,CAACE,UAAR,GAAqB,KAAK,CAA1B;;AACA,IAAIC,SAAS,GAAGC,OAAO,CAAC,YAAD,CAAvB;;AACA,IAAIC,MAAM,GAAGD,OAAO,CAAC,cAAD,CAApB;;AACA,IAAIE,oBAAoB,GAAGF,OAAO,CAAC,sBAAD,CAAlC;;AACA,SAASF,UAAT,CAAoBK,QAApB,EAA8B;EAC1B,OAAOF,MAAM,CAACG,OAAP,CAAe,UAAUC,MAAV,EAAkBC,UAAlB,EAA8B;IAChD,IAAIC,QAAJ;IACA,IAAIC,SAAS,GAAG,KAAhB;IACA,IAAIC,YAAJ;IACA,IAAIC,kBAAkB,GAAG,KAAzB;IACA,IAAIC,cAAc,GAAG,KAArB;;IACA,IAAIC,aAAa,GAAG,YAAY;MAAE,OAAOD,cAAc,IAAID,kBAAlB,KAAyCJ,UAAU,CAACO,QAAX,IAAuB,IAAhE,CAAP;IAA+E,CAAjH;;IACA,IAAIC,oBAAoB,GAAG,YAAY;MACnC,IAAI,CAACL,YAAL,EAAmB;QACfA,YAAY,GAAG,IAAIV,SAAS,CAACgB,OAAd,EAAf;QACAZ,QAAQ,CAACM,YAAD,CAAR,CAAuBO,SAAvB,CAAiCd,oBAAoB,CAACe,wBAArB,CAA8CX,UAA9C,EAA0D,YAAY;UACnG,IAAIC,QAAJ,EAAc;YACVW,sBAAsB;UACzB,CAFD,MAGK;YACDV,SAAS,GAAG,IAAZ;UACH;QACJ,CAPgC,EAO9B,YAAY;UACXE,kBAAkB,GAAG,IAArB;UACAE,aAAa;QAChB,CAVgC,CAAjC;MAWH;;MACD,OAAOH,YAAP;IACH,CAhBD;;IAiBA,IAAIS,sBAAsB,GAAG,YAAY;MACrCP,cAAc,GAAG,KAAjB;MACAJ,QAAQ,GAAGF,MAAM,CAACW,SAAP,CAAiBd,oBAAoB,CAACe,wBAArB,CAA8CX,UAA9C,EAA0Da,SAA1D,EAAqE,YAAY;QACzGR,cAAc,GAAG,IAAjB;QACA,CAACC,aAAa,EAAd,IAAoBE,oBAAoB,GAAGM,IAAvB,EAApB;MACH,CAH2B,CAAjB,CAAX;;MAIA,IAAIZ,SAAJ,EAAe;QACXD,QAAQ,CAACc,WAAT;QACAd,QAAQ,GAAG,IAAX;QACAC,SAAS,GAAG,KAAZ;QACAU,sBAAsB;MACzB;IACJ,CAZD;;IAaAA,sBAAsB;EACzB,CAtCM,CAAP;AAuCH;;AACDtB,OAAO,CAACE,UAAR,GAAqBA,UAArB,C,CACA"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

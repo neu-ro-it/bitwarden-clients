@@ -1,0 +1,17 @@
+{
+  "ast": null,
+  "code": "import { map } from './map';\nexport function mapTo(value) {\n  return map(function () {\n    return value;\n  });\n} //# sourceMappingURL=mapTo.js.map",
+  "map": {
+    "version": 3,
+    "names": ["map", "mapTo", "value"],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/esm5/internal/operators/mapTo.js"
+    ],
+    "sourcesContent": [
+      "import { map } from './map';\nexport function mapTo(value) {\n    return map(function () { return value; });\n}\n//# sourceMappingURL=mapTo.js.map"
+    ],
+    "mappings": "AAAA,SAASA,GAAT,QAAoB,OAApB;AACA,OAAO,SAASC,KAAT,CAAeC,KAAf,EAAsB;EACzB,OAAOF,GAAG,CAAC,YAAY;IAAE,OAAOE,KAAP;EAAe,CAA9B,CAAV;AACH,C,CACD"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

@@ -1,0 +1,17 @@
+{
+  "ast": null,
+  "code": "let urlAlphabet = 'useandom-26T198340PX75pxJACKVERYMINDBUSHWOLF_GQZbfghjklqvwyzrict';\nexport { urlAlphabet };",
+  "map": {
+    "version": 3,
+    "names": ["urlAlphabet"],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/nanoid/url-alphabet/index.js"
+    ],
+    "sourcesContent": [
+      "let urlAlphabet =\n  'useandom-26T198340PX75pxJACKVERYMINDBUSHWOLF_GQZbfghjklqvwyzrict'\nexport { urlAlphabet }\n"
+    ],
+    "mappings": "AAAA,IAAIA,WAAW,GACb,kEADF;AAEA,SAASA,WAAT"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

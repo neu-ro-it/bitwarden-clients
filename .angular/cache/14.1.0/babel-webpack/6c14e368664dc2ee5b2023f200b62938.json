@@ -1,0 +1,49 @@
+{
+  "ast": null,
+  "code": "'use strict';\n\nvar Call = require('es-abstract/2021/Call');\n\nvar Get = require('es-abstract/2021/Get');\n\nvar HasProperty = require('es-abstract/2021/HasProperty');\n\nvar IsCallable = require('es-abstract/2021/IsCallable');\n\nvar LengthOfArrayLike = require('es-abstract/2021/LengthOfArrayLike');\n\nvar ToObject = require('es-abstract/2021/ToObject');\n\nvar ToString = require('es-abstract/2021/ToString');\n\nvar callBound = require('call-bind/callBound');\n\nvar isString = require('is-string');\n\nvar $TypeError = TypeError; // Check failure of by-index access of string characters (IE < 9) and failure of `0 in boxedString` (Rhino)\n\nvar boxedString = Object('a');\nvar splitString = boxedString[0] !== 'a' || !(0 in boxedString);\nvar strSplit = callBound('%String.prototype.split%');\n\nmodule.exports = function reduce(callbackfn) {\n  var O = ToObject(this);\n  var self = splitString && isString(O) ? strSplit(O, '') : O;\n  var len = LengthOfArrayLike(self); // If no callback function or if callback is not a callable function\n\n  if (!IsCallable(callbackfn)) {\n    throw new $TypeError('Array.prototype.reduce callback must be a function');\n  }\n\n  if (len === 0 && arguments.length < 2) {\n    throw new $TypeError('reduce of empty array with no initial value');\n  }\n\n  var k = 0;\n  var accumulator;\n  var Pk, kPresent;\n\n  if (arguments.length > 1) {\n    accumulator = arguments[1];\n  } else {\n    kPresent = false;\n\n    while (!kPresent && k < len) {\n      Pk = ToString(k);\n      kPresent = HasProperty(O, Pk);\n\n      if (kPresent) {\n        accumulator = Get(O, Pk);\n      }\n\n      k += 1;\n    }\n\n    if (!kPresent) {\n      throw new $TypeError('reduce of empty array with no initial value');\n    }\n  }\n\n  while (k < len) {\n    Pk = ToString(k);\n    kPresent = HasProperty(O, Pk);\n\n    if (kPresent) {\n      var kValue = Get(O, Pk);\n      accumulator = Call(callbackfn, void undefined, [accumulator, kValue, k, O]);\n    }\n\n    k += 1;\n  }\n\n  return accumulator;\n};",
+  "map": {
+    "version": 3,
+    "names": [
+      "Call",
+      "require",
+      "Get",
+      "HasProperty",
+      "IsCallable",
+      "LengthOfArrayLike",
+      "ToObject",
+      "ToString",
+      "callBound",
+      "isString",
+      "$TypeError",
+      "TypeError",
+      "boxedString",
+      "Object",
+      "splitString",
+      "strSplit",
+      "module",
+      "exports",
+      "reduce",
+      "callbackfn",
+      "O",
+      "self",
+      "len",
+      "arguments",
+      "length",
+      "k",
+      "accumulator",
+      "Pk",
+      "kPresent",
+      "kValue",
+      "undefined"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/array.prototype.reduce/implementation.js"
+    ],
+    "sourcesContent": [
+      "'use strict';\n\nvar Call = require('es-abstract/2021/Call');\nvar Get = require('es-abstract/2021/Get');\nvar HasProperty = require('es-abstract/2021/HasProperty');\nvar IsCallable = require('es-abstract/2021/IsCallable');\nvar LengthOfArrayLike = require('es-abstract/2021/LengthOfArrayLike');\nvar ToObject = require('es-abstract/2021/ToObject');\nvar ToString = require('es-abstract/2021/ToString');\nvar callBound = require('call-bind/callBound');\nvar isString = require('is-string');\n\nvar $TypeError = TypeError;\n\n// Check failure of by-index access of string characters (IE < 9) and failure of `0 in boxedString` (Rhino)\nvar boxedString = Object('a');\nvar splitString = boxedString[0] !== 'a' || !(0 in boxedString);\n\nvar strSplit = callBound('%String.prototype.split%');\n\nmodule.exports = function reduce(callbackfn) {\n\tvar O = ToObject(this);\n\tvar self = splitString && isString(O) ? strSplit(O, '') : O;\n\tvar len = LengthOfArrayLike(self);\n\n\t// If no callback function or if callback is not a callable function\n\tif (!IsCallable(callbackfn)) {\n\t\tthrow new $TypeError('Array.prototype.reduce callback must be a function');\n\t}\n\n\tif (len === 0 && arguments.length < 2) {\n\t\tthrow new $TypeError('reduce of empty array with no initial value');\n\t}\n\n\tvar k = 0;\n\n\tvar accumulator;\n\tvar Pk, kPresent;\n\tif (arguments.length > 1) {\n\t\taccumulator = arguments[1];\n\t} else {\n\t\tkPresent = false;\n\t\twhile (!kPresent && k < len) {\n\t\t\tPk = ToString(k);\n\t\t\tkPresent = HasProperty(O, Pk);\n\t\t\tif (kPresent) {\n\t\t\t\taccumulator = Get(O, Pk);\n\t\t\t}\n\t\t\tk += 1;\n\t\t}\n\t\tif (!kPresent) {\n\t\t\tthrow new $TypeError('reduce of empty array with no initial value');\n\t\t}\n\t}\n\n\twhile (k < len) {\n\t\tPk = ToString(k);\n\t\tkPresent = HasProperty(O, Pk);\n\t\tif (kPresent) {\n\t\t\tvar kValue = Get(O, Pk);\n\t\t\taccumulator = Call(callbackfn, void undefined, [accumulator, kValue, k, O]);\n\t\t}\n\t\tk += 1;\n\t}\n\n\treturn accumulator;\n};\n"
+    ],
+    "mappings": "AAAA;;AAEA,IAAIA,IAAI,GAAGC,OAAO,CAAC,uBAAD,CAAlB;;AACA,IAAIC,GAAG,GAAGD,OAAO,CAAC,sBAAD,CAAjB;;AACA,IAAIE,WAAW,GAAGF,OAAO,CAAC,8BAAD,CAAzB;;AACA,IAAIG,UAAU,GAAGH,OAAO,CAAC,6BAAD,CAAxB;;AACA,IAAII,iBAAiB,GAAGJ,OAAO,CAAC,oCAAD,CAA/B;;AACA,IAAIK,QAAQ,GAAGL,OAAO,CAAC,2BAAD,CAAtB;;AACA,IAAIM,QAAQ,GAAGN,OAAO,CAAC,2BAAD,CAAtB;;AACA,IAAIO,SAAS,GAAGP,OAAO,CAAC,qBAAD,CAAvB;;AACA,IAAIQ,QAAQ,GAAGR,OAAO,CAAC,WAAD,CAAtB;;AAEA,IAAIS,UAAU,GAAGC,SAAjB,C,CAEA;;AACA,IAAIC,WAAW,GAAGC,MAAM,CAAC,GAAD,CAAxB;AACA,IAAIC,WAAW,GAAGF,WAAW,CAAC,CAAD,CAAX,KAAmB,GAAnB,IAA0B,EAAE,KAAKA,WAAP,CAA5C;AAEA,IAAIG,QAAQ,GAAGP,SAAS,CAAC,0BAAD,CAAxB;;AAEAQ,MAAM,CAACC,OAAP,GAAiB,SAASC,MAAT,CAAgBC,UAAhB,EAA4B;EAC5C,IAAIC,CAAC,GAAGd,QAAQ,CAAC,IAAD,CAAhB;EACA,IAAIe,IAAI,GAAGP,WAAW,IAAIL,QAAQ,CAACW,CAAD,CAAvB,GAA6BL,QAAQ,CAACK,CAAD,EAAI,EAAJ,CAArC,GAA+CA,CAA1D;EACA,IAAIE,GAAG,GAAGjB,iBAAiB,CAACgB,IAAD,CAA3B,CAH4C,CAK5C;;EACA,IAAI,CAACjB,UAAU,CAACe,UAAD,CAAf,EAA6B;IAC5B,MAAM,IAAIT,UAAJ,CAAe,oDAAf,CAAN;EACA;;EAED,IAAIY,GAAG,KAAK,CAAR,IAAaC,SAAS,CAACC,MAAV,GAAmB,CAApC,EAAuC;IACtC,MAAM,IAAId,UAAJ,CAAe,6CAAf,CAAN;EACA;;EAED,IAAIe,CAAC,GAAG,CAAR;EAEA,IAAIC,WAAJ;EACA,IAAIC,EAAJ,EAAQC,QAAR;;EACA,IAAIL,SAAS,CAACC,MAAV,GAAmB,CAAvB,EAA0B;IACzBE,WAAW,GAAGH,SAAS,CAAC,CAAD,CAAvB;EACA,CAFD,MAEO;IACNK,QAAQ,GAAG,KAAX;;IACA,OAAO,CAACA,QAAD,IAAaH,CAAC,GAAGH,GAAxB,EAA6B;MAC5BK,EAAE,GAAGpB,QAAQ,CAACkB,CAAD,CAAb;MACAG,QAAQ,GAAGzB,WAAW,CAACiB,CAAD,EAAIO,EAAJ,CAAtB;;MACA,IAAIC,QAAJ,EAAc;QACbF,WAAW,GAAGxB,GAAG,CAACkB,CAAD,EAAIO,EAAJ,CAAjB;MACA;;MACDF,CAAC,IAAI,CAAL;IACA;;IACD,IAAI,CAACG,QAAL,EAAe;MACd,MAAM,IAAIlB,UAAJ,CAAe,6CAAf,CAAN;IACA;EACD;;EAED,OAAOe,CAAC,GAAGH,GAAX,EAAgB;IACfK,EAAE,GAAGpB,QAAQ,CAACkB,CAAD,CAAb;IACAG,QAAQ,GAAGzB,WAAW,CAACiB,CAAD,EAAIO,EAAJ,CAAtB;;IACA,IAAIC,QAAJ,EAAc;MACb,IAAIC,MAAM,GAAG3B,GAAG,CAACkB,CAAD,EAAIO,EAAJ,CAAhB;MACAD,WAAW,GAAG1B,IAAI,CAACmB,UAAD,EAAa,KAAKW,SAAlB,EAA6B,CAACJ,WAAD,EAAcG,MAAd,EAAsBJ,CAAtB,EAAyBL,CAAzB,CAA7B,CAAlB;IACA;;IACDK,CAAC,IAAI,CAAL;EACA;;EAED,OAAOC,WAAP;AACA,CA9CD"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

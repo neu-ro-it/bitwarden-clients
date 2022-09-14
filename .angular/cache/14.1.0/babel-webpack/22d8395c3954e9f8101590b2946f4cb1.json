@@ -1,0 +1,36 @@
+{
+  "ast": null,
+  "code": "'use strict';\n\nvar define = require('define-properties');\n\nvar RequireObjectCoercible = require('es-abstract/2021/RequireObjectCoercible');\n\nvar callBind = require('call-bind');\n\nvar callBound = require('call-bind/callBound');\n\nvar implementation = require('./implementation');\n\nvar getPolyfill = require('./polyfill');\n\nvar polyfill = callBind.apply(getPolyfill());\n\nvar shim = require('./shim');\n\nvar $slice = callBound('%Array.prototype.slice%'); // eslint-disable-next-line no-unused-vars\n\nvar boundShim = function reduce(array, callbackfn) {\n  RequireObjectCoercible(array);\n  return polyfill(array, $slice(arguments, 1));\n};\n\ndefine(boundShim, {\n  getPolyfill: getPolyfill,\n  implementation: implementation,\n  shim: shim\n});\nmodule.exports = boundShim;",
+  "map": {
+    "version": 3,
+    "names": [
+      "define",
+      "require",
+      "RequireObjectCoercible",
+      "callBind",
+      "callBound",
+      "implementation",
+      "getPolyfill",
+      "polyfill",
+      "apply",
+      "shim",
+      "$slice",
+      "boundShim",
+      "reduce",
+      "array",
+      "callbackfn",
+      "arguments",
+      "module",
+      "exports"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/array.prototype.reduce/index.js"
+    ],
+    "sourcesContent": [
+      "'use strict';\n\nvar define = require('define-properties');\nvar RequireObjectCoercible = require('es-abstract/2021/RequireObjectCoercible');\nvar callBind = require('call-bind');\nvar callBound = require('call-bind/callBound');\n\nvar implementation = require('./implementation');\n\nvar getPolyfill = require('./polyfill');\nvar polyfill = callBind.apply(getPolyfill());\n\nvar shim = require('./shim');\n\nvar $slice = callBound('%Array.prototype.slice%');\n\n// eslint-disable-next-line no-unused-vars\nvar boundShim = function reduce(array, callbackfn) {\n\tRequireObjectCoercible(array);\n\treturn polyfill(array, $slice(arguments, 1));\n};\ndefine(boundShim, {\n\tgetPolyfill: getPolyfill,\n\timplementation: implementation,\n\tshim: shim\n});\n\nmodule.exports = boundShim;\n"
+    ],
+    "mappings": "AAAA;;AAEA,IAAIA,MAAM,GAAGC,OAAO,CAAC,mBAAD,CAApB;;AACA,IAAIC,sBAAsB,GAAGD,OAAO,CAAC,yCAAD,CAApC;;AACA,IAAIE,QAAQ,GAAGF,OAAO,CAAC,WAAD,CAAtB;;AACA,IAAIG,SAAS,GAAGH,OAAO,CAAC,qBAAD,CAAvB;;AAEA,IAAII,cAAc,GAAGJ,OAAO,CAAC,kBAAD,CAA5B;;AAEA,IAAIK,WAAW,GAAGL,OAAO,CAAC,YAAD,CAAzB;;AACA,IAAIM,QAAQ,GAAGJ,QAAQ,CAACK,KAAT,CAAeF,WAAW,EAA1B,CAAf;;AAEA,IAAIG,IAAI,GAAGR,OAAO,CAAC,QAAD,CAAlB;;AAEA,IAAIS,MAAM,GAAGN,SAAS,CAAC,yBAAD,CAAtB,C,CAEA;;AACA,IAAIO,SAAS,GAAG,SAASC,MAAT,CAAgBC,KAAhB,EAAuBC,UAAvB,EAAmC;EAClDZ,sBAAsB,CAACW,KAAD,CAAtB;EACA,OAAON,QAAQ,CAACM,KAAD,EAAQH,MAAM,CAACK,SAAD,EAAY,CAAZ,CAAd,CAAf;AACA,CAHD;;AAIAf,MAAM,CAACW,SAAD,EAAY;EACjBL,WAAW,EAAEA,WADI;EAEjBD,cAAc,EAAEA,cAFC;EAGjBI,IAAI,EAAEA;AAHW,CAAZ,CAAN;AAMAO,MAAM,CAACC,OAAP,GAAiBN,SAAjB"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

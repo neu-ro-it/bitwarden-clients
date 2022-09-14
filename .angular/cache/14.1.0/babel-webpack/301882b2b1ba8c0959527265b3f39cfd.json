@@ -1,0 +1,28 @@
+{
+  "ast": null,
+  "code": "'use strict';\n\nvar extractTldFromHost = require('./from-host.js');\n/**\n * Returns the public suffix (including exact matches)\n *\n * @api\n * @since 1.5\n * @param {string} hostname\n * @return {string}\n */\n\n\nmodule.exports = function getPublicSuffix(rules, hostname) {\n  // First check if `hostname` is already a valid top-level Domain.\n  if (rules.hasTld(hostname)) {\n    return hostname;\n  }\n\n  var candidate = rules.suffixLookup(hostname);\n\n  if (candidate === null) {\n    // Prevailing rule is '*' so we consider the top-level domain to be the\n    // public suffix of `hostname` (e.g.: 'example.org' => 'org').\n    return extractTldFromHost(hostname);\n  }\n\n  return candidate;\n};",
+  "map": {
+    "version": 3,
+    "names": [
+      "extractTldFromHost",
+      "require",
+      "module",
+      "exports",
+      "getPublicSuffix",
+      "rules",
+      "hostname",
+      "hasTld",
+      "candidate",
+      "suffixLookup"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/tldjs/lib/public-suffix.js"
+    ],
+    "sourcesContent": [
+      "'use strict';\n\n\nvar extractTldFromHost = require('./from-host.js');\n\n\n/**\n * Returns the public suffix (including exact matches)\n *\n * @api\n * @since 1.5\n * @param {string} hostname\n * @return {string}\n */\nmodule.exports = function getPublicSuffix(rules, hostname) {\n  // First check if `hostname` is already a valid top-level Domain.\n  if (rules.hasTld(hostname)) {\n    return hostname;\n  }\n\n  var candidate = rules.suffixLookup(hostname);\n  if (candidate === null) {\n    // Prevailing rule is '*' so we consider the top-level domain to be the\n    // public suffix of `hostname` (e.g.: 'example.org' => 'org').\n    return extractTldFromHost(hostname);\n  }\n\n  return candidate;\n};\n"
+    ],
+    "mappings": "AAAA;;AAGA,IAAIA,kBAAkB,GAAGC,OAAO,CAAC,gBAAD,CAAhC;AAGA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;;AACAC,MAAM,CAACC,OAAP,GAAiB,SAASC,eAAT,CAAyBC,KAAzB,EAAgCC,QAAhC,EAA0C;EACzD;EACA,IAAID,KAAK,CAACE,MAAN,CAAaD,QAAb,CAAJ,EAA4B;IAC1B,OAAOA,QAAP;EACD;;EAED,IAAIE,SAAS,GAAGH,KAAK,CAACI,YAAN,CAAmBH,QAAnB,CAAhB;;EACA,IAAIE,SAAS,KAAK,IAAlB,EAAwB;IACtB;IACA;IACA,OAAOR,kBAAkB,CAACM,QAAD,CAAzB;EACD;;EAED,OAAOE,SAAP;AACD,CAdD"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

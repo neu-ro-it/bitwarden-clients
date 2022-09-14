@@ -1,0 +1,24 @@
+{
+  "ast": null,
+  "code": "import { BehaviorSubject } from '../BehaviorSubject';\nimport { ConnectableObservable } from '../observable/ConnectableObservable';\nexport function publishBehavior(initialValue) {\n  return function (source) {\n    var subject = new BehaviorSubject(initialValue);\n    return new ConnectableObservable(source, function () {\n      return subject;\n    });\n  };\n} //# sourceMappingURL=publishBehavior.js.map",
+  "map": {
+    "version": 3,
+    "names": [
+      "BehaviorSubject",
+      "ConnectableObservable",
+      "publishBehavior",
+      "initialValue",
+      "source",
+      "subject"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/esm5/internal/operators/publishBehavior.js"
+    ],
+    "sourcesContent": [
+      "import { BehaviorSubject } from '../BehaviorSubject';\nimport { ConnectableObservable } from '../observable/ConnectableObservable';\nexport function publishBehavior(initialValue) {\n    return function (source) {\n        var subject = new BehaviorSubject(initialValue);\n        return new ConnectableObservable(source, function () { return subject; });\n    };\n}\n//# sourceMappingURL=publishBehavior.js.map"
+    ],
+    "mappings": "AAAA,SAASA,eAAT,QAAgC,oBAAhC;AACA,SAASC,qBAAT,QAAsC,qCAAtC;AACA,OAAO,SAASC,eAAT,CAAyBC,YAAzB,EAAuC;EAC1C,OAAO,UAAUC,MAAV,EAAkB;IACrB,IAAIC,OAAO,GAAG,IAAIL,eAAJ,CAAoBG,YAApB,CAAd;IACA,OAAO,IAAIF,qBAAJ,CAA0BG,MAA1B,EAAkC,YAAY;MAAE,OAAOC,OAAP;IAAiB,CAAjE,CAAP;EACH,CAHD;AAIH,C,CACD"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

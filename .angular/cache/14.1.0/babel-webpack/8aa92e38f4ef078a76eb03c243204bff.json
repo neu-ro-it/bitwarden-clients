@@ -1,0 +1,55 @@
+{
+  "ast": null,
+  "code": "\"use strict\";\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.sourceDecorator = exports.skipSourceRender = void 0;\n\nconst addons_1 = require(\"@storybook/addons\");\n\nconst docs_tools_1 = require(\"@storybook/docs-tools\");\n\nconst renderer_1 = require(\"../../renderer\");\n\nexports.skipSourceRender = context => {\n  var _a;\n\n  const sourceParams = (_a = context === null || context === void 0 ? void 0 : context.parameters.docs) === null || _a === void 0 ? void 0 : _a.source; // always render if the user forces it\n\n  if ((sourceParams === null || sourceParams === void 0 ? void 0 : sourceParams.type) === docs_tools_1.SourceType.DYNAMIC) {\n    return false;\n  } // never render if the user is forcing the block to render code, or\n  // if the user provides code\n\n\n  return (sourceParams === null || sourceParams === void 0 ? void 0 : sourceParams.code) || (sourceParams === null || sourceParams === void 0 ? void 0 : sourceParams.type) === docs_tools_1.SourceType.CODE;\n};\n/**\n * Angular source decorator.\n * @param storyFn Fn\n * @param context  StoryContext\n */\n\n\nexports.sourceDecorator = (storyFn, context) => {\n  const story = storyFn();\n\n  if (exports.skipSourceRender(context)) {\n    return story;\n  }\n\n  const channel = addons_1.addons.getChannel();\n  const {\n    props,\n    template,\n    userDefinedTemplate\n  } = story;\n  const {\n    component,\n    argTypes\n  } = context;\n  let toEmit;\n  addons_1.useEffect(() => {\n    if (toEmit) {\n      channel.emit(docs_tools_1.SNIPPET_RENDERED, context.id, toEmit, 'angular');\n    }\n  });\n\n  if (component && !userDefinedTemplate) {\n    const source = renderer_1.computesTemplateSourceFromComponent(component, props, argTypes); // We might have a story with a Directive or Service defined as the component\n    // In these cases there might exist a template, even if we aren't able to create source from component\n\n    if (source || template) {\n      toEmit = source || template;\n    }\n  } else if (template) {\n    toEmit = template;\n  }\n\n  return story;\n};",
+  "map": {
+    "version": 3,
+    "names": [
+      "Object",
+      "defineProperty",
+      "exports",
+      "value",
+      "sourceDecorator",
+      "skipSourceRender",
+      "addons_1",
+      "require",
+      "docs_tools_1",
+      "renderer_1",
+      "context",
+      "_a",
+      "sourceParams",
+      "parameters",
+      "docs",
+      "source",
+      "type",
+      "SourceType",
+      "DYNAMIC",
+      "code",
+      "CODE",
+      "storyFn",
+      "story",
+      "channel",
+      "addons",
+      "getChannel",
+      "props",
+      "template",
+      "userDefinedTemplate",
+      "component",
+      "argTypes",
+      "toEmit",
+      "useEffect",
+      "emit",
+      "SNIPPET_RENDERED",
+      "id",
+      "computesTemplateSourceFromComponent"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/@storybook/angular/dist/ts3.9/client/docs/sourceDecorator.js"
+    ],
+    "sourcesContent": [
+      "\"use strict\";\nObject.defineProperty(exports, \"__esModule\", { value: true });\nexports.sourceDecorator = exports.skipSourceRender = void 0;\nconst addons_1 = require(\"@storybook/addons\");\nconst docs_tools_1 = require(\"@storybook/docs-tools\");\nconst renderer_1 = require(\"../../renderer\");\nexports.skipSourceRender = (context) => {\n    var _a;\n    const sourceParams = (_a = context === null || context === void 0 ? void 0 : context.parameters.docs) === null || _a === void 0 ? void 0 : _a.source;\n    // always render if the user forces it\n    if ((sourceParams === null || sourceParams === void 0 ? void 0 : sourceParams.type) === docs_tools_1.SourceType.DYNAMIC) {\n        return false;\n    }\n    // never render if the user is forcing the block to render code, or\n    // if the user provides code\n    return (sourceParams === null || sourceParams === void 0 ? void 0 : sourceParams.code) || (sourceParams === null || sourceParams === void 0 ? void 0 : sourceParams.type) === docs_tools_1.SourceType.CODE;\n};\n/**\n * Angular source decorator.\n * @param storyFn Fn\n * @param context  StoryContext\n */\nexports.sourceDecorator = (storyFn, context) => {\n    const story = storyFn();\n    if (exports.skipSourceRender(context)) {\n        return story;\n    }\n    const channel = addons_1.addons.getChannel();\n    const { props, template, userDefinedTemplate } = story;\n    const { component, argTypes } = context;\n    let toEmit;\n    addons_1.useEffect(() => {\n        if (toEmit) {\n            channel.emit(docs_tools_1.SNIPPET_RENDERED, context.id, toEmit, 'angular');\n        }\n    });\n    if (component && !userDefinedTemplate) {\n        const source = renderer_1.computesTemplateSourceFromComponent(component, props, argTypes);\n        // We might have a story with a Directive or Service defined as the component\n        // In these cases there might exist a template, even if we aren't able to create source from component\n        if (source || template) {\n            toEmit = source || template;\n        }\n    }\n    else if (template) {\n        toEmit = template;\n    }\n    return story;\n};\n"
+    ],
+    "mappings": "AAAA;;AACAA,MAAM,CAACC,cAAP,CAAsBC,OAAtB,EAA+B,YAA/B,EAA6C;EAAEC,KAAK,EAAE;AAAT,CAA7C;AACAD,OAAO,CAACE,eAAR,GAA0BF,OAAO,CAACG,gBAAR,GAA2B,KAAK,CAA1D;;AACA,MAAMC,QAAQ,GAAGC,OAAO,CAAC,mBAAD,CAAxB;;AACA,MAAMC,YAAY,GAAGD,OAAO,CAAC,uBAAD,CAA5B;;AACA,MAAME,UAAU,GAAGF,OAAO,CAAC,gBAAD,CAA1B;;AACAL,OAAO,CAACG,gBAAR,GAA4BK,OAAD,IAAa;EACpC,IAAIC,EAAJ;;EACA,MAAMC,YAAY,GAAG,CAACD,EAAE,GAAGD,OAAO,KAAK,IAAZ,IAAoBA,OAAO,KAAK,KAAK,CAArC,GAAyC,KAAK,CAA9C,GAAkDA,OAAO,CAACG,UAAR,CAAmBC,IAA3E,MAAqF,IAArF,IAA6FH,EAAE,KAAK,KAAK,CAAzG,GAA6G,KAAK,CAAlH,GAAsHA,EAAE,CAACI,MAA9I,CAFoC,CAGpC;;EACA,IAAI,CAACH,YAAY,KAAK,IAAjB,IAAyBA,YAAY,KAAK,KAAK,CAA/C,GAAmD,KAAK,CAAxD,GAA4DA,YAAY,CAACI,IAA1E,MAAoFR,YAAY,CAACS,UAAb,CAAwBC,OAAhH,EAAyH;IACrH,OAAO,KAAP;EACH,CANmC,CAOpC;EACA;;;EACA,OAAO,CAACN,YAAY,KAAK,IAAjB,IAAyBA,YAAY,KAAK,KAAK,CAA/C,GAAmD,KAAK,CAAxD,GAA4DA,YAAY,CAACO,IAA1E,KAAmF,CAACP,YAAY,KAAK,IAAjB,IAAyBA,YAAY,KAAK,KAAK,CAA/C,GAAmD,KAAK,CAAxD,GAA4DA,YAAY,CAACI,IAA1E,MAAoFR,YAAY,CAACS,UAAb,CAAwBG,IAAtM;AACH,CAVD;AAWA;AACA;AACA;AACA;AACA;;;AACAlB,OAAO,CAACE,eAAR,GAA0B,CAACiB,OAAD,EAAUX,OAAV,KAAsB;EAC5C,MAAMY,KAAK,GAAGD,OAAO,EAArB;;EACA,IAAInB,OAAO,CAACG,gBAAR,CAAyBK,OAAzB,CAAJ,EAAuC;IACnC,OAAOY,KAAP;EACH;;EACD,MAAMC,OAAO,GAAGjB,QAAQ,CAACkB,MAAT,CAAgBC,UAAhB,EAAhB;EACA,MAAM;IAAEC,KAAF;IAASC,QAAT;IAAmBC;EAAnB,IAA2CN,KAAjD;EACA,MAAM;IAAEO,SAAF;IAAaC;EAAb,IAA0BpB,OAAhC;EACA,IAAIqB,MAAJ;EACAzB,QAAQ,CAAC0B,SAAT,CAAmB,MAAM;IACrB,IAAID,MAAJ,EAAY;MACRR,OAAO,CAACU,IAAR,CAAazB,YAAY,CAAC0B,gBAA1B,EAA4CxB,OAAO,CAACyB,EAApD,EAAwDJ,MAAxD,EAAgE,SAAhE;IACH;EACJ,CAJD;;EAKA,IAAIF,SAAS,IAAI,CAACD,mBAAlB,EAAuC;IACnC,MAAMb,MAAM,GAAGN,UAAU,CAAC2B,mCAAX,CAA+CP,SAA/C,EAA0DH,KAA1D,EAAiEI,QAAjE,CAAf,CADmC,CAEnC;IACA;;IACA,IAAIf,MAAM,IAAIY,QAAd,EAAwB;MACpBI,MAAM,GAAGhB,MAAM,IAAIY,QAAnB;IACH;EACJ,CAPD,MAQK,IAAIA,QAAJ,EAAc;IACfI,MAAM,GAAGJ,QAAT;EACH;;EACD,OAAOL,KAAP;AACH,CA1BD"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

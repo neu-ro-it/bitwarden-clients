@@ -1,0 +1,32 @@
+{
+  "ast": null,
+  "code": "import { __read, __spreadArray } from \"tslib\";\nimport { Immediate } from '../util/Immediate';\nvar setImmediate = Immediate.setImmediate,\n    clearImmediate = Immediate.clearImmediate;\nexport var immediateProvider = {\n  setImmediate: function () {\n    var args = [];\n\n    for (var _i = 0; _i < arguments.length; _i++) {\n      args[_i] = arguments[_i];\n    }\n\n    var delegate = immediateProvider.delegate;\n    return ((delegate === null || delegate === void 0 ? void 0 : delegate.setImmediate) || setImmediate).apply(void 0, __spreadArray([], __read(args)));\n  },\n  clearImmediate: function (handle) {\n    var delegate = immediateProvider.delegate;\n    return ((delegate === null || delegate === void 0 ? void 0 : delegate.clearImmediate) || clearImmediate)(handle);\n  },\n  delegate: undefined\n}; //# sourceMappingURL=immediateProvider.js.map",
+  "map": {
+    "version": 3,
+    "names": [
+      "__read",
+      "__spreadArray",
+      "Immediate",
+      "setImmediate",
+      "clearImmediate",
+      "immediateProvider",
+      "args",
+      "_i",
+      "arguments",
+      "length",
+      "delegate",
+      "apply",
+      "handle",
+      "undefined"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/esm5/internal/scheduler/immediateProvider.js"
+    ],
+    "sourcesContent": [
+      "import { __read, __spreadArray } from \"tslib\";\nimport { Immediate } from '../util/Immediate';\nvar setImmediate = Immediate.setImmediate, clearImmediate = Immediate.clearImmediate;\nexport var immediateProvider = {\n    setImmediate: function () {\n        var args = [];\n        for (var _i = 0; _i < arguments.length; _i++) {\n            args[_i] = arguments[_i];\n        }\n        var delegate = immediateProvider.delegate;\n        return ((delegate === null || delegate === void 0 ? void 0 : delegate.setImmediate) || setImmediate).apply(void 0, __spreadArray([], __read(args)));\n    },\n    clearImmediate: function (handle) {\n        var delegate = immediateProvider.delegate;\n        return ((delegate === null || delegate === void 0 ? void 0 : delegate.clearImmediate) || clearImmediate)(handle);\n    },\n    delegate: undefined,\n};\n//# sourceMappingURL=immediateProvider.js.map"
+    ],
+    "mappings": "AAAA,SAASA,MAAT,EAAiBC,aAAjB,QAAsC,OAAtC;AACA,SAASC,SAAT,QAA0B,mBAA1B;AACA,IAAIC,YAAY,GAAGD,SAAS,CAACC,YAA7B;AAAA,IAA2CC,cAAc,GAAGF,SAAS,CAACE,cAAtE;AACA,OAAO,IAAIC,iBAAiB,GAAG;EAC3BF,YAAY,EAAE,YAAY;IACtB,IAAIG,IAAI,GAAG,EAAX;;IACA,KAAK,IAAIC,EAAE,GAAG,CAAd,EAAiBA,EAAE,GAAGC,SAAS,CAACC,MAAhC,EAAwCF,EAAE,EAA1C,EAA8C;MAC1CD,IAAI,CAACC,EAAD,CAAJ,GAAWC,SAAS,CAACD,EAAD,CAApB;IACH;;IACD,IAAIG,QAAQ,GAAGL,iBAAiB,CAACK,QAAjC;IACA,OAAO,CAAC,CAACA,QAAQ,KAAK,IAAb,IAAqBA,QAAQ,KAAK,KAAK,CAAvC,GAA2C,KAAK,CAAhD,GAAoDA,QAAQ,CAACP,YAA9D,KAA+EA,YAAhF,EAA8FQ,KAA9F,CAAoG,KAAK,CAAzG,EAA4GV,aAAa,CAAC,EAAD,EAAKD,MAAM,CAACM,IAAD,CAAX,CAAzH,CAAP;EACH,CAR0B;EAS3BF,cAAc,EAAE,UAAUQ,MAAV,EAAkB;IAC9B,IAAIF,QAAQ,GAAGL,iBAAiB,CAACK,QAAjC;IACA,OAAO,CAAC,CAACA,QAAQ,KAAK,IAAb,IAAqBA,QAAQ,KAAK,KAAK,CAAvC,GAA2C,KAAK,CAAhD,GAAoDA,QAAQ,CAACN,cAA9D,KAAiFA,cAAlF,EAAkGQ,MAAlG,CAAP;EACH,CAZ0B;EAa3BF,QAAQ,EAAEG;AAbiB,CAAxB,C,CAeP"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

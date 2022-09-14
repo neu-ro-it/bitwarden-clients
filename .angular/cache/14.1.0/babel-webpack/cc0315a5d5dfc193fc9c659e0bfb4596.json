@@ -1,0 +1,17 @@
+{
+  "ast": null,
+  "code": "import { isFunction } from './isFunction';\nexport function isScheduler(value) {\n  return value && isFunction(value.schedule);\n} //# sourceMappingURL=isScheduler.js.map",
+  "map": {
+    "version": 3,
+    "names": ["isFunction", "isScheduler", "value", "schedule"],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/esm5/internal/util/isScheduler.js"
+    ],
+    "sourcesContent": [
+      "import { isFunction } from './isFunction';\nexport function isScheduler(value) {\n    return value && isFunction(value.schedule);\n}\n//# sourceMappingURL=isScheduler.js.map"
+    ],
+    "mappings": "AAAA,SAASA,UAAT,QAA2B,cAA3B;AACA,OAAO,SAASC,WAAT,CAAqBC,KAArB,EAA4B;EAC/B,OAAOA,KAAK,IAAIF,UAAU,CAACE,KAAK,CAACC,QAAP,CAA1B;AACH,C,CACD"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

@@ -1,0 +1,17 @@
+{
+  "ast": null,
+  "code": "'use strict';\n\nvar getSymbolDescription = require('get-symbol-description');\n\nmodule.exports = function description() {\n  return getSymbolDescription(this);\n};",
+  "map": {
+    "version": 3,
+    "names": ["getSymbolDescription", "require", "module", "exports", "description"],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/symbol.prototype.description/implementation.js"
+    ],
+    "sourcesContent": [
+      "'use strict';\n\nvar getSymbolDescription = require('get-symbol-description');\n\nmodule.exports = function description() {\n\treturn getSymbolDescription(this);\n};\n"
+    ],
+    "mappings": "AAAA;;AAEA,IAAIA,oBAAoB,GAAGC,OAAO,CAAC,wBAAD,CAAlC;;AAEAC,MAAM,CAACC,OAAP,GAAiB,SAASC,WAAT,GAAuB;EACvC,OAAOJ,oBAAoB,CAAC,IAAD,CAA3B;AACA,CAFD"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

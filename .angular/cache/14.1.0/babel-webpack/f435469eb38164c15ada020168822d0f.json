@@ -1,0 +1,33 @@
+{
+  "ast": null,
+  "code": "'use strict';\n\nvar GetIntrinsic = require('get-intrinsic');\n\nvar $TypeError = GetIntrinsic('%TypeError%');\n\nvar regexExec = require('call-bind/callBound')('RegExp.prototype.exec');\n\nvar Call = require('./Call');\n\nvar Get = require('./Get');\n\nvar IsCallable = require('./IsCallable');\n\nvar Type = require('./Type'); // https://ecma-international.org/ecma-262/6.0/#sec-regexpexec\n\n\nmodule.exports = function RegExpExec(R, S) {\n  if (Type(R) !== 'Object') {\n    throw new $TypeError('Assertion failed: `R` must be an Object');\n  }\n\n  if (Type(S) !== 'String') {\n    throw new $TypeError('Assertion failed: `S` must be a String');\n  }\n\n  var exec = Get(R, 'exec');\n\n  if (IsCallable(exec)) {\n    var result = Call(exec, R, [S]);\n\n    if (result === null || Type(result) === 'Object') {\n      return result;\n    }\n\n    throw new $TypeError('\"exec\" method must return `null` or an Object');\n  }\n\n  return regexExec(R, S);\n};",
+  "map": {
+    "version": 3,
+    "names": [
+      "GetIntrinsic",
+      "require",
+      "$TypeError",
+      "regexExec",
+      "Call",
+      "Get",
+      "IsCallable",
+      "Type",
+      "module",
+      "exports",
+      "RegExpExec",
+      "R",
+      "S",
+      "exec",
+      "result"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/es-abstract/2021/RegExpExec.js"
+    ],
+    "sourcesContent": [
+      "'use strict';\n\nvar GetIntrinsic = require('get-intrinsic');\n\nvar $TypeError = GetIntrinsic('%TypeError%');\n\nvar regexExec = require('call-bind/callBound')('RegExp.prototype.exec');\n\nvar Call = require('./Call');\nvar Get = require('./Get');\nvar IsCallable = require('./IsCallable');\nvar Type = require('./Type');\n\n// https://ecma-international.org/ecma-262/6.0/#sec-regexpexec\n\nmodule.exports = function RegExpExec(R, S) {\n\tif (Type(R) !== 'Object') {\n\t\tthrow new $TypeError('Assertion failed: `R` must be an Object');\n\t}\n\tif (Type(S) !== 'String') {\n\t\tthrow new $TypeError('Assertion failed: `S` must be a String');\n\t}\n\tvar exec = Get(R, 'exec');\n\tif (IsCallable(exec)) {\n\t\tvar result = Call(exec, R, [S]);\n\t\tif (result === null || Type(result) === 'Object') {\n\t\t\treturn result;\n\t\t}\n\t\tthrow new $TypeError('\"exec\" method must return `null` or an Object');\n\t}\n\treturn regexExec(R, S);\n};\n"
+    ],
+    "mappings": "AAAA;;AAEA,IAAIA,YAAY,GAAGC,OAAO,CAAC,eAAD,CAA1B;;AAEA,IAAIC,UAAU,GAAGF,YAAY,CAAC,aAAD,CAA7B;;AAEA,IAAIG,SAAS,GAAGF,OAAO,CAAC,qBAAD,CAAP,CAA+B,uBAA/B,CAAhB;;AAEA,IAAIG,IAAI,GAAGH,OAAO,CAAC,QAAD,CAAlB;;AACA,IAAII,GAAG,GAAGJ,OAAO,CAAC,OAAD,CAAjB;;AACA,IAAIK,UAAU,GAAGL,OAAO,CAAC,cAAD,CAAxB;;AACA,IAAIM,IAAI,GAAGN,OAAO,CAAC,QAAD,CAAlB,C,CAEA;;;AAEAO,MAAM,CAACC,OAAP,GAAiB,SAASC,UAAT,CAAoBC,CAApB,EAAuBC,CAAvB,EAA0B;EAC1C,IAAIL,IAAI,CAACI,CAAD,CAAJ,KAAY,QAAhB,EAA0B;IACzB,MAAM,IAAIT,UAAJ,CAAe,yCAAf,CAAN;EACA;;EACD,IAAIK,IAAI,CAACK,CAAD,CAAJ,KAAY,QAAhB,EAA0B;IACzB,MAAM,IAAIV,UAAJ,CAAe,wCAAf,CAAN;EACA;;EACD,IAAIW,IAAI,GAAGR,GAAG,CAACM,CAAD,EAAI,MAAJ,CAAd;;EACA,IAAIL,UAAU,CAACO,IAAD,CAAd,EAAsB;IACrB,IAAIC,MAAM,GAAGV,IAAI,CAACS,IAAD,EAAOF,CAAP,EAAU,CAACC,CAAD,CAAV,CAAjB;;IACA,IAAIE,MAAM,KAAK,IAAX,IAAmBP,IAAI,CAACO,MAAD,CAAJ,KAAiB,QAAxC,EAAkD;MACjD,OAAOA,MAAP;IACA;;IACD,MAAM,IAAIZ,UAAJ,CAAe,+CAAf,CAAN;EACA;;EACD,OAAOC,SAAS,CAACQ,CAAD,EAAIC,CAAJ,CAAhB;AACA,CAhBD"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

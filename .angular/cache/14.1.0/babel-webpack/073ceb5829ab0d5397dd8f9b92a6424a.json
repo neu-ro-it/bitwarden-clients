@@ -1,0 +1,29 @@
+{
+  "ast": null,
+  "code": "'use strict';\n\nvar GetIntrinsic = require('get-intrinsic');\n\nvar $TypeError = GetIntrinsic('%TypeError%');\nvar $fromCharCode = GetIntrinsic('%String.fromCharCode%');\n\nvar isLeadingSurrogate = require('../helpers/isLeadingSurrogate');\n\nvar isTrailingSurrogate = require('../helpers/isTrailingSurrogate'); // https://tc39.es/ecma262/2020/#sec-utf16decodesurrogatepair\n\n\nmodule.exports = function UTF16SurrogatePairToCodePoint(lead, trail) {\n  if (!isLeadingSurrogate(lead) || !isTrailingSurrogate(trail)) {\n    throw new $TypeError('Assertion failed: `lead` must be a leading surrogate char code, and `trail` must be a trailing surrogate char code');\n  } // var cp = (lead - 0xD800) * 0x400 + (trail - 0xDC00) + 0x10000;\n\n\n  return $fromCharCode(lead) + $fromCharCode(trail);\n};",
+  "map": {
+    "version": 3,
+    "names": [
+      "GetIntrinsic",
+      "require",
+      "$TypeError",
+      "$fromCharCode",
+      "isLeadingSurrogate",
+      "isTrailingSurrogate",
+      "module",
+      "exports",
+      "UTF16SurrogatePairToCodePoint",
+      "lead",
+      "trail"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/es-abstract/2021/UTF16SurrogatePairToCodePoint.js"
+    ],
+    "sourcesContent": [
+      "'use strict';\n\nvar GetIntrinsic = require('get-intrinsic');\n\nvar $TypeError = GetIntrinsic('%TypeError%');\nvar $fromCharCode = GetIntrinsic('%String.fromCharCode%');\n\nvar isLeadingSurrogate = require('../helpers/isLeadingSurrogate');\nvar isTrailingSurrogate = require('../helpers/isTrailingSurrogate');\n\n// https://tc39.es/ecma262/2020/#sec-utf16decodesurrogatepair\n\nmodule.exports = function UTF16SurrogatePairToCodePoint(lead, trail) {\n\tif (!isLeadingSurrogate(lead) || !isTrailingSurrogate(trail)) {\n\t\tthrow new $TypeError('Assertion failed: `lead` must be a leading surrogate char code, and `trail` must be a trailing surrogate char code');\n\t}\n\t// var cp = (lead - 0xD800) * 0x400 + (trail - 0xDC00) + 0x10000;\n\treturn $fromCharCode(lead) + $fromCharCode(trail);\n};\n"
+    ],
+    "mappings": "AAAA;;AAEA,IAAIA,YAAY,GAAGC,OAAO,CAAC,eAAD,CAA1B;;AAEA,IAAIC,UAAU,GAAGF,YAAY,CAAC,aAAD,CAA7B;AACA,IAAIG,aAAa,GAAGH,YAAY,CAAC,uBAAD,CAAhC;;AAEA,IAAII,kBAAkB,GAAGH,OAAO,CAAC,+BAAD,CAAhC;;AACA,IAAII,mBAAmB,GAAGJ,OAAO,CAAC,gCAAD,CAAjC,C,CAEA;;;AAEAK,MAAM,CAACC,OAAP,GAAiB,SAASC,6BAAT,CAAuCC,IAAvC,EAA6CC,KAA7C,EAAoD;EACpE,IAAI,CAACN,kBAAkB,CAACK,IAAD,CAAnB,IAA6B,CAACJ,mBAAmB,CAACK,KAAD,CAArD,EAA8D;IAC7D,MAAM,IAAIR,UAAJ,CAAe,oHAAf,CAAN;EACA,CAHmE,CAIpE;;;EACA,OAAOC,aAAa,CAACM,IAAD,CAAb,GAAsBN,aAAa,CAACO,KAAD,CAA1C;AACA,CAND"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

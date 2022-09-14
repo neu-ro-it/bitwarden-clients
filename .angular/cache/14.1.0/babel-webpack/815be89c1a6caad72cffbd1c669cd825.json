@@ -1,0 +1,37 @@
+{
+  "ast": null,
+  "code": "\"use strict\";\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.sample = void 0;\n\nvar lift_1 = require(\"../util/lift\");\n\nvar noop_1 = require(\"../util/noop\");\n\nvar OperatorSubscriber_1 = require(\"./OperatorSubscriber\");\n\nfunction sample(notifier) {\n  return lift_1.operate(function (source, subscriber) {\n    var hasValue = false;\n    var lastValue = null;\n    source.subscribe(OperatorSubscriber_1.createOperatorSubscriber(subscriber, function (value) {\n      hasValue = true;\n      lastValue = value;\n    }));\n    notifier.subscribe(OperatorSubscriber_1.createOperatorSubscriber(subscriber, function () {\n      if (hasValue) {\n        hasValue = false;\n        var value = lastValue;\n        lastValue = null;\n        subscriber.next(value);\n      }\n    }, noop_1.noop));\n  });\n}\n\nexports.sample = sample; //# sourceMappingURL=sample.js.map",
+  "map": {
+    "version": 3,
+    "names": [
+      "Object",
+      "defineProperty",
+      "exports",
+      "value",
+      "sample",
+      "lift_1",
+      "require",
+      "noop_1",
+      "OperatorSubscriber_1",
+      "notifier",
+      "operate",
+      "source",
+      "subscriber",
+      "hasValue",
+      "lastValue",
+      "subscribe",
+      "createOperatorSubscriber",
+      "next",
+      "noop"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/cjs/internal/operators/sample.js"
+    ],
+    "sourcesContent": [
+      "\"use strict\";\nObject.defineProperty(exports, \"__esModule\", { value: true });\nexports.sample = void 0;\nvar lift_1 = require(\"../util/lift\");\nvar noop_1 = require(\"../util/noop\");\nvar OperatorSubscriber_1 = require(\"./OperatorSubscriber\");\nfunction sample(notifier) {\n    return lift_1.operate(function (source, subscriber) {\n        var hasValue = false;\n        var lastValue = null;\n        source.subscribe(OperatorSubscriber_1.createOperatorSubscriber(subscriber, function (value) {\n            hasValue = true;\n            lastValue = value;\n        }));\n        notifier.subscribe(OperatorSubscriber_1.createOperatorSubscriber(subscriber, function () {\n            if (hasValue) {\n                hasValue = false;\n                var value = lastValue;\n                lastValue = null;\n                subscriber.next(value);\n            }\n        }, noop_1.noop));\n    });\n}\nexports.sample = sample;\n//# sourceMappingURL=sample.js.map"
+    ],
+    "mappings": "AAAA;;AACAA,MAAM,CAACC,cAAP,CAAsBC,OAAtB,EAA+B,YAA/B,EAA6C;EAAEC,KAAK,EAAE;AAAT,CAA7C;AACAD,OAAO,CAACE,MAAR,GAAiB,KAAK,CAAtB;;AACA,IAAIC,MAAM,GAAGC,OAAO,CAAC,cAAD,CAApB;;AACA,IAAIC,MAAM,GAAGD,OAAO,CAAC,cAAD,CAApB;;AACA,IAAIE,oBAAoB,GAAGF,OAAO,CAAC,sBAAD,CAAlC;;AACA,SAASF,MAAT,CAAgBK,QAAhB,EAA0B;EACtB,OAAOJ,MAAM,CAACK,OAAP,CAAe,UAAUC,MAAV,EAAkBC,UAAlB,EAA8B;IAChD,IAAIC,QAAQ,GAAG,KAAf;IACA,IAAIC,SAAS,GAAG,IAAhB;IACAH,MAAM,CAACI,SAAP,CAAiBP,oBAAoB,CAACQ,wBAArB,CAA8CJ,UAA9C,EAA0D,UAAUT,KAAV,EAAiB;MACxFU,QAAQ,GAAG,IAAX;MACAC,SAAS,GAAGX,KAAZ;IACH,CAHgB,CAAjB;IAIAM,QAAQ,CAACM,SAAT,CAAmBP,oBAAoB,CAACQ,wBAArB,CAA8CJ,UAA9C,EAA0D,YAAY;MACrF,IAAIC,QAAJ,EAAc;QACVA,QAAQ,GAAG,KAAX;QACA,IAAIV,KAAK,GAAGW,SAAZ;QACAA,SAAS,GAAG,IAAZ;QACAF,UAAU,CAACK,IAAX,CAAgBd,KAAhB;MACH;IACJ,CAPkB,EAOhBI,MAAM,CAACW,IAPS,CAAnB;EAQH,CAfM,CAAP;AAgBH;;AACDhB,OAAO,CAACE,MAAR,GAAiBA,MAAjB,C,CACA"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

@@ -1,0 +1,17 @@
+{
+  "ast": null,
+  "code": "'use strict';\n\nif (typeof Promise === 'function') {\n  require('promise.prototype.finally/auto'); // eslint-disable-line global-require\n\n}\n\nrequire('./es2019');",
+  "map": {
+    "version": 3,
+    "names": ["Promise", "require"],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/airbnb-js-shims/target/es2018.js"
+    ],
+    "sourcesContent": [
+      "'use strict';\n\nif (typeof Promise === 'function') {\n  require('promise.prototype.finally/auto'); // eslint-disable-line global-require\n}\n\nrequire('./es2019');\n"
+    ],
+    "mappings": "AAAA;;AAEA,IAAI,OAAOA,OAAP,KAAmB,UAAvB,EAAmC;EACjCC,OAAO,CAAC,gCAAD,CAAP,CADiC,CACU;;AAC5C;;AAEDA,OAAO,CAAC,UAAD,CAAP"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

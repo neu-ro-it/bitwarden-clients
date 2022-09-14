@@ -1,0 +1,35 @@
+{
+  "ast": null,
+  "code": "\"use strict\";\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.defaultIfEmpty = void 0;\n\nvar lift_1 = require(\"../util/lift\");\n\nvar OperatorSubscriber_1 = require(\"./OperatorSubscriber\");\n\nfunction defaultIfEmpty(defaultValue) {\n  return lift_1.operate(function (source, subscriber) {\n    var hasValue = false;\n    source.subscribe(OperatorSubscriber_1.createOperatorSubscriber(subscriber, function (value) {\n      hasValue = true;\n      subscriber.next(value);\n    }, function () {\n      if (!hasValue) {\n        subscriber.next(defaultValue);\n      }\n\n      subscriber.complete();\n    }));\n  });\n}\n\nexports.defaultIfEmpty = defaultIfEmpty; //# sourceMappingURL=defaultIfEmpty.js.map",
+  "map": {
+    "version": 3,
+    "names": [
+      "Object",
+      "defineProperty",
+      "exports",
+      "value",
+      "defaultIfEmpty",
+      "lift_1",
+      "require",
+      "OperatorSubscriber_1",
+      "defaultValue",
+      "operate",
+      "source",
+      "subscriber",
+      "hasValue",
+      "subscribe",
+      "createOperatorSubscriber",
+      "next",
+      "complete"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/cjs/internal/operators/defaultIfEmpty.js"
+    ],
+    "sourcesContent": [
+      "\"use strict\";\nObject.defineProperty(exports, \"__esModule\", { value: true });\nexports.defaultIfEmpty = void 0;\nvar lift_1 = require(\"../util/lift\");\nvar OperatorSubscriber_1 = require(\"./OperatorSubscriber\");\nfunction defaultIfEmpty(defaultValue) {\n    return lift_1.operate(function (source, subscriber) {\n        var hasValue = false;\n        source.subscribe(OperatorSubscriber_1.createOperatorSubscriber(subscriber, function (value) {\n            hasValue = true;\n            subscriber.next(value);\n        }, function () {\n            if (!hasValue) {\n                subscriber.next(defaultValue);\n            }\n            subscriber.complete();\n        }));\n    });\n}\nexports.defaultIfEmpty = defaultIfEmpty;\n//# sourceMappingURL=defaultIfEmpty.js.map"
+    ],
+    "mappings": "AAAA;;AACAA,MAAM,CAACC,cAAP,CAAsBC,OAAtB,EAA+B,YAA/B,EAA6C;EAAEC,KAAK,EAAE;AAAT,CAA7C;AACAD,OAAO,CAACE,cAAR,GAAyB,KAAK,CAA9B;;AACA,IAAIC,MAAM,GAAGC,OAAO,CAAC,cAAD,CAApB;;AACA,IAAIC,oBAAoB,GAAGD,OAAO,CAAC,sBAAD,CAAlC;;AACA,SAASF,cAAT,CAAwBI,YAAxB,EAAsC;EAClC,OAAOH,MAAM,CAACI,OAAP,CAAe,UAAUC,MAAV,EAAkBC,UAAlB,EAA8B;IAChD,IAAIC,QAAQ,GAAG,KAAf;IACAF,MAAM,CAACG,SAAP,CAAiBN,oBAAoB,CAACO,wBAArB,CAA8CH,UAA9C,EAA0D,UAAUR,KAAV,EAAiB;MACxFS,QAAQ,GAAG,IAAX;MACAD,UAAU,CAACI,IAAX,CAAgBZ,KAAhB;IACH,CAHgB,EAGd,YAAY;MACX,IAAI,CAACS,QAAL,EAAe;QACXD,UAAU,CAACI,IAAX,CAAgBP,YAAhB;MACH;;MACDG,UAAU,CAACK,QAAX;IACH,CARgB,CAAjB;EASH,CAXM,CAAP;AAYH;;AACDd,OAAO,CAACE,cAAR,GAAyBA,cAAzB,C,CACA"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

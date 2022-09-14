@@ -1,0 +1,30 @@
+{
+  "ast": null,
+  "code": "import \"core-js/modules/es.regexp.exec.js\";\nimport \"core-js/modules/es.string.replace.js\";\nexport var MAX_TYPE_SUMMARY_LENGTH = 90;\nexport var MAX_DEFAULT_VALUE_SUMMARY_LENGTH = 50;\nexport function isTooLongForTypeSummary(value) {\n  return value.length > MAX_TYPE_SUMMARY_LENGTH;\n}\nexport function isTooLongForDefaultValueSummary(value) {\n  return value.length > MAX_DEFAULT_VALUE_SUMMARY_LENGTH;\n}\nexport function createSummaryValue(summary, detail) {\n  if (summary === detail) {\n    return {\n      summary: summary\n    };\n  }\n\n  return {\n    summary: summary,\n    detail: detail\n  };\n}\nexport var normalizeNewlines = function normalizeNewlines(string) {\n  return string.replace(/\\\\r\\\\n/g, '\\\\n');\n};",
+  "map": {
+    "version": 3,
+    "names": [
+      "MAX_TYPE_SUMMARY_LENGTH",
+      "MAX_DEFAULT_VALUE_SUMMARY_LENGTH",
+      "isTooLongForTypeSummary",
+      "value",
+      "length",
+      "isTooLongForDefaultValueSummary",
+      "createSummaryValue",
+      "summary",
+      "detail",
+      "normalizeNewlines",
+      "string",
+      "replace"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/@storybook/docs-tools/dist/esm/argTypes/utils.js"
+    ],
+    "sourcesContent": [
+      "import \"core-js/modules/es.regexp.exec.js\";\nimport \"core-js/modules/es.string.replace.js\";\nexport var MAX_TYPE_SUMMARY_LENGTH = 90;\nexport var MAX_DEFAULT_VALUE_SUMMARY_LENGTH = 50;\nexport function isTooLongForTypeSummary(value) {\n  return value.length > MAX_TYPE_SUMMARY_LENGTH;\n}\nexport function isTooLongForDefaultValueSummary(value) {\n  return value.length > MAX_DEFAULT_VALUE_SUMMARY_LENGTH;\n}\nexport function createSummaryValue(summary, detail) {\n  if (summary === detail) {\n    return {\n      summary: summary\n    };\n  }\n\n  return {\n    summary: summary,\n    detail: detail\n  };\n}\nexport var normalizeNewlines = function normalizeNewlines(string) {\n  return string.replace(/\\\\r\\\\n/g, '\\\\n');\n};"
+    ],
+    "mappings": "AAAA,OAAO,mCAAP;AACA,OAAO,sCAAP;AACA,OAAO,IAAIA,uBAAuB,GAAG,EAA9B;AACP,OAAO,IAAIC,gCAAgC,GAAG,EAAvC;AACP,OAAO,SAASC,uBAAT,CAAiCC,KAAjC,EAAwC;EAC7C,OAAOA,KAAK,CAACC,MAAN,GAAeJ,uBAAtB;AACD;AACD,OAAO,SAASK,+BAAT,CAAyCF,KAAzC,EAAgD;EACrD,OAAOA,KAAK,CAACC,MAAN,GAAeH,gCAAtB;AACD;AACD,OAAO,SAASK,kBAAT,CAA4BC,OAA5B,EAAqCC,MAArC,EAA6C;EAClD,IAAID,OAAO,KAAKC,MAAhB,EAAwB;IACtB,OAAO;MACLD,OAAO,EAAEA;IADJ,CAAP;EAGD;;EAED,OAAO;IACLA,OAAO,EAAEA,OADJ;IAELC,MAAM,EAAEA;EAFH,CAAP;AAID;AACD,OAAO,IAAIC,iBAAiB,GAAG,SAASA,iBAAT,CAA2BC,MAA3B,EAAmC;EAChE,OAAOA,MAAM,CAACC,OAAP,CAAe,SAAf,EAA0B,KAA1B,CAAP;AACD,CAFM"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

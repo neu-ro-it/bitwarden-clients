@@ -1,0 +1,37 @@
+{
+  "ast": null,
+  "code": "import \"core-js/modules/es.array.slice.js\";\nimport \"core-js/modules/es.object.freeze.js\";\n\nvar _templateObject, _templateObject2;\n\nfunction _taggedTemplateLiteral(strings, raw) {\n  if (!raw) {\n    raw = strings.slice(0);\n  }\n\n  return Object.freeze(Object.defineProperties(strings, {\n    raw: {\n      value: Object.freeze(raw)\n    }\n  }));\n}\n\nimport deprecate from 'util-deprecate';\nimport dedent from 'ts-dedent';\nexport var decorateAction = function decorateAction(_decorators) {\n  return deprecate(function () {}, dedent(_templateObject || (_templateObject = _taggedTemplateLiteral([\"\\n    decorateAction is no longer supported as of Storybook 6.0.\\n  \"]))));\n};\nvar deprecatedCallback = deprecate(function () {}, 'decorate.* is no longer supported as of Storybook 6.0.');\nexport var decorate = function decorate(_decorators) {\n  return deprecate(function () {\n    return {\n      action: deprecatedCallback,\n      actions: deprecatedCallback,\n      withActions: deprecatedCallback\n    };\n  }, dedent(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral([\"\\n    decorate is deprecated, please configure addon-actions using the addParameter api:\\n      \\n      addParameters({\\n        actions: {\\n          handles: options\\n        },\\n      });\\n    \"]))));\n};",
+  "map": {
+    "version": 3,
+    "names": [
+      "_templateObject",
+      "_templateObject2",
+      "_taggedTemplateLiteral",
+      "strings",
+      "raw",
+      "slice",
+      "Object",
+      "freeze",
+      "defineProperties",
+      "value",
+      "deprecate",
+      "dedent",
+      "decorateAction",
+      "_decorators",
+      "deprecatedCallback",
+      "decorate",
+      "action",
+      "actions",
+      "withActions"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/@storybook/addon-actions/dist/esm/preview/decorateAction.js"
+    ],
+    "sourcesContent": [
+      "import \"core-js/modules/es.array.slice.js\";\nimport \"core-js/modules/es.object.freeze.js\";\n\nvar _templateObject, _templateObject2;\n\nfunction _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }\n\nimport deprecate from 'util-deprecate';\nimport dedent from 'ts-dedent';\nexport var decorateAction = function decorateAction(_decorators) {\n  return deprecate(function () {}, dedent(_templateObject || (_templateObject = _taggedTemplateLiteral([\"\\n    decorateAction is no longer supported as of Storybook 6.0.\\n  \"]))));\n};\nvar deprecatedCallback = deprecate(function () {}, 'decorate.* is no longer supported as of Storybook 6.0.');\nexport var decorate = function decorate(_decorators) {\n  return deprecate(function () {\n    return {\n      action: deprecatedCallback,\n      actions: deprecatedCallback,\n      withActions: deprecatedCallback\n    };\n  }, dedent(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral([\"\\n    decorate is deprecated, please configure addon-actions using the addParameter api:\\n      \\n      addParameters({\\n        actions: {\\n          handles: options\\n        },\\n      });\\n    \"]))));\n};"
+    ],
+    "mappings": "AAAA,OAAO,mCAAP;AACA,OAAO,qCAAP;;AAEA,IAAIA,eAAJ,EAAqBC,gBAArB;;AAEA,SAASC,sBAAT,CAAgCC,OAAhC,EAAyCC,GAAzC,EAA8C;EAAE,IAAI,CAACA,GAAL,EAAU;IAAEA,GAAG,GAAGD,OAAO,CAACE,KAAR,CAAc,CAAd,CAAN;EAAyB;;EAAC,OAAOC,MAAM,CAACC,MAAP,CAAcD,MAAM,CAACE,gBAAP,CAAwBL,OAAxB,EAAiC;IAAEC,GAAG,EAAE;MAAEK,KAAK,EAAEH,MAAM,CAACC,MAAP,CAAcH,GAAd;IAAT;EAAP,CAAjC,CAAd,CAAP;AAAiG;;AAEvL,OAAOM,SAAP,MAAsB,gBAAtB;AACA,OAAOC,MAAP,MAAmB,WAAnB;AACA,OAAO,IAAIC,cAAc,GAAG,SAASA,cAAT,CAAwBC,WAAxB,EAAqC;EAC/D,OAAOH,SAAS,CAAC,YAAY,CAAE,CAAf,EAAiBC,MAAM,CAACX,eAAe,KAAKA,eAAe,GAAGE,sBAAsB,CAAC,CAAC,sEAAD,CAAD,CAA7C,CAAhB,CAAvB,CAAhB;AACD,CAFM;AAGP,IAAIY,kBAAkB,GAAGJ,SAAS,CAAC,YAAY,CAAE,CAAf,EAAiB,wDAAjB,CAAlC;AACA,OAAO,IAAIK,QAAQ,GAAG,SAASA,QAAT,CAAkBF,WAAlB,EAA+B;EACnD,OAAOH,SAAS,CAAC,YAAY;IAC3B,OAAO;MACLM,MAAM,EAAEF,kBADH;MAELG,OAAO,EAAEH,kBAFJ;MAGLI,WAAW,EAAEJ;IAHR,CAAP;EAKD,CANe,EAMbH,MAAM,CAACV,gBAAgB,KAAKA,gBAAgB,GAAGC,sBAAsB,CAAC,CAAC,sMAAD,CAAD,CAA9C,CAAjB,CANO,CAAhB;AAOD,CARM"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

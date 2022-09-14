@@ -1,0 +1,48 @@
+{
+  "ast": null,
+  "code": "\"use strict\";\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.exhaustMap = void 0;\n\nvar map_1 = require(\"./map\");\n\nvar innerFrom_1 = require(\"../observable/innerFrom\");\n\nvar lift_1 = require(\"../util/lift\");\n\nvar OperatorSubscriber_1 = require(\"./OperatorSubscriber\");\n\nfunction exhaustMap(project, resultSelector) {\n  if (resultSelector) {\n    return function (source) {\n      return source.pipe(exhaustMap(function (a, i) {\n        return innerFrom_1.innerFrom(project(a, i)).pipe(map_1.map(function (b, ii) {\n          return resultSelector(a, b, i, ii);\n        }));\n      }));\n    };\n  }\n\n  return lift_1.operate(function (source, subscriber) {\n    var index = 0;\n    var innerSub = null;\n    var isComplete = false;\n    source.subscribe(OperatorSubscriber_1.createOperatorSubscriber(subscriber, function (outerValue) {\n      if (!innerSub) {\n        innerSub = OperatorSubscriber_1.createOperatorSubscriber(subscriber, undefined, function () {\n          innerSub = null;\n          isComplete && subscriber.complete();\n        });\n        innerFrom_1.innerFrom(project(outerValue, index++)).subscribe(innerSub);\n      }\n    }, function () {\n      isComplete = true;\n      !innerSub && subscriber.complete();\n    }));\n  });\n}\n\nexports.exhaustMap = exhaustMap; //# sourceMappingURL=exhaustMap.js.map",
+  "map": {
+    "version": 3,
+    "names": [
+      "Object",
+      "defineProperty",
+      "exports",
+      "value",
+      "exhaustMap",
+      "map_1",
+      "require",
+      "innerFrom_1",
+      "lift_1",
+      "OperatorSubscriber_1",
+      "project",
+      "resultSelector",
+      "source",
+      "pipe",
+      "a",
+      "i",
+      "innerFrom",
+      "map",
+      "b",
+      "ii",
+      "operate",
+      "subscriber",
+      "index",
+      "innerSub",
+      "isComplete",
+      "subscribe",
+      "createOperatorSubscriber",
+      "outerValue",
+      "undefined",
+      "complete"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/cjs/internal/operators/exhaustMap.js"
+    ],
+    "sourcesContent": [
+      "\"use strict\";\nObject.defineProperty(exports, \"__esModule\", { value: true });\nexports.exhaustMap = void 0;\nvar map_1 = require(\"./map\");\nvar innerFrom_1 = require(\"../observable/innerFrom\");\nvar lift_1 = require(\"../util/lift\");\nvar OperatorSubscriber_1 = require(\"./OperatorSubscriber\");\nfunction exhaustMap(project, resultSelector) {\n    if (resultSelector) {\n        return function (source) {\n            return source.pipe(exhaustMap(function (a, i) { return innerFrom_1.innerFrom(project(a, i)).pipe(map_1.map(function (b, ii) { return resultSelector(a, b, i, ii); })); }));\n        };\n    }\n    return lift_1.operate(function (source, subscriber) {\n        var index = 0;\n        var innerSub = null;\n        var isComplete = false;\n        source.subscribe(OperatorSubscriber_1.createOperatorSubscriber(subscriber, function (outerValue) {\n            if (!innerSub) {\n                innerSub = OperatorSubscriber_1.createOperatorSubscriber(subscriber, undefined, function () {\n                    innerSub = null;\n                    isComplete && subscriber.complete();\n                });\n                innerFrom_1.innerFrom(project(outerValue, index++)).subscribe(innerSub);\n            }\n        }, function () {\n            isComplete = true;\n            !innerSub && subscriber.complete();\n        }));\n    });\n}\nexports.exhaustMap = exhaustMap;\n//# sourceMappingURL=exhaustMap.js.map"
+    ],
+    "mappings": "AAAA;;AACAA,MAAM,CAACC,cAAP,CAAsBC,OAAtB,EAA+B,YAA/B,EAA6C;EAAEC,KAAK,EAAE;AAAT,CAA7C;AACAD,OAAO,CAACE,UAAR,GAAqB,KAAK,CAA1B;;AACA,IAAIC,KAAK,GAAGC,OAAO,CAAC,OAAD,CAAnB;;AACA,IAAIC,WAAW,GAAGD,OAAO,CAAC,yBAAD,CAAzB;;AACA,IAAIE,MAAM,GAAGF,OAAO,CAAC,cAAD,CAApB;;AACA,IAAIG,oBAAoB,GAAGH,OAAO,CAAC,sBAAD,CAAlC;;AACA,SAASF,UAAT,CAAoBM,OAApB,EAA6BC,cAA7B,EAA6C;EACzC,IAAIA,cAAJ,EAAoB;IAChB,OAAO,UAAUC,MAAV,EAAkB;MACrB,OAAOA,MAAM,CAACC,IAAP,CAAYT,UAAU,CAAC,UAAUU,CAAV,EAAaC,CAAb,EAAgB;QAAE,OAAOR,WAAW,CAACS,SAAZ,CAAsBN,OAAO,CAACI,CAAD,EAAIC,CAAJ,CAA7B,EAAqCF,IAArC,CAA0CR,KAAK,CAACY,GAAN,CAAU,UAAUC,CAAV,EAAaC,EAAb,EAAiB;UAAE,OAAOR,cAAc,CAACG,CAAD,EAAII,CAAJ,EAAOH,CAAP,EAAUI,EAAV,CAArB;QAAqC,CAAlE,CAA1C,CAAP;MAAwH,CAA3I,CAAtB,CAAP;IACH,CAFD;EAGH;;EACD,OAAOX,MAAM,CAACY,OAAP,CAAe,UAAUR,MAAV,EAAkBS,UAAlB,EAA8B;IAChD,IAAIC,KAAK,GAAG,CAAZ;IACA,IAAIC,QAAQ,GAAG,IAAf;IACA,IAAIC,UAAU,GAAG,KAAjB;IACAZ,MAAM,CAACa,SAAP,CAAiBhB,oBAAoB,CAACiB,wBAArB,CAA8CL,UAA9C,EAA0D,UAAUM,UAAV,EAAsB;MAC7F,IAAI,CAACJ,QAAL,EAAe;QACXA,QAAQ,GAAGd,oBAAoB,CAACiB,wBAArB,CAA8CL,UAA9C,EAA0DO,SAA1D,EAAqE,YAAY;UACxFL,QAAQ,GAAG,IAAX;UACAC,UAAU,IAAIH,UAAU,CAACQ,QAAX,EAAd;QACH,CAHU,CAAX;QAIAtB,WAAW,CAACS,SAAZ,CAAsBN,OAAO,CAACiB,UAAD,EAAaL,KAAK,EAAlB,CAA7B,EAAoDG,SAApD,CAA8DF,QAA9D;MACH;IACJ,CARgB,EAQd,YAAY;MACXC,UAAU,GAAG,IAAb;MACA,CAACD,QAAD,IAAaF,UAAU,CAACQ,QAAX,EAAb;IACH,CAXgB,CAAjB;EAYH,CAhBM,CAAP;AAiBH;;AACD3B,OAAO,CAACE,UAAR,GAAqBA,UAArB,C,CACA"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

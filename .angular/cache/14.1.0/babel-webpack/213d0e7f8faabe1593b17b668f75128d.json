@@ -1,0 +1,44 @@
+{
+  "ast": null,
+  "code": "'use strict';\n\nvar requirePromise = require('./requirePromise');\n\nrequirePromise();\n\nvar PromiseResolve = require('es-abstract/2021/PromiseResolve');\n\nvar Type = require('es-abstract/2021/Type');\n\nvar iterate = require('iterate-value');\n\nvar map = require('array.prototype.map');\n\nvar GetIntrinsic = require('get-intrinsic');\n\nvar callBind = require('call-bind');\n\nvar all = callBind(GetIntrinsic('%Promise.all%'));\nvar reject = callBind(GetIntrinsic('%Promise.reject%'));\n\nmodule.exports = function allSettled(iterable) {\n  var C = this;\n\n  if (Type(C) !== 'Object') {\n    throw new TypeError('`this` value must be an object');\n  }\n\n  var values = iterate(iterable);\n  return all(C, map(values, function (item) {\n    var onFulfill = function (value) {\n      return {\n        status: 'fulfilled',\n        value: value\n      };\n    };\n\n    var onReject = function (reason) {\n      return {\n        status: 'rejected',\n        reason: reason\n      };\n    };\n\n    var itemPromise = PromiseResolve(C, item);\n\n    try {\n      return itemPromise.then(onFulfill, onReject);\n    } catch (e) {\n      return reject(C, e);\n    }\n  }));\n};",
+  "map": {
+    "version": 3,
+    "names": [
+      "requirePromise",
+      "require",
+      "PromiseResolve",
+      "Type",
+      "iterate",
+      "map",
+      "GetIntrinsic",
+      "callBind",
+      "all",
+      "reject",
+      "module",
+      "exports",
+      "allSettled",
+      "iterable",
+      "C",
+      "TypeError",
+      "values",
+      "item",
+      "onFulfill",
+      "value",
+      "status",
+      "onReject",
+      "reason",
+      "itemPromise",
+      "then",
+      "e"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/promise.allsettled/implementation.js"
+    ],
+    "sourcesContent": [
+      "'use strict';\n\nvar requirePromise = require('./requirePromise');\n\nrequirePromise();\n\nvar PromiseResolve = require('es-abstract/2021/PromiseResolve');\nvar Type = require('es-abstract/2021/Type');\nvar iterate = require('iterate-value');\nvar map = require('array.prototype.map');\nvar GetIntrinsic = require('get-intrinsic');\nvar callBind = require('call-bind');\n\nvar all = callBind(GetIntrinsic('%Promise.all%'));\nvar reject = callBind(GetIntrinsic('%Promise.reject%'));\n\nmodule.exports = function allSettled(iterable) {\n\tvar C = this;\n\tif (Type(C) !== 'Object') {\n\t\tthrow new TypeError('`this` value must be an object');\n\t}\n\tvar values = iterate(iterable);\n\treturn all(C, map(values, function (item) {\n\t\tvar onFulfill = function (value) {\n\t\t\treturn { status: 'fulfilled', value: value };\n\t\t};\n\t\tvar onReject = function (reason) {\n\t\t\treturn { status: 'rejected', reason: reason };\n\t\t};\n\t\tvar itemPromise = PromiseResolve(C, item);\n\t\ttry {\n\t\t\treturn itemPromise.then(onFulfill, onReject);\n\t\t} catch (e) {\n\t\t\treturn reject(C, e);\n\t\t}\n\t}));\n};\n"
+    ],
+    "mappings": "AAAA;;AAEA,IAAIA,cAAc,GAAGC,OAAO,CAAC,kBAAD,CAA5B;;AAEAD,cAAc;;AAEd,IAAIE,cAAc,GAAGD,OAAO,CAAC,iCAAD,CAA5B;;AACA,IAAIE,IAAI,GAAGF,OAAO,CAAC,uBAAD,CAAlB;;AACA,IAAIG,OAAO,GAAGH,OAAO,CAAC,eAAD,CAArB;;AACA,IAAII,GAAG,GAAGJ,OAAO,CAAC,qBAAD,CAAjB;;AACA,IAAIK,YAAY,GAAGL,OAAO,CAAC,eAAD,CAA1B;;AACA,IAAIM,QAAQ,GAAGN,OAAO,CAAC,WAAD,CAAtB;;AAEA,IAAIO,GAAG,GAAGD,QAAQ,CAACD,YAAY,CAAC,eAAD,CAAb,CAAlB;AACA,IAAIG,MAAM,GAAGF,QAAQ,CAACD,YAAY,CAAC,kBAAD,CAAb,CAArB;;AAEAI,MAAM,CAACC,OAAP,GAAiB,SAASC,UAAT,CAAoBC,QAApB,EAA8B;EAC9C,IAAIC,CAAC,GAAG,IAAR;;EACA,IAAIX,IAAI,CAACW,CAAD,CAAJ,KAAY,QAAhB,EAA0B;IACzB,MAAM,IAAIC,SAAJ,CAAc,gCAAd,CAAN;EACA;;EACD,IAAIC,MAAM,GAAGZ,OAAO,CAACS,QAAD,CAApB;EACA,OAAOL,GAAG,CAACM,CAAD,EAAIT,GAAG,CAACW,MAAD,EAAS,UAAUC,IAAV,EAAgB;IACzC,IAAIC,SAAS,GAAG,UAAUC,KAAV,EAAiB;MAChC,OAAO;QAAEC,MAAM,EAAE,WAAV;QAAuBD,KAAK,EAAEA;MAA9B,CAAP;IACA,CAFD;;IAGA,IAAIE,QAAQ,GAAG,UAAUC,MAAV,EAAkB;MAChC,OAAO;QAAEF,MAAM,EAAE,UAAV;QAAsBE,MAAM,EAAEA;MAA9B,CAAP;IACA,CAFD;;IAGA,IAAIC,WAAW,GAAGrB,cAAc,CAACY,CAAD,EAAIG,IAAJ,CAAhC;;IACA,IAAI;MACH,OAAOM,WAAW,CAACC,IAAZ,CAAiBN,SAAjB,EAA4BG,QAA5B,CAAP;IACA,CAFD,CAEE,OAAOI,CAAP,EAAU;MACX,OAAOhB,MAAM,CAACK,CAAD,EAAIW,CAAJ,CAAb;IACA;EACD,CAbgB,CAAP,CAAV;AAcA,CApBD"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

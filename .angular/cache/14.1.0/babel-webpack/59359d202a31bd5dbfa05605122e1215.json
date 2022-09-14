@@ -1,0 +1,50 @@
+{
+  "ast": null,
+  "code": "import \"core-js/modules/es.regexp.exec.js\";\nimport \"core-js/modules/es.string.split.js\";\nimport \"core-js/modules/es.string.trim.js\";\nimport \"core-js/modules/es.function.name.js\";\nvar STORY_KIND_PATH_SEPARATOR = /\\s*\\/\\s*/;\nexport var storySort = function storySort() {\n  var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};\n  return function (a, b) {\n    // If the two stories have the same story kind, then use the default\n    // ordering, which is the order they are defined in the story file.\n    // only when includeNames is falsy\n    if (a.title === b.title && !options.includeNames) {\n      return 0;\n    } // Get the StorySortParameter options.\n\n\n    var method = options.method || 'configure';\n    var order = options.order || []; // Examine each part of the story title in turn.\n\n    var storyTitleA = a.title.trim().split(STORY_KIND_PATH_SEPARATOR);\n    var storyTitleB = b.title.trim().split(STORY_KIND_PATH_SEPARATOR);\n\n    if (options.includeNames) {\n      storyTitleA.push(a.name);\n      storyTitleB.push(b.name);\n    }\n\n    var depth = 0;\n\n    while (storyTitleA[depth] || storyTitleB[depth]) {\n      // Stories with a shorter depth should go first.\n      if (!storyTitleA[depth]) {\n        return -1;\n      }\n\n      if (!storyTitleB[depth]) {\n        return 1;\n      } // Compare the next part of the story title.\n\n\n      var nameA = storyTitleA[depth];\n      var nameB = storyTitleB[depth];\n\n      if (nameA !== nameB) {\n        // Look for the names in the given `order` array.\n        var indexA = order.indexOf(nameA);\n        var indexB = order.indexOf(nameB);\n        var indexWildcard = order.indexOf('*'); // If at least one of the names is found, sort by the `order` array.\n\n        if (indexA !== -1 || indexB !== -1) {\n          // If one of the names is not found and there is a wildcard, insert it at the wildcard position.\n          // Otherwise, list it last.\n          if (indexA === -1) {\n            if (indexWildcard !== -1) {\n              indexA = indexWildcard;\n            } else {\n              indexA = order.length;\n            }\n          }\n\n          if (indexB === -1) {\n            if (indexWildcard !== -1) {\n              indexB = indexWildcard;\n            } else {\n              indexB = order.length;\n            }\n          }\n\n          return indexA - indexB;\n        } // Use the default configure() order.\n\n\n        if (method === 'configure') {\n          return 0;\n        } // Otherwise, use alphabetical order.\n\n\n        return nameA.localeCompare(nameB, options.locales ? options.locales : undefined, {\n          numeric: true,\n          sensitivity: 'accent'\n        });\n      } // If a nested array is provided for a name, use it for ordering.\n\n\n      var index = order.indexOf(nameA);\n      order = index !== -1 && Array.isArray(order[index + 1]) ? order[index + 1] : []; // We'll need to look at the next part of the name.\n\n      depth += 1;\n    } // Identical story titles. The shortcut at the start of this function prevents\n    // this from ever being used.\n\n    /* istanbul ignore next */\n\n\n    return 0;\n  };\n};",
+  "map": {
+    "version": 3,
+    "names": [
+      "STORY_KIND_PATH_SEPARATOR",
+      "storySort",
+      "options",
+      "arguments",
+      "length",
+      "undefined",
+      "a",
+      "b",
+      "title",
+      "includeNames",
+      "method",
+      "order",
+      "storyTitleA",
+      "trim",
+      "split",
+      "storyTitleB",
+      "push",
+      "name",
+      "depth",
+      "nameA",
+      "nameB",
+      "indexA",
+      "indexOf",
+      "indexB",
+      "indexWildcard",
+      "localeCompare",
+      "locales",
+      "numeric",
+      "sensitivity",
+      "index",
+      "Array",
+      "isArray"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/@storybook/store/dist/esm/storySort.js"
+    ],
+    "sourcesContent": [
+      "import \"core-js/modules/es.regexp.exec.js\";\nimport \"core-js/modules/es.string.split.js\";\nimport \"core-js/modules/es.string.trim.js\";\nimport \"core-js/modules/es.function.name.js\";\nvar STORY_KIND_PATH_SEPARATOR = /\\s*\\/\\s*/;\nexport var storySort = function storySort() {\n  var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};\n  return function (a, b) {\n    // If the two stories have the same story kind, then use the default\n    // ordering, which is the order they are defined in the story file.\n    // only when includeNames is falsy\n    if (a.title === b.title && !options.includeNames) {\n      return 0;\n    } // Get the StorySortParameter options.\n\n\n    var method = options.method || 'configure';\n    var order = options.order || []; // Examine each part of the story title in turn.\n\n    var storyTitleA = a.title.trim().split(STORY_KIND_PATH_SEPARATOR);\n    var storyTitleB = b.title.trim().split(STORY_KIND_PATH_SEPARATOR);\n\n    if (options.includeNames) {\n      storyTitleA.push(a.name);\n      storyTitleB.push(b.name);\n    }\n\n    var depth = 0;\n\n    while (storyTitleA[depth] || storyTitleB[depth]) {\n      // Stories with a shorter depth should go first.\n      if (!storyTitleA[depth]) {\n        return -1;\n      }\n\n      if (!storyTitleB[depth]) {\n        return 1;\n      } // Compare the next part of the story title.\n\n\n      var nameA = storyTitleA[depth];\n      var nameB = storyTitleB[depth];\n\n      if (nameA !== nameB) {\n        // Look for the names in the given `order` array.\n        var indexA = order.indexOf(nameA);\n        var indexB = order.indexOf(nameB);\n        var indexWildcard = order.indexOf('*'); // If at least one of the names is found, sort by the `order` array.\n\n        if (indexA !== -1 || indexB !== -1) {\n          // If one of the names is not found and there is a wildcard, insert it at the wildcard position.\n          // Otherwise, list it last.\n          if (indexA === -1) {\n            if (indexWildcard !== -1) {\n              indexA = indexWildcard;\n            } else {\n              indexA = order.length;\n            }\n          }\n\n          if (indexB === -1) {\n            if (indexWildcard !== -1) {\n              indexB = indexWildcard;\n            } else {\n              indexB = order.length;\n            }\n          }\n\n          return indexA - indexB;\n        } // Use the default configure() order.\n\n\n        if (method === 'configure') {\n          return 0;\n        } // Otherwise, use alphabetical order.\n\n\n        return nameA.localeCompare(nameB, options.locales ? options.locales : undefined, {\n          numeric: true,\n          sensitivity: 'accent'\n        });\n      } // If a nested array is provided for a name, use it for ordering.\n\n\n      var index = order.indexOf(nameA);\n      order = index !== -1 && Array.isArray(order[index + 1]) ? order[index + 1] : []; // We'll need to look at the next part of the name.\n\n      depth += 1;\n    } // Identical story titles. The shortcut at the start of this function prevents\n    // this from ever being used.\n\n    /* istanbul ignore next */\n\n\n    return 0;\n  };\n};"
+    ],
+    "mappings": "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"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

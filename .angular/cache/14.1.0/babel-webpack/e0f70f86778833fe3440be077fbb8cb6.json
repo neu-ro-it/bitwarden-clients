@@ -1,0 +1,34 @@
+{
+  "ast": null,
+  "code": "import \"core-js/modules/es.array.slice.js\";\nimport \"core-js/modules/es.object.freeze.js\";\n\nvar _templateObject;\n\nfunction _taggedTemplateLiteral(strings, raw) {\n  if (!raw) {\n    raw = strings.slice(0);\n  }\n\n  return Object.freeze(Object.defineProperties(strings, {\n    raw: {\n      value: Object.freeze(raw)\n    }\n  }));\n}\n\nimport React from 'react';\nimport deprecate from 'util-deprecate';\nimport dedent from 'ts-dedent';\nimport { Canvas } from './Canvas';\nexport var Preview = deprecate(function (props) {\n  return /*#__PURE__*/React.createElement(Canvas, props);\n}, dedent(_templateObject || (_templateObject = _taggedTemplateLiteral([\"\\n    Preview doc block has been renamed to Canvas.\\n\\n    https://github.com/storybookjs/storybook/blob/next/MIGRATION.md#previewprops-renamed\\n  \"]))));",
+  "map": {
+    "version": 3,
+    "names": [
+      "_templateObject",
+      "_taggedTemplateLiteral",
+      "strings",
+      "raw",
+      "slice",
+      "Object",
+      "freeze",
+      "defineProperties",
+      "value",
+      "React",
+      "deprecate",
+      "dedent",
+      "Canvas",
+      "Preview",
+      "props",
+      "createElement"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/@storybook/addon-docs/dist/esm/blocks/Preview.js"
+    ],
+    "sourcesContent": [
+      "import \"core-js/modules/es.array.slice.js\";\nimport \"core-js/modules/es.object.freeze.js\";\n\nvar _templateObject;\n\nfunction _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }\n\nimport React from 'react';\nimport deprecate from 'util-deprecate';\nimport dedent from 'ts-dedent';\nimport { Canvas } from './Canvas';\nexport var Preview = deprecate(function (props) {\n  return /*#__PURE__*/React.createElement(Canvas, props);\n}, dedent(_templateObject || (_templateObject = _taggedTemplateLiteral([\"\\n    Preview doc block has been renamed to Canvas.\\n\\n    https://github.com/storybookjs/storybook/blob/next/MIGRATION.md#previewprops-renamed\\n  \"]))));"
+    ],
+    "mappings": "AAAA,OAAO,mCAAP;AACA,OAAO,qCAAP;;AAEA,IAAIA,eAAJ;;AAEA,SAASC,sBAAT,CAAgCC,OAAhC,EAAyCC,GAAzC,EAA8C;EAAE,IAAI,CAACA,GAAL,EAAU;IAAEA,GAAG,GAAGD,OAAO,CAACE,KAAR,CAAc,CAAd,CAAN;EAAyB;;EAAC,OAAOC,MAAM,CAACC,MAAP,CAAcD,MAAM,CAACE,gBAAP,CAAwBL,OAAxB,EAAiC;IAAEC,GAAG,EAAE;MAAEK,KAAK,EAAEH,MAAM,CAACC,MAAP,CAAcH,GAAd;IAAT;EAAP,CAAjC,CAAd,CAAP;AAAiG;;AAEvL,OAAOM,KAAP,MAAkB,OAAlB;AACA,OAAOC,SAAP,MAAsB,gBAAtB;AACA,OAAOC,MAAP,MAAmB,WAAnB;AACA,SAASC,MAAT,QAAuB,UAAvB;AACA,OAAO,IAAIC,OAAO,GAAGH,SAAS,CAAC,UAAUI,KAAV,EAAiB;EAC9C,OAAO,aAAaL,KAAK,CAACM,aAAN,CAAoBH,MAApB,EAA4BE,KAA5B,CAApB;AACD,CAF6B,EAE3BH,MAAM,CAACX,eAAe,KAAKA,eAAe,GAAGC,sBAAsB,CAAC,CAAC,qJAAD,CAAD,CAA7C,CAAhB,CAFqB,CAAvB"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

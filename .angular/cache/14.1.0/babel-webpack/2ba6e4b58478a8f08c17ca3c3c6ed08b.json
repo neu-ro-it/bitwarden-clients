@@ -1,0 +1,15 @@
+{
+  "ast": null,
+  "code": "'use strict';\n\nrequire('./target/es5');",
+  "map": {
+    "version": 3,
+    "names": ["require"],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/airbnb-js-shims/index.js"
+    ],
+    "sourcesContent": ["'use strict';\n\nrequire('./target/es5');\n"],
+    "mappings": "AAAA;;AAEAA,OAAO,CAAC,cAAD,CAAP"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

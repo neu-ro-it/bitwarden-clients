@@ -1,0 +1,29 @@
+{
+  "ast": null,
+  "code": "'use strict';\n\nvar requirePromise = require('./requirePromise');\n\nvar getPolyfill = require('./polyfill');\n\nvar define = require('define-properties');\n\nmodule.exports = function shimPromiseFinally() {\n  requirePromise();\n  var polyfill = getPolyfill();\n  define(Promise.prototype, {\n    'finally': polyfill\n  }, {\n    'finally': function testFinally() {\n      return Promise.prototype['finally'] !== polyfill;\n    }\n  });\n  return polyfill;\n};",
+  "map": {
+    "version": 3,
+    "names": [
+      "requirePromise",
+      "require",
+      "getPolyfill",
+      "define",
+      "module",
+      "exports",
+      "shimPromiseFinally",
+      "polyfill",
+      "Promise",
+      "prototype",
+      "testFinally"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/promise.prototype.finally/shim.js"
+    ],
+    "sourcesContent": [
+      "'use strict';\n\nvar requirePromise = require('./requirePromise');\n\nvar getPolyfill = require('./polyfill');\nvar define = require('define-properties');\n\nmodule.exports = function shimPromiseFinally() {\n\trequirePromise();\n\n\tvar polyfill = getPolyfill();\n\tdefine(Promise.prototype, { 'finally': polyfill }, {\n\t\t'finally': function testFinally() {\n\t\t\treturn Promise.prototype['finally'] !== polyfill;\n\t\t}\n\t});\n\treturn polyfill;\n};\n"
+    ],
+    "mappings": "AAAA;;AAEA,IAAIA,cAAc,GAAGC,OAAO,CAAC,kBAAD,CAA5B;;AAEA,IAAIC,WAAW,GAAGD,OAAO,CAAC,YAAD,CAAzB;;AACA,IAAIE,MAAM,GAAGF,OAAO,CAAC,mBAAD,CAApB;;AAEAG,MAAM,CAACC,OAAP,GAAiB,SAASC,kBAAT,GAA8B;EAC9CN,cAAc;EAEd,IAAIO,QAAQ,GAAGL,WAAW,EAA1B;EACAC,MAAM,CAACK,OAAO,CAACC,SAAT,EAAoB;IAAE,WAAWF;EAAb,CAApB,EAA6C;IAClD,WAAW,SAASG,WAAT,GAAuB;MACjC,OAAOF,OAAO,CAACC,SAAR,CAAkB,SAAlB,MAAiCF,QAAxC;IACA;EAHiD,CAA7C,CAAN;EAKA,OAAOA,QAAP;AACA,CAVD"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

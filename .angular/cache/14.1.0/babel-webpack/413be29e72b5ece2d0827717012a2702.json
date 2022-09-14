@@ -1,0 +1,17 @@
+{
+  "ast": null,
+  "code": "import typescript from \"refractor/lang/typescript.js\";\n;\nexport default typescript;",
+  "map": {
+    "version": 3,
+    "names": ["typescript"],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/react-syntax-highlighter/dist/esm/languages/prism/typescript.js"
+    ],
+    "sourcesContent": [
+      "import typescript from \"refractor/lang/typescript.js\";\n;\nexport default typescript;"
+    ],
+    "mappings": "AAAA,OAAOA,UAAP,MAAuB,8BAAvB;AACA;AACA,eAAeA,UAAf"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

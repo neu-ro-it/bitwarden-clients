@@ -1,0 +1,47 @@
+{
+  "ast": null,
+  "code": "\"use strict\";\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.tap = void 0;\n\nvar isFunction_1 = require(\"../util/isFunction\");\n\nvar lift_1 = require(\"../util/lift\");\n\nvar OperatorSubscriber_1 = require(\"./OperatorSubscriber\");\n\nvar identity_1 = require(\"../util/identity\");\n\nfunction tap(observerOrNext, error, complete) {\n  var tapObserver = isFunction_1.isFunction(observerOrNext) || error || complete ? {\n    next: observerOrNext,\n    error: error,\n    complete: complete\n  } : observerOrNext;\n  return tapObserver ? lift_1.operate(function (source, subscriber) {\n    var _a;\n\n    (_a = tapObserver.subscribe) === null || _a === void 0 ? void 0 : _a.call(tapObserver);\n    var isUnsub = true;\n    source.subscribe(OperatorSubscriber_1.createOperatorSubscriber(subscriber, function (value) {\n      var _a;\n\n      (_a = tapObserver.next) === null || _a === void 0 ? void 0 : _a.call(tapObserver, value);\n      subscriber.next(value);\n    }, function () {\n      var _a;\n\n      isUnsub = false;\n      (_a = tapObserver.complete) === null || _a === void 0 ? void 0 : _a.call(tapObserver);\n      subscriber.complete();\n    }, function (err) {\n      var _a;\n\n      isUnsub = false;\n      (_a = tapObserver.error) === null || _a === void 0 ? void 0 : _a.call(tapObserver, err);\n      subscriber.error(err);\n    }, function () {\n      var _a, _b;\n\n      if (isUnsub) {\n        (_a = tapObserver.unsubscribe) === null || _a === void 0 ? void 0 : _a.call(tapObserver);\n      }\n\n      (_b = tapObserver.finalize) === null || _b === void 0 ? void 0 : _b.call(tapObserver);\n    }));\n  }) : identity_1.identity;\n}\n\nexports.tap = tap; //# sourceMappingURL=tap.js.map",
+  "map": {
+    "version": 3,
+    "names": [
+      "Object",
+      "defineProperty",
+      "exports",
+      "value",
+      "tap",
+      "isFunction_1",
+      "require",
+      "lift_1",
+      "OperatorSubscriber_1",
+      "identity_1",
+      "observerOrNext",
+      "error",
+      "complete",
+      "tapObserver",
+      "isFunction",
+      "next",
+      "operate",
+      "source",
+      "subscriber",
+      "_a",
+      "subscribe",
+      "call",
+      "isUnsub",
+      "createOperatorSubscriber",
+      "err",
+      "_b",
+      "unsubscribe",
+      "finalize",
+      "identity"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/cjs/internal/operators/tap.js"
+    ],
+    "sourcesContent": [
+      "\"use strict\";\nObject.defineProperty(exports, \"__esModule\", { value: true });\nexports.tap = void 0;\nvar isFunction_1 = require(\"../util/isFunction\");\nvar lift_1 = require(\"../util/lift\");\nvar OperatorSubscriber_1 = require(\"./OperatorSubscriber\");\nvar identity_1 = require(\"../util/identity\");\nfunction tap(observerOrNext, error, complete) {\n    var tapObserver = isFunction_1.isFunction(observerOrNext) || error || complete\n        ?\n            { next: observerOrNext, error: error, complete: complete }\n        : observerOrNext;\n    return tapObserver\n        ? lift_1.operate(function (source, subscriber) {\n            var _a;\n            (_a = tapObserver.subscribe) === null || _a === void 0 ? void 0 : _a.call(tapObserver);\n            var isUnsub = true;\n            source.subscribe(OperatorSubscriber_1.createOperatorSubscriber(subscriber, function (value) {\n                var _a;\n                (_a = tapObserver.next) === null || _a === void 0 ? void 0 : _a.call(tapObserver, value);\n                subscriber.next(value);\n            }, function () {\n                var _a;\n                isUnsub = false;\n                (_a = tapObserver.complete) === null || _a === void 0 ? void 0 : _a.call(tapObserver);\n                subscriber.complete();\n            }, function (err) {\n                var _a;\n                isUnsub = false;\n                (_a = tapObserver.error) === null || _a === void 0 ? void 0 : _a.call(tapObserver, err);\n                subscriber.error(err);\n            }, function () {\n                var _a, _b;\n                if (isUnsub) {\n                    (_a = tapObserver.unsubscribe) === null || _a === void 0 ? void 0 : _a.call(tapObserver);\n                }\n                (_b = tapObserver.finalize) === null || _b === void 0 ? void 0 : _b.call(tapObserver);\n            }));\n        })\n        :\n            identity_1.identity;\n}\nexports.tap = tap;\n//# sourceMappingURL=tap.js.map"
+    ],
+    "mappings": "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"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

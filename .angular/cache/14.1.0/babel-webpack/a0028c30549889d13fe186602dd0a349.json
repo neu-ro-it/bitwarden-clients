@@ -1,0 +1,17 @@
+{
+  "ast": null,
+  "code": "export var ADDON_ID = 'storybook/measure-addon';\nexport var TOOL_ID = \"\".concat(ADDON_ID, \"/tool\");\nexport var PARAM_KEY = 'measureEnabled';\nexport var EVENTS = {\n  RESULT: \"\".concat(ADDON_ID, \"/result\"),\n  REQUEST: \"\".concat(ADDON_ID, \"/request\"),\n  CLEAR: \"\".concat(ADDON_ID, \"/clear\")\n};",
+  "map": {
+    "version": 3,
+    "names": ["ADDON_ID", "TOOL_ID", "concat", "PARAM_KEY", "EVENTS", "RESULT", "REQUEST", "CLEAR"],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/@storybook/addon-measure/dist/esm/constants.js"
+    ],
+    "sourcesContent": [
+      "export var ADDON_ID = 'storybook/measure-addon';\nexport var TOOL_ID = \"\".concat(ADDON_ID, \"/tool\");\nexport var PARAM_KEY = 'measureEnabled';\nexport var EVENTS = {\n  RESULT: \"\".concat(ADDON_ID, \"/result\"),\n  REQUEST: \"\".concat(ADDON_ID, \"/request\"),\n  CLEAR: \"\".concat(ADDON_ID, \"/clear\")\n};"
+    ],
+    "mappings": "AAAA,OAAO,IAAIA,QAAQ,GAAG,yBAAf;AACP,OAAO,IAAIC,OAAO,GAAG,GAAGC,MAAH,CAAUF,QAAV,EAAoB,OAApB,CAAd;AACP,OAAO,IAAIG,SAAS,GAAG,gBAAhB;AACP,OAAO,IAAIC,MAAM,GAAG;EAClBC,MAAM,EAAE,GAAGH,MAAH,CAAUF,QAAV,EAAoB,SAApB,CADU;EAElBM,OAAO,EAAE,GAAGJ,MAAH,CAAUF,QAAV,EAAoB,UAApB,CAFS;EAGlBO,KAAK,EAAE,GAAGL,MAAH,CAAUF,QAAV,EAAoB,QAApB;AAHW,CAAb"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

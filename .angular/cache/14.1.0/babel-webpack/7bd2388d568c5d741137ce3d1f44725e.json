@@ -1,0 +1,37 @@
+{
+  "ast": null,
+  "code": "\"use strict\";\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.switchScan = void 0;\n\nvar switchMap_1 = require(\"./switchMap\");\n\nvar lift_1 = require(\"../util/lift\");\n\nfunction switchScan(accumulator, seed) {\n  return lift_1.operate(function (source, subscriber) {\n    var state = seed;\n    switchMap_1.switchMap(function (value, index) {\n      return accumulator(state, value, index);\n    }, function (_, innerValue) {\n      return state = innerValue, innerValue;\n    })(source).subscribe(subscriber);\n    return function () {\n      state = null;\n    };\n  });\n}\n\nexports.switchScan = switchScan; //# sourceMappingURL=switchScan.js.map",
+  "map": {
+    "version": 3,
+    "names": [
+      "Object",
+      "defineProperty",
+      "exports",
+      "value",
+      "switchScan",
+      "switchMap_1",
+      "require",
+      "lift_1",
+      "accumulator",
+      "seed",
+      "operate",
+      "source",
+      "subscriber",
+      "state",
+      "switchMap",
+      "index",
+      "_",
+      "innerValue",
+      "subscribe"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/cjs/internal/operators/switchScan.js"
+    ],
+    "sourcesContent": [
+      "\"use strict\";\nObject.defineProperty(exports, \"__esModule\", { value: true });\nexports.switchScan = void 0;\nvar switchMap_1 = require(\"./switchMap\");\nvar lift_1 = require(\"../util/lift\");\nfunction switchScan(accumulator, seed) {\n    return lift_1.operate(function (source, subscriber) {\n        var state = seed;\n        switchMap_1.switchMap(function (value, index) { return accumulator(state, value, index); }, function (_, innerValue) { return ((state = innerValue), innerValue); })(source).subscribe(subscriber);\n        return function () {\n            state = null;\n        };\n    });\n}\nexports.switchScan = switchScan;\n//# sourceMappingURL=switchScan.js.map"
+    ],
+    "mappings": "AAAA;;AACAA,MAAM,CAACC,cAAP,CAAsBC,OAAtB,EAA+B,YAA/B,EAA6C;EAAEC,KAAK,EAAE;AAAT,CAA7C;AACAD,OAAO,CAACE,UAAR,GAAqB,KAAK,CAA1B;;AACA,IAAIC,WAAW,GAAGC,OAAO,CAAC,aAAD,CAAzB;;AACA,IAAIC,MAAM,GAAGD,OAAO,CAAC,cAAD,CAApB;;AACA,SAASF,UAAT,CAAoBI,WAApB,EAAiCC,IAAjC,EAAuC;EACnC,OAAOF,MAAM,CAACG,OAAP,CAAe,UAAUC,MAAV,EAAkBC,UAAlB,EAA8B;IAChD,IAAIC,KAAK,GAAGJ,IAAZ;IACAJ,WAAW,CAACS,SAAZ,CAAsB,UAAUX,KAAV,EAAiBY,KAAjB,EAAwB;MAAE,OAAOP,WAAW,CAACK,KAAD,EAAQV,KAAR,EAAeY,KAAf,CAAlB;IAA0C,CAA1F,EAA4F,UAAUC,CAAV,EAAaC,UAAb,EAAyB;MAAE,OAASJ,KAAK,GAAGI,UAAT,EAAsBA,UAA9B;IAA4C,CAAnK,EAAqKN,MAArK,EAA6KO,SAA7K,CAAuLN,UAAvL;IACA,OAAO,YAAY;MACfC,KAAK,GAAG,IAAR;IACH,CAFD;EAGH,CANM,CAAP;AAOH;;AACDX,OAAO,CAACE,UAAR,GAAqBA,UAArB,C,CACA"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

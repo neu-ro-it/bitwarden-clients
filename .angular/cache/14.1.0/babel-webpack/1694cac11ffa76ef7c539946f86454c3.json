@@ -1,0 +1,42 @@
+{
+  "ast": null,
+  "code": "import \"core-js/modules/es.array.iterator.js\";\nimport \"core-js/modules/es.object.to-string.js\";\nimport \"core-js/modules/es.string.iterator.js\";\nimport \"core-js/modules/web.dom-collections.iterator.js\";\nimport \"core-js/modules/web.url.js\";\nimport \"core-js/modules/web.url-search-params.js\";\nimport React, { useContext } from 'react';\nimport global from 'global';\nimport { Anchor } from './Anchor';\nimport { DocsContext } from './DocsContext';\nvar document = global.document;\n\nfunction getFirstStoryId(docsContext) {\n  var stories = docsContext.componentStories();\n  return stories.length > 0 ? stories[0].id : null;\n}\n\nfunction renderAnchor() {\n  var context = useContext(DocsContext);\n  var anchorId = getFirstStoryId(context) || context.id;\n  return /*#__PURE__*/React.createElement(Anchor, {\n    storyId: anchorId\n  });\n}\n/**\n * This component is used to declare component metadata in docs\n * and gets transformed into a default export underneath the hood.\n */\n\n\nexport var Meta = function Meta() {\n  var params = new URL(document.location).searchParams;\n  var isDocs = params.get('viewMode') === 'docs';\n  return isDocs ? renderAnchor() : null;\n};",
+  "map": {
+    "version": 3,
+    "names": [
+      "React",
+      "useContext",
+      "global",
+      "Anchor",
+      "DocsContext",
+      "document",
+      "getFirstStoryId",
+      "docsContext",
+      "stories",
+      "componentStories",
+      "length",
+      "id",
+      "renderAnchor",
+      "context",
+      "anchorId",
+      "createElement",
+      "storyId",
+      "Meta",
+      "params",
+      "URL",
+      "location",
+      "searchParams",
+      "isDocs",
+      "get"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/@storybook/addon-docs/dist/esm/blocks/Meta.js"
+    ],
+    "sourcesContent": [
+      "import \"core-js/modules/es.array.iterator.js\";\nimport \"core-js/modules/es.object.to-string.js\";\nimport \"core-js/modules/es.string.iterator.js\";\nimport \"core-js/modules/web.dom-collections.iterator.js\";\nimport \"core-js/modules/web.url.js\";\nimport \"core-js/modules/web.url-search-params.js\";\nimport React, { useContext } from 'react';\nimport global from 'global';\nimport { Anchor } from './Anchor';\nimport { DocsContext } from './DocsContext';\nvar document = global.document;\n\nfunction getFirstStoryId(docsContext) {\n  var stories = docsContext.componentStories();\n  return stories.length > 0 ? stories[0].id : null;\n}\n\nfunction renderAnchor() {\n  var context = useContext(DocsContext);\n  var anchorId = getFirstStoryId(context) || context.id;\n  return /*#__PURE__*/React.createElement(Anchor, {\n    storyId: anchorId\n  });\n}\n/**\n * This component is used to declare component metadata in docs\n * and gets transformed into a default export underneath the hood.\n */\n\n\nexport var Meta = function Meta() {\n  var params = new URL(document.location).searchParams;\n  var isDocs = params.get('viewMode') === 'docs';\n  return isDocs ? renderAnchor() : null;\n};"
+    ],
+    "mappings": "AAAA,OAAO,sCAAP;AACA,OAAO,wCAAP;AACA,OAAO,uCAAP;AACA,OAAO,iDAAP;AACA,OAAO,4BAAP;AACA,OAAO,0CAAP;AACA,OAAOA,KAAP,IAAgBC,UAAhB,QAAkC,OAAlC;AACA,OAAOC,MAAP,MAAmB,QAAnB;AACA,SAASC,MAAT,QAAuB,UAAvB;AACA,SAASC,WAAT,QAA4B,eAA5B;AACA,IAAIC,QAAQ,GAAGH,MAAM,CAACG,QAAtB;;AAEA,SAASC,eAAT,CAAyBC,WAAzB,EAAsC;EACpC,IAAIC,OAAO,GAAGD,WAAW,CAACE,gBAAZ,EAAd;EACA,OAAOD,OAAO,CAACE,MAAR,GAAiB,CAAjB,GAAqBF,OAAO,CAAC,CAAD,CAAP,CAAWG,EAAhC,GAAqC,IAA5C;AACD;;AAED,SAASC,YAAT,GAAwB;EACtB,IAAIC,OAAO,GAAGZ,UAAU,CAACG,WAAD,CAAxB;EACA,IAAIU,QAAQ,GAAGR,eAAe,CAACO,OAAD,CAAf,IAA4BA,OAAO,CAACF,EAAnD;EACA,OAAO,aAAaX,KAAK,CAACe,aAAN,CAAoBZ,MAApB,EAA4B;IAC9Ca,OAAO,EAAEF;EADqC,CAA5B,CAApB;AAGD;AACD;AACA;AACA;AACA;;;AAGA,OAAO,IAAIG,IAAI,GAAG,SAASA,IAAT,GAAgB;EAChC,IAAIC,MAAM,GAAG,IAAIC,GAAJ,CAAQd,QAAQ,CAACe,QAAjB,EAA2BC,YAAxC;EACA,IAAIC,MAAM,GAAGJ,MAAM,CAACK,GAAP,CAAW,UAAX,MAA2B,MAAxC;EACA,OAAOD,MAAM,GAAGV,YAAY,EAAf,GAAoB,IAAjC;AACD,CAJM"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

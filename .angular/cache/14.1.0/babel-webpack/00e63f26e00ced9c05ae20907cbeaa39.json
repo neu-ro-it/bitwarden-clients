@@ -1,0 +1,60 @@
+{
+  "ast": null,
+  "code": "\"use strict\";\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.decorateStory = void 0;\n\nconst store_1 = require(\"@storybook/store\");\n\nconst ComputesTemplateFromComponent_1 = require(\"./angular-beta/ComputesTemplateFromComponent\");\n\nfunction decorateStory(mainStoryFn, decorators) {\n  const returnDecorators = [cleanArgsDecorator, ...decorators].reduce((previousStoryFn, decorator) => context => {\n    const decoratedStory = decorator(update => {\n      return previousStoryFn(Object.assign(Object.assign({}, context), store_1.sanitizeStoryContextUpdate(update)));\n    }, context);\n    return decoratedStory;\n  }, context => prepareMain(mainStoryFn(context), context));\n  return returnDecorators;\n}\n\nexports.default = decorateStory;\nexports.decorateStory = decorateStory;\n\nconst prepareMain = (story, context) => {\n  var _a;\n\n  let {\n    template\n  } = story;\n  const component = (_a = story.component) !== null && _a !== void 0 ? _a : context.component;\n  const userDefinedTemplate = !hasNoTemplate(template);\n\n  if (!userDefinedTemplate && component) {\n    template = ComputesTemplateFromComponent_1.computesTemplateFromComponent(component, story.props, '');\n  }\n\n  return Object.assign(Object.assign({}, story), template ? {\n    template,\n    userDefinedTemplate\n  } : {});\n};\n\nfunction hasNoTemplate(template) {\n  return template === null || template === undefined;\n}\n\nconst cleanArgsDecorator = (storyFn, context) => {\n  if (!context.argTypes || !context.args) {\n    return storyFn();\n  }\n\n  const argsToClean = context.args;\n  context.args = Object.entries(argsToClean).reduce((obj, [key, arg]) => {\n    const argType = context.argTypes[key]; // Only keeps args with a control or an action in argTypes\n\n    if (argType.action || argType.control) {\n      return Object.assign(Object.assign({}, obj), {\n        [key]: arg\n      });\n    }\n\n    return obj;\n  }, {});\n  return storyFn();\n};",
+  "map": {
+    "version": 3,
+    "names": [
+      "Object",
+      "defineProperty",
+      "exports",
+      "value",
+      "decorateStory",
+      "store_1",
+      "require",
+      "ComputesTemplateFromComponent_1",
+      "mainStoryFn",
+      "decorators",
+      "returnDecorators",
+      "cleanArgsDecorator",
+      "reduce",
+      "previousStoryFn",
+      "decorator",
+      "context",
+      "decoratedStory",
+      "update",
+      "assign",
+      "sanitizeStoryContextUpdate",
+      "prepareMain",
+      "default",
+      "story",
+      "_a",
+      "template",
+      "component",
+      "userDefinedTemplate",
+      "hasNoTemplate",
+      "computesTemplateFromComponent",
+      "props",
+      "undefined",
+      "storyFn",
+      "argTypes",
+      "args",
+      "argsToClean",
+      "entries",
+      "obj",
+      "key",
+      "arg",
+      "argType",
+      "action",
+      "control"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/@storybook/angular/dist/ts3.9/client/preview/decorateStory.js"
+    ],
+    "sourcesContent": [
+      "\"use strict\";\nObject.defineProperty(exports, \"__esModule\", { value: true });\nexports.decorateStory = void 0;\nconst store_1 = require(\"@storybook/store\");\nconst ComputesTemplateFromComponent_1 = require(\"./angular-beta/ComputesTemplateFromComponent\");\nfunction decorateStory(mainStoryFn, decorators) {\n    const returnDecorators = [cleanArgsDecorator, ...decorators].reduce((previousStoryFn, decorator) => (context) => {\n        const decoratedStory = decorator((update) => {\n            return previousStoryFn(Object.assign(Object.assign({}, context), store_1.sanitizeStoryContextUpdate(update)));\n        }, context);\n        return decoratedStory;\n    }, (context) => prepareMain(mainStoryFn(context), context));\n    return returnDecorators;\n}\nexports.default = decorateStory;\nexports.decorateStory = decorateStory;\nconst prepareMain = (story, context) => {\n    var _a;\n    let { template } = story;\n    const component = (_a = story.component) !== null && _a !== void 0 ? _a : context.component;\n    const userDefinedTemplate = !hasNoTemplate(template);\n    if (!userDefinedTemplate && component) {\n        template = ComputesTemplateFromComponent_1.computesTemplateFromComponent(component, story.props, '');\n    }\n    return Object.assign(Object.assign({}, story), (template ? { template, userDefinedTemplate } : {}));\n};\nfunction hasNoTemplate(template) {\n    return template === null || template === undefined;\n}\nconst cleanArgsDecorator = (storyFn, context) => {\n    if (!context.argTypes || !context.args) {\n        return storyFn();\n    }\n    const argsToClean = context.args;\n    context.args = Object.entries(argsToClean).reduce((obj, [key, arg]) => {\n        const argType = context.argTypes[key];\n        // Only keeps args with a control or an action in argTypes\n        if (argType.action || argType.control) {\n            return Object.assign(Object.assign({}, obj), { [key]: arg });\n        }\n        return obj;\n    }, {});\n    return storyFn();\n};\n"
+    ],
+    "mappings": "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"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

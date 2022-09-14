@@ -1,0 +1,37 @@
+{
+  "ast": null,
+  "code": "'use strict';\n\nvar hasPropertyDescriptors = require('has-property-descriptors');\n\nvar GetIntrinsic = require('get-intrinsic');\n\nvar $defineProperty = hasPropertyDescriptors() && GetIntrinsic('%Object.defineProperty%', true);\nvar hasArrayLengthDefineBug = hasPropertyDescriptors.hasArrayLengthDefineBug(); // eslint-disable-next-line global-require\n\nvar isArray = hasArrayLengthDefineBug && require('../helpers/IsArray');\n\nvar callBound = require('call-bind/callBound');\n\nvar $isEnumerable = callBound('Object.prototype.propertyIsEnumerable'); // eslint-disable-next-line max-params\n\nmodule.exports = function DefineOwnProperty(IsDataDescriptor, SameValue, FromPropertyDescriptor, O, P, desc) {\n  if (!$defineProperty) {\n    if (!IsDataDescriptor(desc)) {\n      // ES3 does not support getters/setters\n      return false;\n    }\n\n    if (!desc['[[Configurable]]'] || !desc['[[Writable]]']) {\n      return false;\n    } // fallback for ES3\n\n\n    if (P in O && $isEnumerable(O, P) !== !!desc['[[Enumerable]]']) {\n      // a non-enumerable existing property\n      return false;\n    } // property does not exist at all, or exists but is enumerable\n\n\n    var V = desc['[[Value]]']; // eslint-disable-next-line no-param-reassign\n\n    O[P] = V; // will use [[Define]]\n\n    return SameValue(O[P], V);\n  }\n\n  if (hasArrayLengthDefineBug && P === 'length' && '[[Value]]' in desc && isArray(O) && O.length !== desc['[[Value]]']) {\n    // eslint-disable-next-line no-param-reassign\n    O.length = desc['[[Value]]'];\n    return O.length === desc['[[Value]]'];\n  }\n\n  $defineProperty(O, P, FromPropertyDescriptor(desc));\n  return true;\n};",
+  "map": {
+    "version": 3,
+    "names": [
+      "hasPropertyDescriptors",
+      "require",
+      "GetIntrinsic",
+      "$defineProperty",
+      "hasArrayLengthDefineBug",
+      "isArray",
+      "callBound",
+      "$isEnumerable",
+      "module",
+      "exports",
+      "DefineOwnProperty",
+      "IsDataDescriptor",
+      "SameValue",
+      "FromPropertyDescriptor",
+      "O",
+      "P",
+      "desc",
+      "V",
+      "length"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/es-abstract/helpers/DefineOwnProperty.js"
+    ],
+    "sourcesContent": [
+      "'use strict';\n\nvar hasPropertyDescriptors = require('has-property-descriptors');\n\nvar GetIntrinsic = require('get-intrinsic');\n\nvar $defineProperty = hasPropertyDescriptors() && GetIntrinsic('%Object.defineProperty%', true);\n\nvar hasArrayLengthDefineBug = hasPropertyDescriptors.hasArrayLengthDefineBug();\n\n// eslint-disable-next-line global-require\nvar isArray = hasArrayLengthDefineBug && require('../helpers/IsArray');\n\nvar callBound = require('call-bind/callBound');\n\nvar $isEnumerable = callBound('Object.prototype.propertyIsEnumerable');\n\n// eslint-disable-next-line max-params\nmodule.exports = function DefineOwnProperty(IsDataDescriptor, SameValue, FromPropertyDescriptor, O, P, desc) {\n\tif (!$defineProperty) {\n\t\tif (!IsDataDescriptor(desc)) {\n\t\t\t// ES3 does not support getters/setters\n\t\t\treturn false;\n\t\t}\n\t\tif (!desc['[[Configurable]]'] || !desc['[[Writable]]']) {\n\t\t\treturn false;\n\t\t}\n\n\t\t// fallback for ES3\n\t\tif (P in O && $isEnumerable(O, P) !== !!desc['[[Enumerable]]']) {\n\t\t\t// a non-enumerable existing property\n\t\t\treturn false;\n\t\t}\n\n\t\t// property does not exist at all, or exists but is enumerable\n\t\tvar V = desc['[[Value]]'];\n\t\t// eslint-disable-next-line no-param-reassign\n\t\tO[P] = V; // will use [[Define]]\n\t\treturn SameValue(O[P], V);\n\t}\n\tif (\n\t\thasArrayLengthDefineBug\n\t\t&& P === 'length'\n\t\t&& '[[Value]]' in desc\n\t\t&& isArray(O)\n\t\t&& O.length !== desc['[[Value]]']\n\t) {\n\t\t// eslint-disable-next-line no-param-reassign\n\t\tO.length = desc['[[Value]]'];\n\t\treturn O.length === desc['[[Value]]'];\n\t}\n\n\t$defineProperty(O, P, FromPropertyDescriptor(desc));\n\treturn true;\n};\n"
+    ],
+    "mappings": "AAAA;;AAEA,IAAIA,sBAAsB,GAAGC,OAAO,CAAC,0BAAD,CAApC;;AAEA,IAAIC,YAAY,GAAGD,OAAO,CAAC,eAAD,CAA1B;;AAEA,IAAIE,eAAe,GAAGH,sBAAsB,MAAME,YAAY,CAAC,yBAAD,EAA4B,IAA5B,CAA9D;AAEA,IAAIE,uBAAuB,GAAGJ,sBAAsB,CAACI,uBAAvB,EAA9B,C,CAEA;;AACA,IAAIC,OAAO,GAAGD,uBAAuB,IAAIH,OAAO,CAAC,oBAAD,CAAhD;;AAEA,IAAIK,SAAS,GAAGL,OAAO,CAAC,qBAAD,CAAvB;;AAEA,IAAIM,aAAa,GAAGD,SAAS,CAAC,uCAAD,CAA7B,C,CAEA;;AACAE,MAAM,CAACC,OAAP,GAAiB,SAASC,iBAAT,CAA2BC,gBAA3B,EAA6CC,SAA7C,EAAwDC,sBAAxD,EAAgFC,CAAhF,EAAmFC,CAAnF,EAAsFC,IAAtF,EAA4F;EAC5G,IAAI,CAACb,eAAL,EAAsB;IACrB,IAAI,CAACQ,gBAAgB,CAACK,IAAD,CAArB,EAA6B;MAC5B;MACA,OAAO,KAAP;IACA;;IACD,IAAI,CAACA,IAAI,CAAC,kBAAD,CAAL,IAA6B,CAACA,IAAI,CAAC,cAAD,CAAtC,EAAwD;MACvD,OAAO,KAAP;IACA,CAPoB,CASrB;;;IACA,IAAID,CAAC,IAAID,CAAL,IAAUP,aAAa,CAACO,CAAD,EAAIC,CAAJ,CAAb,KAAwB,CAAC,CAACC,IAAI,CAAC,gBAAD,CAA5C,EAAgE;MAC/D;MACA,OAAO,KAAP;IACA,CAboB,CAerB;;;IACA,IAAIC,CAAC,GAAGD,IAAI,CAAC,WAAD,CAAZ,CAhBqB,CAiBrB;;IACAF,CAAC,CAACC,CAAD,CAAD,GAAOE,CAAP,CAlBqB,CAkBX;;IACV,OAAOL,SAAS,CAACE,CAAC,CAACC,CAAD,CAAF,EAAOE,CAAP,CAAhB;EACA;;EACD,IACCb,uBAAuB,IACpBW,CAAC,KAAK,QADT,IAEG,eAAeC,IAFlB,IAGGX,OAAO,CAACS,CAAD,CAHV,IAIGA,CAAC,CAACI,MAAF,KAAaF,IAAI,CAAC,WAAD,CALrB,EAME;IACD;IACAF,CAAC,CAACI,MAAF,GAAWF,IAAI,CAAC,WAAD,CAAf;IACA,OAAOF,CAAC,CAACI,MAAF,KAAaF,IAAI,CAAC,WAAD,CAAxB;EACA;;EAEDb,eAAe,CAACW,CAAD,EAAIC,CAAJ,EAAOF,sBAAsB,CAACG,IAAD,CAA7B,CAAf;EACA,OAAO,IAAP;AACA,CApCD"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

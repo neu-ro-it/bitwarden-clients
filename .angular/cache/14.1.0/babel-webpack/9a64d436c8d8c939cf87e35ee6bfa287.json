@@ -1,0 +1,55 @@
+{
+  "ast": null,
+  "code": "import \"core-js/modules/es.array.from.js\";\nimport \"core-js/modules/es.string.iterator.js\";\nimport \"core-js/modules/es.array.iterator.js\";\nimport \"core-js/modules/es.object.to-string.js\";\nimport \"core-js/modules/es.set.js\";\nimport \"core-js/modules/web.dom-collections.iterator.js\";\nimport \"core-js/modules/es.array.join.js\";\nimport \"core-js/modules/es.array.map.js\";\nimport \"core-js/modules/es.array.concat.js\";\nimport global from 'global';\nimport { addons } from '@storybook/addons';\nimport { STORY_CHANGED } from '@storybook/core-events';\nimport { EVENTS, HIGHLIGHT_STYLE_ID } from './constants';\nimport { highlightStyle } from './highlight';\nvar document = global.document;\n\nif (module && module.hot && module.hot.decline) {\n  module.hot.decline();\n}\n\nvar channel = addons.getChannel();\n\nvar highlight = function highlight(infos) {\n  var id = HIGHLIGHT_STYLE_ID;\n  resetHighlight(); // Make sure there are no duplicated selectors\n\n  var elements = Array.from(new Set(infos.elements));\n  var sheet = document.createElement('style');\n  sheet.setAttribute('id', id);\n  sheet.innerHTML = elements.map(function (target) {\n    return \"\".concat(target, \"{\\n          \").concat(highlightStyle(infos.color), \"\\n         }\");\n  }).join(' ');\n  document.head.appendChild(sheet);\n};\n\nvar resetHighlight = function resetHighlight() {\n  var id = HIGHLIGHT_STYLE_ID;\n  var sheetToBeRemoved = document.getElementById(id);\n\n  if (sheetToBeRemoved) {\n    sheetToBeRemoved.parentNode.removeChild(sheetToBeRemoved);\n  }\n};\n\nchannel.on(STORY_CHANGED, resetHighlight);\nchannel.on(EVENTS.HIGHLIGHT, highlight);",
+  "map": {
+    "version": 3,
+    "names": [
+      "global",
+      "addons",
+      "STORY_CHANGED",
+      "EVENTS",
+      "HIGHLIGHT_STYLE_ID",
+      "highlightStyle",
+      "document",
+      "module",
+      "hot",
+      "decline",
+      "channel",
+      "getChannel",
+      "highlight",
+      "infos",
+      "id",
+      "resetHighlight",
+      "elements",
+      "Array",
+      "from",
+      "Set",
+      "sheet",
+      "createElement",
+      "setAttribute",
+      "innerHTML",
+      "map",
+      "target",
+      "concat",
+      "color",
+      "join",
+      "head",
+      "appendChild",
+      "sheetToBeRemoved",
+      "getElementById",
+      "parentNode",
+      "removeChild",
+      "on",
+      "HIGHLIGHT"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/@storybook/addon-a11y/dist/esm/a11yHighlight.js"
+    ],
+    "sourcesContent": [
+      "import \"core-js/modules/es.array.from.js\";\nimport \"core-js/modules/es.string.iterator.js\";\nimport \"core-js/modules/es.array.iterator.js\";\nimport \"core-js/modules/es.object.to-string.js\";\nimport \"core-js/modules/es.set.js\";\nimport \"core-js/modules/web.dom-collections.iterator.js\";\nimport \"core-js/modules/es.array.join.js\";\nimport \"core-js/modules/es.array.map.js\";\nimport \"core-js/modules/es.array.concat.js\";\nimport global from 'global';\nimport { addons } from '@storybook/addons';\nimport { STORY_CHANGED } from '@storybook/core-events';\nimport { EVENTS, HIGHLIGHT_STYLE_ID } from './constants';\nimport { highlightStyle } from './highlight';\nvar document = global.document;\n\nif (module && module.hot && module.hot.decline) {\n  module.hot.decline();\n}\n\nvar channel = addons.getChannel();\n\nvar highlight = function highlight(infos) {\n  var id = HIGHLIGHT_STYLE_ID;\n  resetHighlight(); // Make sure there are no duplicated selectors\n\n  var elements = Array.from(new Set(infos.elements));\n  var sheet = document.createElement('style');\n  sheet.setAttribute('id', id);\n  sheet.innerHTML = elements.map(function (target) {\n    return \"\".concat(target, \"{\\n          \").concat(highlightStyle(infos.color), \"\\n         }\");\n  }).join(' ');\n  document.head.appendChild(sheet);\n};\n\nvar resetHighlight = function resetHighlight() {\n  var id = HIGHLIGHT_STYLE_ID;\n  var sheetToBeRemoved = document.getElementById(id);\n\n  if (sheetToBeRemoved) {\n    sheetToBeRemoved.parentNode.removeChild(sheetToBeRemoved);\n  }\n};\n\nchannel.on(STORY_CHANGED, resetHighlight);\nchannel.on(EVENTS.HIGHLIGHT, highlight);"
+    ],
+    "mappings": "AAAA,OAAO,kCAAP;AACA,OAAO,uCAAP;AACA,OAAO,sCAAP;AACA,OAAO,wCAAP;AACA,OAAO,2BAAP;AACA,OAAO,iDAAP;AACA,OAAO,kCAAP;AACA,OAAO,iCAAP;AACA,OAAO,oCAAP;AACA,OAAOA,MAAP,MAAmB,QAAnB;AACA,SAASC,MAAT,QAAuB,mBAAvB;AACA,SAASC,aAAT,QAA8B,wBAA9B;AACA,SAASC,MAAT,EAAiBC,kBAAjB,QAA2C,aAA3C;AACA,SAASC,cAAT,QAA+B,aAA/B;AACA,IAAIC,QAAQ,GAAGN,MAAM,CAACM,QAAtB;;AAEA,IAAIC,MAAM,IAAIA,MAAM,CAACC,GAAjB,IAAwBD,MAAM,CAACC,GAAP,CAAWC,OAAvC,EAAgD;EAC9CF,MAAM,CAACC,GAAP,CAAWC,OAAX;AACD;;AAED,IAAIC,OAAO,GAAGT,MAAM,CAACU,UAAP,EAAd;;AAEA,IAAIC,SAAS,GAAG,SAASA,SAAT,CAAmBC,KAAnB,EAA0B;EACxC,IAAIC,EAAE,GAAGV,kBAAT;EACAW,cAAc,GAF0B,CAEtB;;EAElB,IAAIC,QAAQ,GAAGC,KAAK,CAACC,IAAN,CAAW,IAAIC,GAAJ,CAAQN,KAAK,CAACG,QAAd,CAAX,CAAf;EACA,IAAII,KAAK,GAAGd,QAAQ,CAACe,aAAT,CAAuB,OAAvB,CAAZ;EACAD,KAAK,CAACE,YAAN,CAAmB,IAAnB,EAAyBR,EAAzB;EACAM,KAAK,CAACG,SAAN,GAAkBP,QAAQ,CAACQ,GAAT,CAAa,UAAUC,MAAV,EAAkB;IAC/C,OAAO,GAAGC,MAAH,CAAUD,MAAV,EAAkB,eAAlB,EAAmCC,MAAnC,CAA0CrB,cAAc,CAACQ,KAAK,CAACc,KAAP,CAAxD,EAAuE,cAAvE,CAAP;EACD,CAFiB,EAEfC,IAFe,CAEV,GAFU,CAAlB;EAGAtB,QAAQ,CAACuB,IAAT,CAAcC,WAAd,CAA0BV,KAA1B;AACD,CAXD;;AAaA,IAAIL,cAAc,GAAG,SAASA,cAAT,GAA0B;EAC7C,IAAID,EAAE,GAAGV,kBAAT;EACA,IAAI2B,gBAAgB,GAAGzB,QAAQ,CAAC0B,cAAT,CAAwBlB,EAAxB,CAAvB;;EAEA,IAAIiB,gBAAJ,EAAsB;IACpBA,gBAAgB,CAACE,UAAjB,CAA4BC,WAA5B,CAAwCH,gBAAxC;EACD;AACF,CAPD;;AASArB,OAAO,CAACyB,EAAR,CAAWjC,aAAX,EAA0Ba,cAA1B;AACAL,OAAO,CAACyB,EAAR,CAAWhC,MAAM,CAACiC,SAAlB,EAA6BxB,SAA7B"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

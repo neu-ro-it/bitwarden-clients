@@ -1,0 +1,33 @@
+{
+  "ast": null,
+  "code": "import { ArgumentOutOfRangeError } from '../util/ArgumentOutOfRangeError';\nimport { filter } from './filter';\nimport { throwIfEmpty } from './throwIfEmpty';\nimport { defaultIfEmpty } from './defaultIfEmpty';\nimport { take } from './take';\nexport function elementAt(index, defaultValue) {\n  if (index < 0) {\n    throw new ArgumentOutOfRangeError();\n  }\n\n  var hasDefaultValue = arguments.length >= 2;\n  return function (source) {\n    return source.pipe(filter(function (v, i) {\n      return i === index;\n    }), take(1), hasDefaultValue ? defaultIfEmpty(defaultValue) : throwIfEmpty(function () {\n      return new ArgumentOutOfRangeError();\n    }));\n  };\n} //# sourceMappingURL=elementAt.js.map",
+  "map": {
+    "version": 3,
+    "names": [
+      "ArgumentOutOfRangeError",
+      "filter",
+      "throwIfEmpty",
+      "defaultIfEmpty",
+      "take",
+      "elementAt",
+      "index",
+      "defaultValue",
+      "hasDefaultValue",
+      "arguments",
+      "length",
+      "source",
+      "pipe",
+      "v",
+      "i"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/esm5/internal/operators/elementAt.js"
+    ],
+    "sourcesContent": [
+      "import { ArgumentOutOfRangeError } from '../util/ArgumentOutOfRangeError';\nimport { filter } from './filter';\nimport { throwIfEmpty } from './throwIfEmpty';\nimport { defaultIfEmpty } from './defaultIfEmpty';\nimport { take } from './take';\nexport function elementAt(index, defaultValue) {\n    if (index < 0) {\n        throw new ArgumentOutOfRangeError();\n    }\n    var hasDefaultValue = arguments.length >= 2;\n    return function (source) {\n        return source.pipe(filter(function (v, i) { return i === index; }), take(1), hasDefaultValue ? defaultIfEmpty(defaultValue) : throwIfEmpty(function () { return new ArgumentOutOfRangeError(); }));\n    };\n}\n//# sourceMappingURL=elementAt.js.map"
+    ],
+    "mappings": "AAAA,SAASA,uBAAT,QAAwC,iCAAxC;AACA,SAASC,MAAT,QAAuB,UAAvB;AACA,SAASC,YAAT,QAA6B,gBAA7B;AACA,SAASC,cAAT,QAA+B,kBAA/B;AACA,SAASC,IAAT,QAAqB,QAArB;AACA,OAAO,SAASC,SAAT,CAAmBC,KAAnB,EAA0BC,YAA1B,EAAwC;EAC3C,IAAID,KAAK,GAAG,CAAZ,EAAe;IACX,MAAM,IAAIN,uBAAJ,EAAN;EACH;;EACD,IAAIQ,eAAe,GAAGC,SAAS,CAACC,MAAV,IAAoB,CAA1C;EACA,OAAO,UAAUC,MAAV,EAAkB;IACrB,OAAOA,MAAM,CAACC,IAAP,CAAYX,MAAM,CAAC,UAAUY,CAAV,EAAaC,CAAb,EAAgB;MAAE,OAAOA,CAAC,KAAKR,KAAb;IAAqB,CAAxC,CAAlB,EAA6DF,IAAI,CAAC,CAAD,CAAjE,EAAsEI,eAAe,GAAGL,cAAc,CAACI,YAAD,CAAjB,GAAkCL,YAAY,CAAC,YAAY;MAAE,OAAO,IAAIF,uBAAJ,EAAP;IAAuC,CAAtD,CAAnI,CAAP;EACH,CAFD;AAGH,C,CACD"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

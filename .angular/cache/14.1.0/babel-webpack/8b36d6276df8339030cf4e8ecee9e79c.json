@@ -1,0 +1,39 @@
+{
+  "ast": null,
+  "code": "import { __generator } from \"tslib\";\nimport { identity } from '../util/identity';\nimport { isScheduler } from '../util/isScheduler';\nimport { defer } from './defer';\nimport { scheduleIterable } from '../scheduled/scheduleIterable';\nexport function generate(initialStateOrOptions, condition, iterate, resultSelectorOrScheduler, scheduler) {\n  var _a, _b;\n\n  var resultSelector;\n  var initialState;\n\n  if (arguments.length === 1) {\n    _a = initialStateOrOptions, initialState = _a.initialState, condition = _a.condition, iterate = _a.iterate, _b = _a.resultSelector, resultSelector = _b === void 0 ? identity : _b, scheduler = _a.scheduler;\n  } else {\n    initialState = initialStateOrOptions;\n\n    if (!resultSelectorOrScheduler || isScheduler(resultSelectorOrScheduler)) {\n      resultSelector = identity;\n      scheduler = resultSelectorOrScheduler;\n    } else {\n      resultSelector = resultSelectorOrScheduler;\n    }\n  }\n\n  function gen() {\n    var state;\n    return __generator(this, function (_a) {\n      switch (_a.label) {\n        case 0:\n          state = initialState;\n          _a.label = 1;\n\n        case 1:\n          if (!(!condition || condition(state))) return [3, 4];\n          return [4, resultSelector(state)];\n\n        case 2:\n          _a.sent();\n\n          _a.label = 3;\n\n        case 3:\n          state = iterate(state);\n          return [3, 1];\n\n        case 4:\n          return [2];\n      }\n    });\n  }\n\n  return defer(scheduler ? function () {\n    return scheduleIterable(gen(), scheduler);\n  } : gen);\n} //# sourceMappingURL=generate.js.map",
+  "map": {
+    "version": 3,
+    "names": [
+      "__generator",
+      "identity",
+      "isScheduler",
+      "defer",
+      "scheduleIterable",
+      "generate",
+      "initialStateOrOptions",
+      "condition",
+      "iterate",
+      "resultSelectorOrScheduler",
+      "scheduler",
+      "_a",
+      "_b",
+      "resultSelector",
+      "initialState",
+      "arguments",
+      "length",
+      "gen",
+      "state",
+      "label",
+      "sent"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/esm5/internal/observable/generate.js"
+    ],
+    "sourcesContent": [
+      "import { __generator } from \"tslib\";\nimport { identity } from '../util/identity';\nimport { isScheduler } from '../util/isScheduler';\nimport { defer } from './defer';\nimport { scheduleIterable } from '../scheduled/scheduleIterable';\nexport function generate(initialStateOrOptions, condition, iterate, resultSelectorOrScheduler, scheduler) {\n    var _a, _b;\n    var resultSelector;\n    var initialState;\n    if (arguments.length === 1) {\n        (_a = initialStateOrOptions, initialState = _a.initialState, condition = _a.condition, iterate = _a.iterate, _b = _a.resultSelector, resultSelector = _b === void 0 ? identity : _b, scheduler = _a.scheduler);\n    }\n    else {\n        initialState = initialStateOrOptions;\n        if (!resultSelectorOrScheduler || isScheduler(resultSelectorOrScheduler)) {\n            resultSelector = identity;\n            scheduler = resultSelectorOrScheduler;\n        }\n        else {\n            resultSelector = resultSelectorOrScheduler;\n        }\n    }\n    function gen() {\n        var state;\n        return __generator(this, function (_a) {\n            switch (_a.label) {\n                case 0:\n                    state = initialState;\n                    _a.label = 1;\n                case 1:\n                    if (!(!condition || condition(state))) return [3, 4];\n                    return [4, resultSelector(state)];\n                case 2:\n                    _a.sent();\n                    _a.label = 3;\n                case 3:\n                    state = iterate(state);\n                    return [3, 1];\n                case 4: return [2];\n            }\n        });\n    }\n    return defer((scheduler\n        ?\n            function () { return scheduleIterable(gen(), scheduler); }\n        :\n            gen));\n}\n//# sourceMappingURL=generate.js.map"
+    ],
+    "mappings": "AAAA,SAASA,WAAT,QAA4B,OAA5B;AACA,SAASC,QAAT,QAAyB,kBAAzB;AACA,SAASC,WAAT,QAA4B,qBAA5B;AACA,SAASC,KAAT,QAAsB,SAAtB;AACA,SAASC,gBAAT,QAAiC,+BAAjC;AACA,OAAO,SAASC,QAAT,CAAkBC,qBAAlB,EAAyCC,SAAzC,EAAoDC,OAApD,EAA6DC,yBAA7D,EAAwFC,SAAxF,EAAmG;EACtG,IAAIC,EAAJ,EAAQC,EAAR;;EACA,IAAIC,cAAJ;EACA,IAAIC,YAAJ;;EACA,IAAIC,SAAS,CAACC,MAAV,KAAqB,CAAzB,EAA4B;IACvBL,EAAE,GAAGL,qBAAL,EAA4BQ,YAAY,GAAGH,EAAE,CAACG,YAA9C,EAA4DP,SAAS,GAAGI,EAAE,CAACJ,SAA3E,EAAsFC,OAAO,GAAGG,EAAE,CAACH,OAAnG,EAA4GI,EAAE,GAAGD,EAAE,CAACE,cAApH,EAAoIA,cAAc,GAAGD,EAAE,KAAK,KAAK,CAAZ,GAAgBX,QAAhB,GAA2BW,EAAhL,EAAoLF,SAAS,GAAGC,EAAE,CAACD,SAApM;EACH,CAFD,MAGK;IACDI,YAAY,GAAGR,qBAAf;;IACA,IAAI,CAACG,yBAAD,IAA8BP,WAAW,CAACO,yBAAD,CAA7C,EAA0E;MACtEI,cAAc,GAAGZ,QAAjB;MACAS,SAAS,GAAGD,yBAAZ;IACH,CAHD,MAIK;MACDI,cAAc,GAAGJ,yBAAjB;IACH;EACJ;;EACD,SAASQ,GAAT,GAAe;IACX,IAAIC,KAAJ;IACA,OAAOlB,WAAW,CAAC,IAAD,EAAO,UAAUW,EAAV,EAAc;MACnC,QAAQA,EAAE,CAACQ,KAAX;QACI,KAAK,CAAL;UACID,KAAK,GAAGJ,YAAR;UACAH,EAAE,CAACQ,KAAH,GAAW,CAAX;;QACJ,KAAK,CAAL;UACI,IAAI,EAAE,CAACZ,SAAD,IAAcA,SAAS,CAACW,KAAD,CAAzB,CAAJ,EAAuC,OAAO,CAAC,CAAD,EAAI,CAAJ,CAAP;UACvC,OAAO,CAAC,CAAD,EAAIL,cAAc,CAACK,KAAD,CAAlB,CAAP;;QACJ,KAAK,CAAL;UACIP,EAAE,CAACS,IAAH;;UACAT,EAAE,CAACQ,KAAH,GAAW,CAAX;;QACJ,KAAK,CAAL;UACID,KAAK,GAAGV,OAAO,CAACU,KAAD,CAAf;UACA,OAAO,CAAC,CAAD,EAAI,CAAJ,CAAP;;QACJ,KAAK,CAAL;UAAQ,OAAO,CAAC,CAAD,CAAP;MAbZ;IAeH,CAhBiB,CAAlB;EAiBH;;EACD,OAAOf,KAAK,CAAEO,SAAS,GAEf,YAAY;IAAE,OAAON,gBAAgB,CAACa,GAAG,EAAJ,EAAQP,SAAR,CAAvB;EAA4C,CAF3C,GAIfO,GAJI,CAAZ;AAKH,C,CACD"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

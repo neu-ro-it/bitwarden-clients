@@ -1,0 +1,26 @@
+{
+  "ast": null,
+  "code": "\"use strict\";\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.concatAll = void 0;\n\nvar mergeAll_1 = require(\"./mergeAll\");\n\nfunction concatAll() {\n  return mergeAll_1.mergeAll(1);\n}\n\nexports.concatAll = concatAll; //# sourceMappingURL=concatAll.js.map",
+  "map": {
+    "version": 3,
+    "names": [
+      "Object",
+      "defineProperty",
+      "exports",
+      "value",
+      "concatAll",
+      "mergeAll_1",
+      "require",
+      "mergeAll"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/cjs/internal/operators/concatAll.js"
+    ],
+    "sourcesContent": [
+      "\"use strict\";\nObject.defineProperty(exports, \"__esModule\", { value: true });\nexports.concatAll = void 0;\nvar mergeAll_1 = require(\"./mergeAll\");\nfunction concatAll() {\n    return mergeAll_1.mergeAll(1);\n}\nexports.concatAll = concatAll;\n//# sourceMappingURL=concatAll.js.map"
+    ],
+    "mappings": "AAAA;;AACAA,MAAM,CAACC,cAAP,CAAsBC,OAAtB,EAA+B,YAA/B,EAA6C;EAAEC,KAAK,EAAE;AAAT,CAA7C;AACAD,OAAO,CAACE,SAAR,GAAoB,KAAK,CAAzB;;AACA,IAAIC,UAAU,GAAGC,OAAO,CAAC,YAAD,CAAxB;;AACA,SAASF,SAAT,GAAqB;EACjB,OAAOC,UAAU,CAACE,QAAX,CAAoB,CAApB,CAAP;AACH;;AACDL,OAAO,CAACE,SAAR,GAAoBA,SAApB,C,CACA"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

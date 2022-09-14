@@ -1,0 +1,50 @@
+{
+  "ast": null,
+  "code": "\"use strict\";\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.throttle = exports.defaultThrottleConfig = void 0;\n\nvar lift_1 = require(\"../util/lift\");\n\nvar OperatorSubscriber_1 = require(\"./OperatorSubscriber\");\n\nvar innerFrom_1 = require(\"../observable/innerFrom\");\n\nexports.defaultThrottleConfig = {\n  leading: true,\n  trailing: false\n};\n\nfunction throttle(durationSelector, config) {\n  if (config === void 0) {\n    config = exports.defaultThrottleConfig;\n  }\n\n  return lift_1.operate(function (source, subscriber) {\n    var leading = config.leading,\n        trailing = config.trailing;\n    var hasValue = false;\n    var sendValue = null;\n    var throttled = null;\n    var isComplete = false;\n\n    var endThrottling = function () {\n      throttled === null || throttled === void 0 ? void 0 : throttled.unsubscribe();\n      throttled = null;\n\n      if (trailing) {\n        send();\n        isComplete && subscriber.complete();\n      }\n    };\n\n    var cleanupThrottling = function () {\n      throttled = null;\n      isComplete && subscriber.complete();\n    };\n\n    var startThrottle = function (value) {\n      return throttled = innerFrom_1.innerFrom(durationSelector(value)).subscribe(OperatorSubscriber_1.createOperatorSubscriber(subscriber, endThrottling, cleanupThrottling));\n    };\n\n    var send = function () {\n      if (hasValue) {\n        hasValue = false;\n        var value = sendValue;\n        sendValue = null;\n        subscriber.next(value);\n        !isComplete && startThrottle(value);\n      }\n    };\n\n    source.subscribe(OperatorSubscriber_1.createOperatorSubscriber(subscriber, function (value) {\n      hasValue = true;\n      sendValue = value;\n      !(throttled && !throttled.closed) && (leading ? send() : startThrottle(value));\n    }, function () {\n      isComplete = true;\n      !(trailing && hasValue && throttled && !throttled.closed) && subscriber.complete();\n    }));\n  });\n}\n\nexports.throttle = throttle; //# sourceMappingURL=throttle.js.map",
+  "map": {
+    "version": 3,
+    "names": [
+      "Object",
+      "defineProperty",
+      "exports",
+      "value",
+      "throttle",
+      "defaultThrottleConfig",
+      "lift_1",
+      "require",
+      "OperatorSubscriber_1",
+      "innerFrom_1",
+      "leading",
+      "trailing",
+      "durationSelector",
+      "config",
+      "operate",
+      "source",
+      "subscriber",
+      "hasValue",
+      "sendValue",
+      "throttled",
+      "isComplete",
+      "endThrottling",
+      "unsubscribe",
+      "send",
+      "complete",
+      "cleanupThrottling",
+      "startThrottle",
+      "innerFrom",
+      "subscribe",
+      "createOperatorSubscriber",
+      "next",
+      "closed"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/cjs/internal/operators/throttle.js"
+    ],
+    "sourcesContent": [
+      "\"use strict\";\nObject.defineProperty(exports, \"__esModule\", { value: true });\nexports.throttle = exports.defaultThrottleConfig = void 0;\nvar lift_1 = require(\"../util/lift\");\nvar OperatorSubscriber_1 = require(\"./OperatorSubscriber\");\nvar innerFrom_1 = require(\"../observable/innerFrom\");\nexports.defaultThrottleConfig = {\n    leading: true,\n    trailing: false,\n};\nfunction throttle(durationSelector, config) {\n    if (config === void 0) { config = exports.defaultThrottleConfig; }\n    return lift_1.operate(function (source, subscriber) {\n        var leading = config.leading, trailing = config.trailing;\n        var hasValue = false;\n        var sendValue = null;\n        var throttled = null;\n        var isComplete = false;\n        var endThrottling = function () {\n            throttled === null || throttled === void 0 ? void 0 : throttled.unsubscribe();\n            throttled = null;\n            if (trailing) {\n                send();\n                isComplete && subscriber.complete();\n            }\n        };\n        var cleanupThrottling = function () {\n            throttled = null;\n            isComplete && subscriber.complete();\n        };\n        var startThrottle = function (value) {\n            return (throttled = innerFrom_1.innerFrom(durationSelector(value)).subscribe(OperatorSubscriber_1.createOperatorSubscriber(subscriber, endThrottling, cleanupThrottling)));\n        };\n        var send = function () {\n            if (hasValue) {\n                hasValue = false;\n                var value = sendValue;\n                sendValue = null;\n                subscriber.next(value);\n                !isComplete && startThrottle(value);\n            }\n        };\n        source.subscribe(OperatorSubscriber_1.createOperatorSubscriber(subscriber, function (value) {\n            hasValue = true;\n            sendValue = value;\n            !(throttled && !throttled.closed) && (leading ? send() : startThrottle(value));\n        }, function () {\n            isComplete = true;\n            !(trailing && hasValue && throttled && !throttled.closed) && subscriber.complete();\n        }));\n    });\n}\nexports.throttle = throttle;\n//# sourceMappingURL=throttle.js.map"
+    ],
+    "mappings": "AAAA;;AACAA,MAAM,CAACC,cAAP,CAAsBC,OAAtB,EAA+B,YAA/B,EAA6C;EAAEC,KAAK,EAAE;AAAT,CAA7C;AACAD,OAAO,CAACE,QAAR,GAAmBF,OAAO,CAACG,qBAAR,GAAgC,KAAK,CAAxD;;AACA,IAAIC,MAAM,GAAGC,OAAO,CAAC,cAAD,CAApB;;AACA,IAAIC,oBAAoB,GAAGD,OAAO,CAAC,sBAAD,CAAlC;;AACA,IAAIE,WAAW,GAAGF,OAAO,CAAC,yBAAD,CAAzB;;AACAL,OAAO,CAACG,qBAAR,GAAgC;EAC5BK,OAAO,EAAE,IADmB;EAE5BC,QAAQ,EAAE;AAFkB,CAAhC;;AAIA,SAASP,QAAT,CAAkBQ,gBAAlB,EAAoCC,MAApC,EAA4C;EACxC,IAAIA,MAAM,KAAK,KAAK,CAApB,EAAuB;IAAEA,MAAM,GAAGX,OAAO,CAACG,qBAAjB;EAAyC;;EAClE,OAAOC,MAAM,CAACQ,OAAP,CAAe,UAAUC,MAAV,EAAkBC,UAAlB,EAA8B;IAChD,IAAIN,OAAO,GAAGG,MAAM,CAACH,OAArB;IAAA,IAA8BC,QAAQ,GAAGE,MAAM,CAACF,QAAhD;IACA,IAAIM,QAAQ,GAAG,KAAf;IACA,IAAIC,SAAS,GAAG,IAAhB;IACA,IAAIC,SAAS,GAAG,IAAhB;IACA,IAAIC,UAAU,GAAG,KAAjB;;IACA,IAAIC,aAAa,GAAG,YAAY;MAC5BF,SAAS,KAAK,IAAd,IAAsBA,SAAS,KAAK,KAAK,CAAzC,GAA6C,KAAK,CAAlD,GAAsDA,SAAS,CAACG,WAAV,EAAtD;MACAH,SAAS,GAAG,IAAZ;;MACA,IAAIR,QAAJ,EAAc;QACVY,IAAI;QACJH,UAAU,IAAIJ,UAAU,CAACQ,QAAX,EAAd;MACH;IACJ,CAPD;;IAQA,IAAIC,iBAAiB,GAAG,YAAY;MAChCN,SAAS,GAAG,IAAZ;MACAC,UAAU,IAAIJ,UAAU,CAACQ,QAAX,EAAd;IACH,CAHD;;IAIA,IAAIE,aAAa,GAAG,UAAUvB,KAAV,EAAiB;MACjC,OAAQgB,SAAS,GAAGV,WAAW,CAACkB,SAAZ,CAAsBf,gBAAgB,CAACT,KAAD,CAAtC,EAA+CyB,SAA/C,CAAyDpB,oBAAoB,CAACqB,wBAArB,CAA8Cb,UAA9C,EAA0DK,aAA1D,EAAyEI,iBAAzE,CAAzD,CAApB;IACH,CAFD;;IAGA,IAAIF,IAAI,GAAG,YAAY;MACnB,IAAIN,QAAJ,EAAc;QACVA,QAAQ,GAAG,KAAX;QACA,IAAId,KAAK,GAAGe,SAAZ;QACAA,SAAS,GAAG,IAAZ;QACAF,UAAU,CAACc,IAAX,CAAgB3B,KAAhB;QACA,CAACiB,UAAD,IAAeM,aAAa,CAACvB,KAAD,CAA5B;MACH;IACJ,CARD;;IASAY,MAAM,CAACa,SAAP,CAAiBpB,oBAAoB,CAACqB,wBAArB,CAA8Cb,UAA9C,EAA0D,UAAUb,KAAV,EAAiB;MACxFc,QAAQ,GAAG,IAAX;MACAC,SAAS,GAAGf,KAAZ;MACA,EAAEgB,SAAS,IAAI,CAACA,SAAS,CAACY,MAA1B,MAAsCrB,OAAO,GAAGa,IAAI,EAAP,GAAYG,aAAa,CAACvB,KAAD,CAAtE;IACH,CAJgB,EAId,YAAY;MACXiB,UAAU,GAAG,IAAb;MACA,EAAET,QAAQ,IAAIM,QAAZ,IAAwBE,SAAxB,IAAqC,CAACA,SAAS,CAACY,MAAlD,KAA6Df,UAAU,CAACQ,QAAX,EAA7D;IACH,CAPgB,CAAjB;EAQH,CAtCM,CAAP;AAuCH;;AACDtB,OAAO,CAACE,QAAR,GAAmBA,QAAnB,C,CACA"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

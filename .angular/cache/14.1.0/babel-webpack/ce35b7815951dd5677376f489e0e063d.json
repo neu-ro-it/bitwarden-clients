@@ -1,0 +1,17 @@
+{
+  "ast": null,
+  "code": "'use strict'; // Object.values/Object.entries are stage 4, in ES2017\n\nrequire('object.values/shim')();\n\nrequire('object.entries/shim')(); // String#padStart/String#padEnd are stage 4, in ES2017\n\n\nrequire('string.prototype.padstart/shim')();\n\nrequire('string.prototype.padend/shim')(); // Object.getOwnPropertyDescriptors is stage 4, in ES2017\n\n\nrequire('object.getownpropertydescriptors/shim')();\n\nrequire('./es2018');",
+  "map": {
+    "version": 3,
+    "names": ["require"],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/airbnb-js-shims/target/es2017.js"
+    ],
+    "sourcesContent": [
+      "'use strict';\n\n// Object.values/Object.entries are stage 4, in ES2017\nrequire('object.values/shim')();\nrequire('object.entries/shim')();\n\n// String#padStart/String#padEnd are stage 4, in ES2017\nrequire('string.prototype.padstart/shim')();\nrequire('string.prototype.padend/shim')();\n\n// Object.getOwnPropertyDescriptors is stage 4, in ES2017\nrequire('object.getownpropertydescriptors/shim')();\n\nrequire('./es2018');\n"
+    ],
+    "mappings": "AAAA,a,CAEA;;AACAA,OAAO,CAAC,oBAAD,CAAP;;AACAA,OAAO,CAAC,qBAAD,CAAP,G,CAEA;;;AACAA,OAAO,CAAC,gCAAD,CAAP;;AACAA,OAAO,CAAC,8BAAD,CAAP,G,CAEA;;;AACAA,OAAO,CAAC,uCAAD,CAAP;;AAEAA,OAAO,CAAC,UAAD,CAAP"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

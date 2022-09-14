@@ -1,0 +1,17 @@
+{
+  "ast": null,
+  "code": "export function identity(x) {\n  return x;\n} //# sourceMappingURL=identity.js.map",
+  "map": {
+    "version": 3,
+    "names": ["identity", "x"],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/esm5/internal/util/identity.js"
+    ],
+    "sourcesContent": [
+      "export function identity(x) {\n    return x;\n}\n//# sourceMappingURL=identity.js.map"
+    ],
+    "mappings": "AAAA,OAAO,SAASA,QAAT,CAAkBC,CAAlB,EAAqB;EACxB,OAAOA,CAAP;AACH,C,CACD"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

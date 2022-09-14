@@ -1,0 +1,43 @@
+{
+  "ast": null,
+  "code": "var URL = require('url');\n\nvar isValid = require('./is-valid.js');\n/**\n * Utility to cleanup the base host value. Also removes url fragments.\n *\n * Works for:\n * - hostname\n * - //hostname\n * - scheme://hostname\n * - scheme+scheme://hostname\n *\n * @param {string} value\n * @return {String}\n */\n// scheme      = ALPHA *( ALPHA / DIGIT / \"+\" / \"-\" / \".\" )\n\n\nvar hasPrefixRE = /^(([a-z][a-z0-9+.-]*)?:)?\\/\\//;\n/**\n * @see https://github.com/oncletom/tld.js/issues/95\n *\n * @param {string} value\n */\n\nfunction trimTrailingDots(value) {\n  if (value[value.length - 1] === '.') {\n    return value.substr(0, value.length - 1);\n  }\n\n  return value;\n}\n/**\n * Fast check to avoid calling `trim` when not needed.\n *\n * @param {string} value\n */\n\n\nfunction checkTrimmingNeeded(value) {\n  return value.length > 0 && (value.charCodeAt(0) <= 32 || value.charCodeAt(value.length - 1) <= 32);\n}\n/**\n * Fast check to avoid calling `toLowerCase` when not needed.\n *\n * @param {string} value\n */\n\n\nfunction checkLowerCaseNeeded(value) {\n  for (var i = 0; i < value.length; i += 1) {\n    var code = value.charCodeAt(i);\n\n    if (code >= 65 && code <= 90) {\n      // [A-Z]\n      return true;\n    }\n  }\n\n  return false;\n}\n\nmodule.exports = function extractHostname(value) {\n  // First check if `value` is already a valid hostname.\n  if (isValid(value)) {\n    return trimTrailingDots(value);\n  }\n\n  var url = value;\n\n  if (typeof url !== 'string') {\n    url = '' + url;\n  }\n\n  var needsTrimming = checkTrimmingNeeded(url);\n\n  if (needsTrimming) {\n    url = url.trim();\n  }\n\n  var needsLowerCase = checkLowerCaseNeeded(url);\n\n  if (needsLowerCase) {\n    url = url.toLowerCase();\n  } // Try again after `url` has been transformed to lowercase and trimmed.\n\n\n  if ((needsLowerCase || needsTrimming) && isValid(url)) {\n    return trimTrailingDots(url);\n  } // Proceed with heavier url parsing to extract the hostname.\n\n\n  if (!hasPrefixRE.test(url)) {\n    url = '//' + url;\n  }\n\n  var parts = URL.parse(url, null, true);\n\n  if (parts.hostname) {\n    return trimTrailingDots(parts.hostname);\n  }\n\n  return null;\n};",
+  "map": {
+    "version": 3,
+    "names": [
+      "URL",
+      "require",
+      "isValid",
+      "hasPrefixRE",
+      "trimTrailingDots",
+      "value",
+      "length",
+      "substr",
+      "checkTrimmingNeeded",
+      "charCodeAt",
+      "checkLowerCaseNeeded",
+      "i",
+      "code",
+      "module",
+      "exports",
+      "extractHostname",
+      "url",
+      "needsTrimming",
+      "trim",
+      "needsLowerCase",
+      "toLowerCase",
+      "test",
+      "parts",
+      "parse",
+      "hostname"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/tldjs/lib/clean-host.js"
+    ],
+    "sourcesContent": [
+      "\nvar URL = require('url');\nvar isValid = require('./is-valid.js');\n\n\n/**\n * Utility to cleanup the base host value. Also removes url fragments.\n *\n * Works for:\n * - hostname\n * - //hostname\n * - scheme://hostname\n * - scheme+scheme://hostname\n *\n * @param {string} value\n * @return {String}\n */\n\n// scheme      = ALPHA *( ALPHA / DIGIT / \"+\" / \"-\" / \".\" )\nvar hasPrefixRE = /^(([a-z][a-z0-9+.-]*)?:)?\\/\\//;\n\n\n/**\n * @see https://github.com/oncletom/tld.js/issues/95\n *\n * @param {string} value\n */\nfunction trimTrailingDots(value) {\n  if (value[value.length - 1] === '.') {\n    return value.substr(0, value.length - 1);\n  }\n  return value;\n}\n\n\n/**\n * Fast check to avoid calling `trim` when not needed.\n *\n * @param {string} value\n */\nfunction checkTrimmingNeeded(value) {\n  return (\n    value.length > 0 && (\n      value.charCodeAt(0) <= 32 ||\n      value.charCodeAt(value.length - 1) <= 32\n    )\n  );\n}\n\n\n/**\n * Fast check to avoid calling `toLowerCase` when not needed.\n *\n * @param {string} value\n */\nfunction checkLowerCaseNeeded(value) {\n  for (var i = 0; i < value.length; i += 1) {\n    var code = value.charCodeAt(i);\n    if (code >= 65 && code <= 90) { // [A-Z]\n      return true;\n    }\n  }\n\n  return false;\n}\n\n\nmodule.exports = function extractHostname(value) {\n  // First check if `value` is already a valid hostname.\n  if (isValid(value)) {\n    return trimTrailingDots(value);\n  }\n\n  var url = value;\n\n  if (typeof url !== 'string') {\n    url = '' + url;\n  }\n\n  var needsTrimming = checkTrimmingNeeded(url);\n  if (needsTrimming) {\n    url = url.trim();\n  }\n\n  var needsLowerCase = checkLowerCaseNeeded(url);\n  if (needsLowerCase) {\n    url = url.toLowerCase();\n  }\n\n  // Try again after `url` has been transformed to lowercase and trimmed.\n  if ((needsLowerCase || needsTrimming) && isValid(url)) {\n    return trimTrailingDots(url);\n  }\n\n  // Proceed with heavier url parsing to extract the hostname.\n  if (!hasPrefixRE.test(url)) {\n    url = '//' + url;\n  }\n\n  var parts = URL.parse(url, null, true);\n\n  if (parts.hostname) {\n    return trimTrailingDots(parts.hostname);\n  }\n\n  return null;\n};\n"
+    ],
+    "mappings": "AACA,IAAIA,GAAG,GAAGC,OAAO,CAAC,KAAD,CAAjB;;AACA,IAAIC,OAAO,GAAGD,OAAO,CAAC,eAAD,CAArB;AAGA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AAEA;;;AACA,IAAIE,WAAW,GAAG,+BAAlB;AAGA;AACA;AACA;AACA;AACA;;AACA,SAASC,gBAAT,CAA0BC,KAA1B,EAAiC;EAC/B,IAAIA,KAAK,CAACA,KAAK,CAACC,MAAN,GAAe,CAAhB,CAAL,KAA4B,GAAhC,EAAqC;IACnC,OAAOD,KAAK,CAACE,MAAN,CAAa,CAAb,EAAgBF,KAAK,CAACC,MAAN,GAAe,CAA/B,CAAP;EACD;;EACD,OAAOD,KAAP;AACD;AAGD;AACA;AACA;AACA;AACA;;;AACA,SAASG,mBAAT,CAA6BH,KAA7B,EAAoC;EAClC,OACEA,KAAK,CAACC,MAAN,GAAe,CAAf,KACED,KAAK,CAACI,UAAN,CAAiB,CAAjB,KAAuB,EAAvB,IACAJ,KAAK,CAACI,UAAN,CAAiBJ,KAAK,CAACC,MAAN,GAAe,CAAhC,KAAsC,EAFxC,CADF;AAMD;AAGD;AACA;AACA;AACA;AACA;;;AACA,SAASI,oBAAT,CAA8BL,KAA9B,EAAqC;EACnC,KAAK,IAAIM,CAAC,GAAG,CAAb,EAAgBA,CAAC,GAAGN,KAAK,CAACC,MAA1B,EAAkCK,CAAC,IAAI,CAAvC,EAA0C;IACxC,IAAIC,IAAI,GAAGP,KAAK,CAACI,UAAN,CAAiBE,CAAjB,CAAX;;IACA,IAAIC,IAAI,IAAI,EAAR,IAAcA,IAAI,IAAI,EAA1B,EAA8B;MAAE;MAC9B,OAAO,IAAP;IACD;EACF;;EAED,OAAO,KAAP;AACD;;AAGDC,MAAM,CAACC,OAAP,GAAiB,SAASC,eAAT,CAAyBV,KAAzB,EAAgC;EAC/C;EACA,IAAIH,OAAO,CAACG,KAAD,CAAX,EAAoB;IAClB,OAAOD,gBAAgB,CAACC,KAAD,CAAvB;EACD;;EAED,IAAIW,GAAG,GAAGX,KAAV;;EAEA,IAAI,OAAOW,GAAP,KAAe,QAAnB,EAA6B;IAC3BA,GAAG,GAAG,KAAKA,GAAX;EACD;;EAED,IAAIC,aAAa,GAAGT,mBAAmB,CAACQ,GAAD,CAAvC;;EACA,IAAIC,aAAJ,EAAmB;IACjBD,GAAG,GAAGA,GAAG,CAACE,IAAJ,EAAN;EACD;;EAED,IAAIC,cAAc,GAAGT,oBAAoB,CAACM,GAAD,CAAzC;;EACA,IAAIG,cAAJ,EAAoB;IAClBH,GAAG,GAAGA,GAAG,CAACI,WAAJ,EAAN;EACD,CApB8C,CAsB/C;;;EACA,IAAI,CAACD,cAAc,IAAIF,aAAnB,KAAqCf,OAAO,CAACc,GAAD,CAAhD,EAAuD;IACrD,OAAOZ,gBAAgB,CAACY,GAAD,CAAvB;EACD,CAzB8C,CA2B/C;;;EACA,IAAI,CAACb,WAAW,CAACkB,IAAZ,CAAiBL,GAAjB,CAAL,EAA4B;IAC1BA,GAAG,GAAG,OAAOA,GAAb;EACD;;EAED,IAAIM,KAAK,GAAGtB,GAAG,CAACuB,KAAJ,CAAUP,GAAV,EAAe,IAAf,EAAqB,IAArB,CAAZ;;EAEA,IAAIM,KAAK,CAACE,QAAV,EAAoB;IAClB,OAAOpB,gBAAgB,CAACkB,KAAK,CAACE,QAAP,CAAvB;EACD;;EAED,OAAO,IAAP;AACD,CAvCD"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

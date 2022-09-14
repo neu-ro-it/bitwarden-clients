@@ -1,0 +1,29 @@
+{
+  "ast": null,
+  "code": "\"use strict\";\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.animationFrame = exports.animationFrameScheduler = void 0;\n\nvar AnimationFrameAction_1 = require(\"./AnimationFrameAction\");\n\nvar AnimationFrameScheduler_1 = require(\"./AnimationFrameScheduler\");\n\nexports.animationFrameScheduler = new AnimationFrameScheduler_1.AnimationFrameScheduler(AnimationFrameAction_1.AnimationFrameAction);\nexports.animationFrame = exports.animationFrameScheduler; //# sourceMappingURL=animationFrame.js.map",
+  "map": {
+    "version": 3,
+    "names": [
+      "Object",
+      "defineProperty",
+      "exports",
+      "value",
+      "animationFrame",
+      "animationFrameScheduler",
+      "AnimationFrameAction_1",
+      "require",
+      "AnimationFrameScheduler_1",
+      "AnimationFrameScheduler",
+      "AnimationFrameAction"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/cjs/internal/scheduler/animationFrame.js"
+    ],
+    "sourcesContent": [
+      "\"use strict\";\nObject.defineProperty(exports, \"__esModule\", { value: true });\nexports.animationFrame = exports.animationFrameScheduler = void 0;\nvar AnimationFrameAction_1 = require(\"./AnimationFrameAction\");\nvar AnimationFrameScheduler_1 = require(\"./AnimationFrameScheduler\");\nexports.animationFrameScheduler = new AnimationFrameScheduler_1.AnimationFrameScheduler(AnimationFrameAction_1.AnimationFrameAction);\nexports.animationFrame = exports.animationFrameScheduler;\n//# sourceMappingURL=animationFrame.js.map"
+    ],
+    "mappings": "AAAA;;AACAA,MAAM,CAACC,cAAP,CAAsBC,OAAtB,EAA+B,YAA/B,EAA6C;EAAEC,KAAK,EAAE;AAAT,CAA7C;AACAD,OAAO,CAACE,cAAR,GAAyBF,OAAO,CAACG,uBAAR,GAAkC,KAAK,CAAhE;;AACA,IAAIC,sBAAsB,GAAGC,OAAO,CAAC,wBAAD,CAApC;;AACA,IAAIC,yBAAyB,GAAGD,OAAO,CAAC,2BAAD,CAAvC;;AACAL,OAAO,CAACG,uBAAR,GAAkC,IAAIG,yBAAyB,CAACC,uBAA9B,CAAsDH,sBAAsB,CAACI,oBAA7E,CAAlC;AACAR,OAAO,CAACE,cAAR,GAAyBF,OAAO,CAACG,uBAAjC,C,CACA"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

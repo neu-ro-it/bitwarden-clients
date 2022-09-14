@@ -1,0 +1,30 @@
+{
+  "ast": null,
+  "code": "\"use strict\";\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.SequenceError = void 0;\n\nvar createErrorClass_1 = require(\"./createErrorClass\");\n\nexports.SequenceError = createErrorClass_1.createErrorClass(function (_super) {\n  return function SequenceErrorImpl(message) {\n    _super(this);\n\n    this.name = 'SequenceError';\n    this.message = message;\n  };\n}); //# sourceMappingURL=SequenceError.js.map",
+  "map": {
+    "version": 3,
+    "names": [
+      "Object",
+      "defineProperty",
+      "exports",
+      "value",
+      "SequenceError",
+      "createErrorClass_1",
+      "require",
+      "createErrorClass",
+      "_super",
+      "SequenceErrorImpl",
+      "message",
+      "name"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/cjs/internal/util/SequenceError.js"
+    ],
+    "sourcesContent": [
+      "\"use strict\";\nObject.defineProperty(exports, \"__esModule\", { value: true });\nexports.SequenceError = void 0;\nvar createErrorClass_1 = require(\"./createErrorClass\");\nexports.SequenceError = createErrorClass_1.createErrorClass(function (_super) {\n    return function SequenceErrorImpl(message) {\n        _super(this);\n        this.name = 'SequenceError';\n        this.message = message;\n    };\n});\n//# sourceMappingURL=SequenceError.js.map"
+    ],
+    "mappings": "AAAA;;AACAA,MAAM,CAACC,cAAP,CAAsBC,OAAtB,EAA+B,YAA/B,EAA6C;EAAEC,KAAK,EAAE;AAAT,CAA7C;AACAD,OAAO,CAACE,aAAR,GAAwB,KAAK,CAA7B;;AACA,IAAIC,kBAAkB,GAAGC,OAAO,CAAC,oBAAD,CAAhC;;AACAJ,OAAO,CAACE,aAAR,GAAwBC,kBAAkB,CAACE,gBAAnB,CAAoC,UAAUC,MAAV,EAAkB;EAC1E,OAAO,SAASC,iBAAT,CAA2BC,OAA3B,EAAoC;IACvCF,MAAM,CAAC,IAAD,CAAN;;IACA,KAAKG,IAAL,GAAY,eAAZ;IACA,KAAKD,OAAL,GAAeA,OAAf;EACH,CAJD;AAKH,CANuB,CAAxB,C,CAOA"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

@@ -1,0 +1,28 @@
+{
+  "ast": null,
+  "code": "import { operate } from '../util/lift';\nimport { mergeInternals } from './mergeInternals';\nexport function expand(project, concurrent, scheduler) {\n  if (concurrent === void 0) {\n    concurrent = Infinity;\n  }\n\n  concurrent = (concurrent || 0) < 1 ? Infinity : concurrent;\n  return operate(function (source, subscriber) {\n    return mergeInternals(source, subscriber, project, concurrent, undefined, true, scheduler);\n  });\n} //# sourceMappingURL=expand.js.map",
+  "map": {
+    "version": 3,
+    "names": [
+      "operate",
+      "mergeInternals",
+      "expand",
+      "project",
+      "concurrent",
+      "scheduler",
+      "Infinity",
+      "source",
+      "subscriber",
+      "undefined"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/esm5/internal/operators/expand.js"
+    ],
+    "sourcesContent": [
+      "import { operate } from '../util/lift';\nimport { mergeInternals } from './mergeInternals';\nexport function expand(project, concurrent, scheduler) {\n    if (concurrent === void 0) { concurrent = Infinity; }\n    concurrent = (concurrent || 0) < 1 ? Infinity : concurrent;\n    return operate(function (source, subscriber) {\n        return mergeInternals(source, subscriber, project, concurrent, undefined, true, scheduler);\n    });\n}\n//# sourceMappingURL=expand.js.map"
+    ],
+    "mappings": "AAAA,SAASA,OAAT,QAAwB,cAAxB;AACA,SAASC,cAAT,QAA+B,kBAA/B;AACA,OAAO,SAASC,MAAT,CAAgBC,OAAhB,EAAyBC,UAAzB,EAAqCC,SAArC,EAAgD;EACnD,IAAID,UAAU,KAAK,KAAK,CAAxB,EAA2B;IAAEA,UAAU,GAAGE,QAAb;EAAwB;;EACrDF,UAAU,GAAG,CAACA,UAAU,IAAI,CAAf,IAAoB,CAApB,GAAwBE,QAAxB,GAAmCF,UAAhD;EACA,OAAOJ,OAAO,CAAC,UAAUO,MAAV,EAAkBC,UAAlB,EAA8B;IACzC,OAAOP,cAAc,CAACM,MAAD,EAASC,UAAT,EAAqBL,OAArB,EAA8BC,UAA9B,EAA0CK,SAA1C,EAAqD,IAArD,EAA2DJ,SAA3D,CAArB;EACH,CAFa,CAAd;AAGH,C,CACD"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

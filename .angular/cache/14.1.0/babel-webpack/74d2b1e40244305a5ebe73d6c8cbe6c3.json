@@ -1,0 +1,29 @@
+{
+  "ast": null,
+  "code": "\"use strict\";\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.pairs = void 0;\n\nvar from_1 = require(\"./from\");\n\nfunction pairs(obj, scheduler) {\n  return from_1.from(Object.entries(obj), scheduler);\n}\n\nexports.pairs = pairs; //# sourceMappingURL=pairs.js.map",
+  "map": {
+    "version": 3,
+    "names": [
+      "Object",
+      "defineProperty",
+      "exports",
+      "value",
+      "pairs",
+      "from_1",
+      "require",
+      "obj",
+      "scheduler",
+      "from",
+      "entries"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/cjs/internal/observable/pairs.js"
+    ],
+    "sourcesContent": [
+      "\"use strict\";\nObject.defineProperty(exports, \"__esModule\", { value: true });\nexports.pairs = void 0;\nvar from_1 = require(\"./from\");\nfunction pairs(obj, scheduler) {\n    return from_1.from(Object.entries(obj), scheduler);\n}\nexports.pairs = pairs;\n//# sourceMappingURL=pairs.js.map"
+    ],
+    "mappings": "AAAA;;AACAA,MAAM,CAACC,cAAP,CAAsBC,OAAtB,EAA+B,YAA/B,EAA6C;EAAEC,KAAK,EAAE;AAAT,CAA7C;AACAD,OAAO,CAACE,KAAR,GAAgB,KAAK,CAArB;;AACA,IAAIC,MAAM,GAAGC,OAAO,CAAC,QAAD,CAApB;;AACA,SAASF,KAAT,CAAeG,GAAf,EAAoBC,SAApB,EAA+B;EAC3B,OAAOH,MAAM,CAACI,IAAP,CAAYT,MAAM,CAACU,OAAP,CAAeH,GAAf,CAAZ,EAAiCC,SAAjC,CAAP;AACH;;AACDN,OAAO,CAACE,KAAR,GAAgBA,KAAhB,C,CACA"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

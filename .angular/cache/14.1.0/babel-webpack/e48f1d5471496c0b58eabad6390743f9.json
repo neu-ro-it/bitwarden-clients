@@ -1,0 +1,17 @@
+{
+  "ast": null,
+  "code": "'use strict'; // TODO: remove, semver-major\n\nmodule.exports = require('get-intrinsic');",
+  "map": {
+    "version": 3,
+    "names": ["module", "exports", "require"],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/es-abstract/GetIntrinsic.js"
+    ],
+    "sourcesContent": [
+      "'use strict';\n\n// TODO: remove, semver-major\n\nmodule.exports = require('get-intrinsic');\n"
+    ],
+    "mappings": "AAAA,a,CAEA;;AAEAA,MAAM,CAACC,OAAP,GAAiBC,OAAO,CAAC,eAAD,CAAxB"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

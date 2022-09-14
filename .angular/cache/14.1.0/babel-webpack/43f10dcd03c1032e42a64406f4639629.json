@@ -1,0 +1,28 @@
+{
+  "ast": null,
+  "code": "'use strict';\n\nvar GetIntrinsic = require('get-intrinsic');\n\nvar $TypeError = GetIntrinsic('%TypeError%');\n\nvar Get = require('./Get');\n\nvar ToBoolean = require('./ToBoolean');\n\nvar Type = require('./Type'); // https://ecma-international.org/ecma-262/6.0/#sec-iteratorcomplete\n\n\nmodule.exports = function IteratorComplete(iterResult) {\n  if (Type(iterResult) !== 'Object') {\n    throw new $TypeError('Assertion failed: Type(iterResult) is not Object');\n  }\n\n  return ToBoolean(Get(iterResult, 'done'));\n};",
+  "map": {
+    "version": 3,
+    "names": [
+      "GetIntrinsic",
+      "require",
+      "$TypeError",
+      "Get",
+      "ToBoolean",
+      "Type",
+      "module",
+      "exports",
+      "IteratorComplete",
+      "iterResult"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/es-abstract/2021/IteratorComplete.js"
+    ],
+    "sourcesContent": [
+      "'use strict';\n\nvar GetIntrinsic = require('get-intrinsic');\n\nvar $TypeError = GetIntrinsic('%TypeError%');\n\nvar Get = require('./Get');\nvar ToBoolean = require('./ToBoolean');\nvar Type = require('./Type');\n\n// https://ecma-international.org/ecma-262/6.0/#sec-iteratorcomplete\n\nmodule.exports = function IteratorComplete(iterResult) {\n\tif (Type(iterResult) !== 'Object') {\n\t\tthrow new $TypeError('Assertion failed: Type(iterResult) is not Object');\n\t}\n\treturn ToBoolean(Get(iterResult, 'done'));\n};\n"
+    ],
+    "mappings": "AAAA;;AAEA,IAAIA,YAAY,GAAGC,OAAO,CAAC,eAAD,CAA1B;;AAEA,IAAIC,UAAU,GAAGF,YAAY,CAAC,aAAD,CAA7B;;AAEA,IAAIG,GAAG,GAAGF,OAAO,CAAC,OAAD,CAAjB;;AACA,IAAIG,SAAS,GAAGH,OAAO,CAAC,aAAD,CAAvB;;AACA,IAAII,IAAI,GAAGJ,OAAO,CAAC,QAAD,CAAlB,C,CAEA;;;AAEAK,MAAM,CAACC,OAAP,GAAiB,SAASC,gBAAT,CAA0BC,UAA1B,EAAsC;EACtD,IAAIJ,IAAI,CAACI,UAAD,CAAJ,KAAqB,QAAzB,EAAmC;IAClC,MAAM,IAAIP,UAAJ,CAAe,kDAAf,CAAN;EACA;;EACD,OAAOE,SAAS,CAACD,GAAG,CAACM,UAAD,EAAa,MAAb,CAAJ,CAAhB;AACA,CALD"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

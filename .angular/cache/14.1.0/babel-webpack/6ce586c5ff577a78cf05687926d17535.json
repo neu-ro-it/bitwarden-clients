@@ -1,0 +1,25 @@
+{
+  "ast": null,
+  "code": "export var highlightStyle = function highlightStyle(color) {\n  return \"\\n  outline: 2px dashed \".concat(color, \";\\n  outline-offset: 2px;\\n  box-shadow: 0 0 0 6px rgba(255,255,255,0.6);\\n\");\n};\nexport var highlightObject = function highlightObject(color) {\n  return {\n    outline: \"2px dashed \".concat(color),\n    outlineOffset: 2,\n    boxShadow: '0 0 0 6px rgba(255,255,255,0.6),'\n  };\n};",
+  "map": {
+    "version": 3,
+    "names": [
+      "highlightStyle",
+      "color",
+      "concat",
+      "highlightObject",
+      "outline",
+      "outlineOffset",
+      "boxShadow"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/@storybook/addon-a11y/dist/esm/highlight.js"
+    ],
+    "sourcesContent": [
+      "export var highlightStyle = function highlightStyle(color) {\n  return \"\\n  outline: 2px dashed \".concat(color, \";\\n  outline-offset: 2px;\\n  box-shadow: 0 0 0 6px rgba(255,255,255,0.6);\\n\");\n};\nexport var highlightObject = function highlightObject(color) {\n  return {\n    outline: \"2px dashed \".concat(color),\n    outlineOffset: 2,\n    boxShadow: '0 0 0 6px rgba(255,255,255,0.6),'\n  };\n};"
+    ],
+    "mappings": "AAAA,OAAO,IAAIA,cAAc,GAAG,SAASA,cAAT,CAAwBC,KAAxB,EAA+B;EACzD,OAAO,2BAA2BC,MAA3B,CAAkCD,KAAlC,EAAyC,6EAAzC,CAAP;AACD,CAFM;AAGP,OAAO,IAAIE,eAAe,GAAG,SAASA,eAAT,CAAyBF,KAAzB,EAAgC;EAC3D,OAAO;IACLG,OAAO,EAAE,cAAcF,MAAd,CAAqBD,KAArB,CADJ;IAELI,aAAa,EAAE,CAFV;IAGLC,SAAS,EAAE;EAHN,CAAP;AAKD,CANM"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

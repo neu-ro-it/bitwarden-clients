@@ -1,0 +1,29 @@
+{
+  "ast": null,
+  "code": "import { operate } from '../util/lift';\nimport { createOperatorSubscriber } from './OperatorSubscriber';\nimport { innerFrom } from '../observable/innerFrom';\nimport { noop } from '../util/noop';\nexport function takeUntil(notifier) {\n  return operate(function (source, subscriber) {\n    innerFrom(notifier).subscribe(createOperatorSubscriber(subscriber, function () {\n      return subscriber.complete();\n    }, noop));\n    !subscriber.closed && source.subscribe(subscriber);\n  });\n} //# sourceMappingURL=takeUntil.js.map",
+  "map": {
+    "version": 3,
+    "names": [
+      "operate",
+      "createOperatorSubscriber",
+      "innerFrom",
+      "noop",
+      "takeUntil",
+      "notifier",
+      "source",
+      "subscriber",
+      "subscribe",
+      "complete",
+      "closed"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/esm5/internal/operators/takeUntil.js"
+    ],
+    "sourcesContent": [
+      "import { operate } from '../util/lift';\nimport { createOperatorSubscriber } from './OperatorSubscriber';\nimport { innerFrom } from '../observable/innerFrom';\nimport { noop } from '../util/noop';\nexport function takeUntil(notifier) {\n    return operate(function (source, subscriber) {\n        innerFrom(notifier).subscribe(createOperatorSubscriber(subscriber, function () { return subscriber.complete(); }, noop));\n        !subscriber.closed && source.subscribe(subscriber);\n    });\n}\n//# sourceMappingURL=takeUntil.js.map"
+    ],
+    "mappings": "AAAA,SAASA,OAAT,QAAwB,cAAxB;AACA,SAASC,wBAAT,QAAyC,sBAAzC;AACA,SAASC,SAAT,QAA0B,yBAA1B;AACA,SAASC,IAAT,QAAqB,cAArB;AACA,OAAO,SAASC,SAAT,CAAmBC,QAAnB,EAA6B;EAChC,OAAOL,OAAO,CAAC,UAAUM,MAAV,EAAkBC,UAAlB,EAA8B;IACzCL,SAAS,CAACG,QAAD,CAAT,CAAoBG,SAApB,CAA8BP,wBAAwB,CAACM,UAAD,EAAa,YAAY;MAAE,OAAOA,UAAU,CAACE,QAAX,EAAP;IAA+B,CAA1D,EAA4DN,IAA5D,CAAtD;IACA,CAACI,UAAU,CAACG,MAAZ,IAAsBJ,MAAM,CAACE,SAAP,CAAiBD,UAAjB,CAAtB;EACH,CAHa,CAAd;AAIH,C,CACD"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

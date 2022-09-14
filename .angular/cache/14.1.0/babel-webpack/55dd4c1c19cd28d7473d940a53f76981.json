@@ -1,0 +1,17 @@
+{
+  "ast": null,
+  "code": "\"use strict\";\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n}); //# sourceMappingURL=types.js.map",
+  "map": {
+    "version": 3,
+    "names": ["Object", "defineProperty", "exports", "value"],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/cjs/internal/types.js"
+    ],
+    "sourcesContent": [
+      "\"use strict\";\nObject.defineProperty(exports, \"__esModule\", { value: true });\n//# sourceMappingURL=types.js.map"
+    ],
+    "mappings": "AAAA;;AACAA,MAAM,CAACC,cAAP,CAAsBC,OAAtB,EAA+B,YAA/B,EAA6C;EAAEC,KAAK,EAAE;AAAT,CAA7C,E,CACA"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

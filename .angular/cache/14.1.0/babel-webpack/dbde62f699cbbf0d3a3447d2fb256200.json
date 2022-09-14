@@ -1,0 +1,15 @@
+{
+  "ast": null,
+  "code": "export {};",
+  "map": {
+    "version": 3,
+    "names": [],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/@storybook/store/dist/esm/types.js"
+    ],
+    "sourcesContent": ["export {};"],
+    "mappings": "AAAA"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

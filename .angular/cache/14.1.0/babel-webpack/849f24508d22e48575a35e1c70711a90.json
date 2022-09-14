@@ -1,0 +1,48 @@
+{
+  "ast": null,
+  "code": "\"use strict\";\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.storyPropsProvider = exports.STORY_PROPS = void 0;\n\nconst core_1 = require(\"@angular/core\");\n\nconst rxjs_1 = require(\"rxjs\");\n\nexports.STORY_PROPS = new core_1.InjectionToken('STORY_PROPS');\n\nexports.storyPropsProvider = storyProps$ => ({\n  provide: exports.STORY_PROPS,\n  useFactory: storyDataFactory(storyProps$.asObservable()),\n  deps: [core_1.NgZone]\n});\n\nfunction storyDataFactory(data) {\n  return ngZone => new rxjs_1.Observable(subscriber => {\n    const sub = data.subscribe(v => {\n      ngZone.run(() => subscriber.next(v));\n    }, err => {\n      ngZone.run(() => subscriber.error(err));\n    }, () => {\n      ngZone.run(() => subscriber.complete());\n    });\n    return () => {\n      sub.unsubscribe();\n    };\n  });\n}",
+  "map": {
+    "version": 3,
+    "names": [
+      "Object",
+      "defineProperty",
+      "exports",
+      "value",
+      "storyPropsProvider",
+      "STORY_PROPS",
+      "core_1",
+      "require",
+      "rxjs_1",
+      "InjectionToken",
+      "storyProps$",
+      "provide",
+      "useFactory",
+      "storyDataFactory",
+      "asObservable",
+      "deps",
+      "NgZone",
+      "data",
+      "ngZone",
+      "Observable",
+      "subscriber",
+      "sub",
+      "subscribe",
+      "v",
+      "run",
+      "next",
+      "err",
+      "error",
+      "complete",
+      "unsubscribe"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/@storybook/angular/dist/ts3.9/client/preview/angular-beta/StorybookProvider.js"
+    ],
+    "sourcesContent": [
+      "\"use strict\";\nObject.defineProperty(exports, \"__esModule\", { value: true });\nexports.storyPropsProvider = exports.STORY_PROPS = void 0;\nconst core_1 = require(\"@angular/core\");\nconst rxjs_1 = require(\"rxjs\");\nexports.STORY_PROPS = new core_1.InjectionToken('STORY_PROPS');\nexports.storyPropsProvider = (storyProps$) => ({\n    provide: exports.STORY_PROPS,\n    useFactory: storyDataFactory(storyProps$.asObservable()),\n    deps: [core_1.NgZone],\n});\nfunction storyDataFactory(data) {\n    return (ngZone) => new rxjs_1.Observable((subscriber) => {\n        const sub = data.subscribe((v) => {\n            ngZone.run(() => subscriber.next(v));\n        }, (err) => {\n            ngZone.run(() => subscriber.error(err));\n        }, () => {\n            ngZone.run(() => subscriber.complete());\n        });\n        return () => {\n            sub.unsubscribe();\n        };\n    });\n}\n"
+    ],
+    "mappings": "AAAA;;AACAA,MAAM,CAACC,cAAP,CAAsBC,OAAtB,EAA+B,YAA/B,EAA6C;EAAEC,KAAK,EAAE;AAAT,CAA7C;AACAD,OAAO,CAACE,kBAAR,GAA6BF,OAAO,CAACG,WAAR,GAAsB,KAAK,CAAxD;;AACA,MAAMC,MAAM,GAAGC,OAAO,CAAC,eAAD,CAAtB;;AACA,MAAMC,MAAM,GAAGD,OAAO,CAAC,MAAD,CAAtB;;AACAL,OAAO,CAACG,WAAR,GAAsB,IAAIC,MAAM,CAACG,cAAX,CAA0B,aAA1B,CAAtB;;AACAP,OAAO,CAACE,kBAAR,GAA8BM,WAAD,KAAkB;EAC3CC,OAAO,EAAET,OAAO,CAACG,WAD0B;EAE3CO,UAAU,EAAEC,gBAAgB,CAACH,WAAW,CAACI,YAAZ,EAAD,CAFe;EAG3CC,IAAI,EAAE,CAACT,MAAM,CAACU,MAAR;AAHqC,CAAlB,CAA7B;;AAKA,SAASH,gBAAT,CAA0BI,IAA1B,EAAgC;EAC5B,OAAQC,MAAD,IAAY,IAAIV,MAAM,CAACW,UAAX,CAAuBC,UAAD,IAAgB;IACrD,MAAMC,GAAG,GAAGJ,IAAI,CAACK,SAAL,CAAgBC,CAAD,IAAO;MAC9BL,MAAM,CAACM,GAAP,CAAW,MAAMJ,UAAU,CAACK,IAAX,CAAgBF,CAAhB,CAAjB;IACH,CAFW,EAERG,GAAD,IAAS;MACRR,MAAM,CAACM,GAAP,CAAW,MAAMJ,UAAU,CAACO,KAAX,CAAiBD,GAAjB,CAAjB;IACH,CAJW,EAIT,MAAM;MACLR,MAAM,CAACM,GAAP,CAAW,MAAMJ,UAAU,CAACQ,QAAX,EAAjB;IACH,CANW,CAAZ;IAOA,OAAO,MAAM;MACTP,GAAG,CAACQ,WAAJ;IACH,CAFD;EAGH,CAXkB,CAAnB;AAYH"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

@@ -1,0 +1,37 @@
+{
+  "ast": null,
+  "code": "\"use strict\";\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.popNumber = exports.popScheduler = exports.popResultSelector = void 0;\n\nvar isFunction_1 = require(\"./isFunction\");\n\nvar isScheduler_1 = require(\"./isScheduler\");\n\nfunction last(arr) {\n  return arr[arr.length - 1];\n}\n\nfunction popResultSelector(args) {\n  return isFunction_1.isFunction(last(args)) ? args.pop() : undefined;\n}\n\nexports.popResultSelector = popResultSelector;\n\nfunction popScheduler(args) {\n  return isScheduler_1.isScheduler(last(args)) ? args.pop() : undefined;\n}\n\nexports.popScheduler = popScheduler;\n\nfunction popNumber(args, defaultValue) {\n  return typeof last(args) === 'number' ? args.pop() : defaultValue;\n}\n\nexports.popNumber = popNumber; //# sourceMappingURL=args.js.map",
+  "map": {
+    "version": 3,
+    "names": [
+      "Object",
+      "defineProperty",
+      "exports",
+      "value",
+      "popNumber",
+      "popScheduler",
+      "popResultSelector",
+      "isFunction_1",
+      "require",
+      "isScheduler_1",
+      "last",
+      "arr",
+      "length",
+      "args",
+      "isFunction",
+      "pop",
+      "undefined",
+      "isScheduler",
+      "defaultValue"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/cjs/internal/util/args.js"
+    ],
+    "sourcesContent": [
+      "\"use strict\";\nObject.defineProperty(exports, \"__esModule\", { value: true });\nexports.popNumber = exports.popScheduler = exports.popResultSelector = void 0;\nvar isFunction_1 = require(\"./isFunction\");\nvar isScheduler_1 = require(\"./isScheduler\");\nfunction last(arr) {\n    return arr[arr.length - 1];\n}\nfunction popResultSelector(args) {\n    return isFunction_1.isFunction(last(args)) ? args.pop() : undefined;\n}\nexports.popResultSelector = popResultSelector;\nfunction popScheduler(args) {\n    return isScheduler_1.isScheduler(last(args)) ? args.pop() : undefined;\n}\nexports.popScheduler = popScheduler;\nfunction popNumber(args, defaultValue) {\n    return typeof last(args) === 'number' ? args.pop() : defaultValue;\n}\nexports.popNumber = popNumber;\n//# sourceMappingURL=args.js.map"
+    ],
+    "mappings": "AAAA;;AACAA,MAAM,CAACC,cAAP,CAAsBC,OAAtB,EAA+B,YAA/B,EAA6C;EAAEC,KAAK,EAAE;AAAT,CAA7C;AACAD,OAAO,CAACE,SAAR,GAAoBF,OAAO,CAACG,YAAR,GAAuBH,OAAO,CAACI,iBAAR,GAA4B,KAAK,CAA5E;;AACA,IAAIC,YAAY,GAAGC,OAAO,CAAC,cAAD,CAA1B;;AACA,IAAIC,aAAa,GAAGD,OAAO,CAAC,eAAD,CAA3B;;AACA,SAASE,IAAT,CAAcC,GAAd,EAAmB;EACf,OAAOA,GAAG,CAACA,GAAG,CAACC,MAAJ,GAAa,CAAd,CAAV;AACH;;AACD,SAASN,iBAAT,CAA2BO,IAA3B,EAAiC;EAC7B,OAAON,YAAY,CAACO,UAAb,CAAwBJ,IAAI,CAACG,IAAD,CAA5B,IAAsCA,IAAI,CAACE,GAAL,EAAtC,GAAmDC,SAA1D;AACH;;AACDd,OAAO,CAACI,iBAAR,GAA4BA,iBAA5B;;AACA,SAASD,YAAT,CAAsBQ,IAAtB,EAA4B;EACxB,OAAOJ,aAAa,CAACQ,WAAd,CAA0BP,IAAI,CAACG,IAAD,CAA9B,IAAwCA,IAAI,CAACE,GAAL,EAAxC,GAAqDC,SAA5D;AACH;;AACDd,OAAO,CAACG,YAAR,GAAuBA,YAAvB;;AACA,SAASD,SAAT,CAAmBS,IAAnB,EAAyBK,YAAzB,EAAuC;EACnC,OAAO,OAAOR,IAAI,CAACG,IAAD,CAAX,KAAsB,QAAtB,GAAiCA,IAAI,CAACE,GAAL,EAAjC,GAA8CG,YAArD;AACH;;AACDhB,OAAO,CAACE,SAAR,GAAoBA,SAApB,C,CACA"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

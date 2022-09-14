@@ -1,0 +1,38 @@
+{
+  "ast": null,
+  "code": "\"use strict\";\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.range = void 0;\n\nvar Observable_1 = require(\"../Observable\");\n\nvar empty_1 = require(\"./empty\");\n\nfunction range(start, count, scheduler) {\n  if (count == null) {\n    count = start;\n    start = 0;\n  }\n\n  if (count <= 0) {\n    return empty_1.EMPTY;\n  }\n\n  var end = count + start;\n  return new Observable_1.Observable(scheduler ? function (subscriber) {\n    var n = start;\n    return scheduler.schedule(function () {\n      if (n < end) {\n        subscriber.next(n++);\n        this.schedule();\n      } else {\n        subscriber.complete();\n      }\n    });\n  } : function (subscriber) {\n    var n = start;\n\n    while (n < end && !subscriber.closed) {\n      subscriber.next(n++);\n    }\n\n    subscriber.complete();\n  });\n}\n\nexports.range = range; //# sourceMappingURL=range.js.map",
+  "map": {
+    "version": 3,
+    "names": [
+      "Object",
+      "defineProperty",
+      "exports",
+      "value",
+      "range",
+      "Observable_1",
+      "require",
+      "empty_1",
+      "start",
+      "count",
+      "scheduler",
+      "EMPTY",
+      "end",
+      "Observable",
+      "subscriber",
+      "n",
+      "schedule",
+      "next",
+      "complete",
+      "closed"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/cjs/internal/observable/range.js"
+    ],
+    "sourcesContent": [
+      "\"use strict\";\nObject.defineProperty(exports, \"__esModule\", { value: true });\nexports.range = void 0;\nvar Observable_1 = require(\"../Observable\");\nvar empty_1 = require(\"./empty\");\nfunction range(start, count, scheduler) {\n    if (count == null) {\n        count = start;\n        start = 0;\n    }\n    if (count <= 0) {\n        return empty_1.EMPTY;\n    }\n    var end = count + start;\n    return new Observable_1.Observable(scheduler\n        ?\n            function (subscriber) {\n                var n = start;\n                return scheduler.schedule(function () {\n                    if (n < end) {\n                        subscriber.next(n++);\n                        this.schedule();\n                    }\n                    else {\n                        subscriber.complete();\n                    }\n                });\n            }\n        :\n            function (subscriber) {\n                var n = start;\n                while (n < end && !subscriber.closed) {\n                    subscriber.next(n++);\n                }\n                subscriber.complete();\n            });\n}\nexports.range = range;\n//# sourceMappingURL=range.js.map"
+    ],
+    "mappings": "AAAA;;AACAA,MAAM,CAACC,cAAP,CAAsBC,OAAtB,EAA+B,YAA/B,EAA6C;EAAEC,KAAK,EAAE;AAAT,CAA7C;AACAD,OAAO,CAACE,KAAR,GAAgB,KAAK,CAArB;;AACA,IAAIC,YAAY,GAAGC,OAAO,CAAC,eAAD,CAA1B;;AACA,IAAIC,OAAO,GAAGD,OAAO,CAAC,SAAD,CAArB;;AACA,SAASF,KAAT,CAAeI,KAAf,EAAsBC,KAAtB,EAA6BC,SAA7B,EAAwC;EACpC,IAAID,KAAK,IAAI,IAAb,EAAmB;IACfA,KAAK,GAAGD,KAAR;IACAA,KAAK,GAAG,CAAR;EACH;;EACD,IAAIC,KAAK,IAAI,CAAb,EAAgB;IACZ,OAAOF,OAAO,CAACI,KAAf;EACH;;EACD,IAAIC,GAAG,GAAGH,KAAK,GAAGD,KAAlB;EACA,OAAO,IAAIH,YAAY,CAACQ,UAAjB,CAA4BH,SAAS,GAEpC,UAAUI,UAAV,EAAsB;IAClB,IAAIC,CAAC,GAAGP,KAAR;IACA,OAAOE,SAAS,CAACM,QAAV,CAAmB,YAAY;MAClC,IAAID,CAAC,GAAGH,GAAR,EAAa;QACTE,UAAU,CAACG,IAAX,CAAgBF,CAAC,EAAjB;QACA,KAAKC,QAAL;MACH,CAHD,MAIK;QACDF,UAAU,CAACI,QAAX;MACH;IACJ,CARM,CAAP;EASH,CAbmC,GAepC,UAAUJ,UAAV,EAAsB;IAClB,IAAIC,CAAC,GAAGP,KAAR;;IACA,OAAOO,CAAC,GAAGH,GAAJ,IAAW,CAACE,UAAU,CAACK,MAA9B,EAAsC;MAClCL,UAAU,CAACG,IAAX,CAAgBF,CAAC,EAAjB;IACH;;IACDD,UAAU,CAACI,QAAX;EACH,CArBF,CAAP;AAsBH;;AACDhB,OAAO,CAACE,KAAR,GAAgBA,KAAhB,C,CACA"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

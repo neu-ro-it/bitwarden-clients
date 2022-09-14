@@ -1,0 +1,31 @@
+{
+  "ast": null,
+  "code": "'use strict';\n\nvar GetIntrinsic = require('get-intrinsic');\n\nvar $TypeError = GetIntrinsic('%TypeError%');\n\nvar Invoke = require('./Invoke');\n\nvar Type = require('./Type'); // https://ecma-international.org/ecma-262/6.0/#sec-iteratornext\n\n\nmodule.exports = function IteratorNext(iterator, value) {\n  var result = Invoke(iterator, 'next', arguments.length < 2 ? [] : [value]);\n\n  if (Type(result) !== 'Object') {\n    throw new $TypeError('iterator next must return an object');\n  }\n\n  return result;\n};",
+  "map": {
+    "version": 3,
+    "names": [
+      "GetIntrinsic",
+      "require",
+      "$TypeError",
+      "Invoke",
+      "Type",
+      "module",
+      "exports",
+      "IteratorNext",
+      "iterator",
+      "value",
+      "result",
+      "arguments",
+      "length"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/es-abstract/2021/IteratorNext.js"
+    ],
+    "sourcesContent": [
+      "'use strict';\n\nvar GetIntrinsic = require('get-intrinsic');\n\nvar $TypeError = GetIntrinsic('%TypeError%');\n\nvar Invoke = require('./Invoke');\nvar Type = require('./Type');\n\n// https://ecma-international.org/ecma-262/6.0/#sec-iteratornext\n\nmodule.exports = function IteratorNext(iterator, value) {\n\tvar result = Invoke(iterator, 'next', arguments.length < 2 ? [] : [value]);\n\tif (Type(result) !== 'Object') {\n\t\tthrow new $TypeError('iterator next must return an object');\n\t}\n\treturn result;\n};\n"
+    ],
+    "mappings": "AAAA;;AAEA,IAAIA,YAAY,GAAGC,OAAO,CAAC,eAAD,CAA1B;;AAEA,IAAIC,UAAU,GAAGF,YAAY,CAAC,aAAD,CAA7B;;AAEA,IAAIG,MAAM,GAAGF,OAAO,CAAC,UAAD,CAApB;;AACA,IAAIG,IAAI,GAAGH,OAAO,CAAC,QAAD,CAAlB,C,CAEA;;;AAEAI,MAAM,CAACC,OAAP,GAAiB,SAASC,YAAT,CAAsBC,QAAtB,EAAgCC,KAAhC,EAAuC;EACvD,IAAIC,MAAM,GAAGP,MAAM,CAACK,QAAD,EAAW,MAAX,EAAmBG,SAAS,CAACC,MAAV,GAAmB,CAAnB,GAAuB,EAAvB,GAA4B,CAACH,KAAD,CAA/C,CAAnB;;EACA,IAAIL,IAAI,CAACM,MAAD,CAAJ,KAAiB,QAArB,EAA+B;IAC9B,MAAM,IAAIR,UAAJ,CAAe,qCAAf,CAAN;EACA;;EACD,OAAOQ,MAAP;AACA,CAND"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

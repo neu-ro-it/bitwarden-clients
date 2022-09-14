@@ -1,0 +1,17 @@
+{
+  "ast": null,
+  "code": "import React from 'react';\nexport var Wrapper = function Wrapper(_ref) {\n  var children = _ref.children;\n  return /*#__PURE__*/React.createElement(\"div\", {\n    style: {\n      fontFamily: 'sans-serif'\n    }\n  }, children);\n};",
+  "map": {
+    "version": 3,
+    "names": ["React", "Wrapper", "_ref", "children", "createElement", "style", "fontFamily"],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/@storybook/addon-docs/dist/esm/blocks/Wrapper.js"
+    ],
+    "sourcesContent": [
+      "import React from 'react';\nexport var Wrapper = function Wrapper(_ref) {\n  var children = _ref.children;\n  return /*#__PURE__*/React.createElement(\"div\", {\n    style: {\n      fontFamily: 'sans-serif'\n    }\n  }, children);\n};"
+    ],
+    "mappings": "AAAA,OAAOA,KAAP,MAAkB,OAAlB;AACA,OAAO,IAAIC,OAAO,GAAG,SAASA,OAAT,CAAiBC,IAAjB,EAAuB;EAC1C,IAAIC,QAAQ,GAAGD,IAAI,CAACC,QAApB;EACA,OAAO,aAAaH,KAAK,CAACI,aAAN,CAAoB,KAApB,EAA2B;IAC7CC,KAAK,EAAE;MACLC,UAAU,EAAE;IADP;EADsC,CAA3B,EAIjBH,QAJiB,CAApB;AAKD,CAPM"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

@@ -1,0 +1,17 @@
+{
+  "ast": null,
+  "code": "import { concatMap } from './concatMap';\nimport { isFunction } from '../util/isFunction';\nexport function concatMapTo(innerObservable, resultSelector) {\n  return isFunction(resultSelector) ? concatMap(function () {\n    return innerObservable;\n  }, resultSelector) : concatMap(function () {\n    return innerObservable;\n  });\n} //# sourceMappingURL=concatMapTo.js.map",
+  "map": {
+    "version": 3,
+    "names": ["concatMap", "isFunction", "concatMapTo", "innerObservable", "resultSelector"],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/esm5/internal/operators/concatMapTo.js"
+    ],
+    "sourcesContent": [
+      "import { concatMap } from './concatMap';\nimport { isFunction } from '../util/isFunction';\nexport function concatMapTo(innerObservable, resultSelector) {\n    return isFunction(resultSelector) ? concatMap(function () { return innerObservable; }, resultSelector) : concatMap(function () { return innerObservable; });\n}\n//# sourceMappingURL=concatMapTo.js.map"
+    ],
+    "mappings": "AAAA,SAASA,SAAT,QAA0B,aAA1B;AACA,SAASC,UAAT,QAA2B,oBAA3B;AACA,OAAO,SAASC,WAAT,CAAqBC,eAArB,EAAsCC,cAAtC,EAAsD;EACzD,OAAOH,UAAU,CAACG,cAAD,CAAV,GAA6BJ,SAAS,CAAC,YAAY;IAAE,OAAOG,eAAP;EAAyB,CAAxC,EAA0CC,cAA1C,CAAtC,GAAkGJ,SAAS,CAAC,YAAY;IAAE,OAAOG,eAAP;EAAyB,CAAxC,CAAlH;AACH,C,CACD"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

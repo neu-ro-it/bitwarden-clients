@@ -1,0 +1,61 @@
+{
+  "ast": null,
+  "code": "\"use strict\";\n\nvar __read = this && this.__read || function (o, n) {\n  var m = typeof Symbol === \"function\" && o[Symbol.iterator];\n  if (!m) return o;\n  var i = m.call(o),\n      r,\n      ar = [],\n      e;\n\n  try {\n    while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);\n  } catch (error) {\n    e = {\n      error: error\n    };\n  } finally {\n    try {\n      if (r && !r.done && (m = i[\"return\"])) m.call(i);\n    } finally {\n      if (e) throw e.error;\n    }\n  }\n\n  return ar;\n};\n\nvar __spreadArray = this && this.__spreadArray || function (to, from) {\n  for (var i = 0, il = from.length, j = to.length; i < il; i++, j++) to[j] = from[i];\n\n  return to;\n};\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.animationFrameProvider = void 0;\n\nvar Subscription_1 = require(\"../Subscription\");\n\nexports.animationFrameProvider = {\n  schedule: function (callback) {\n    var request = requestAnimationFrame;\n    var cancel = cancelAnimationFrame;\n    var delegate = exports.animationFrameProvider.delegate;\n\n    if (delegate) {\n      request = delegate.requestAnimationFrame;\n      cancel = delegate.cancelAnimationFrame;\n    }\n\n    var handle = request(function (timestamp) {\n      cancel = undefined;\n      callback(timestamp);\n    });\n    return new Subscription_1.Subscription(function () {\n      return cancel === null || cancel === void 0 ? void 0 : cancel(handle);\n    });\n  },\n  requestAnimationFrame: function () {\n    var args = [];\n\n    for (var _i = 0; _i < arguments.length; _i++) {\n      args[_i] = arguments[_i];\n    }\n\n    var delegate = exports.animationFrameProvider.delegate;\n    return ((delegate === null || delegate === void 0 ? void 0 : delegate.requestAnimationFrame) || requestAnimationFrame).apply(void 0, __spreadArray([], __read(args)));\n  },\n  cancelAnimationFrame: function () {\n    var args = [];\n\n    for (var _i = 0; _i < arguments.length; _i++) {\n      args[_i] = arguments[_i];\n    }\n\n    var delegate = exports.animationFrameProvider.delegate;\n    return ((delegate === null || delegate === void 0 ? void 0 : delegate.cancelAnimationFrame) || cancelAnimationFrame).apply(void 0, __spreadArray([], __read(args)));\n  },\n  delegate: undefined\n}; //# sourceMappingURL=animationFrameProvider.js.map",
+  "map": {
+    "version": 3,
+    "names": [
+      "__read",
+      "o",
+      "n",
+      "m",
+      "Symbol",
+      "iterator",
+      "i",
+      "call",
+      "r",
+      "ar",
+      "e",
+      "next",
+      "done",
+      "push",
+      "value",
+      "error",
+      "__spreadArray",
+      "to",
+      "from",
+      "il",
+      "length",
+      "j",
+      "Object",
+      "defineProperty",
+      "exports",
+      "animationFrameProvider",
+      "Subscription_1",
+      "require",
+      "schedule",
+      "callback",
+      "request",
+      "requestAnimationFrame",
+      "cancel",
+      "cancelAnimationFrame",
+      "delegate",
+      "handle",
+      "timestamp",
+      "undefined",
+      "Subscription",
+      "args",
+      "_i",
+      "arguments",
+      "apply"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/cjs/internal/scheduler/animationFrameProvider.js"
+    ],
+    "sourcesContent": [
+      "\"use strict\";\nvar __read = (this && this.__read) || function (o, n) {\n    var m = typeof Symbol === \"function\" && o[Symbol.iterator];\n    if (!m) return o;\n    var i = m.call(o), r, ar = [], e;\n    try {\n        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);\n    }\n    catch (error) { e = { error: error }; }\n    finally {\n        try {\n            if (r && !r.done && (m = i[\"return\"])) m.call(i);\n        }\n        finally { if (e) throw e.error; }\n    }\n    return ar;\n};\nvar __spreadArray = (this && this.__spreadArray) || function (to, from) {\n    for (var i = 0, il = from.length, j = to.length; i < il; i++, j++)\n        to[j] = from[i];\n    return to;\n};\nObject.defineProperty(exports, \"__esModule\", { value: true });\nexports.animationFrameProvider = void 0;\nvar Subscription_1 = require(\"../Subscription\");\nexports.animationFrameProvider = {\n    schedule: function (callback) {\n        var request = requestAnimationFrame;\n        var cancel = cancelAnimationFrame;\n        var delegate = exports.animationFrameProvider.delegate;\n        if (delegate) {\n            request = delegate.requestAnimationFrame;\n            cancel = delegate.cancelAnimationFrame;\n        }\n        var handle = request(function (timestamp) {\n            cancel = undefined;\n            callback(timestamp);\n        });\n        return new Subscription_1.Subscription(function () { return cancel === null || cancel === void 0 ? void 0 : cancel(handle); });\n    },\n    requestAnimationFrame: function () {\n        var args = [];\n        for (var _i = 0; _i < arguments.length; _i++) {\n            args[_i] = arguments[_i];\n        }\n        var delegate = exports.animationFrameProvider.delegate;\n        return ((delegate === null || delegate === void 0 ? void 0 : delegate.requestAnimationFrame) || requestAnimationFrame).apply(void 0, __spreadArray([], __read(args)));\n    },\n    cancelAnimationFrame: function () {\n        var args = [];\n        for (var _i = 0; _i < arguments.length; _i++) {\n            args[_i] = arguments[_i];\n        }\n        var delegate = exports.animationFrameProvider.delegate;\n        return ((delegate === null || delegate === void 0 ? void 0 : delegate.cancelAnimationFrame) || cancelAnimationFrame).apply(void 0, __spreadArray([], __read(args)));\n    },\n    delegate: undefined,\n};\n//# sourceMappingURL=animationFrameProvider.js.map"
+    ],
+    "mappings": "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"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

@@ -1,0 +1,33 @@
+{
+  "ast": null,
+  "code": "\"use strict\";\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.createErrorClass = void 0;\n\nfunction createErrorClass(createImpl) {\n  var _super = function (instance) {\n    Error.call(instance);\n    instance.stack = new Error().stack;\n  };\n\n  var ctorFunc = createImpl(_super);\n  ctorFunc.prototype = Object.create(Error.prototype);\n  ctorFunc.prototype.constructor = ctorFunc;\n  return ctorFunc;\n}\n\nexports.createErrorClass = createErrorClass; //# sourceMappingURL=createErrorClass.js.map",
+  "map": {
+    "version": 3,
+    "names": [
+      "Object",
+      "defineProperty",
+      "exports",
+      "value",
+      "createErrorClass",
+      "createImpl",
+      "_super",
+      "instance",
+      "Error",
+      "call",
+      "stack",
+      "ctorFunc",
+      "prototype",
+      "create",
+      "constructor"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/cjs/internal/util/createErrorClass.js"
+    ],
+    "sourcesContent": [
+      "\"use strict\";\nObject.defineProperty(exports, \"__esModule\", { value: true });\nexports.createErrorClass = void 0;\nfunction createErrorClass(createImpl) {\n    var _super = function (instance) {\n        Error.call(instance);\n        instance.stack = new Error().stack;\n    };\n    var ctorFunc = createImpl(_super);\n    ctorFunc.prototype = Object.create(Error.prototype);\n    ctorFunc.prototype.constructor = ctorFunc;\n    return ctorFunc;\n}\nexports.createErrorClass = createErrorClass;\n//# sourceMappingURL=createErrorClass.js.map"
+    ],
+    "mappings": "AAAA;;AACAA,MAAM,CAACC,cAAP,CAAsBC,OAAtB,EAA+B,YAA/B,EAA6C;EAAEC,KAAK,EAAE;AAAT,CAA7C;AACAD,OAAO,CAACE,gBAAR,GAA2B,KAAK,CAAhC;;AACA,SAASA,gBAAT,CAA0BC,UAA1B,EAAsC;EAClC,IAAIC,MAAM,GAAG,UAAUC,QAAV,EAAoB;IAC7BC,KAAK,CAACC,IAAN,CAAWF,QAAX;IACAA,QAAQ,CAACG,KAAT,GAAiB,IAAIF,KAAJ,GAAYE,KAA7B;EACH,CAHD;;EAIA,IAAIC,QAAQ,GAAGN,UAAU,CAACC,MAAD,CAAzB;EACAK,QAAQ,CAACC,SAAT,GAAqBZ,MAAM,CAACa,MAAP,CAAcL,KAAK,CAACI,SAApB,CAArB;EACAD,QAAQ,CAACC,SAAT,CAAmBE,WAAnB,GAAiCH,QAAjC;EACA,OAAOA,QAAP;AACH;;AACDT,OAAO,CAACE,gBAAR,GAA2BA,gBAA3B,C,CACA"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

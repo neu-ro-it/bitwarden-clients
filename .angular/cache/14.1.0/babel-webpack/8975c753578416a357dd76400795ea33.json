@@ -1,0 +1,34 @@
+{
+  "ast": null,
+  "code": "\"use strict\";\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.operate = exports.hasLift = void 0;\n\nvar isFunction_1 = require(\"./isFunction\");\n\nfunction hasLift(source) {\n  return isFunction_1.isFunction(source === null || source === void 0 ? void 0 : source.lift);\n}\n\nexports.hasLift = hasLift;\n\nfunction operate(init) {\n  return function (source) {\n    if (hasLift(source)) {\n      return source.lift(function (liftedSource) {\n        try {\n          return init(liftedSource, this);\n        } catch (err) {\n          this.error(err);\n        }\n      });\n    }\n\n    throw new TypeError('Unable to lift unknown Observable type');\n  };\n}\n\nexports.operate = operate; //# sourceMappingURL=lift.js.map",
+  "map": {
+    "version": 3,
+    "names": [
+      "Object",
+      "defineProperty",
+      "exports",
+      "value",
+      "operate",
+      "hasLift",
+      "isFunction_1",
+      "require",
+      "source",
+      "isFunction",
+      "lift",
+      "init",
+      "liftedSource",
+      "err",
+      "error",
+      "TypeError"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/cjs/internal/util/lift.js"
+    ],
+    "sourcesContent": [
+      "\"use strict\";\nObject.defineProperty(exports, \"__esModule\", { value: true });\nexports.operate = exports.hasLift = void 0;\nvar isFunction_1 = require(\"./isFunction\");\nfunction hasLift(source) {\n    return isFunction_1.isFunction(source === null || source === void 0 ? void 0 : source.lift);\n}\nexports.hasLift = hasLift;\nfunction operate(init) {\n    return function (source) {\n        if (hasLift(source)) {\n            return source.lift(function (liftedSource) {\n                try {\n                    return init(liftedSource, this);\n                }\n                catch (err) {\n                    this.error(err);\n                }\n            });\n        }\n        throw new TypeError('Unable to lift unknown Observable type');\n    };\n}\nexports.operate = operate;\n//# sourceMappingURL=lift.js.map"
+    ],
+    "mappings": "AAAA;;AACAA,MAAM,CAACC,cAAP,CAAsBC,OAAtB,EAA+B,YAA/B,EAA6C;EAAEC,KAAK,EAAE;AAAT,CAA7C;AACAD,OAAO,CAACE,OAAR,GAAkBF,OAAO,CAACG,OAAR,GAAkB,KAAK,CAAzC;;AACA,IAAIC,YAAY,GAAGC,OAAO,CAAC,cAAD,CAA1B;;AACA,SAASF,OAAT,CAAiBG,MAAjB,EAAyB;EACrB,OAAOF,YAAY,CAACG,UAAb,CAAwBD,MAAM,KAAK,IAAX,IAAmBA,MAAM,KAAK,KAAK,CAAnC,GAAuC,KAAK,CAA5C,GAAgDA,MAAM,CAACE,IAA/E,CAAP;AACH;;AACDR,OAAO,CAACG,OAAR,GAAkBA,OAAlB;;AACA,SAASD,OAAT,CAAiBO,IAAjB,EAAuB;EACnB,OAAO,UAAUH,MAAV,EAAkB;IACrB,IAAIH,OAAO,CAACG,MAAD,CAAX,EAAqB;MACjB,OAAOA,MAAM,CAACE,IAAP,CAAY,UAAUE,YAAV,EAAwB;QACvC,IAAI;UACA,OAAOD,IAAI,CAACC,YAAD,EAAe,IAAf,CAAX;QACH,CAFD,CAGA,OAAOC,GAAP,EAAY;UACR,KAAKC,KAAL,CAAWD,GAAX;QACH;MACJ,CAPM,CAAP;IAQH;;IACD,MAAM,IAAIE,SAAJ,CAAc,wCAAd,CAAN;EACH,CAZD;AAaH;;AACDb,OAAO,CAACE,OAAR,GAAkBA,OAAlB,C,CACA"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

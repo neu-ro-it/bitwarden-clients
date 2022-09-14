@@ -1,0 +1,17 @@
+{
+  "ast": null,
+  "code": "'use strict';\n\nvar $isNaN = require('../helpers/isNaN'); // https://ecma-international.org/ecma-262/6.0/#sec-samevaluezero\n\n\nmodule.exports = function SameValueZero(x, y) {\n  return x === y || $isNaN(x) && $isNaN(y);\n};",
+  "map": {
+    "version": 3,
+    "names": ["$isNaN", "require", "module", "exports", "SameValueZero", "x", "y"],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/es-abstract/2021/SameValueZero.js"
+    ],
+    "sourcesContent": [
+      "'use strict';\n\nvar $isNaN = require('../helpers/isNaN');\n\n// https://ecma-international.org/ecma-262/6.0/#sec-samevaluezero\n\nmodule.exports = function SameValueZero(x, y) {\n\treturn (x === y) || ($isNaN(x) && $isNaN(y));\n};\n"
+    ],
+    "mappings": "AAAA;;AAEA,IAAIA,MAAM,GAAGC,OAAO,CAAC,kBAAD,CAApB,C,CAEA;;;AAEAC,MAAM,CAACC,OAAP,GAAiB,SAASC,aAAT,CAAuBC,CAAvB,EAA0BC,CAA1B,EAA6B;EAC7C,OAAQD,CAAC,KAAKC,CAAP,IAAcN,MAAM,CAACK,CAAD,CAAN,IAAaL,MAAM,CAACM,CAAD,CAAxC;AACA,CAFD"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

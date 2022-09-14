@@ -1,0 +1,27 @@
+{
+  "ast": null,
+  "code": "import { operate } from '../util/lift';\nexport function subscribeOn(scheduler, delay) {\n  if (delay === void 0) {\n    delay = 0;\n  }\n\n  return operate(function (source, subscriber) {\n    subscriber.add(scheduler.schedule(function () {\n      return source.subscribe(subscriber);\n    }, delay));\n  });\n} //# sourceMappingURL=subscribeOn.js.map",
+  "map": {
+    "version": 3,
+    "names": [
+      "operate",
+      "subscribeOn",
+      "scheduler",
+      "delay",
+      "source",
+      "subscriber",
+      "add",
+      "schedule",
+      "subscribe"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/esm5/internal/operators/subscribeOn.js"
+    ],
+    "sourcesContent": [
+      "import { operate } from '../util/lift';\nexport function subscribeOn(scheduler, delay) {\n    if (delay === void 0) { delay = 0; }\n    return operate(function (source, subscriber) {\n        subscriber.add(scheduler.schedule(function () { return source.subscribe(subscriber); }, delay));\n    });\n}\n//# sourceMappingURL=subscribeOn.js.map"
+    ],
+    "mappings": "AAAA,SAASA,OAAT,QAAwB,cAAxB;AACA,OAAO,SAASC,WAAT,CAAqBC,SAArB,EAAgCC,KAAhC,EAAuC;EAC1C,IAAIA,KAAK,KAAK,KAAK,CAAnB,EAAsB;IAAEA,KAAK,GAAG,CAAR;EAAY;;EACpC,OAAOH,OAAO,CAAC,UAAUI,MAAV,EAAkBC,UAAlB,EAA8B;IACzCA,UAAU,CAACC,GAAX,CAAeJ,SAAS,CAACK,QAAV,CAAmB,YAAY;MAAE,OAAOH,MAAM,CAACI,SAAP,CAAiBH,UAAjB,CAAP;IAAsC,CAAvE,EAAyEF,KAAzE,CAAf;EACH,CAFa,CAAd;AAGH,C,CACD"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

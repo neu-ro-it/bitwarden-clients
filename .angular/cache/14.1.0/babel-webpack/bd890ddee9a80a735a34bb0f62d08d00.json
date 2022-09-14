@@ -1,0 +1,28 @@
+{
+  "ast": null,
+  "code": "'use strict';\n\nvar getPolyfill = require('./polyfill');\n\nvar define = require('define-properties');\n\nmodule.exports = function shimEntries() {\n  var polyfill = getPolyfill();\n  define(Object, {\n    fromEntries: polyfill\n  }, {\n    fromEntries: function testEntries() {\n      return Object.fromEntries !== polyfill;\n    }\n  });\n  return polyfill;\n};",
+  "map": {
+    "version": 3,
+    "names": [
+      "getPolyfill",
+      "require",
+      "define",
+      "module",
+      "exports",
+      "shimEntries",
+      "polyfill",
+      "Object",
+      "fromEntries",
+      "testEntries"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/object.fromentries/shim.js"
+    ],
+    "sourcesContent": [
+      "'use strict';\n\nvar getPolyfill = require('./polyfill');\nvar define = require('define-properties');\n\nmodule.exports = function shimEntries() {\n\tvar polyfill = getPolyfill();\n\tdefine(Object, { fromEntries: polyfill }, {\n\t\tfromEntries: function testEntries() {\n\t\t\treturn Object.fromEntries !== polyfill;\n\t\t}\n\t});\n\treturn polyfill;\n};\n"
+    ],
+    "mappings": "AAAA;;AAEA,IAAIA,WAAW,GAAGC,OAAO,CAAC,YAAD,CAAzB;;AACA,IAAIC,MAAM,GAAGD,OAAO,CAAC,mBAAD,CAApB;;AAEAE,MAAM,CAACC,OAAP,GAAiB,SAASC,WAAT,GAAuB;EACvC,IAAIC,QAAQ,GAAGN,WAAW,EAA1B;EACAE,MAAM,CAACK,MAAD,EAAS;IAAEC,WAAW,EAAEF;EAAf,CAAT,EAAoC;IACzCE,WAAW,EAAE,SAASC,WAAT,GAAuB;MACnC,OAAOF,MAAM,CAACC,WAAP,KAAuBF,QAA9B;IACA;EAHwC,CAApC,CAAN;EAKA,OAAOA,QAAP;AACA,CARD"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

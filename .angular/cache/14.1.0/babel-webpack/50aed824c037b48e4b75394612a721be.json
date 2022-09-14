@@ -1,0 +1,35 @@
+{
+  "ast": null,
+  "code": "\"use strict\";\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.skipWhile = void 0;\n\nvar lift_1 = require(\"../util/lift\");\n\nvar OperatorSubscriber_1 = require(\"./OperatorSubscriber\");\n\nfunction skipWhile(predicate) {\n  return lift_1.operate(function (source, subscriber) {\n    var taking = false;\n    var index = 0;\n    source.subscribe(OperatorSubscriber_1.createOperatorSubscriber(subscriber, function (value) {\n      return (taking || (taking = !predicate(value, index++))) && subscriber.next(value);\n    }));\n  });\n}\n\nexports.skipWhile = skipWhile; //# sourceMappingURL=skipWhile.js.map",
+  "map": {
+    "version": 3,
+    "names": [
+      "Object",
+      "defineProperty",
+      "exports",
+      "value",
+      "skipWhile",
+      "lift_1",
+      "require",
+      "OperatorSubscriber_1",
+      "predicate",
+      "operate",
+      "source",
+      "subscriber",
+      "taking",
+      "index",
+      "subscribe",
+      "createOperatorSubscriber",
+      "next"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/cjs/internal/operators/skipWhile.js"
+    ],
+    "sourcesContent": [
+      "\"use strict\";\nObject.defineProperty(exports, \"__esModule\", { value: true });\nexports.skipWhile = void 0;\nvar lift_1 = require(\"../util/lift\");\nvar OperatorSubscriber_1 = require(\"./OperatorSubscriber\");\nfunction skipWhile(predicate) {\n    return lift_1.operate(function (source, subscriber) {\n        var taking = false;\n        var index = 0;\n        source.subscribe(OperatorSubscriber_1.createOperatorSubscriber(subscriber, function (value) { return (taking || (taking = !predicate(value, index++))) && subscriber.next(value); }));\n    });\n}\nexports.skipWhile = skipWhile;\n//# sourceMappingURL=skipWhile.js.map"
+    ],
+    "mappings": "AAAA;;AACAA,MAAM,CAACC,cAAP,CAAsBC,OAAtB,EAA+B,YAA/B,EAA6C;EAAEC,KAAK,EAAE;AAAT,CAA7C;AACAD,OAAO,CAACE,SAAR,GAAoB,KAAK,CAAzB;;AACA,IAAIC,MAAM,GAAGC,OAAO,CAAC,cAAD,CAApB;;AACA,IAAIC,oBAAoB,GAAGD,OAAO,CAAC,sBAAD,CAAlC;;AACA,SAASF,SAAT,CAAmBI,SAAnB,EAA8B;EAC1B,OAAOH,MAAM,CAACI,OAAP,CAAe,UAAUC,MAAV,EAAkBC,UAAlB,EAA8B;IAChD,IAAIC,MAAM,GAAG,KAAb;IACA,IAAIC,KAAK,GAAG,CAAZ;IACAH,MAAM,CAACI,SAAP,CAAiBP,oBAAoB,CAACQ,wBAArB,CAA8CJ,UAA9C,EAA0D,UAAUR,KAAV,EAAiB;MAAE,OAAO,CAACS,MAAM,KAAKA,MAAM,GAAG,CAACJ,SAAS,CAACL,KAAD,EAAQU,KAAK,EAAb,CAAxB,CAAP,KAAqDF,UAAU,CAACK,IAAX,CAAgBb,KAAhB,CAA5D;IAAqF,CAAlK,CAAjB;EACH,CAJM,CAAP;AAKH;;AACDD,OAAO,CAACE,SAAR,GAAoBA,SAApB,C,CACA"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

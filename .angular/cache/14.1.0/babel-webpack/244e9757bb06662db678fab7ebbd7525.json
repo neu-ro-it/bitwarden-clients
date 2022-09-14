@@ -1,0 +1,17 @@
+{
+  "ast": null,
+  "code": "'use strict';\n/**\n * Returns the subdomain of a hostname string\n *\n * @api\n * @param {string} hostname\n * @param {string} domain - the root domain of the hostname\n * @return {string|null} a subdomain string if any, blank string if subdomain\n *  is empty, otherwise null.\n */\n\nmodule.exports = function getSubdomain(hostname, domain) {\n  // No domain found? Just abort, abort!\n  if (domain === null) {\n    return null;\n  }\n\n  return hostname.substr(0, hostname.length - domain.length - 1);\n};",
+  "map": {
+    "version": 3,
+    "names": ["module", "exports", "getSubdomain", "hostname", "domain", "substr", "length"],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/tldjs/lib/subdomain.js"
+    ],
+    "sourcesContent": [
+      "'use strict';\n\n\n/**\n * Returns the subdomain of a hostname string\n *\n * @api\n * @param {string} hostname\n * @param {string} domain - the root domain of the hostname\n * @return {string|null} a subdomain string if any, blank string if subdomain\n *  is empty, otherwise null.\n */\nmodule.exports = function getSubdomain(hostname, domain) {\n  // No domain found? Just abort, abort!\n  if (domain === null) {\n    return null;\n  }\n\n  return hostname.substr(0, hostname.length - domain.length - 1);\n};\n"
+    ],
+    "mappings": "AAAA;AAGA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AACAA,MAAM,CAACC,OAAP,GAAiB,SAASC,YAAT,CAAsBC,QAAtB,EAAgCC,MAAhC,EAAwC;EACvD;EACA,IAAIA,MAAM,KAAK,IAAf,EAAqB;IACnB,OAAO,IAAP;EACD;;EAED,OAAOD,QAAQ,CAACE,MAAT,CAAgB,CAAhB,EAAmBF,QAAQ,CAACG,MAAT,GAAkBF,MAAM,CAACE,MAAzB,GAAkC,CAArD,CAAP;AACD,CAPD"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

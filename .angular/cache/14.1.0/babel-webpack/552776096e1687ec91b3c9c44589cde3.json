@@ -1,0 +1,46 @@
+{
+  "ast": null,
+  "code": "'use strict';\n\nvar define = require('define-properties');\n\nvar hasSymbols = require('has-symbols')();\n\nvar getPolyfill = require('./polyfill');\n\nvar regexpMatchAllPolyfill = require('./polyfill-regexp-matchall');\n\nvar defineP = Object.defineProperty;\nvar gOPD = Object.getOwnPropertyDescriptor;\n\nmodule.exports = function shimMatchAll() {\n  var polyfill = getPolyfill();\n  define(String.prototype, {\n    matchAll: polyfill\n  }, {\n    matchAll: function () {\n      return String.prototype.matchAll !== polyfill;\n    }\n  });\n\n  if (hasSymbols) {\n    // eslint-disable-next-line no-restricted-properties\n    var symbol = Symbol.matchAll || (Symbol['for'] ? Symbol['for']('Symbol.matchAll') : Symbol('Symbol.matchAll'));\n    define(Symbol, {\n      matchAll: symbol\n    }, {\n      matchAll: function () {\n        return Symbol.matchAll !== symbol;\n      }\n    });\n\n    if (defineP && gOPD) {\n      var desc = gOPD(Symbol, symbol);\n\n      if (!desc || desc.configurable) {\n        defineP(Symbol, symbol, {\n          configurable: false,\n          enumerable: false,\n          value: symbol,\n          writable: false\n        });\n      }\n    }\n\n    var regexpMatchAll = regexpMatchAllPolyfill();\n    var func = {};\n    func[symbol] = regexpMatchAll;\n    var predicate = {};\n\n    predicate[symbol] = function () {\n      return RegExp.prototype[symbol] !== regexpMatchAll;\n    };\n\n    define(RegExp.prototype, func, predicate);\n  }\n\n  return polyfill;\n};",
+  "map": {
+    "version": 3,
+    "names": [
+      "define",
+      "require",
+      "hasSymbols",
+      "getPolyfill",
+      "regexpMatchAllPolyfill",
+      "defineP",
+      "Object",
+      "defineProperty",
+      "gOPD",
+      "getOwnPropertyDescriptor",
+      "module",
+      "exports",
+      "shimMatchAll",
+      "polyfill",
+      "String",
+      "prototype",
+      "matchAll",
+      "symbol",
+      "Symbol",
+      "desc",
+      "configurable",
+      "enumerable",
+      "value",
+      "writable",
+      "regexpMatchAll",
+      "func",
+      "predicate",
+      "RegExp"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/string.prototype.matchall/shim.js"
+    ],
+    "sourcesContent": [
+      "'use strict';\n\nvar define = require('define-properties');\nvar hasSymbols = require('has-symbols')();\nvar getPolyfill = require('./polyfill');\nvar regexpMatchAllPolyfill = require('./polyfill-regexp-matchall');\n\nvar defineP = Object.defineProperty;\nvar gOPD = Object.getOwnPropertyDescriptor;\n\nmodule.exports = function shimMatchAll() {\n\tvar polyfill = getPolyfill();\n\tdefine(\n\t\tString.prototype,\n\t\t{ matchAll: polyfill },\n\t\t{ matchAll: function () { return String.prototype.matchAll !== polyfill; } }\n\t);\n\tif (hasSymbols) {\n\t\t// eslint-disable-next-line no-restricted-properties\n\t\tvar symbol = Symbol.matchAll || (Symbol['for'] ? Symbol['for']('Symbol.matchAll') : Symbol('Symbol.matchAll'));\n\t\tdefine(\n\t\t\tSymbol,\n\t\t\t{ matchAll: symbol },\n\t\t\t{ matchAll: function () { return Symbol.matchAll !== symbol; } }\n\t\t);\n\n\t\tif (defineP && gOPD) {\n\t\t\tvar desc = gOPD(Symbol, symbol);\n\t\t\tif (!desc || desc.configurable) {\n\t\t\t\tdefineP(Symbol, symbol, {\n\t\t\t\t\tconfigurable: false,\n\t\t\t\t\tenumerable: false,\n\t\t\t\t\tvalue: symbol,\n\t\t\t\t\twritable: false\n\t\t\t\t});\n\t\t\t}\n\t\t}\n\n\t\tvar regexpMatchAll = regexpMatchAllPolyfill();\n\t\tvar func = {};\n\t\tfunc[symbol] = regexpMatchAll;\n\t\tvar predicate = {};\n\t\tpredicate[symbol] = function () {\n\t\t\treturn RegExp.prototype[symbol] !== regexpMatchAll;\n\t\t};\n\t\tdefine(RegExp.prototype, func, predicate);\n\t}\n\treturn polyfill;\n};\n"
+    ],
+    "mappings": "AAAA;;AAEA,IAAIA,MAAM,GAAGC,OAAO,CAAC,mBAAD,CAApB;;AACA,IAAIC,UAAU,GAAGD,OAAO,CAAC,aAAD,CAAP,EAAjB;;AACA,IAAIE,WAAW,GAAGF,OAAO,CAAC,YAAD,CAAzB;;AACA,IAAIG,sBAAsB,GAAGH,OAAO,CAAC,4BAAD,CAApC;;AAEA,IAAII,OAAO,GAAGC,MAAM,CAACC,cAArB;AACA,IAAIC,IAAI,GAAGF,MAAM,CAACG,wBAAlB;;AAEAC,MAAM,CAACC,OAAP,GAAiB,SAASC,YAAT,GAAwB;EACxC,IAAIC,QAAQ,GAAGV,WAAW,EAA1B;EACAH,MAAM,CACLc,MAAM,CAACC,SADF,EAEL;IAAEC,QAAQ,EAAEH;EAAZ,CAFK,EAGL;IAAEG,QAAQ,EAAE,YAAY;MAAE,OAAOF,MAAM,CAACC,SAAP,CAAiBC,QAAjB,KAA8BH,QAArC;IAAgD;EAA1E,CAHK,CAAN;;EAKA,IAAIX,UAAJ,EAAgB;IACf;IACA,IAAIe,MAAM,GAAGC,MAAM,CAACF,QAAP,KAAoBE,MAAM,CAAC,KAAD,CAAN,GAAgBA,MAAM,CAAC,KAAD,CAAN,CAAc,iBAAd,CAAhB,GAAmDA,MAAM,CAAC,iBAAD,CAA7E,CAAb;IACAlB,MAAM,CACLkB,MADK,EAEL;MAAEF,QAAQ,EAAEC;IAAZ,CAFK,EAGL;MAAED,QAAQ,EAAE,YAAY;QAAE,OAAOE,MAAM,CAACF,QAAP,KAAoBC,MAA3B;MAAoC;IAA9D,CAHK,CAAN;;IAMA,IAAIZ,OAAO,IAAIG,IAAf,EAAqB;MACpB,IAAIW,IAAI,GAAGX,IAAI,CAACU,MAAD,EAASD,MAAT,CAAf;;MACA,IAAI,CAACE,IAAD,IAASA,IAAI,CAACC,YAAlB,EAAgC;QAC/Bf,OAAO,CAACa,MAAD,EAASD,MAAT,EAAiB;UACvBG,YAAY,EAAE,KADS;UAEvBC,UAAU,EAAE,KAFW;UAGvBC,KAAK,EAAEL,MAHgB;UAIvBM,QAAQ,EAAE;QAJa,CAAjB,CAAP;MAMA;IACD;;IAED,IAAIC,cAAc,GAAGpB,sBAAsB,EAA3C;IACA,IAAIqB,IAAI,GAAG,EAAX;IACAA,IAAI,CAACR,MAAD,CAAJ,GAAeO,cAAf;IACA,IAAIE,SAAS,GAAG,EAAhB;;IACAA,SAAS,CAACT,MAAD,CAAT,GAAoB,YAAY;MAC/B,OAAOU,MAAM,CAACZ,SAAP,CAAiBE,MAAjB,MAA6BO,cAApC;IACA,CAFD;;IAGAxB,MAAM,CAAC2B,MAAM,CAACZ,SAAR,EAAmBU,IAAnB,EAAyBC,SAAzB,CAAN;EACA;;EACD,OAAOb,QAAP;AACA,CAtCD"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

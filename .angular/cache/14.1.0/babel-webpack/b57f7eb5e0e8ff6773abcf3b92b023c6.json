@@ -1,0 +1,17 @@
+{
+  "ast": null,
+  "code": "import { mergeMap } from './mergeMap';\nimport { identity } from '../util/identity';\nexport function mergeAll(concurrent) {\n  if (concurrent === void 0) {\n    concurrent = Infinity;\n  }\n\n  return mergeMap(identity, concurrent);\n} //# sourceMappingURL=mergeAll.js.map",
+  "map": {
+    "version": 3,
+    "names": ["mergeMap", "identity", "mergeAll", "concurrent", "Infinity"],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/esm5/internal/operators/mergeAll.js"
+    ],
+    "sourcesContent": [
+      "import { mergeMap } from './mergeMap';\nimport { identity } from '../util/identity';\nexport function mergeAll(concurrent) {\n    if (concurrent === void 0) { concurrent = Infinity; }\n    return mergeMap(identity, concurrent);\n}\n//# sourceMappingURL=mergeAll.js.map"
+    ],
+    "mappings": "AAAA,SAASA,QAAT,QAAyB,YAAzB;AACA,SAASC,QAAT,QAAyB,kBAAzB;AACA,OAAO,SAASC,QAAT,CAAkBC,UAAlB,EAA8B;EACjC,IAAIA,UAAU,KAAK,KAAK,CAAxB,EAA2B;IAAEA,UAAU,GAAGC,QAAb;EAAwB;;EACrD,OAAOJ,QAAQ,CAACC,QAAD,EAAWE,UAAX,CAAf;AACH,C,CACD"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

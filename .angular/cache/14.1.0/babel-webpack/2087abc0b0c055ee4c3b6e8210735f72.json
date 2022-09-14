@@ -1,0 +1,29 @@
+{
+  "ast": null,
+  "code": "import { __extends } from \"tslib\";\nimport { Subscription } from '../Subscription';\n\nvar Action = function (_super) {\n  __extends(Action, _super);\n\n  function Action(scheduler, work) {\n    return _super.call(this) || this;\n  }\n\n  Action.prototype.schedule = function (state, delay) {\n    if (delay === void 0) {\n      delay = 0;\n    }\n\n    return this;\n  };\n\n  return Action;\n}(Subscription);\n\nexport { Action }; //# sourceMappingURL=Action.js.map",
+  "map": {
+    "version": 3,
+    "names": [
+      "__extends",
+      "Subscription",
+      "Action",
+      "_super",
+      "scheduler",
+      "work",
+      "call",
+      "prototype",
+      "schedule",
+      "state",
+      "delay"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/esm5/internal/scheduler/Action.js"
+    ],
+    "sourcesContent": [
+      "import { __extends } from \"tslib\";\nimport { Subscription } from '../Subscription';\nvar Action = (function (_super) {\n    __extends(Action, _super);\n    function Action(scheduler, work) {\n        return _super.call(this) || this;\n    }\n    Action.prototype.schedule = function (state, delay) {\n        if (delay === void 0) { delay = 0; }\n        return this;\n    };\n    return Action;\n}(Subscription));\nexport { Action };\n//# sourceMappingURL=Action.js.map"
+    ],
+    "mappings": "AAAA,SAASA,SAAT,QAA0B,OAA1B;AACA,SAASC,YAAT,QAA6B,iBAA7B;;AACA,IAAIC,MAAM,GAAI,UAAUC,MAAV,EAAkB;EAC5BH,SAAS,CAACE,MAAD,EAASC,MAAT,CAAT;;EACA,SAASD,MAAT,CAAgBE,SAAhB,EAA2BC,IAA3B,EAAiC;IAC7B,OAAOF,MAAM,CAACG,IAAP,CAAY,IAAZ,KAAqB,IAA5B;EACH;;EACDJ,MAAM,CAACK,SAAP,CAAiBC,QAAjB,GAA4B,UAAUC,KAAV,EAAiBC,KAAjB,EAAwB;IAChD,IAAIA,KAAK,KAAK,KAAK,CAAnB,EAAsB;MAAEA,KAAK,GAAG,CAAR;IAAY;;IACpC,OAAO,IAAP;EACH,CAHD;;EAIA,OAAOR,MAAP;AACH,CAVa,CAUZD,YAVY,CAAd;;AAWA,SAASC,MAAT,G,CACA"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

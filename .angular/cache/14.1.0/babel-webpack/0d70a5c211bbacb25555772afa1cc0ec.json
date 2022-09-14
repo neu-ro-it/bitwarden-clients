@@ -1,0 +1,27 @@
+{
+  "ast": null,
+  "code": "import { __read, __spreadArray } from \"tslib\";\nimport { merge } from './merge';\nexport function mergeWith() {\n  var otherSources = [];\n\n  for (var _i = 0; _i < arguments.length; _i++) {\n    otherSources[_i] = arguments[_i];\n  }\n\n  return merge.apply(void 0, __spreadArray([], __read(otherSources)));\n} //# sourceMappingURL=mergeWith.js.map",
+  "map": {
+    "version": 3,
+    "names": [
+      "__read",
+      "__spreadArray",
+      "merge",
+      "mergeWith",
+      "otherSources",
+      "_i",
+      "arguments",
+      "length",
+      "apply"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/esm5/internal/operators/mergeWith.js"
+    ],
+    "sourcesContent": [
+      "import { __read, __spreadArray } from \"tslib\";\nimport { merge } from './merge';\nexport function mergeWith() {\n    var otherSources = [];\n    for (var _i = 0; _i < arguments.length; _i++) {\n        otherSources[_i] = arguments[_i];\n    }\n    return merge.apply(void 0, __spreadArray([], __read(otherSources)));\n}\n//# sourceMappingURL=mergeWith.js.map"
+    ],
+    "mappings": "AAAA,SAASA,MAAT,EAAiBC,aAAjB,QAAsC,OAAtC;AACA,SAASC,KAAT,QAAsB,SAAtB;AACA,OAAO,SAASC,SAAT,GAAqB;EACxB,IAAIC,YAAY,GAAG,EAAnB;;EACA,KAAK,IAAIC,EAAE,GAAG,CAAd,EAAiBA,EAAE,GAAGC,SAAS,CAACC,MAAhC,EAAwCF,EAAE,EAA1C,EAA8C;IAC1CD,YAAY,CAACC,EAAD,CAAZ,GAAmBC,SAAS,CAACD,EAAD,CAA5B;EACH;;EACD,OAAOH,KAAK,CAACM,KAAN,CAAY,KAAK,CAAjB,EAAoBP,aAAa,CAAC,EAAD,EAAKD,MAAM,CAACI,YAAD,CAAX,CAAjC,CAAP;AACH,C,CACD"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

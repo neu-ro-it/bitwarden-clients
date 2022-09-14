@@ -1,0 +1,30 @@
+{
+  "ast": null,
+  "code": "import { withBackground } from './decorators/withBackground';\nimport { withGrid } from './decorators/withGrid';\nexport var decorators = [withGrid, withBackground];\nexport var parameters = {\n  backgrounds: {\n    grid: {\n      cellSize: 20,\n      opacity: 0.5,\n      cellAmount: 5\n    },\n    values: [{\n      name: 'light',\n      value: '#F8F8F8'\n    }, {\n      name: 'dark',\n      value: '#333333'\n    }]\n  }\n};",
+  "map": {
+    "version": 3,
+    "names": [
+      "withBackground",
+      "withGrid",
+      "decorators",
+      "parameters",
+      "backgrounds",
+      "grid",
+      "cellSize",
+      "opacity",
+      "cellAmount",
+      "values",
+      "name",
+      "value"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/@storybook/addon-backgrounds/dist/esm/preview.js"
+    ],
+    "sourcesContent": [
+      "import { withBackground } from './decorators/withBackground';\nimport { withGrid } from './decorators/withGrid';\nexport var decorators = [withGrid, withBackground];\nexport var parameters = {\n  backgrounds: {\n    grid: {\n      cellSize: 20,\n      opacity: 0.5,\n      cellAmount: 5\n    },\n    values: [{\n      name: 'light',\n      value: '#F8F8F8'\n    }, {\n      name: 'dark',\n      value: '#333333'\n    }]\n  }\n};"
+    ],
+    "mappings": "AAAA,SAASA,cAAT,QAA+B,6BAA/B;AACA,SAASC,QAAT,QAAyB,uBAAzB;AACA,OAAO,IAAIC,UAAU,GAAG,CAACD,QAAD,EAAWD,cAAX,CAAjB;AACP,OAAO,IAAIG,UAAU,GAAG;EACtBC,WAAW,EAAE;IACXC,IAAI,EAAE;MACJC,QAAQ,EAAE,EADN;MAEJC,OAAO,EAAE,GAFL;MAGJC,UAAU,EAAE;IAHR,CADK;IAMXC,MAAM,EAAE,CAAC;MACPC,IAAI,EAAE,OADC;MAEPC,KAAK,EAAE;IAFA,CAAD,EAGL;MACDD,IAAI,EAAE,MADL;MAEDC,KAAK,EAAE;IAFN,CAHK;EANG;AADS,CAAjB"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

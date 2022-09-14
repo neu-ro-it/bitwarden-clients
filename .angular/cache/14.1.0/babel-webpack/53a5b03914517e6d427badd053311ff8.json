@@ -1,0 +1,17 @@
+{
+  "ast": null,
+  "code": "'use strict'; // http://262.ecma-international.org/5.1/#sec-9.2\n\nmodule.exports = function ToBoolean(value) {\n  return !!value;\n};",
+  "map": {
+    "version": 3,
+    "names": ["module", "exports", "ToBoolean", "value"],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/es-abstract/2021/ToBoolean.js"
+    ],
+    "sourcesContent": [
+      "'use strict';\n\n// http://262.ecma-international.org/5.1/#sec-9.2\n\nmodule.exports = function ToBoolean(value) { return !!value; };\n"
+    ],
+    "mappings": "AAAA,a,CAEA;;AAEAA,MAAM,CAACC,OAAP,GAAiB,SAASC,SAAT,CAAmBC,KAAnB,EAA0B;EAAE,OAAO,CAAC,CAACA,KAAT;AAAiB,CAA9D"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

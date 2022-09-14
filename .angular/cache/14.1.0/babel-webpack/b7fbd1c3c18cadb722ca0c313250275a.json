@@ -1,0 +1,27 @@
+{
+  "ast": null,
+  "code": "\"use strict\";\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.dateTimestampProvider = void 0;\nexports.dateTimestampProvider = {\n  now: function () {\n    return (exports.dateTimestampProvider.delegate || Date).now();\n  },\n  delegate: undefined\n}; //# sourceMappingURL=dateTimestampProvider.js.map",
+  "map": {
+    "version": 3,
+    "names": [
+      "Object",
+      "defineProperty",
+      "exports",
+      "value",
+      "dateTimestampProvider",
+      "now",
+      "delegate",
+      "Date",
+      "undefined"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/cjs/internal/scheduler/dateTimestampProvider.js"
+    ],
+    "sourcesContent": [
+      "\"use strict\";\nObject.defineProperty(exports, \"__esModule\", { value: true });\nexports.dateTimestampProvider = void 0;\nexports.dateTimestampProvider = {\n    now: function () {\n        return (exports.dateTimestampProvider.delegate || Date).now();\n    },\n    delegate: undefined,\n};\n//# sourceMappingURL=dateTimestampProvider.js.map"
+    ],
+    "mappings": "AAAA;;AACAA,MAAM,CAACC,cAAP,CAAsBC,OAAtB,EAA+B,YAA/B,EAA6C;EAAEC,KAAK,EAAE;AAAT,CAA7C;AACAD,OAAO,CAACE,qBAAR,GAAgC,KAAK,CAArC;AACAF,OAAO,CAACE,qBAAR,GAAgC;EAC5BC,GAAG,EAAE,YAAY;IACb,OAAO,CAACH,OAAO,CAACE,qBAAR,CAA8BE,QAA9B,IAA0CC,IAA3C,EAAiDF,GAAjD,EAAP;EACH,CAH2B;EAI5BC,QAAQ,EAAEE;AAJkB,CAAhC,C,CAMA"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

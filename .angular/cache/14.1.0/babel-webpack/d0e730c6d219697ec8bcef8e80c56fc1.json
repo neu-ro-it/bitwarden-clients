@@ -1,0 +1,29 @@
+{
+  "ast": null,
+  "code": "import \"core-js/modules/es.symbol.js\";\nimport \"core-js/modules/es.symbol.description.js\";\nimport { createType } from './createType';\nimport { createDefaultValue } from './createDefaultValue';\nexport var createFlowPropDef = function createFlowPropDef(propName, docgenInfo) {\n  var flowType = docgenInfo.flowType,\n      description = docgenInfo.description,\n      required = docgenInfo.required,\n      defaultValue = docgenInfo.defaultValue;\n  return {\n    name: propName,\n    type: createType(flowType),\n    required: required,\n    description: description,\n    defaultValue: createDefaultValue(defaultValue, flowType)\n  };\n};",
+  "map": {
+    "version": 3,
+    "names": [
+      "createType",
+      "createDefaultValue",
+      "createFlowPropDef",
+      "propName",
+      "docgenInfo",
+      "flowType",
+      "description",
+      "required",
+      "defaultValue",
+      "name",
+      "type"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/@storybook/docs-tools/dist/esm/argTypes/docgen/flow/createPropDef.js"
+    ],
+    "sourcesContent": [
+      "import \"core-js/modules/es.symbol.js\";\nimport \"core-js/modules/es.symbol.description.js\";\nimport { createType } from './createType';\nimport { createDefaultValue } from './createDefaultValue';\nexport var createFlowPropDef = function createFlowPropDef(propName, docgenInfo) {\n  var flowType = docgenInfo.flowType,\n      description = docgenInfo.description,\n      required = docgenInfo.required,\n      defaultValue = docgenInfo.defaultValue;\n  return {\n    name: propName,\n    type: createType(flowType),\n    required: required,\n    description: description,\n    defaultValue: createDefaultValue(defaultValue, flowType)\n  };\n};"
+    ],
+    "mappings": "AAAA,OAAO,8BAAP;AACA,OAAO,0CAAP;AACA,SAASA,UAAT,QAA2B,cAA3B;AACA,SAASC,kBAAT,QAAmC,sBAAnC;AACA,OAAO,IAAIC,iBAAiB,GAAG,SAASA,iBAAT,CAA2BC,QAA3B,EAAqCC,UAArC,EAAiD;EAC9E,IAAIC,QAAQ,GAAGD,UAAU,CAACC,QAA1B;EAAA,IACIC,WAAW,GAAGF,UAAU,CAACE,WAD7B;EAAA,IAEIC,QAAQ,GAAGH,UAAU,CAACG,QAF1B;EAAA,IAGIC,YAAY,GAAGJ,UAAU,CAACI,YAH9B;EAIA,OAAO;IACLC,IAAI,EAAEN,QADD;IAELO,IAAI,EAAEV,UAAU,CAACK,QAAD,CAFX;IAGLE,QAAQ,EAAEA,QAHL;IAILD,WAAW,EAAEA,WAJR;IAKLE,YAAY,EAAEP,kBAAkB,CAACO,YAAD,EAAeH,QAAf;EAL3B,CAAP;AAOD,CAZM"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

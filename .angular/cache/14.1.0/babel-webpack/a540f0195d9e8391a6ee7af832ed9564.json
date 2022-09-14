@@ -1,0 +1,39 @@
+{
+  "ast": null,
+  "code": "\"use strict\";\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.observeOn = void 0;\n\nvar executeSchedule_1 = require(\"../util/executeSchedule\");\n\nvar lift_1 = require(\"../util/lift\");\n\nvar OperatorSubscriber_1 = require(\"./OperatorSubscriber\");\n\nfunction observeOn(scheduler, delay) {\n  if (delay === void 0) {\n    delay = 0;\n  }\n\n  return lift_1.operate(function (source, subscriber) {\n    source.subscribe(OperatorSubscriber_1.createOperatorSubscriber(subscriber, function (value) {\n      return executeSchedule_1.executeSchedule(subscriber, scheduler, function () {\n        return subscriber.next(value);\n      }, delay);\n    }, function () {\n      return executeSchedule_1.executeSchedule(subscriber, scheduler, function () {\n        return subscriber.complete();\n      }, delay);\n    }, function (err) {\n      return executeSchedule_1.executeSchedule(subscriber, scheduler, function () {\n        return subscriber.error(err);\n      }, delay);\n    }));\n  });\n}\n\nexports.observeOn = observeOn; //# sourceMappingURL=observeOn.js.map",
+  "map": {
+    "version": 3,
+    "names": [
+      "Object",
+      "defineProperty",
+      "exports",
+      "value",
+      "observeOn",
+      "executeSchedule_1",
+      "require",
+      "lift_1",
+      "OperatorSubscriber_1",
+      "scheduler",
+      "delay",
+      "operate",
+      "source",
+      "subscriber",
+      "subscribe",
+      "createOperatorSubscriber",
+      "executeSchedule",
+      "next",
+      "complete",
+      "err",
+      "error"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/cjs/internal/operators/observeOn.js"
+    ],
+    "sourcesContent": [
+      "\"use strict\";\nObject.defineProperty(exports, \"__esModule\", { value: true });\nexports.observeOn = void 0;\nvar executeSchedule_1 = require(\"../util/executeSchedule\");\nvar lift_1 = require(\"../util/lift\");\nvar OperatorSubscriber_1 = require(\"./OperatorSubscriber\");\nfunction observeOn(scheduler, delay) {\n    if (delay === void 0) { delay = 0; }\n    return lift_1.operate(function (source, subscriber) {\n        source.subscribe(OperatorSubscriber_1.createOperatorSubscriber(subscriber, function (value) { return executeSchedule_1.executeSchedule(subscriber, scheduler, function () { return subscriber.next(value); }, delay); }, function () { return executeSchedule_1.executeSchedule(subscriber, scheduler, function () { return subscriber.complete(); }, delay); }, function (err) { return executeSchedule_1.executeSchedule(subscriber, scheduler, function () { return subscriber.error(err); }, delay); }));\n    });\n}\nexports.observeOn = observeOn;\n//# sourceMappingURL=observeOn.js.map"
+    ],
+    "mappings": "AAAA;;AACAA,MAAM,CAACC,cAAP,CAAsBC,OAAtB,EAA+B,YAA/B,EAA6C;EAAEC,KAAK,EAAE;AAAT,CAA7C;AACAD,OAAO,CAACE,SAAR,GAAoB,KAAK,CAAzB;;AACA,IAAIC,iBAAiB,GAAGC,OAAO,CAAC,yBAAD,CAA/B;;AACA,IAAIC,MAAM,GAAGD,OAAO,CAAC,cAAD,CAApB;;AACA,IAAIE,oBAAoB,GAAGF,OAAO,CAAC,sBAAD,CAAlC;;AACA,SAASF,SAAT,CAAmBK,SAAnB,EAA8BC,KAA9B,EAAqC;EACjC,IAAIA,KAAK,KAAK,KAAK,CAAnB,EAAsB;IAAEA,KAAK,GAAG,CAAR;EAAY;;EACpC,OAAOH,MAAM,CAACI,OAAP,CAAe,UAAUC,MAAV,EAAkBC,UAAlB,EAA8B;IAChDD,MAAM,CAACE,SAAP,CAAiBN,oBAAoB,CAACO,wBAArB,CAA8CF,UAA9C,EAA0D,UAAUV,KAAV,EAAiB;MAAE,OAAOE,iBAAiB,CAACW,eAAlB,CAAkCH,UAAlC,EAA8CJ,SAA9C,EAAyD,YAAY;QAAE,OAAOI,UAAU,CAACI,IAAX,CAAgBd,KAAhB,CAAP;MAAgC,CAAvG,EAAyGO,KAAzG,CAAP;IAAyH,CAAtM,EAAwM,YAAY;MAAE,OAAOL,iBAAiB,CAACW,eAAlB,CAAkCH,UAAlC,EAA8CJ,SAA9C,EAAyD,YAAY;QAAE,OAAOI,UAAU,CAACK,QAAX,EAAP;MAA+B,CAAtG,EAAwGR,KAAxG,CAAP;IAAwH,CAA9U,EAAgV,UAAUS,GAAV,EAAe;MAAE,OAAOd,iBAAiB,CAACW,eAAlB,CAAkCH,UAAlC,EAA8CJ,SAA9C,EAAyD,YAAY;QAAE,OAAOI,UAAU,CAACO,KAAX,CAAiBD,GAAjB,CAAP;MAA+B,CAAtG,EAAwGT,KAAxG,CAAP;IAAwH,CAAzd,CAAjB;EACH,CAFM,CAAP;AAGH;;AACDR,OAAO,CAACE,SAAR,GAAoBA,SAApB,C,CACA"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

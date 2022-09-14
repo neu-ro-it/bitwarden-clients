@@ -1,0 +1,41 @@
+{
+  "ast": null,
+  "code": "\"use strict\";\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.refCount = void 0;\n\nvar lift_1 = require(\"../util/lift\");\n\nvar OperatorSubscriber_1 = require(\"./OperatorSubscriber\");\n\nfunction refCount() {\n  return lift_1.operate(function (source, subscriber) {\n    var connection = null;\n    source._refCount++;\n    var refCounter = OperatorSubscriber_1.createOperatorSubscriber(subscriber, undefined, undefined, undefined, function () {\n      if (!source || source._refCount <= 0 || 0 < --source._refCount) {\n        connection = null;\n        return;\n      }\n\n      var sharedConnection = source._connection;\n      var conn = connection;\n      connection = null;\n\n      if (sharedConnection && (!conn || sharedConnection === conn)) {\n        sharedConnection.unsubscribe();\n      }\n\n      subscriber.unsubscribe();\n    });\n    source.subscribe(refCounter);\n\n    if (!refCounter.closed) {\n      connection = source.connect();\n    }\n  });\n}\n\nexports.refCount = refCount; //# sourceMappingURL=refCount.js.map",
+  "map": {
+    "version": 3,
+    "names": [
+      "Object",
+      "defineProperty",
+      "exports",
+      "value",
+      "refCount",
+      "lift_1",
+      "require",
+      "OperatorSubscriber_1",
+      "operate",
+      "source",
+      "subscriber",
+      "connection",
+      "_refCount",
+      "refCounter",
+      "createOperatorSubscriber",
+      "undefined",
+      "sharedConnection",
+      "_connection",
+      "conn",
+      "unsubscribe",
+      "subscribe",
+      "closed",
+      "connect"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/cjs/internal/operators/refCount.js"
+    ],
+    "sourcesContent": [
+      "\"use strict\";\nObject.defineProperty(exports, \"__esModule\", { value: true });\nexports.refCount = void 0;\nvar lift_1 = require(\"../util/lift\");\nvar OperatorSubscriber_1 = require(\"./OperatorSubscriber\");\nfunction refCount() {\n    return lift_1.operate(function (source, subscriber) {\n        var connection = null;\n        source._refCount++;\n        var refCounter = OperatorSubscriber_1.createOperatorSubscriber(subscriber, undefined, undefined, undefined, function () {\n            if (!source || source._refCount <= 0 || 0 < --source._refCount) {\n                connection = null;\n                return;\n            }\n            var sharedConnection = source._connection;\n            var conn = connection;\n            connection = null;\n            if (sharedConnection && (!conn || sharedConnection === conn)) {\n                sharedConnection.unsubscribe();\n            }\n            subscriber.unsubscribe();\n        });\n        source.subscribe(refCounter);\n        if (!refCounter.closed) {\n            connection = source.connect();\n        }\n    });\n}\nexports.refCount = refCount;\n//# sourceMappingURL=refCount.js.map"
+    ],
+    "mappings": "AAAA;;AACAA,MAAM,CAACC,cAAP,CAAsBC,OAAtB,EAA+B,YAA/B,EAA6C;EAAEC,KAAK,EAAE;AAAT,CAA7C;AACAD,OAAO,CAACE,QAAR,GAAmB,KAAK,CAAxB;;AACA,IAAIC,MAAM,GAAGC,OAAO,CAAC,cAAD,CAApB;;AACA,IAAIC,oBAAoB,GAAGD,OAAO,CAAC,sBAAD,CAAlC;;AACA,SAASF,QAAT,GAAoB;EAChB,OAAOC,MAAM,CAACG,OAAP,CAAe,UAAUC,MAAV,EAAkBC,UAAlB,EAA8B;IAChD,IAAIC,UAAU,GAAG,IAAjB;IACAF,MAAM,CAACG,SAAP;IACA,IAAIC,UAAU,GAAGN,oBAAoB,CAACO,wBAArB,CAA8CJ,UAA9C,EAA0DK,SAA1D,EAAqEA,SAArE,EAAgFA,SAAhF,EAA2F,YAAY;MACpH,IAAI,CAACN,MAAD,IAAWA,MAAM,CAACG,SAAP,IAAoB,CAA/B,IAAoC,IAAI,EAAEH,MAAM,CAACG,SAArD,EAAgE;QAC5DD,UAAU,GAAG,IAAb;QACA;MACH;;MACD,IAAIK,gBAAgB,GAAGP,MAAM,CAACQ,WAA9B;MACA,IAAIC,IAAI,GAAGP,UAAX;MACAA,UAAU,GAAG,IAAb;;MACA,IAAIK,gBAAgB,KAAK,CAACE,IAAD,IAASF,gBAAgB,KAAKE,IAAnC,CAApB,EAA8D;QAC1DF,gBAAgB,CAACG,WAAjB;MACH;;MACDT,UAAU,CAACS,WAAX;IACH,CAZgB,CAAjB;IAaAV,MAAM,CAACW,SAAP,CAAiBP,UAAjB;;IACA,IAAI,CAACA,UAAU,CAACQ,MAAhB,EAAwB;MACpBV,UAAU,GAAGF,MAAM,CAACa,OAAP,EAAb;IACH;EACJ,CApBM,CAAP;AAqBH;;AACDpB,OAAO,CAACE,QAAR,GAAmBA,QAAnB,C,CACA"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

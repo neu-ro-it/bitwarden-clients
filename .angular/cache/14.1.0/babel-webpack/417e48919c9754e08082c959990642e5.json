@@ -1,0 +1,48 @@
+{
+  "ast": null,
+  "code": "\"use strict\";\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.debounceTime = void 0;\n\nvar async_1 = require(\"../scheduler/async\");\n\nvar lift_1 = require(\"../util/lift\");\n\nvar OperatorSubscriber_1 = require(\"./OperatorSubscriber\");\n\nfunction debounceTime(dueTime, scheduler) {\n  if (scheduler === void 0) {\n    scheduler = async_1.asyncScheduler;\n  }\n\n  return lift_1.operate(function (source, subscriber) {\n    var activeTask = null;\n    var lastValue = null;\n    var lastTime = null;\n\n    var emit = function () {\n      if (activeTask) {\n        activeTask.unsubscribe();\n        activeTask = null;\n        var value = lastValue;\n        lastValue = null;\n        subscriber.next(value);\n      }\n    };\n\n    function emitWhenIdle() {\n      var targetTime = lastTime + dueTime;\n      var now = scheduler.now();\n\n      if (now < targetTime) {\n        activeTask = this.schedule(undefined, targetTime - now);\n        subscriber.add(activeTask);\n        return;\n      }\n\n      emit();\n    }\n\n    source.subscribe(OperatorSubscriber_1.createOperatorSubscriber(subscriber, function (value) {\n      lastValue = value;\n      lastTime = scheduler.now();\n\n      if (!activeTask) {\n        activeTask = scheduler.schedule(emitWhenIdle, dueTime);\n        subscriber.add(activeTask);\n      }\n    }, function () {\n      emit();\n      subscriber.complete();\n    }, undefined, function () {\n      lastValue = activeTask = null;\n    }));\n  });\n}\n\nexports.debounceTime = debounceTime; //# sourceMappingURL=debounceTime.js.map",
+  "map": {
+    "version": 3,
+    "names": [
+      "Object",
+      "defineProperty",
+      "exports",
+      "value",
+      "debounceTime",
+      "async_1",
+      "require",
+      "lift_1",
+      "OperatorSubscriber_1",
+      "dueTime",
+      "scheduler",
+      "asyncScheduler",
+      "operate",
+      "source",
+      "subscriber",
+      "activeTask",
+      "lastValue",
+      "lastTime",
+      "emit",
+      "unsubscribe",
+      "next",
+      "emitWhenIdle",
+      "targetTime",
+      "now",
+      "schedule",
+      "undefined",
+      "add",
+      "subscribe",
+      "createOperatorSubscriber",
+      "complete"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/cjs/internal/operators/debounceTime.js"
+    ],
+    "sourcesContent": [
+      "\"use strict\";\nObject.defineProperty(exports, \"__esModule\", { value: true });\nexports.debounceTime = void 0;\nvar async_1 = require(\"../scheduler/async\");\nvar lift_1 = require(\"../util/lift\");\nvar OperatorSubscriber_1 = require(\"./OperatorSubscriber\");\nfunction debounceTime(dueTime, scheduler) {\n    if (scheduler === void 0) { scheduler = async_1.asyncScheduler; }\n    return lift_1.operate(function (source, subscriber) {\n        var activeTask = null;\n        var lastValue = null;\n        var lastTime = null;\n        var emit = function () {\n            if (activeTask) {\n                activeTask.unsubscribe();\n                activeTask = null;\n                var value = lastValue;\n                lastValue = null;\n                subscriber.next(value);\n            }\n        };\n        function emitWhenIdle() {\n            var targetTime = lastTime + dueTime;\n            var now = scheduler.now();\n            if (now < targetTime) {\n                activeTask = this.schedule(undefined, targetTime - now);\n                subscriber.add(activeTask);\n                return;\n            }\n            emit();\n        }\n        source.subscribe(OperatorSubscriber_1.createOperatorSubscriber(subscriber, function (value) {\n            lastValue = value;\n            lastTime = scheduler.now();\n            if (!activeTask) {\n                activeTask = scheduler.schedule(emitWhenIdle, dueTime);\n                subscriber.add(activeTask);\n            }\n        }, function () {\n            emit();\n            subscriber.complete();\n        }, undefined, function () {\n            lastValue = activeTask = null;\n        }));\n    });\n}\nexports.debounceTime = debounceTime;\n//# sourceMappingURL=debounceTime.js.map"
+    ],
+    "mappings": "AAAA;;AACAA,MAAM,CAACC,cAAP,CAAsBC,OAAtB,EAA+B,YAA/B,EAA6C;EAAEC,KAAK,EAAE;AAAT,CAA7C;AACAD,OAAO,CAACE,YAAR,GAAuB,KAAK,CAA5B;;AACA,IAAIC,OAAO,GAAGC,OAAO,CAAC,oBAAD,CAArB;;AACA,IAAIC,MAAM,GAAGD,OAAO,CAAC,cAAD,CAApB;;AACA,IAAIE,oBAAoB,GAAGF,OAAO,CAAC,sBAAD,CAAlC;;AACA,SAASF,YAAT,CAAsBK,OAAtB,EAA+BC,SAA/B,EAA0C;EACtC,IAAIA,SAAS,KAAK,KAAK,CAAvB,EAA0B;IAAEA,SAAS,GAAGL,OAAO,CAACM,cAApB;EAAqC;;EACjE,OAAOJ,MAAM,CAACK,OAAP,CAAe,UAAUC,MAAV,EAAkBC,UAAlB,EAA8B;IAChD,IAAIC,UAAU,GAAG,IAAjB;IACA,IAAIC,SAAS,GAAG,IAAhB;IACA,IAAIC,QAAQ,GAAG,IAAf;;IACA,IAAIC,IAAI,GAAG,YAAY;MACnB,IAAIH,UAAJ,EAAgB;QACZA,UAAU,CAACI,WAAX;QACAJ,UAAU,GAAG,IAAb;QACA,IAAIZ,KAAK,GAAGa,SAAZ;QACAA,SAAS,GAAG,IAAZ;QACAF,UAAU,CAACM,IAAX,CAAgBjB,KAAhB;MACH;IACJ,CARD;;IASA,SAASkB,YAAT,GAAwB;MACpB,IAAIC,UAAU,GAAGL,QAAQ,GAAGR,OAA5B;MACA,IAAIc,GAAG,GAAGb,SAAS,CAACa,GAAV,EAAV;;MACA,IAAIA,GAAG,GAAGD,UAAV,EAAsB;QAClBP,UAAU,GAAG,KAAKS,QAAL,CAAcC,SAAd,EAAyBH,UAAU,GAAGC,GAAtC,CAAb;QACAT,UAAU,CAACY,GAAX,CAAeX,UAAf;QACA;MACH;;MACDG,IAAI;IACP;;IACDL,MAAM,CAACc,SAAP,CAAiBnB,oBAAoB,CAACoB,wBAArB,CAA8Cd,UAA9C,EAA0D,UAAUX,KAAV,EAAiB;MACxFa,SAAS,GAAGb,KAAZ;MACAc,QAAQ,GAAGP,SAAS,CAACa,GAAV,EAAX;;MACA,IAAI,CAACR,UAAL,EAAiB;QACbA,UAAU,GAAGL,SAAS,CAACc,QAAV,CAAmBH,YAAnB,EAAiCZ,OAAjC,CAAb;QACAK,UAAU,CAACY,GAAX,CAAeX,UAAf;MACH;IACJ,CAPgB,EAOd,YAAY;MACXG,IAAI;MACJJ,UAAU,CAACe,QAAX;IACH,CAVgB,EAUdJ,SAVc,EAUH,YAAY;MACtBT,SAAS,GAAGD,UAAU,GAAG,IAAzB;IACH,CAZgB,CAAjB;EAaH,CApCM,CAAP;AAqCH;;AACDb,OAAO,CAACE,YAAR,GAAuBA,YAAvB,C,CACA"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

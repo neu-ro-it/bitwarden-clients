@@ -1,0 +1,33 @@
+{
+  "ast": null,
+  "code": "\"use strict\";\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.ignoreElements = void 0;\n\nvar lift_1 = require(\"../util/lift\");\n\nvar OperatorSubscriber_1 = require(\"./OperatorSubscriber\");\n\nvar noop_1 = require(\"../util/noop\");\n\nfunction ignoreElements() {\n  return lift_1.operate(function (source, subscriber) {\n    source.subscribe(OperatorSubscriber_1.createOperatorSubscriber(subscriber, noop_1.noop));\n  });\n}\n\nexports.ignoreElements = ignoreElements; //# sourceMappingURL=ignoreElements.js.map",
+  "map": {
+    "version": 3,
+    "names": [
+      "Object",
+      "defineProperty",
+      "exports",
+      "value",
+      "ignoreElements",
+      "lift_1",
+      "require",
+      "OperatorSubscriber_1",
+      "noop_1",
+      "operate",
+      "source",
+      "subscriber",
+      "subscribe",
+      "createOperatorSubscriber",
+      "noop"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/cjs/internal/operators/ignoreElements.js"
+    ],
+    "sourcesContent": [
+      "\"use strict\";\nObject.defineProperty(exports, \"__esModule\", { value: true });\nexports.ignoreElements = void 0;\nvar lift_1 = require(\"../util/lift\");\nvar OperatorSubscriber_1 = require(\"./OperatorSubscriber\");\nvar noop_1 = require(\"../util/noop\");\nfunction ignoreElements() {\n    return lift_1.operate(function (source, subscriber) {\n        source.subscribe(OperatorSubscriber_1.createOperatorSubscriber(subscriber, noop_1.noop));\n    });\n}\nexports.ignoreElements = ignoreElements;\n//# sourceMappingURL=ignoreElements.js.map"
+    ],
+    "mappings": "AAAA;;AACAA,MAAM,CAACC,cAAP,CAAsBC,OAAtB,EAA+B,YAA/B,EAA6C;EAAEC,KAAK,EAAE;AAAT,CAA7C;AACAD,OAAO,CAACE,cAAR,GAAyB,KAAK,CAA9B;;AACA,IAAIC,MAAM,GAAGC,OAAO,CAAC,cAAD,CAApB;;AACA,IAAIC,oBAAoB,GAAGD,OAAO,CAAC,sBAAD,CAAlC;;AACA,IAAIE,MAAM,GAAGF,OAAO,CAAC,cAAD,CAApB;;AACA,SAASF,cAAT,GAA0B;EACtB,OAAOC,MAAM,CAACI,OAAP,CAAe,UAAUC,MAAV,EAAkBC,UAAlB,EAA8B;IAChDD,MAAM,CAACE,SAAP,CAAiBL,oBAAoB,CAACM,wBAArB,CAA8CF,UAA9C,EAA0DH,MAAM,CAACM,IAAjE,CAAjB;EACH,CAFM,CAAP;AAGH;;AACDZ,OAAO,CAACE,cAAR,GAAyBA,cAAzB,C,CACA"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

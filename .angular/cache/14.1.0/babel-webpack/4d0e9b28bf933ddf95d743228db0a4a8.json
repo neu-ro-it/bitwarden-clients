@@ -1,0 +1,17 @@
+{
+  "ast": null,
+  "code": "import { Observable } from '../Observable';\nimport { noop } from '../util/noop';\nexport var NEVER = new Observable(noop);\nexport function never() {\n  return NEVER;\n} //# sourceMappingURL=never.js.map",
+  "map": {
+    "version": 3,
+    "names": ["Observable", "noop", "NEVER", "never"],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/esm5/internal/observable/never.js"
+    ],
+    "sourcesContent": [
+      "import { Observable } from '../Observable';\nimport { noop } from '../util/noop';\nexport var NEVER = new Observable(noop);\nexport function never() {\n    return NEVER;\n}\n//# sourceMappingURL=never.js.map"
+    ],
+    "mappings": "AAAA,SAASA,UAAT,QAA2B,eAA3B;AACA,SAASC,IAAT,QAAqB,cAArB;AACA,OAAO,IAAIC,KAAK,GAAG,IAAIF,UAAJ,CAAeC,IAAf,CAAZ;AACP,OAAO,SAASE,KAAT,GAAiB;EACpB,OAAOD,KAAP;AACH,C,CACD"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

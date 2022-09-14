@@ -1,0 +1,36 @@
+{
+  "ast": null,
+  "code": "import { useMemo, useEffect } from '@storybook/addons';\nimport { clearStyles, addOutlineStyles } from './helpers';\nimport { PARAM_KEY } from './constants';\nimport outlineCSS from './outlineCSS';\nexport var withOutline = function withOutline(StoryFn, context) {\n  var globals = context.globals;\n  var isActive = globals[PARAM_KEY] === true;\n  var isInDocs = context.viewMode === 'docs';\n  var outlineStyles = useMemo(function () {\n    var selector = isInDocs ? \"#anchor--\".concat(context.id, \" .docs-story\") : '.sb-show-main';\n    return outlineCSS(selector);\n  }, [context]);\n  useEffect(function () {\n    var selectorId = isInDocs ? \"addon-outline-docs-\".concat(context.id) : \"addon-outline\";\n\n    if (!isActive) {\n      clearStyles(selectorId);\n    } else {\n      addOutlineStyles(selectorId, outlineStyles);\n    }\n\n    return function () {\n      clearStyles(selectorId);\n    };\n  }, [isActive, outlineStyles, context]);\n  return StoryFn();\n};",
+  "map": {
+    "version": 3,
+    "names": [
+      "useMemo",
+      "useEffect",
+      "clearStyles",
+      "addOutlineStyles",
+      "PARAM_KEY",
+      "outlineCSS",
+      "withOutline",
+      "StoryFn",
+      "context",
+      "globals",
+      "isActive",
+      "isInDocs",
+      "viewMode",
+      "outlineStyles",
+      "selector",
+      "concat",
+      "id",
+      "selectorId"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/@storybook/addon-outline/dist/esm/withOutline.js"
+    ],
+    "sourcesContent": [
+      "import { useMemo, useEffect } from '@storybook/addons';\nimport { clearStyles, addOutlineStyles } from './helpers';\nimport { PARAM_KEY } from './constants';\nimport outlineCSS from './outlineCSS';\nexport var withOutline = function withOutline(StoryFn, context) {\n  var globals = context.globals;\n  var isActive = globals[PARAM_KEY] === true;\n  var isInDocs = context.viewMode === 'docs';\n  var outlineStyles = useMemo(function () {\n    var selector = isInDocs ? \"#anchor--\".concat(context.id, \" .docs-story\") : '.sb-show-main';\n    return outlineCSS(selector);\n  }, [context]);\n  useEffect(function () {\n    var selectorId = isInDocs ? \"addon-outline-docs-\".concat(context.id) : \"addon-outline\";\n\n    if (!isActive) {\n      clearStyles(selectorId);\n    } else {\n      addOutlineStyles(selectorId, outlineStyles);\n    }\n\n    return function () {\n      clearStyles(selectorId);\n    };\n  }, [isActive, outlineStyles, context]);\n  return StoryFn();\n};"
+    ],
+    "mappings": "AAAA,SAASA,OAAT,EAAkBC,SAAlB,QAAmC,mBAAnC;AACA,SAASC,WAAT,EAAsBC,gBAAtB,QAA8C,WAA9C;AACA,SAASC,SAAT,QAA0B,aAA1B;AACA,OAAOC,UAAP,MAAuB,cAAvB;AACA,OAAO,IAAIC,WAAW,GAAG,SAASA,WAAT,CAAqBC,OAArB,EAA8BC,OAA9B,EAAuC;EAC9D,IAAIC,OAAO,GAAGD,OAAO,CAACC,OAAtB;EACA,IAAIC,QAAQ,GAAGD,OAAO,CAACL,SAAD,CAAP,KAAuB,IAAtC;EACA,IAAIO,QAAQ,GAAGH,OAAO,CAACI,QAAR,KAAqB,MAApC;EACA,IAAIC,aAAa,GAAGb,OAAO,CAAC,YAAY;IACtC,IAAIc,QAAQ,GAAGH,QAAQ,GAAG,YAAYI,MAAZ,CAAmBP,OAAO,CAACQ,EAA3B,EAA+B,cAA/B,CAAH,GAAoD,eAA3E;IACA,OAAOX,UAAU,CAACS,QAAD,CAAjB;EACD,CAH0B,EAGxB,CAACN,OAAD,CAHwB,CAA3B;EAIAP,SAAS,CAAC,YAAY;IACpB,IAAIgB,UAAU,GAAGN,QAAQ,GAAG,sBAAsBI,MAAtB,CAA6BP,OAAO,CAACQ,EAArC,CAAH,GAA8C,eAAvE;;IAEA,IAAI,CAACN,QAAL,EAAe;MACbR,WAAW,CAACe,UAAD,CAAX;IACD,CAFD,MAEO;MACLd,gBAAgB,CAACc,UAAD,EAAaJ,aAAb,CAAhB;IACD;;IAED,OAAO,YAAY;MACjBX,WAAW,CAACe,UAAD,CAAX;IACD,CAFD;EAGD,CAZQ,EAYN,CAACP,QAAD,EAAWG,aAAX,EAA0BL,OAA1B,CAZM,CAAT;EAaA,OAAOD,OAAO,EAAd;AACD,CAtBM"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

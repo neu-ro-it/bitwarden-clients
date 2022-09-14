@@ -1,0 +1,33 @@
+{
+  "ast": null,
+  "code": "import \"core-js/modules/es.object.assign.js\";\nimport { sanitize } from '@storybook/csf';\nimport { normalizeInputTypes } from './normalizeInputTypes';\nexport function normalizeComponentAnnotations(defaultExport) {\n  var title = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : defaultExport.title;\n  var importPath = arguments.length > 2 ? arguments[2] : undefined;\n  var id = defaultExport.id,\n      argTypes = defaultExport.argTypes;\n  return Object.assign({\n    id: sanitize(id || title)\n  }, defaultExport, {\n    title: title\n  }, argTypes && {\n    argTypes: normalizeInputTypes(argTypes)\n  }, {\n    parameters: Object.assign({\n      fileName: importPath\n    }, defaultExport.parameters)\n  });\n}",
+  "map": {
+    "version": 3,
+    "names": [
+      "sanitize",
+      "normalizeInputTypes",
+      "normalizeComponentAnnotations",
+      "defaultExport",
+      "title",
+      "arguments",
+      "length",
+      "undefined",
+      "importPath",
+      "id",
+      "argTypes",
+      "Object",
+      "assign",
+      "parameters",
+      "fileName"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/@storybook/store/dist/esm/csf/normalizeComponentAnnotations.js"
+    ],
+    "sourcesContent": [
+      "import \"core-js/modules/es.object.assign.js\";\nimport { sanitize } from '@storybook/csf';\nimport { normalizeInputTypes } from './normalizeInputTypes';\nexport function normalizeComponentAnnotations(defaultExport) {\n  var title = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : defaultExport.title;\n  var importPath = arguments.length > 2 ? arguments[2] : undefined;\n  var id = defaultExport.id,\n      argTypes = defaultExport.argTypes;\n  return Object.assign({\n    id: sanitize(id || title)\n  }, defaultExport, {\n    title: title\n  }, argTypes && {\n    argTypes: normalizeInputTypes(argTypes)\n  }, {\n    parameters: Object.assign({\n      fileName: importPath\n    }, defaultExport.parameters)\n  });\n}"
+    ],
+    "mappings": "AAAA,OAAO,qCAAP;AACA,SAASA,QAAT,QAAyB,gBAAzB;AACA,SAASC,mBAAT,QAAoC,uBAApC;AACA,OAAO,SAASC,6BAAT,CAAuCC,aAAvC,EAAsD;EAC3D,IAAIC,KAAK,GAAGC,SAAS,CAACC,MAAV,GAAmB,CAAnB,IAAwBD,SAAS,CAAC,CAAD,CAAT,KAAiBE,SAAzC,GAAqDF,SAAS,CAAC,CAAD,CAA9D,GAAoEF,aAAa,CAACC,KAA9F;EACA,IAAII,UAAU,GAAGH,SAAS,CAACC,MAAV,GAAmB,CAAnB,GAAuBD,SAAS,CAAC,CAAD,CAAhC,GAAsCE,SAAvD;EACA,IAAIE,EAAE,GAAGN,aAAa,CAACM,EAAvB;EAAA,IACIC,QAAQ,GAAGP,aAAa,CAACO,QAD7B;EAEA,OAAOC,MAAM,CAACC,MAAP,CAAc;IACnBH,EAAE,EAAET,QAAQ,CAACS,EAAE,IAAIL,KAAP;EADO,CAAd,EAEJD,aAFI,EAEW;IAChBC,KAAK,EAAEA;EADS,CAFX,EAIJM,QAAQ,IAAI;IACbA,QAAQ,EAAET,mBAAmB,CAACS,QAAD;EADhB,CAJR,EAMJ;IACDG,UAAU,EAAEF,MAAM,CAACC,MAAP,CAAc;MACxBE,QAAQ,EAAEN;IADc,CAAd,EAETL,aAAa,CAACU,UAFL;EADX,CANI,CAAP;AAWD"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

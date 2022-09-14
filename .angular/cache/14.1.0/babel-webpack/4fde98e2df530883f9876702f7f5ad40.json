@@ -1,0 +1,17 @@
+{
+  "ast": null,
+  "code": "'use strict'; // Array#includes is stage 4, in ES7/ES2016\n\nrequire('array-includes/shim')();\n\nrequire('./es2017');",
+  "map": {
+    "version": 3,
+    "names": ["require"],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/airbnb-js-shims/target/es2016.js"
+    ],
+    "sourcesContent": [
+      "'use strict';\n\n// Array#includes is stage 4, in ES7/ES2016\nrequire('array-includes/shim')();\n\nrequire('./es2017');\n"
+    ],
+    "mappings": "AAAA,a,CAEA;;AACAA,OAAO,CAAC,qBAAD,CAAP;;AAEAA,OAAO,CAAC,UAAD,CAAP"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

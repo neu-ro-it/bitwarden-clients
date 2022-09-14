@@ -1,0 +1,17 @@
+{
+  "ast": null,
+  "code": "import { withActions } from '../index';\nexport var decorators = [withActions];",
+  "map": {
+    "version": 3,
+    "names": ["withActions", "decorators"],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/@storybook/addon-actions/dist/esm/preset/addDecorator.js"
+    ],
+    "sourcesContent": [
+      "import { withActions } from '../index';\nexport var decorators = [withActions];"
+    ],
+    "mappings": "AAAA,SAASA,WAAT,QAA4B,UAA5B;AACA,OAAO,IAAIC,UAAU,GAAG,CAACD,WAAD,CAAjB"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

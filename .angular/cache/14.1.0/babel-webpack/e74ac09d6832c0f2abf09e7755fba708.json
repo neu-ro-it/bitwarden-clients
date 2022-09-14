@@ -1,0 +1,31 @@
+{
+  "ast": null,
+  "code": "import \"core-js/modules/es.object.keys.js\";\nimport \"core-js/modules/es.symbol.js\";\nimport \"core-js/modules/es.symbol.description.js\";\n/* eslint-disable no-underscore-dangle */\n\nimport { str } from './string';\nexport function hasDocgen(component) {\n  return !!component.__docgenInfo;\n}\nexport function isValidDocgenSection(docgenSection) {\n  return docgenSection != null && Object.keys(docgenSection).length > 0;\n}\nexport function getDocgenSection(component, section) {\n  return hasDocgen(component) ? component.__docgenInfo[section] : null;\n}\nexport function getDocgenDescription(component) {\n  return hasDocgen(component) && str(component.__docgenInfo.description);\n}",
+  "map": {
+    "version": 3,
+    "names": [
+      "str",
+      "hasDocgen",
+      "component",
+      "__docgenInfo",
+      "isValidDocgenSection",
+      "docgenSection",
+      "Object",
+      "keys",
+      "length",
+      "getDocgenSection",
+      "section",
+      "getDocgenDescription",
+      "description"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/@storybook/docs-tools/dist/esm/argTypes/docgen/utils/docgenInfo.js"
+    ],
+    "sourcesContent": [
+      "import \"core-js/modules/es.object.keys.js\";\nimport \"core-js/modules/es.symbol.js\";\nimport \"core-js/modules/es.symbol.description.js\";\n\n/* eslint-disable no-underscore-dangle */\nimport { str } from './string';\nexport function hasDocgen(component) {\n  return !!component.__docgenInfo;\n}\nexport function isValidDocgenSection(docgenSection) {\n  return docgenSection != null && Object.keys(docgenSection).length > 0;\n}\nexport function getDocgenSection(component, section) {\n  return hasDocgen(component) ? component.__docgenInfo[section] : null;\n}\nexport function getDocgenDescription(component) {\n  return hasDocgen(component) && str(component.__docgenInfo.description);\n}"
+    ],
+    "mappings": "AAAA,OAAO,mCAAP;AACA,OAAO,8BAAP;AACA,OAAO,0CAAP;AAEA;;AACA,SAASA,GAAT,QAAoB,UAApB;AACA,OAAO,SAASC,SAAT,CAAmBC,SAAnB,EAA8B;EACnC,OAAO,CAAC,CAACA,SAAS,CAACC,YAAnB;AACD;AACD,OAAO,SAASC,oBAAT,CAA8BC,aAA9B,EAA6C;EAClD,OAAOA,aAAa,IAAI,IAAjB,IAAyBC,MAAM,CAACC,IAAP,CAAYF,aAAZ,EAA2BG,MAA3B,GAAoC,CAApE;AACD;AACD,OAAO,SAASC,gBAAT,CAA0BP,SAA1B,EAAqCQ,OAArC,EAA8C;EACnD,OAAOT,SAAS,CAACC,SAAD,CAAT,GAAuBA,SAAS,CAACC,YAAV,CAAuBO,OAAvB,CAAvB,GAAyD,IAAhE;AACD;AACD,OAAO,SAASC,oBAAT,CAA8BT,SAA9B,EAAyC;EAC9C,OAAOD,SAAS,CAACC,SAAD,CAAT,IAAwBF,GAAG,CAACE,SAAS,CAACC,YAAV,CAAuBS,WAAxB,CAAlC;AACD"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

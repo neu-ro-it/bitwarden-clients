@@ -1,0 +1,29 @@
+{
+  "ast": null,
+  "code": "import { config } from '../config';\nvar context = null;\nexport function errorContext(cb) {\n  if (config.useDeprecatedSynchronousErrorHandling) {\n    var isRoot = !context;\n\n    if (isRoot) {\n      context = {\n        errorThrown: false,\n        error: null\n      };\n    }\n\n    cb();\n\n    if (isRoot) {\n      var _a = context,\n          errorThrown = _a.errorThrown,\n          error = _a.error;\n      context = null;\n\n      if (errorThrown) {\n        throw error;\n      }\n    }\n  } else {\n    cb();\n  }\n}\nexport function captureError(err) {\n  if (config.useDeprecatedSynchronousErrorHandling && context) {\n    context.errorThrown = true;\n    context.error = err;\n  }\n} //# sourceMappingURL=errorContext.js.map",
+  "map": {
+    "version": 3,
+    "names": [
+      "config",
+      "context",
+      "errorContext",
+      "cb",
+      "useDeprecatedSynchronousErrorHandling",
+      "isRoot",
+      "errorThrown",
+      "error",
+      "_a",
+      "captureError",
+      "err"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/esm5/internal/util/errorContext.js"
+    ],
+    "sourcesContent": [
+      "import { config } from '../config';\nvar context = null;\nexport function errorContext(cb) {\n    if (config.useDeprecatedSynchronousErrorHandling) {\n        var isRoot = !context;\n        if (isRoot) {\n            context = { errorThrown: false, error: null };\n        }\n        cb();\n        if (isRoot) {\n            var _a = context, errorThrown = _a.errorThrown, error = _a.error;\n            context = null;\n            if (errorThrown) {\n                throw error;\n            }\n        }\n    }\n    else {\n        cb();\n    }\n}\nexport function captureError(err) {\n    if (config.useDeprecatedSynchronousErrorHandling && context) {\n        context.errorThrown = true;\n        context.error = err;\n    }\n}\n//# sourceMappingURL=errorContext.js.map"
+    ],
+    "mappings": "AAAA,SAASA,MAAT,QAAuB,WAAvB;AACA,IAAIC,OAAO,GAAG,IAAd;AACA,OAAO,SAASC,YAAT,CAAsBC,EAAtB,EAA0B;EAC7B,IAAIH,MAAM,CAACI,qCAAX,EAAkD;IAC9C,IAAIC,MAAM,GAAG,CAACJ,OAAd;;IACA,IAAII,MAAJ,EAAY;MACRJ,OAAO,GAAG;QAAEK,WAAW,EAAE,KAAf;QAAsBC,KAAK,EAAE;MAA7B,CAAV;IACH;;IACDJ,EAAE;;IACF,IAAIE,MAAJ,EAAY;MACR,IAAIG,EAAE,GAAGP,OAAT;MAAA,IAAkBK,WAAW,GAAGE,EAAE,CAACF,WAAnC;MAAA,IAAgDC,KAAK,GAAGC,EAAE,CAACD,KAA3D;MACAN,OAAO,GAAG,IAAV;;MACA,IAAIK,WAAJ,EAAiB;QACb,MAAMC,KAAN;MACH;IACJ;EACJ,CAbD,MAcK;IACDJ,EAAE;EACL;AACJ;AACD,OAAO,SAASM,YAAT,CAAsBC,GAAtB,EAA2B;EAC9B,IAAIV,MAAM,CAACI,qCAAP,IAAgDH,OAApD,EAA6D;IACzDA,OAAO,CAACK,WAAR,GAAsB,IAAtB;IACAL,OAAO,CAACM,KAAR,GAAgBG,GAAhB;EACH;AACJ,C,CACD"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

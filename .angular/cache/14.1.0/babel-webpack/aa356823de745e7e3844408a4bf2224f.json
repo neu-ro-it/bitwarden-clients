@@ -1,0 +1,41 @@
+{
+  "ast": null,
+  "code": "'use strict';\n\nvar ToIntegerOrInfinity = require('es-abstract/2021/ToIntegerOrInfinity');\n\nvar ToLength = require('es-abstract/2021/ToLength');\n\nvar ToObject = require('es-abstract/2021/ToObject');\n\nvar SameValueZero = require('es-abstract/2021/SameValueZero');\n\nvar $isNaN = require('es-abstract/helpers/isNaN');\n\nvar $isFinite = require('es-abstract/helpers/isFinite');\n\nvar GetIntrinsic = require('get-intrinsic');\n\nvar callBound = require('call-bind/callBound');\n\nvar isString = require('is-string');\n\nvar $charAt = callBound('String.prototype.charAt');\nvar $indexOf = GetIntrinsic('%Array.prototype.indexOf%'); // TODO: use callBind.apply without breaking IE 8\n\nvar $max = GetIntrinsic('%Math.max%');\n\nmodule.exports = function includes(searchElement) {\n  var fromIndex = arguments.length > 1 ? ToIntegerOrInfinity(arguments[1]) : 0;\n\n  if ($indexOf && !$isNaN(searchElement) && $isFinite(fromIndex) && typeof searchElement !== 'undefined') {\n    return $indexOf.apply(this, arguments) > -1;\n  }\n\n  var O = ToObject(this);\n  var length = ToLength(O.length);\n\n  if (length === 0) {\n    return false;\n  }\n\n  var k = fromIndex >= 0 ? fromIndex : $max(0, length + fromIndex);\n\n  while (k < length) {\n    if (SameValueZero(searchElement, isString(O) ? $charAt(O, k) : O[k])) {\n      return true;\n    }\n\n    k += 1;\n  }\n\n  return false;\n};",
+  "map": {
+    "version": 3,
+    "names": [
+      "ToIntegerOrInfinity",
+      "require",
+      "ToLength",
+      "ToObject",
+      "SameValueZero",
+      "$isNaN",
+      "$isFinite",
+      "GetIntrinsic",
+      "callBound",
+      "isString",
+      "$charAt",
+      "$indexOf",
+      "$max",
+      "module",
+      "exports",
+      "includes",
+      "searchElement",
+      "fromIndex",
+      "arguments",
+      "length",
+      "apply",
+      "O",
+      "k"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/array-includes/implementation.js"
+    ],
+    "sourcesContent": [
+      "'use strict';\n\nvar ToIntegerOrInfinity = require('es-abstract/2021/ToIntegerOrInfinity');\nvar ToLength = require('es-abstract/2021/ToLength');\nvar ToObject = require('es-abstract/2021/ToObject');\nvar SameValueZero = require('es-abstract/2021/SameValueZero');\nvar $isNaN = require('es-abstract/helpers/isNaN');\nvar $isFinite = require('es-abstract/helpers/isFinite');\nvar GetIntrinsic = require('get-intrinsic');\nvar callBound = require('call-bind/callBound');\nvar isString = require('is-string');\n\nvar $charAt = callBound('String.prototype.charAt');\nvar $indexOf = GetIntrinsic('%Array.prototype.indexOf%'); // TODO: use callBind.apply without breaking IE 8\nvar $max = GetIntrinsic('%Math.max%');\n\nmodule.exports = function includes(searchElement) {\n\tvar fromIndex = arguments.length > 1 ? ToIntegerOrInfinity(arguments[1]) : 0;\n\tif ($indexOf && !$isNaN(searchElement) && $isFinite(fromIndex) && typeof searchElement !== 'undefined') {\n\t\treturn $indexOf.apply(this, arguments) > -1;\n\t}\n\n\tvar O = ToObject(this);\n\tvar length = ToLength(O.length);\n\tif (length === 0) {\n\t\treturn false;\n\t}\n\tvar k = fromIndex >= 0 ? fromIndex : $max(0, length + fromIndex);\n\twhile (k < length) {\n\t\tif (SameValueZero(searchElement, isString(O) ? $charAt(O, k) : O[k])) {\n\t\t\treturn true;\n\t\t}\n\t\tk += 1;\n\t}\n\treturn false;\n};\n"
+    ],
+    "mappings": "AAAA;;AAEA,IAAIA,mBAAmB,GAAGC,OAAO,CAAC,sCAAD,CAAjC;;AACA,IAAIC,QAAQ,GAAGD,OAAO,CAAC,2BAAD,CAAtB;;AACA,IAAIE,QAAQ,GAAGF,OAAO,CAAC,2BAAD,CAAtB;;AACA,IAAIG,aAAa,GAAGH,OAAO,CAAC,gCAAD,CAA3B;;AACA,IAAII,MAAM,GAAGJ,OAAO,CAAC,2BAAD,CAApB;;AACA,IAAIK,SAAS,GAAGL,OAAO,CAAC,8BAAD,CAAvB;;AACA,IAAIM,YAAY,GAAGN,OAAO,CAAC,eAAD,CAA1B;;AACA,IAAIO,SAAS,GAAGP,OAAO,CAAC,qBAAD,CAAvB;;AACA,IAAIQ,QAAQ,GAAGR,OAAO,CAAC,WAAD,CAAtB;;AAEA,IAAIS,OAAO,GAAGF,SAAS,CAAC,yBAAD,CAAvB;AACA,IAAIG,QAAQ,GAAGJ,YAAY,CAAC,2BAAD,CAA3B,C,CAA0D;;AAC1D,IAAIK,IAAI,GAAGL,YAAY,CAAC,YAAD,CAAvB;;AAEAM,MAAM,CAACC,OAAP,GAAiB,SAASC,QAAT,CAAkBC,aAAlB,EAAiC;EACjD,IAAIC,SAAS,GAAGC,SAAS,CAACC,MAAV,GAAmB,CAAnB,GAAuBnB,mBAAmB,CAACkB,SAAS,CAAC,CAAD,CAAV,CAA1C,GAA2D,CAA3E;;EACA,IAAIP,QAAQ,IAAI,CAACN,MAAM,CAACW,aAAD,CAAnB,IAAsCV,SAAS,CAACW,SAAD,CAA/C,IAA8D,OAAOD,aAAP,KAAyB,WAA3F,EAAwG;IACvG,OAAOL,QAAQ,CAACS,KAAT,CAAe,IAAf,EAAqBF,SAArB,IAAkC,CAAC,CAA1C;EACA;;EAED,IAAIG,CAAC,GAAGlB,QAAQ,CAAC,IAAD,CAAhB;EACA,IAAIgB,MAAM,GAAGjB,QAAQ,CAACmB,CAAC,CAACF,MAAH,CAArB;;EACA,IAAIA,MAAM,KAAK,CAAf,EAAkB;IACjB,OAAO,KAAP;EACA;;EACD,IAAIG,CAAC,GAAGL,SAAS,IAAI,CAAb,GAAiBA,SAAjB,GAA6BL,IAAI,CAAC,CAAD,EAAIO,MAAM,GAAGF,SAAb,CAAzC;;EACA,OAAOK,CAAC,GAAGH,MAAX,EAAmB;IAClB,IAAIf,aAAa,CAACY,aAAD,EAAgBP,QAAQ,CAACY,CAAD,CAAR,GAAcX,OAAO,CAACW,CAAD,EAAIC,CAAJ,CAArB,GAA8BD,CAAC,CAACC,CAAD,CAA/C,CAAjB,EAAsE;MACrE,OAAO,IAAP;IACA;;IACDA,CAAC,IAAI,CAAL;EACA;;EACD,OAAO,KAAP;AACA,CAnBD"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

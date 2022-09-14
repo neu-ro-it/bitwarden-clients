@@ -1,0 +1,35 @@
+{
+  "ast": null,
+  "code": "import { EmptyError } from './util/EmptyError';\nimport { SafeSubscriber } from './Subscriber';\nexport function firstValueFrom(source, config) {\n  var hasConfig = typeof config === 'object';\n  return new Promise(function (resolve, reject) {\n    var subscriber = new SafeSubscriber({\n      next: function (value) {\n        resolve(value);\n        subscriber.unsubscribe();\n      },\n      error: reject,\n      complete: function () {\n        if (hasConfig) {\n          resolve(config.defaultValue);\n        } else {\n          reject(new EmptyError());\n        }\n      }\n    });\n    source.subscribe(subscriber);\n  });\n} //# sourceMappingURL=firstValueFrom.js.map",
+  "map": {
+    "version": 3,
+    "names": [
+      "EmptyError",
+      "SafeSubscriber",
+      "firstValueFrom",
+      "source",
+      "config",
+      "hasConfig",
+      "Promise",
+      "resolve",
+      "reject",
+      "subscriber",
+      "next",
+      "value",
+      "unsubscribe",
+      "error",
+      "complete",
+      "defaultValue",
+      "subscribe"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/esm5/internal/firstValueFrom.js"
+    ],
+    "sourcesContent": [
+      "import { EmptyError } from './util/EmptyError';\nimport { SafeSubscriber } from './Subscriber';\nexport function firstValueFrom(source, config) {\n    var hasConfig = typeof config === 'object';\n    return new Promise(function (resolve, reject) {\n        var subscriber = new SafeSubscriber({\n            next: function (value) {\n                resolve(value);\n                subscriber.unsubscribe();\n            },\n            error: reject,\n            complete: function () {\n                if (hasConfig) {\n                    resolve(config.defaultValue);\n                }\n                else {\n                    reject(new EmptyError());\n                }\n            },\n        });\n        source.subscribe(subscriber);\n    });\n}\n//# sourceMappingURL=firstValueFrom.js.map"
+    ],
+    "mappings": "AAAA,SAASA,UAAT,QAA2B,mBAA3B;AACA,SAASC,cAAT,QAA+B,cAA/B;AACA,OAAO,SAASC,cAAT,CAAwBC,MAAxB,EAAgCC,MAAhC,EAAwC;EAC3C,IAAIC,SAAS,GAAG,OAAOD,MAAP,KAAkB,QAAlC;EACA,OAAO,IAAIE,OAAJ,CAAY,UAAUC,OAAV,EAAmBC,MAAnB,EAA2B;IAC1C,IAAIC,UAAU,GAAG,IAAIR,cAAJ,CAAmB;MAChCS,IAAI,EAAE,UAAUC,KAAV,EAAiB;QACnBJ,OAAO,CAACI,KAAD,CAAP;QACAF,UAAU,CAACG,WAAX;MACH,CAJ+B;MAKhCC,KAAK,EAAEL,MALyB;MAMhCM,QAAQ,EAAE,YAAY;QAClB,IAAIT,SAAJ,EAAe;UACXE,OAAO,CAACH,MAAM,CAACW,YAAR,CAAP;QACH,CAFD,MAGK;UACDP,MAAM,CAAC,IAAIR,UAAJ,EAAD,CAAN;QACH;MACJ;IAb+B,CAAnB,CAAjB;IAeAG,MAAM,CAACa,SAAP,CAAiBP,UAAjB;EACH,CAjBM,CAAP;AAkBH,C,CACD"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

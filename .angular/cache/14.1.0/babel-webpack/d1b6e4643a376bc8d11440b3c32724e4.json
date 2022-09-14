@@ -1,0 +1,25 @@
+{
+  "ast": null,
+  "code": "\"use strict\";\n/**\n * Utility to extract the TLD from a hostname string\n *\n * @param {string} host\n * @return {String}\n */\n\nmodule.exports = function extractTldFromHost(hostname) {\n  var lastDotIndex = hostname.lastIndexOf('.');\n\n  if (lastDotIndex === -1) {\n    return null;\n  }\n\n  return hostname.substr(lastDotIndex + 1);\n};",
+  "map": {
+    "version": 3,
+    "names": [
+      "module",
+      "exports",
+      "extractTldFromHost",
+      "hostname",
+      "lastDotIndex",
+      "lastIndexOf",
+      "substr"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/tldjs/lib/from-host.js"
+    ],
+    "sourcesContent": [
+      "\"use strict\";\n\n/**\n * Utility to extract the TLD from a hostname string\n *\n * @param {string} host\n * @return {String}\n */\nmodule.exports = function extractTldFromHost(hostname) {\n  var lastDotIndex = hostname.lastIndexOf('.');\n  if (lastDotIndex === -1) {\n    return null;\n  }\n\n  return hostname.substr(lastDotIndex + 1);\n};\n"
+    ],
+    "mappings": "AAAA;AAEA;AACA;AACA;AACA;AACA;AACA;;AACAA,MAAM,CAACC,OAAP,GAAiB,SAASC,kBAAT,CAA4BC,QAA5B,EAAsC;EACrD,IAAIC,YAAY,GAAGD,QAAQ,CAACE,WAAT,CAAqB,GAArB,CAAnB;;EACA,IAAID,YAAY,KAAK,CAAC,CAAtB,EAAyB;IACvB,OAAO,IAAP;EACD;;EAED,OAAOD,QAAQ,CAACG,MAAT,CAAgBF,YAAY,GAAG,CAA/B,CAAP;AACD,CAPD"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

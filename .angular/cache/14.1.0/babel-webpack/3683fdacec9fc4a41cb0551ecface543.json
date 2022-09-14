@@ -1,0 +1,34 @@
+{
+  "ast": null,
+  "code": "'use strict';\n\nvar GetIntrinsic = require('get-intrinsic');\n\nvar $TypeError = GetIntrinsic('%TypeError%');\n\nvar Call = require('./Call');\n\nvar IsArray = require('./IsArray');\n\nvar GetV = require('./GetV');\n\nvar IsPropertyKey = require('./IsPropertyKey'); // https://ecma-international.org/ecma-262/6.0/#sec-invoke\n\n\nmodule.exports = function Invoke(O, P) {\n  if (!IsPropertyKey(P)) {\n    throw new $TypeError('Assertion failed: P must be a Property Key');\n  }\n\n  var argumentsList = arguments.length > 2 ? arguments[2] : [];\n\n  if (!IsArray(argumentsList)) {\n    throw new $TypeError('Assertion failed: optional `argumentsList`, if provided, must be a List');\n  }\n\n  var func = GetV(O, P);\n  return Call(func, O, argumentsList);\n};",
+  "map": {
+    "version": 3,
+    "names": [
+      "GetIntrinsic",
+      "require",
+      "$TypeError",
+      "Call",
+      "IsArray",
+      "GetV",
+      "IsPropertyKey",
+      "module",
+      "exports",
+      "Invoke",
+      "O",
+      "P",
+      "argumentsList",
+      "arguments",
+      "length",
+      "func"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/es-abstract/2021/Invoke.js"
+    ],
+    "sourcesContent": [
+      "'use strict';\n\nvar GetIntrinsic = require('get-intrinsic');\n\nvar $TypeError = GetIntrinsic('%TypeError%');\n\nvar Call = require('./Call');\nvar IsArray = require('./IsArray');\nvar GetV = require('./GetV');\nvar IsPropertyKey = require('./IsPropertyKey');\n\n// https://ecma-international.org/ecma-262/6.0/#sec-invoke\n\nmodule.exports = function Invoke(O, P) {\n\tif (!IsPropertyKey(P)) {\n\t\tthrow new $TypeError('Assertion failed: P must be a Property Key');\n\t}\n\tvar argumentsList = arguments.length > 2 ? arguments[2] : [];\n\tif (!IsArray(argumentsList)) {\n\t\tthrow new $TypeError('Assertion failed: optional `argumentsList`, if provided, must be a List');\n\t}\n\tvar func = GetV(O, P);\n\treturn Call(func, O, argumentsList);\n};\n"
+    ],
+    "mappings": "AAAA;;AAEA,IAAIA,YAAY,GAAGC,OAAO,CAAC,eAAD,CAA1B;;AAEA,IAAIC,UAAU,GAAGF,YAAY,CAAC,aAAD,CAA7B;;AAEA,IAAIG,IAAI,GAAGF,OAAO,CAAC,QAAD,CAAlB;;AACA,IAAIG,OAAO,GAAGH,OAAO,CAAC,WAAD,CAArB;;AACA,IAAII,IAAI,GAAGJ,OAAO,CAAC,QAAD,CAAlB;;AACA,IAAIK,aAAa,GAAGL,OAAO,CAAC,iBAAD,CAA3B,C,CAEA;;;AAEAM,MAAM,CAACC,OAAP,GAAiB,SAASC,MAAT,CAAgBC,CAAhB,EAAmBC,CAAnB,EAAsB;EACtC,IAAI,CAACL,aAAa,CAACK,CAAD,CAAlB,EAAuB;IACtB,MAAM,IAAIT,UAAJ,CAAe,4CAAf,CAAN;EACA;;EACD,IAAIU,aAAa,GAAGC,SAAS,CAACC,MAAV,GAAmB,CAAnB,GAAuBD,SAAS,CAAC,CAAD,CAAhC,GAAsC,EAA1D;;EACA,IAAI,CAACT,OAAO,CAACQ,aAAD,CAAZ,EAA6B;IAC5B,MAAM,IAAIV,UAAJ,CAAe,yEAAf,CAAN;EACA;;EACD,IAAIa,IAAI,GAAGV,IAAI,CAACK,CAAD,EAAIC,CAAJ,CAAf;EACA,OAAOR,IAAI,CAACY,IAAD,EAAOL,CAAP,EAAUE,aAAV,CAAX;AACA,CAVD"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

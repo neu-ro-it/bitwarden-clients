@@ -1,0 +1,54 @@
+{
+  "ast": null,
+  "code": "import { __extends } from \"tslib\";\nimport { Observable } from '../Observable';\nimport { Subscription } from '../Subscription';\nimport { refCount as higherOrderRefCount } from '../operators/refCount';\nimport { createOperatorSubscriber } from '../operators/OperatorSubscriber';\nimport { hasLift } from '../util/lift';\n\nvar ConnectableObservable = function (_super) {\n  __extends(ConnectableObservable, _super);\n\n  function ConnectableObservable(source, subjectFactory) {\n    var _this = _super.call(this) || this;\n\n    _this.source = source;\n    _this.subjectFactory = subjectFactory;\n    _this._subject = null;\n    _this._refCount = 0;\n    _this._connection = null;\n\n    if (hasLift(source)) {\n      _this.lift = source.lift;\n    }\n\n    return _this;\n  }\n\n  ConnectableObservable.prototype._subscribe = function (subscriber) {\n    return this.getSubject().subscribe(subscriber);\n  };\n\n  ConnectableObservable.prototype.getSubject = function () {\n    var subject = this._subject;\n\n    if (!subject || subject.isStopped) {\n      this._subject = this.subjectFactory();\n    }\n\n    return this._subject;\n  };\n\n  ConnectableObservable.prototype._teardown = function () {\n    this._refCount = 0;\n    var _connection = this._connection;\n    this._subject = this._connection = null;\n    _connection === null || _connection === void 0 ? void 0 : _connection.unsubscribe();\n  };\n\n  ConnectableObservable.prototype.connect = function () {\n    var _this = this;\n\n    var connection = this._connection;\n\n    if (!connection) {\n      connection = this._connection = new Subscription();\n      var subject_1 = this.getSubject();\n      connection.add(this.source.subscribe(createOperatorSubscriber(subject_1, undefined, function () {\n        _this._teardown();\n\n        subject_1.complete();\n      }, function (err) {\n        _this._teardown();\n\n        subject_1.error(err);\n      }, function () {\n        return _this._teardown();\n      })));\n\n      if (connection.closed) {\n        this._connection = null;\n        connection = Subscription.EMPTY;\n      }\n    }\n\n    return connection;\n  };\n\n  ConnectableObservable.prototype.refCount = function () {\n    return higherOrderRefCount()(this);\n  };\n\n  return ConnectableObservable;\n}(Observable);\n\nexport { ConnectableObservable }; //# sourceMappingURL=ConnectableObservable.js.map",
+  "map": {
+    "version": 3,
+    "names": [
+      "__extends",
+      "Observable",
+      "Subscription",
+      "refCount",
+      "higherOrderRefCount",
+      "createOperatorSubscriber",
+      "hasLift",
+      "ConnectableObservable",
+      "_super",
+      "source",
+      "subjectFactory",
+      "_this",
+      "call",
+      "_subject",
+      "_refCount",
+      "_connection",
+      "lift",
+      "prototype",
+      "_subscribe",
+      "subscriber",
+      "getSubject",
+      "subscribe",
+      "subject",
+      "isStopped",
+      "_teardown",
+      "unsubscribe",
+      "connect",
+      "connection",
+      "subject_1",
+      "add",
+      "undefined",
+      "complete",
+      "err",
+      "error",
+      "closed",
+      "EMPTY"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/esm5/internal/observable/ConnectableObservable.js"
+    ],
+    "sourcesContent": [
+      "import { __extends } from \"tslib\";\nimport { Observable } from '../Observable';\nimport { Subscription } from '../Subscription';\nimport { refCount as higherOrderRefCount } from '../operators/refCount';\nimport { createOperatorSubscriber } from '../operators/OperatorSubscriber';\nimport { hasLift } from '../util/lift';\nvar ConnectableObservable = (function (_super) {\n    __extends(ConnectableObservable, _super);\n    function ConnectableObservable(source, subjectFactory) {\n        var _this = _super.call(this) || this;\n        _this.source = source;\n        _this.subjectFactory = subjectFactory;\n        _this._subject = null;\n        _this._refCount = 0;\n        _this._connection = null;\n        if (hasLift(source)) {\n            _this.lift = source.lift;\n        }\n        return _this;\n    }\n    ConnectableObservable.prototype._subscribe = function (subscriber) {\n        return this.getSubject().subscribe(subscriber);\n    };\n    ConnectableObservable.prototype.getSubject = function () {\n        var subject = this._subject;\n        if (!subject || subject.isStopped) {\n            this._subject = this.subjectFactory();\n        }\n        return this._subject;\n    };\n    ConnectableObservable.prototype._teardown = function () {\n        this._refCount = 0;\n        var _connection = this._connection;\n        this._subject = this._connection = null;\n        _connection === null || _connection === void 0 ? void 0 : _connection.unsubscribe();\n    };\n    ConnectableObservable.prototype.connect = function () {\n        var _this = this;\n        var connection = this._connection;\n        if (!connection) {\n            connection = this._connection = new Subscription();\n            var subject_1 = this.getSubject();\n            connection.add(this.source.subscribe(createOperatorSubscriber(subject_1, undefined, function () {\n                _this._teardown();\n                subject_1.complete();\n            }, function (err) {\n                _this._teardown();\n                subject_1.error(err);\n            }, function () { return _this._teardown(); })));\n            if (connection.closed) {\n                this._connection = null;\n                connection = Subscription.EMPTY;\n            }\n        }\n        return connection;\n    };\n    ConnectableObservable.prototype.refCount = function () {\n        return higherOrderRefCount()(this);\n    };\n    return ConnectableObservable;\n}(Observable));\nexport { ConnectableObservable };\n//# sourceMappingURL=ConnectableObservable.js.map"
+    ],
+    "mappings": "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"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

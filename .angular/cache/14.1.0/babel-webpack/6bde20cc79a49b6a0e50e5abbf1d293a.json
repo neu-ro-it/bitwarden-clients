@@ -1,0 +1,29 @@
+{
+  "ast": null,
+  "code": "'use strict';\n\nvar requirePromise = require('./requirePromise');\n\nvar getPolyfill = require('./polyfill');\n\nvar define = require('define-properties');\n\nmodule.exports = function shimAllSettled() {\n  requirePromise();\n  var polyfill = getPolyfill();\n  define(Promise, {\n    allSettled: polyfill\n  }, {\n    allSettled: function testAllSettled() {\n      return Promise.allSettled !== polyfill;\n    }\n  });\n  return polyfill;\n};",
+  "map": {
+    "version": 3,
+    "names": [
+      "requirePromise",
+      "require",
+      "getPolyfill",
+      "define",
+      "module",
+      "exports",
+      "shimAllSettled",
+      "polyfill",
+      "Promise",
+      "allSettled",
+      "testAllSettled"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/promise.allsettled/shim.js"
+    ],
+    "sourcesContent": [
+      "'use strict';\n\nvar requirePromise = require('./requirePromise');\n\nvar getPolyfill = require('./polyfill');\nvar define = require('define-properties');\n\nmodule.exports = function shimAllSettled() {\n\trequirePromise();\n\n\tvar polyfill = getPolyfill();\n\tdefine(Promise, { allSettled: polyfill }, {\n\t\tallSettled: function testAllSettled() {\n\t\t\treturn Promise.allSettled !== polyfill;\n\t\t}\n\t});\n\treturn polyfill;\n};\n"
+    ],
+    "mappings": "AAAA;;AAEA,IAAIA,cAAc,GAAGC,OAAO,CAAC,kBAAD,CAA5B;;AAEA,IAAIC,WAAW,GAAGD,OAAO,CAAC,YAAD,CAAzB;;AACA,IAAIE,MAAM,GAAGF,OAAO,CAAC,mBAAD,CAApB;;AAEAG,MAAM,CAACC,OAAP,GAAiB,SAASC,cAAT,GAA0B;EAC1CN,cAAc;EAEd,IAAIO,QAAQ,GAAGL,WAAW,EAA1B;EACAC,MAAM,CAACK,OAAD,EAAU;IAAEC,UAAU,EAAEF;EAAd,CAAV,EAAoC;IACzCE,UAAU,EAAE,SAASC,cAAT,GAA0B;MACrC,OAAOF,OAAO,CAACC,UAAR,KAAuBF,QAA9B;IACA;EAHwC,CAApC,CAAN;EAKA,OAAOA,QAAP;AACA,CAVD"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

@@ -1,0 +1,29 @@
+{
+  "ast": null,
+  "code": "\"use strict\";\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.isInteropObservable = void 0;\n\nvar observable_1 = require(\"../symbol/observable\");\n\nvar isFunction_1 = require(\"./isFunction\");\n\nfunction isInteropObservable(input) {\n  return isFunction_1.isFunction(input[observable_1.observable]);\n}\n\nexports.isInteropObservable = isInteropObservable; //# sourceMappingURL=isInteropObservable.js.map",
+  "map": {
+    "version": 3,
+    "names": [
+      "Object",
+      "defineProperty",
+      "exports",
+      "value",
+      "isInteropObservable",
+      "observable_1",
+      "require",
+      "isFunction_1",
+      "input",
+      "isFunction",
+      "observable"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/cjs/internal/util/isInteropObservable.js"
+    ],
+    "sourcesContent": [
+      "\"use strict\";\nObject.defineProperty(exports, \"__esModule\", { value: true });\nexports.isInteropObservable = void 0;\nvar observable_1 = require(\"../symbol/observable\");\nvar isFunction_1 = require(\"./isFunction\");\nfunction isInteropObservable(input) {\n    return isFunction_1.isFunction(input[observable_1.observable]);\n}\nexports.isInteropObservable = isInteropObservable;\n//# sourceMappingURL=isInteropObservable.js.map"
+    ],
+    "mappings": "AAAA;;AACAA,MAAM,CAACC,cAAP,CAAsBC,OAAtB,EAA+B,YAA/B,EAA6C;EAAEC,KAAK,EAAE;AAAT,CAA7C;AACAD,OAAO,CAACE,mBAAR,GAA8B,KAAK,CAAnC;;AACA,IAAIC,YAAY,GAAGC,OAAO,CAAC,sBAAD,CAA1B;;AACA,IAAIC,YAAY,GAAGD,OAAO,CAAC,cAAD,CAA1B;;AACA,SAASF,mBAAT,CAA6BI,KAA7B,EAAoC;EAChC,OAAOD,YAAY,CAACE,UAAb,CAAwBD,KAAK,CAACH,YAAY,CAACK,UAAd,CAA7B,CAAP;AACH;;AACDR,OAAO,CAACE,mBAAR,GAA8BA,mBAA9B,C,CACA"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

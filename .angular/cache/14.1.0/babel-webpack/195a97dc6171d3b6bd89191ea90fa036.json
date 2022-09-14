@@ -1,0 +1,42 @@
+{
+  "ast": null,
+  "code": "import \"core-js/modules/es.function.name.js\";\nimport \"core-js/modules/es.regexp.exec.js\";\nimport \"core-js/modules/es.string.replace.js\";\nimport \"core-js/modules/es.object.to-string.js\";\nimport \"core-js/modules/web.dom-collections.for-each.js\";\nimport \"core-js/modules/es.object.assign.js\";\nimport \"core-js/modules/es.array.map.js\";\n/* eslint-disable no-case-declarations */\n\nvar isLiteral = function isLiteral(type) {\n  return type.name === 'literal';\n};\n\nvar toEnumOption = function toEnumOption(element) {\n  return element.value.replace(/['|\"]/g, '');\n};\n\nvar convertSig = function convertSig(type) {\n  switch (type.type) {\n    case 'function':\n      return {\n        name: 'function'\n      };\n\n    case 'object':\n      var values = {};\n      type.signature.properties.forEach(function (prop) {\n        values[prop.key] = convert(prop.value);\n      });\n      return {\n        name: 'object',\n        value: values\n      };\n\n    default:\n      throw new Error(\"Unknown: \".concat(type));\n  }\n};\n\nexport var convert = function convert(type) {\n  var name = type.name,\n      raw = type.raw;\n  var base = {};\n  if (typeof raw !== 'undefined') base.raw = raw;\n\n  switch (type.name) {\n    case 'literal':\n      return Object.assign({}, base, {\n        name: 'other',\n        value: type.value\n      });\n\n    case 'string':\n    case 'number':\n    case 'symbol':\n    case 'boolean':\n      {\n        return Object.assign({}, base, {\n          name: name\n        });\n      }\n\n    case 'Array':\n      {\n        return Object.assign({}, base, {\n          name: 'array',\n          value: type.elements.map(convert)\n        });\n      }\n\n    case 'signature':\n      return Object.assign({}, base, convertSig(type));\n\n    case 'union':\n      if (type.elements.every(isLiteral)) {\n        return Object.assign({}, base, {\n          name: 'enum',\n          value: type.elements.map(toEnumOption)\n        });\n      }\n\n      return Object.assign({}, base, {\n        name: name,\n        value: type.elements.map(convert)\n      });\n\n    case 'intersection':\n      return Object.assign({}, base, {\n        name: name,\n        value: type.elements.map(convert)\n      });\n\n    default:\n      return Object.assign({}, base, {\n        name: 'other',\n        value: name\n      });\n  }\n};",
+  "map": {
+    "version": 3,
+    "names": [
+      "isLiteral",
+      "type",
+      "name",
+      "toEnumOption",
+      "element",
+      "value",
+      "replace",
+      "convertSig",
+      "values",
+      "signature",
+      "properties",
+      "forEach",
+      "prop",
+      "key",
+      "convert",
+      "Error",
+      "concat",
+      "raw",
+      "base",
+      "Object",
+      "assign",
+      "elements",
+      "map",
+      "every"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/@storybook/docs-tools/dist/esm/argTypes/convert/flow/convert.js"
+    ],
+    "sourcesContent": [
+      "import \"core-js/modules/es.function.name.js\";\nimport \"core-js/modules/es.regexp.exec.js\";\nimport \"core-js/modules/es.string.replace.js\";\nimport \"core-js/modules/es.object.to-string.js\";\nimport \"core-js/modules/web.dom-collections.for-each.js\";\nimport \"core-js/modules/es.object.assign.js\";\nimport \"core-js/modules/es.array.map.js\";\n\n/* eslint-disable no-case-declarations */\nvar isLiteral = function isLiteral(type) {\n  return type.name === 'literal';\n};\n\nvar toEnumOption = function toEnumOption(element) {\n  return element.value.replace(/['|\"]/g, '');\n};\n\nvar convertSig = function convertSig(type) {\n  switch (type.type) {\n    case 'function':\n      return {\n        name: 'function'\n      };\n\n    case 'object':\n      var values = {};\n      type.signature.properties.forEach(function (prop) {\n        values[prop.key] = convert(prop.value);\n      });\n      return {\n        name: 'object',\n        value: values\n      };\n\n    default:\n      throw new Error(\"Unknown: \".concat(type));\n  }\n};\n\nexport var convert = function convert(type) {\n  var name = type.name,\n      raw = type.raw;\n  var base = {};\n  if (typeof raw !== 'undefined') base.raw = raw;\n\n  switch (type.name) {\n    case 'literal':\n      return Object.assign({}, base, {\n        name: 'other',\n        value: type.value\n      });\n\n    case 'string':\n    case 'number':\n    case 'symbol':\n    case 'boolean':\n      {\n        return Object.assign({}, base, {\n          name: name\n        });\n      }\n\n    case 'Array':\n      {\n        return Object.assign({}, base, {\n          name: 'array',\n          value: type.elements.map(convert)\n        });\n      }\n\n    case 'signature':\n      return Object.assign({}, base, convertSig(type));\n\n    case 'union':\n      if (type.elements.every(isLiteral)) {\n        return Object.assign({}, base, {\n          name: 'enum',\n          value: type.elements.map(toEnumOption)\n        });\n      }\n\n      return Object.assign({}, base, {\n        name: name,\n        value: type.elements.map(convert)\n      });\n\n    case 'intersection':\n      return Object.assign({}, base, {\n        name: name,\n        value: type.elements.map(convert)\n      });\n\n    default:\n      return Object.assign({}, base, {\n        name: 'other',\n        value: name\n      });\n  }\n};"
+    ],
+    "mappings": "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"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

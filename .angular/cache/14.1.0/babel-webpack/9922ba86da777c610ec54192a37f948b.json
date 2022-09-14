@@ -1,0 +1,31 @@
+{
+  "ast": null,
+  "code": "import { operate } from '../util/lift';\nimport { createOperatorSubscriber } from './OperatorSubscriber';\nexport function takeWhile(predicate, inclusive) {\n  if (inclusive === void 0) {\n    inclusive = false;\n  }\n\n  return operate(function (source, subscriber) {\n    var index = 0;\n    source.subscribe(createOperatorSubscriber(subscriber, function (value) {\n      var result = predicate(value, index++);\n      (result || inclusive) && subscriber.next(value);\n      !result && subscriber.complete();\n    }));\n  });\n} //# sourceMappingURL=takeWhile.js.map",
+  "map": {
+    "version": 3,
+    "names": [
+      "operate",
+      "createOperatorSubscriber",
+      "takeWhile",
+      "predicate",
+      "inclusive",
+      "source",
+      "subscriber",
+      "index",
+      "subscribe",
+      "value",
+      "result",
+      "next",
+      "complete"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/esm5/internal/operators/takeWhile.js"
+    ],
+    "sourcesContent": [
+      "import { operate } from '../util/lift';\nimport { createOperatorSubscriber } from './OperatorSubscriber';\nexport function takeWhile(predicate, inclusive) {\n    if (inclusive === void 0) { inclusive = false; }\n    return operate(function (source, subscriber) {\n        var index = 0;\n        source.subscribe(createOperatorSubscriber(subscriber, function (value) {\n            var result = predicate(value, index++);\n            (result || inclusive) && subscriber.next(value);\n            !result && subscriber.complete();\n        }));\n    });\n}\n//# sourceMappingURL=takeWhile.js.map"
+    ],
+    "mappings": "AAAA,SAASA,OAAT,QAAwB,cAAxB;AACA,SAASC,wBAAT,QAAyC,sBAAzC;AACA,OAAO,SAASC,SAAT,CAAmBC,SAAnB,EAA8BC,SAA9B,EAAyC;EAC5C,IAAIA,SAAS,KAAK,KAAK,CAAvB,EAA0B;IAAEA,SAAS,GAAG,KAAZ;EAAoB;;EAChD,OAAOJ,OAAO,CAAC,UAAUK,MAAV,EAAkBC,UAAlB,EAA8B;IACzC,IAAIC,KAAK,GAAG,CAAZ;IACAF,MAAM,CAACG,SAAP,CAAiBP,wBAAwB,CAACK,UAAD,EAAa,UAAUG,KAAV,EAAiB;MACnE,IAAIC,MAAM,GAAGP,SAAS,CAACM,KAAD,EAAQF,KAAK,EAAb,CAAtB;MACA,CAACG,MAAM,IAAIN,SAAX,KAAyBE,UAAU,CAACK,IAAX,CAAgBF,KAAhB,CAAzB;MACA,CAACC,MAAD,IAAWJ,UAAU,CAACM,QAAX,EAAX;IACH,CAJwC,CAAzC;EAKH,CAPa,CAAd;AAQH,C,CACD"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

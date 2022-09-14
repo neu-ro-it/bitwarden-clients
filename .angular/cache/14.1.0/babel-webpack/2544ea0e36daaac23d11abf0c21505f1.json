@@ -1,0 +1,51 @@
+{
+  "ast": null,
+  "code": "import { innerFrom } from '../observable/innerFrom';\nimport { executeSchedule } from '../util/executeSchedule';\nimport { createOperatorSubscriber } from './OperatorSubscriber';\nexport function mergeInternals(source, subscriber, project, concurrent, onBeforeNext, expand, innerSubScheduler, additionalFinalizer) {\n  var buffer = [];\n  var active = 0;\n  var index = 0;\n  var isComplete = false;\n\n  var checkComplete = function () {\n    if (isComplete && !buffer.length && !active) {\n      subscriber.complete();\n    }\n  };\n\n  var outerNext = function (value) {\n    return active < concurrent ? doInnerSub(value) : buffer.push(value);\n  };\n\n  var doInnerSub = function (value) {\n    expand && subscriber.next(value);\n    active++;\n    var innerComplete = false;\n    innerFrom(project(value, index++)).subscribe(createOperatorSubscriber(subscriber, function (innerValue) {\n      onBeforeNext === null || onBeforeNext === void 0 ? void 0 : onBeforeNext(innerValue);\n\n      if (expand) {\n        outerNext(innerValue);\n      } else {\n        subscriber.next(innerValue);\n      }\n    }, function () {\n      innerComplete = true;\n    }, undefined, function () {\n      if (innerComplete) {\n        try {\n          active--;\n\n          var _loop_1 = function () {\n            var bufferedValue = buffer.shift();\n\n            if (innerSubScheduler) {\n              executeSchedule(subscriber, innerSubScheduler, function () {\n                return doInnerSub(bufferedValue);\n              });\n            } else {\n              doInnerSub(bufferedValue);\n            }\n          };\n\n          while (buffer.length && active < concurrent) {\n            _loop_1();\n          }\n\n          checkComplete();\n        } catch (err) {\n          subscriber.error(err);\n        }\n      }\n    }));\n  };\n\n  source.subscribe(createOperatorSubscriber(subscriber, outerNext, function () {\n    isComplete = true;\n    checkComplete();\n  }));\n  return function () {\n    additionalFinalizer === null || additionalFinalizer === void 0 ? void 0 : additionalFinalizer();\n  };\n} //# sourceMappingURL=mergeInternals.js.map",
+  "map": {
+    "version": 3,
+    "names": [
+      "innerFrom",
+      "executeSchedule",
+      "createOperatorSubscriber",
+      "mergeInternals",
+      "source",
+      "subscriber",
+      "project",
+      "concurrent",
+      "onBeforeNext",
+      "expand",
+      "innerSubScheduler",
+      "additionalFinalizer",
+      "buffer",
+      "active",
+      "index",
+      "isComplete",
+      "checkComplete",
+      "length",
+      "complete",
+      "outerNext",
+      "value",
+      "doInnerSub",
+      "push",
+      "next",
+      "innerComplete",
+      "subscribe",
+      "innerValue",
+      "undefined",
+      "_loop_1",
+      "bufferedValue",
+      "shift",
+      "err",
+      "error"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/esm5/internal/operators/mergeInternals.js"
+    ],
+    "sourcesContent": [
+      "import { innerFrom } from '../observable/innerFrom';\nimport { executeSchedule } from '../util/executeSchedule';\nimport { createOperatorSubscriber } from './OperatorSubscriber';\nexport function mergeInternals(source, subscriber, project, concurrent, onBeforeNext, expand, innerSubScheduler, additionalFinalizer) {\n    var buffer = [];\n    var active = 0;\n    var index = 0;\n    var isComplete = false;\n    var checkComplete = function () {\n        if (isComplete && !buffer.length && !active) {\n            subscriber.complete();\n        }\n    };\n    var outerNext = function (value) { return (active < concurrent ? doInnerSub(value) : buffer.push(value)); };\n    var doInnerSub = function (value) {\n        expand && subscriber.next(value);\n        active++;\n        var innerComplete = false;\n        innerFrom(project(value, index++)).subscribe(createOperatorSubscriber(subscriber, function (innerValue) {\n            onBeforeNext === null || onBeforeNext === void 0 ? void 0 : onBeforeNext(innerValue);\n            if (expand) {\n                outerNext(innerValue);\n            }\n            else {\n                subscriber.next(innerValue);\n            }\n        }, function () {\n            innerComplete = true;\n        }, undefined, function () {\n            if (innerComplete) {\n                try {\n                    active--;\n                    var _loop_1 = function () {\n                        var bufferedValue = buffer.shift();\n                        if (innerSubScheduler) {\n                            executeSchedule(subscriber, innerSubScheduler, function () { return doInnerSub(bufferedValue); });\n                        }\n                        else {\n                            doInnerSub(bufferedValue);\n                        }\n                    };\n                    while (buffer.length && active < concurrent) {\n                        _loop_1();\n                    }\n                    checkComplete();\n                }\n                catch (err) {\n                    subscriber.error(err);\n                }\n            }\n        }));\n    };\n    source.subscribe(createOperatorSubscriber(subscriber, outerNext, function () {\n        isComplete = true;\n        checkComplete();\n    }));\n    return function () {\n        additionalFinalizer === null || additionalFinalizer === void 0 ? void 0 : additionalFinalizer();\n    };\n}\n//# sourceMappingURL=mergeInternals.js.map"
+    ],
+    "mappings": "AAAA,SAASA,SAAT,QAA0B,yBAA1B;AACA,SAASC,eAAT,QAAgC,yBAAhC;AACA,SAASC,wBAAT,QAAyC,sBAAzC;AACA,OAAO,SAASC,cAAT,CAAwBC,MAAxB,EAAgCC,UAAhC,EAA4CC,OAA5C,EAAqDC,UAArD,EAAiEC,YAAjE,EAA+EC,MAA/E,EAAuFC,iBAAvF,EAA0GC,mBAA1G,EAA+H;EAClI,IAAIC,MAAM,GAAG,EAAb;EACA,IAAIC,MAAM,GAAG,CAAb;EACA,IAAIC,KAAK,GAAG,CAAZ;EACA,IAAIC,UAAU,GAAG,KAAjB;;EACA,IAAIC,aAAa,GAAG,YAAY;IAC5B,IAAID,UAAU,IAAI,CAACH,MAAM,CAACK,MAAtB,IAAgC,CAACJ,MAArC,EAA6C;MACzCR,UAAU,CAACa,QAAX;IACH;EACJ,CAJD;;EAKA,IAAIC,SAAS,GAAG,UAAUC,KAAV,EAAiB;IAAE,OAAQP,MAAM,GAAGN,UAAT,GAAsBc,UAAU,CAACD,KAAD,CAAhC,GAA0CR,MAAM,CAACU,IAAP,CAAYF,KAAZ,CAAlD;EAAwE,CAA3G;;EACA,IAAIC,UAAU,GAAG,UAAUD,KAAV,EAAiB;IAC9BX,MAAM,IAAIJ,UAAU,CAACkB,IAAX,CAAgBH,KAAhB,CAAV;IACAP,MAAM;IACN,IAAIW,aAAa,GAAG,KAApB;IACAxB,SAAS,CAACM,OAAO,CAACc,KAAD,EAAQN,KAAK,EAAb,CAAR,CAAT,CAAmCW,SAAnC,CAA6CvB,wBAAwB,CAACG,UAAD,EAAa,UAAUqB,UAAV,EAAsB;MACpGlB,YAAY,KAAK,IAAjB,IAAyBA,YAAY,KAAK,KAAK,CAA/C,GAAmD,KAAK,CAAxD,GAA4DA,YAAY,CAACkB,UAAD,CAAxE;;MACA,IAAIjB,MAAJ,EAAY;QACRU,SAAS,CAACO,UAAD,CAAT;MACH,CAFD,MAGK;QACDrB,UAAU,CAACkB,IAAX,CAAgBG,UAAhB;MACH;IACJ,CARoE,EAQlE,YAAY;MACXF,aAAa,GAAG,IAAhB;IACH,CAVoE,EAUlEG,SAVkE,EAUvD,YAAY;MACtB,IAAIH,aAAJ,EAAmB;QACf,IAAI;UACAX,MAAM;;UACN,IAAIe,OAAO,GAAG,YAAY;YACtB,IAAIC,aAAa,GAAGjB,MAAM,CAACkB,KAAP,EAApB;;YACA,IAAIpB,iBAAJ,EAAuB;cACnBT,eAAe,CAACI,UAAD,EAAaK,iBAAb,EAAgC,YAAY;gBAAE,OAAOW,UAAU,CAACQ,aAAD,CAAjB;cAAmC,CAAjF,CAAf;YACH,CAFD,MAGK;cACDR,UAAU,CAACQ,aAAD,CAAV;YACH;UACJ,CARD;;UASA,OAAOjB,MAAM,CAACK,MAAP,IAAiBJ,MAAM,GAAGN,UAAjC,EAA6C;YACzCqB,OAAO;UACV;;UACDZ,aAAa;QAChB,CAfD,CAgBA,OAAOe,GAAP,EAAY;UACR1B,UAAU,CAAC2B,KAAX,CAAiBD,GAAjB;QACH;MACJ;IACJ,CAhCoE,CAArE;EAiCH,CArCD;;EAsCA3B,MAAM,CAACqB,SAAP,CAAiBvB,wBAAwB,CAACG,UAAD,EAAac,SAAb,EAAwB,YAAY;IACzEJ,UAAU,GAAG,IAAb;IACAC,aAAa;EAChB,CAHwC,CAAzC;EAIA,OAAO,YAAY;IACfL,mBAAmB,KAAK,IAAxB,IAAgCA,mBAAmB,KAAK,KAAK,CAA7D,GAAiE,KAAK,CAAtE,GAA0EA,mBAAmB,EAA7F;EACH,CAFD;AAGH,C,CACD"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

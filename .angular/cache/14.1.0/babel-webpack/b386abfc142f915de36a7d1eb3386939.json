@@ -1,0 +1,34 @@
+{
+  "ast": null,
+  "code": "// Unique ID creation requires a high quality random # generator.  In the\n// browser this is a little complicated due to unknown quality of Math.random()\n// and inconsistent support for the `crypto` API.  We do the best we can via\n// feature-detection\nvar rng;\nvar crypto = typeof global !== 'undefined' && (global.crypto || global.msCrypto); // for IE 11\n\nif (crypto && crypto.getRandomValues) {\n  // WHATWG crypto RNG - http://wiki.whatwg.org/wiki/Crypto\n  var rnds8 = new Uint8Array(16); // eslint-disable-line no-undef\n\n  rng = function whatwgRNG() {\n    crypto.getRandomValues(rnds8);\n    return rnds8;\n  };\n}\n\nif (!rng) {\n  // Math.random()-based (RNG)\n  //\n  // If all else fails, use Math.random().  It's fast, but is of unspecified\n  // quality.\n  var rnds = new Array(16);\n\n  rng = function () {\n    for (var i = 0, r; i < 16; i++) {\n      if ((i & 0x03) === 0) r = Math.random() * 0x100000000;\n      rnds[i] = r >>> ((i & 0x03) << 3) & 0xff;\n    }\n\n    return rnds;\n  };\n}\n\nmodule.exports = rng;",
+  "map": {
+    "version": 3,
+    "names": [
+      "rng",
+      "crypto",
+      "global",
+      "msCrypto",
+      "getRandomValues",
+      "rnds8",
+      "Uint8Array",
+      "whatwgRNG",
+      "rnds",
+      "Array",
+      "i",
+      "r",
+      "Math",
+      "random",
+      "module",
+      "exports"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/uuid-browser/lib/rng-browser.js"
+    ],
+    "sourcesContent": [
+      "// Unique ID creation requires a high quality random # generator.  In the\n// browser this is a little complicated due to unknown quality of Math.random()\n// and inconsistent support for the `crypto` API.  We do the best we can via\n// feature-detection\nvar rng;\n\nvar crypto = typeof global !== 'undefined' && (global.crypto || global.msCrypto); // for IE 11\nif (crypto && crypto.getRandomValues) {\n  // WHATWG crypto RNG - http://wiki.whatwg.org/wiki/Crypto\n  var rnds8 = new Uint8Array(16); // eslint-disable-line no-undef\n  rng = function whatwgRNG() {\n    crypto.getRandomValues(rnds8);\n    return rnds8;\n  };\n}\n\nif (!rng) {\n  // Math.random()-based (RNG)\n  //\n  // If all else fails, use Math.random().  It's fast, but is of unspecified\n  // quality.\n  var rnds = new Array(16);\n  rng = function() {\n    for (var i = 0, r; i < 16; i++) {\n      if ((i & 0x03) === 0) r = Math.random() * 0x100000000;\n      rnds[i] = r >>> ((i & 0x03) << 3) & 0xff;\n    }\n\n    return rnds;\n  };\n}\n\nmodule.exports = rng;\n"
+    ],
+    "mappings": "AAAA;AACA;AACA;AACA;AACA,IAAIA,GAAJ;AAEA,IAAIC,MAAM,GAAG,OAAOC,MAAP,KAAkB,WAAlB,KAAkCA,MAAM,CAACD,MAAP,IAAiBC,MAAM,CAACC,QAA1D,CAAb,C,CAAkF;;AAClF,IAAIF,MAAM,IAAIA,MAAM,CAACG,eAArB,EAAsC;EACpC;EACA,IAAIC,KAAK,GAAG,IAAIC,UAAJ,CAAe,EAAf,CAAZ,CAFoC,CAEJ;;EAChCN,GAAG,GAAG,SAASO,SAAT,GAAqB;IACzBN,MAAM,CAACG,eAAP,CAAuBC,KAAvB;IACA,OAAOA,KAAP;EACD,CAHD;AAID;;AAED,IAAI,CAACL,GAAL,EAAU;EACR;EACA;EACA;EACA;EACA,IAAIQ,IAAI,GAAG,IAAIC,KAAJ,CAAU,EAAV,CAAX;;EACAT,GAAG,GAAG,YAAW;IACf,KAAK,IAAIU,CAAC,GAAG,CAAR,EAAWC,CAAhB,EAAmBD,CAAC,GAAG,EAAvB,EAA2BA,CAAC,EAA5B,EAAgC;MAC9B,IAAI,CAACA,CAAC,GAAG,IAAL,MAAe,CAAnB,EAAsBC,CAAC,GAAGC,IAAI,CAACC,MAAL,KAAgB,WAApB;MACtBL,IAAI,CAACE,CAAD,CAAJ,GAAUC,CAAC,MAAM,CAACD,CAAC,GAAG,IAAL,KAAc,CAApB,CAAD,GAA0B,IAApC;IACD;;IAED,OAAOF,IAAP;EACD,CAPD;AAQD;;AAEDM,MAAM,CAACC,OAAP,GAAiBf,GAAjB"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

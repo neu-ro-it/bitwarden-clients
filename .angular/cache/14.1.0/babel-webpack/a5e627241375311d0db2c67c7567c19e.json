@@ -1,0 +1,31 @@
+{
+  "ast": null,
+  "code": "import { switchMap } from './switchMap';\nimport { operate } from '../util/lift';\nexport function switchScan(accumulator, seed) {\n  return operate(function (source, subscriber) {\n    var state = seed;\n    switchMap(function (value, index) {\n      return accumulator(state, value, index);\n    }, function (_, innerValue) {\n      return state = innerValue, innerValue;\n    })(source).subscribe(subscriber);\n    return function () {\n      state = null;\n    };\n  });\n} //# sourceMappingURL=switchScan.js.map",
+  "map": {
+    "version": 3,
+    "names": [
+      "switchMap",
+      "operate",
+      "switchScan",
+      "accumulator",
+      "seed",
+      "source",
+      "subscriber",
+      "state",
+      "value",
+      "index",
+      "_",
+      "innerValue",
+      "subscribe"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/esm5/internal/operators/switchScan.js"
+    ],
+    "sourcesContent": [
+      "import { switchMap } from './switchMap';\nimport { operate } from '../util/lift';\nexport function switchScan(accumulator, seed) {\n    return operate(function (source, subscriber) {\n        var state = seed;\n        switchMap(function (value, index) { return accumulator(state, value, index); }, function (_, innerValue) { return ((state = innerValue), innerValue); })(source).subscribe(subscriber);\n        return function () {\n            state = null;\n        };\n    });\n}\n//# sourceMappingURL=switchScan.js.map"
+    ],
+    "mappings": "AAAA,SAASA,SAAT,QAA0B,aAA1B;AACA,SAASC,OAAT,QAAwB,cAAxB;AACA,OAAO,SAASC,UAAT,CAAoBC,WAApB,EAAiCC,IAAjC,EAAuC;EAC1C,OAAOH,OAAO,CAAC,UAAUI,MAAV,EAAkBC,UAAlB,EAA8B;IACzC,IAAIC,KAAK,GAAGH,IAAZ;IACAJ,SAAS,CAAC,UAAUQ,KAAV,EAAiBC,KAAjB,EAAwB;MAAE,OAAON,WAAW,CAACI,KAAD,EAAQC,KAAR,EAAeC,KAAf,CAAlB;IAA0C,CAArE,EAAuE,UAAUC,CAAV,EAAaC,UAAb,EAAyB;MAAE,OAASJ,KAAK,GAAGI,UAAT,EAAsBA,UAA9B;IAA4C,CAA9I,CAAT,CAAyJN,MAAzJ,EAAiKO,SAAjK,CAA2KN,UAA3K;IACA,OAAO,YAAY;MACfC,KAAK,GAAG,IAAR;IACH,CAFD;EAGH,CANa,CAAd;AAOH,C,CACD"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

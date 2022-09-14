@@ -1,0 +1,17 @@
+{
+  "ast": null,
+  "code": "export function createInvalidObservableTypeError(input) {\n  return new TypeError(\"You provided \" + (input !== null && typeof input === 'object' ? 'an invalid object' : \"'\" + input + \"'\") + \" where a stream was expected. You can provide an Observable, Promise, ReadableStream, Array, AsyncIterable, or Iterable.\");\n} //# sourceMappingURL=throwUnobservableError.js.map",
+  "map": {
+    "version": 3,
+    "names": ["createInvalidObservableTypeError", "input", "TypeError"],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/esm5/internal/util/throwUnobservableError.js"
+    ],
+    "sourcesContent": [
+      "export function createInvalidObservableTypeError(input) {\n    return new TypeError(\"You provided \" + (input !== null && typeof input === 'object' ? 'an invalid object' : \"'\" + input + \"'\") + \" where a stream was expected. You can provide an Observable, Promise, ReadableStream, Array, AsyncIterable, or Iterable.\");\n}\n//# sourceMappingURL=throwUnobservableError.js.map"
+    ],
+    "mappings": "AAAA,OAAO,SAASA,gCAAT,CAA0CC,KAA1C,EAAiD;EACpD,OAAO,IAAIC,SAAJ,CAAc,mBAAmBD,KAAK,KAAK,IAAV,IAAkB,OAAOA,KAAP,KAAiB,QAAnC,GAA8C,mBAA9C,GAAoE,MAAMA,KAAN,GAAc,GAArG,IAA4G,0HAA1H,CAAP;AACH,C,CACD"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

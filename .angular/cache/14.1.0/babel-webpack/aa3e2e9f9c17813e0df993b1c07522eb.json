@@ -1,0 +1,44 @@
+{
+  "ast": null,
+  "code": "\"use strict\";\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.mergeMap = void 0;\n\nvar map_1 = require(\"./map\");\n\nvar innerFrom_1 = require(\"../observable/innerFrom\");\n\nvar lift_1 = require(\"../util/lift\");\n\nvar mergeInternals_1 = require(\"./mergeInternals\");\n\nvar isFunction_1 = require(\"../util/isFunction\");\n\nfunction mergeMap(project, resultSelector, concurrent) {\n  if (concurrent === void 0) {\n    concurrent = Infinity;\n  }\n\n  if (isFunction_1.isFunction(resultSelector)) {\n    return mergeMap(function (a, i) {\n      return map_1.map(function (b, ii) {\n        return resultSelector(a, b, i, ii);\n      })(innerFrom_1.innerFrom(project(a, i)));\n    }, concurrent);\n  } else if (typeof resultSelector === 'number') {\n    concurrent = resultSelector;\n  }\n\n  return lift_1.operate(function (source, subscriber) {\n    return mergeInternals_1.mergeInternals(source, subscriber, project, concurrent);\n  });\n}\n\nexports.mergeMap = mergeMap; //# sourceMappingURL=mergeMap.js.map",
+  "map": {
+    "version": 3,
+    "names": [
+      "Object",
+      "defineProperty",
+      "exports",
+      "value",
+      "mergeMap",
+      "map_1",
+      "require",
+      "innerFrom_1",
+      "lift_1",
+      "mergeInternals_1",
+      "isFunction_1",
+      "project",
+      "resultSelector",
+      "concurrent",
+      "Infinity",
+      "isFunction",
+      "a",
+      "i",
+      "map",
+      "b",
+      "ii",
+      "innerFrom",
+      "operate",
+      "source",
+      "subscriber",
+      "mergeInternals"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/cjs/internal/operators/mergeMap.js"
+    ],
+    "sourcesContent": [
+      "\"use strict\";\nObject.defineProperty(exports, \"__esModule\", { value: true });\nexports.mergeMap = void 0;\nvar map_1 = require(\"./map\");\nvar innerFrom_1 = require(\"../observable/innerFrom\");\nvar lift_1 = require(\"../util/lift\");\nvar mergeInternals_1 = require(\"./mergeInternals\");\nvar isFunction_1 = require(\"../util/isFunction\");\nfunction mergeMap(project, resultSelector, concurrent) {\n    if (concurrent === void 0) { concurrent = Infinity; }\n    if (isFunction_1.isFunction(resultSelector)) {\n        return mergeMap(function (a, i) { return map_1.map(function (b, ii) { return resultSelector(a, b, i, ii); })(innerFrom_1.innerFrom(project(a, i))); }, concurrent);\n    }\n    else if (typeof resultSelector === 'number') {\n        concurrent = resultSelector;\n    }\n    return lift_1.operate(function (source, subscriber) { return mergeInternals_1.mergeInternals(source, subscriber, project, concurrent); });\n}\nexports.mergeMap = mergeMap;\n//# sourceMappingURL=mergeMap.js.map"
+    ],
+    "mappings": "AAAA;;AACAA,MAAM,CAACC,cAAP,CAAsBC,OAAtB,EAA+B,YAA/B,EAA6C;EAAEC,KAAK,EAAE;AAAT,CAA7C;AACAD,OAAO,CAACE,QAAR,GAAmB,KAAK,CAAxB;;AACA,IAAIC,KAAK,GAAGC,OAAO,CAAC,OAAD,CAAnB;;AACA,IAAIC,WAAW,GAAGD,OAAO,CAAC,yBAAD,CAAzB;;AACA,IAAIE,MAAM,GAAGF,OAAO,CAAC,cAAD,CAApB;;AACA,IAAIG,gBAAgB,GAAGH,OAAO,CAAC,kBAAD,CAA9B;;AACA,IAAII,YAAY,GAAGJ,OAAO,CAAC,oBAAD,CAA1B;;AACA,SAASF,QAAT,CAAkBO,OAAlB,EAA2BC,cAA3B,EAA2CC,UAA3C,EAAuD;EACnD,IAAIA,UAAU,KAAK,KAAK,CAAxB,EAA2B;IAAEA,UAAU,GAAGC,QAAb;EAAwB;;EACrD,IAAIJ,YAAY,CAACK,UAAb,CAAwBH,cAAxB,CAAJ,EAA6C;IACzC,OAAOR,QAAQ,CAAC,UAAUY,CAAV,EAAaC,CAAb,EAAgB;MAAE,OAAOZ,KAAK,CAACa,GAAN,CAAU,UAAUC,CAAV,EAAaC,EAAb,EAAiB;QAAE,OAAOR,cAAc,CAACI,CAAD,EAAIG,CAAJ,EAAOF,CAAP,EAAUG,EAAV,CAArB;MAAqC,CAAlE,EAAoEb,WAAW,CAACc,SAAZ,CAAsBV,OAAO,CAACK,CAAD,EAAIC,CAAJ,CAA7B,CAApE,CAAP;IAAmH,CAAtI,EAAwIJ,UAAxI,CAAf;EACH,CAFD,MAGK,IAAI,OAAOD,cAAP,KAA0B,QAA9B,EAAwC;IACzCC,UAAU,GAAGD,cAAb;EACH;;EACD,OAAOJ,MAAM,CAACc,OAAP,CAAe,UAAUC,MAAV,EAAkBC,UAAlB,EAA8B;IAAE,OAAOf,gBAAgB,CAACgB,cAAjB,CAAgCF,MAAhC,EAAwCC,UAAxC,EAAoDb,OAApD,EAA6DE,UAA7D,CAAP;EAAkF,CAAjI,CAAP;AACH;;AACDX,OAAO,CAACE,QAAR,GAAmBA,QAAnB,C,CACA"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

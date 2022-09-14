@@ -1,0 +1,59 @@
+{
+  "ast": null,
+  "code": "\"use strict\";\n\nvar __extends = this && this.__extends || function () {\n  var extendStatics = function (d, b) {\n    extendStatics = Object.setPrototypeOf || {\n      __proto__: []\n    } instanceof Array && function (d, b) {\n      d.__proto__ = b;\n    } || function (d, b) {\n      for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p];\n    };\n\n    return extendStatics(d, b);\n  };\n\n  return function (d, b) {\n    if (typeof b !== \"function\" && b !== null) throw new TypeError(\"Class extends value \" + String(b) + \" is not a constructor or null\");\n    extendStatics(d, b);\n\n    function __() {\n      this.constructor = d;\n    }\n\n    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());\n  };\n}();\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.AsyncScheduler = void 0;\n\nvar Scheduler_1 = require(\"../Scheduler\");\n\nvar AsyncScheduler = function (_super) {\n  __extends(AsyncScheduler, _super);\n\n  function AsyncScheduler(SchedulerAction, now) {\n    if (now === void 0) {\n      now = Scheduler_1.Scheduler.now;\n    }\n\n    var _this = _super.call(this, SchedulerAction, now) || this;\n\n    _this.actions = [];\n    _this._active = false;\n    _this._scheduled = undefined;\n    return _this;\n  }\n\n  AsyncScheduler.prototype.flush = function (action) {\n    var actions = this.actions;\n\n    if (this._active) {\n      actions.push(action);\n      return;\n    }\n\n    var error;\n    this._active = true;\n\n    do {\n      if (error = action.execute(action.state, action.delay)) {\n        break;\n      }\n    } while (action = actions.shift());\n\n    this._active = false;\n\n    if (error) {\n      while (action = actions.shift()) {\n        action.unsubscribe();\n      }\n\n      throw error;\n    }\n  };\n\n  return AsyncScheduler;\n}(Scheduler_1.Scheduler);\n\nexports.AsyncScheduler = AsyncScheduler; //# sourceMappingURL=AsyncScheduler.js.map",
+  "map": {
+    "version": 3,
+    "names": [
+      "__extends",
+      "extendStatics",
+      "d",
+      "b",
+      "Object",
+      "setPrototypeOf",
+      "__proto__",
+      "Array",
+      "p",
+      "prototype",
+      "hasOwnProperty",
+      "call",
+      "TypeError",
+      "String",
+      "__",
+      "constructor",
+      "create",
+      "defineProperty",
+      "exports",
+      "value",
+      "AsyncScheduler",
+      "Scheduler_1",
+      "require",
+      "_super",
+      "SchedulerAction",
+      "now",
+      "Scheduler",
+      "_this",
+      "actions",
+      "_active",
+      "_scheduled",
+      "undefined",
+      "flush",
+      "action",
+      "push",
+      "error",
+      "execute",
+      "state",
+      "delay",
+      "shift",
+      "unsubscribe"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/cjs/internal/scheduler/AsyncScheduler.js"
+    ],
+    "sourcesContent": [
+      "\"use strict\";\nvar __extends = (this && this.__extends) || (function () {\n    var extendStatics = function (d, b) {\n        extendStatics = Object.setPrototypeOf ||\n            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||\n            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };\n        return extendStatics(d, b);\n    };\n    return function (d, b) {\n        if (typeof b !== \"function\" && b !== null)\n            throw new TypeError(\"Class extends value \" + String(b) + \" is not a constructor or null\");\n        extendStatics(d, b);\n        function __() { this.constructor = d; }\n        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());\n    };\n})();\nObject.defineProperty(exports, \"__esModule\", { value: true });\nexports.AsyncScheduler = void 0;\nvar Scheduler_1 = require(\"../Scheduler\");\nvar AsyncScheduler = (function (_super) {\n    __extends(AsyncScheduler, _super);\n    function AsyncScheduler(SchedulerAction, now) {\n        if (now === void 0) { now = Scheduler_1.Scheduler.now; }\n        var _this = _super.call(this, SchedulerAction, now) || this;\n        _this.actions = [];\n        _this._active = false;\n        _this._scheduled = undefined;\n        return _this;\n    }\n    AsyncScheduler.prototype.flush = function (action) {\n        var actions = this.actions;\n        if (this._active) {\n            actions.push(action);\n            return;\n        }\n        var error;\n        this._active = true;\n        do {\n            if ((error = action.execute(action.state, action.delay))) {\n                break;\n            }\n        } while ((action = actions.shift()));\n        this._active = false;\n        if (error) {\n            while ((action = actions.shift())) {\n                action.unsubscribe();\n            }\n            throw error;\n        }\n    };\n    return AsyncScheduler;\n}(Scheduler_1.Scheduler));\nexports.AsyncScheduler = AsyncScheduler;\n//# sourceMappingURL=AsyncScheduler.js.map"
+    ],
+    "mappings": "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"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

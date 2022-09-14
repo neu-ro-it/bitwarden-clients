@@ -1,0 +1,17 @@
+{
+  "ast": null,
+  "code": "'use strict';\n\nmodule.exports = function isLeadingSurrogate(charCode) {\n  return typeof charCode === 'number' && charCode >= 0xD800 && charCode <= 0xDBFF;\n};",
+  "map": {
+    "version": 3,
+    "names": ["module", "exports", "isLeadingSurrogate", "charCode"],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/es-abstract/helpers/isLeadingSurrogate.js"
+    ],
+    "sourcesContent": [
+      "'use strict';\n\nmodule.exports = function isLeadingSurrogate(charCode) {\n\treturn typeof charCode === 'number' && charCode >= 0xD800 && charCode <= 0xDBFF;\n};\n"
+    ],
+    "mappings": "AAAA;;AAEAA,MAAM,CAACC,OAAP,GAAiB,SAASC,kBAAT,CAA4BC,QAA5B,EAAsC;EACtD,OAAO,OAAOA,QAAP,KAAoB,QAApB,IAAgCA,QAAQ,IAAI,MAA5C,IAAsDA,QAAQ,IAAI,MAAzE;AACA,CAFD"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

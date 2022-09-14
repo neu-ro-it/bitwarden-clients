@@ -1,0 +1,33 @@
+{
+  "ast": null,
+  "code": "'use strict';\n\nvar AddEntriesFromIterable = require('es-abstract/2021/AddEntriesFromIterable');\n\nvar CreateDataPropertyOrThrow = require('es-abstract/2021/CreateDataPropertyOrThrow');\n\nvar RequireObjectCoercible = require('es-abstract/2021/RequireObjectCoercible');\n\nvar ToPropertyKey = require('es-abstract/2021/ToPropertyKey');\n\nvar adder = function addDataProperty(key, value) {\n  var O = this; // eslint-disable-line no-invalid-this\n\n  var propertyKey = ToPropertyKey(key);\n  CreateDataPropertyOrThrow(O, propertyKey, value);\n};\n\nmodule.exports = function fromEntries(iterable) {\n  RequireObjectCoercible(iterable);\n  return AddEntriesFromIterable({}, iterable, adder);\n};",
+  "map": {
+    "version": 3,
+    "names": [
+      "AddEntriesFromIterable",
+      "require",
+      "CreateDataPropertyOrThrow",
+      "RequireObjectCoercible",
+      "ToPropertyKey",
+      "adder",
+      "addDataProperty",
+      "key",
+      "value",
+      "O",
+      "propertyKey",
+      "module",
+      "exports",
+      "fromEntries",
+      "iterable"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/object.fromentries/implementation.js"
+    ],
+    "sourcesContent": [
+      "'use strict';\n\nvar AddEntriesFromIterable = require('es-abstract/2021/AddEntriesFromIterable');\nvar CreateDataPropertyOrThrow = require('es-abstract/2021/CreateDataPropertyOrThrow');\nvar RequireObjectCoercible = require('es-abstract/2021/RequireObjectCoercible');\nvar ToPropertyKey = require('es-abstract/2021/ToPropertyKey');\n\nvar adder = function addDataProperty(key, value) {\n\tvar O = this; // eslint-disable-line no-invalid-this\n\tvar propertyKey = ToPropertyKey(key);\n\tCreateDataPropertyOrThrow(O, propertyKey, value);\n};\n\nmodule.exports = function fromEntries(iterable) {\n\tRequireObjectCoercible(iterable);\n\n\treturn AddEntriesFromIterable({}, iterable, adder);\n};\n"
+    ],
+    "mappings": "AAAA;;AAEA,IAAIA,sBAAsB,GAAGC,OAAO,CAAC,yCAAD,CAApC;;AACA,IAAIC,yBAAyB,GAAGD,OAAO,CAAC,4CAAD,CAAvC;;AACA,IAAIE,sBAAsB,GAAGF,OAAO,CAAC,yCAAD,CAApC;;AACA,IAAIG,aAAa,GAAGH,OAAO,CAAC,gCAAD,CAA3B;;AAEA,IAAII,KAAK,GAAG,SAASC,eAAT,CAAyBC,GAAzB,EAA8BC,KAA9B,EAAqC;EAChD,IAAIC,CAAC,GAAG,IAAR,CADgD,CAClC;;EACd,IAAIC,WAAW,GAAGN,aAAa,CAACG,GAAD,CAA/B;EACAL,yBAAyB,CAACO,CAAD,EAAIC,WAAJ,EAAiBF,KAAjB,CAAzB;AACA,CAJD;;AAMAG,MAAM,CAACC,OAAP,GAAiB,SAASC,WAAT,CAAqBC,QAArB,EAA+B;EAC/CX,sBAAsB,CAACW,QAAD,CAAtB;EAEA,OAAOd,sBAAsB,CAAC,EAAD,EAAKc,QAAL,EAAeT,KAAf,CAA7B;AACA,CAJD"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

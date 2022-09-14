@@ -1,0 +1,37 @@
+{
+  "ast": null,
+  "code": "import { operate } from '../util/lift';\nimport { noop } from '../util/noop';\nimport { createOperatorSubscriber } from './OperatorSubscriber';\nimport { innerFrom } from '../observable/innerFrom';\nexport function bufferWhen(closingSelector) {\n  return operate(function (source, subscriber) {\n    var buffer = null;\n    var closingSubscriber = null;\n\n    var openBuffer = function () {\n      closingSubscriber === null || closingSubscriber === void 0 ? void 0 : closingSubscriber.unsubscribe();\n      var b = buffer;\n      buffer = [];\n      b && subscriber.next(b);\n      innerFrom(closingSelector()).subscribe(closingSubscriber = createOperatorSubscriber(subscriber, openBuffer, noop));\n    };\n\n    openBuffer();\n    source.subscribe(createOperatorSubscriber(subscriber, function (value) {\n      return buffer === null || buffer === void 0 ? void 0 : buffer.push(value);\n    }, function () {\n      buffer && subscriber.next(buffer);\n      subscriber.complete();\n    }, undefined, function () {\n      return buffer = closingSubscriber = null;\n    }));\n  });\n} //# sourceMappingURL=bufferWhen.js.map",
+  "map": {
+    "version": 3,
+    "names": [
+      "operate",
+      "noop",
+      "createOperatorSubscriber",
+      "innerFrom",
+      "bufferWhen",
+      "closingSelector",
+      "source",
+      "subscriber",
+      "buffer",
+      "closingSubscriber",
+      "openBuffer",
+      "unsubscribe",
+      "b",
+      "next",
+      "subscribe",
+      "value",
+      "push",
+      "complete",
+      "undefined"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/esm5/internal/operators/bufferWhen.js"
+    ],
+    "sourcesContent": [
+      "import { operate } from '../util/lift';\nimport { noop } from '../util/noop';\nimport { createOperatorSubscriber } from './OperatorSubscriber';\nimport { innerFrom } from '../observable/innerFrom';\nexport function bufferWhen(closingSelector) {\n    return operate(function (source, subscriber) {\n        var buffer = null;\n        var closingSubscriber = null;\n        var openBuffer = function () {\n            closingSubscriber === null || closingSubscriber === void 0 ? void 0 : closingSubscriber.unsubscribe();\n            var b = buffer;\n            buffer = [];\n            b && subscriber.next(b);\n            innerFrom(closingSelector()).subscribe((closingSubscriber = createOperatorSubscriber(subscriber, openBuffer, noop)));\n        };\n        openBuffer();\n        source.subscribe(createOperatorSubscriber(subscriber, function (value) { return buffer === null || buffer === void 0 ? void 0 : buffer.push(value); }, function () {\n            buffer && subscriber.next(buffer);\n            subscriber.complete();\n        }, undefined, function () { return (buffer = closingSubscriber = null); }));\n    });\n}\n//# sourceMappingURL=bufferWhen.js.map"
+    ],
+    "mappings": "AAAA,SAASA,OAAT,QAAwB,cAAxB;AACA,SAASC,IAAT,QAAqB,cAArB;AACA,SAASC,wBAAT,QAAyC,sBAAzC;AACA,SAASC,SAAT,QAA0B,yBAA1B;AACA,OAAO,SAASC,UAAT,CAAoBC,eAApB,EAAqC;EACxC,OAAOL,OAAO,CAAC,UAAUM,MAAV,EAAkBC,UAAlB,EAA8B;IACzC,IAAIC,MAAM,GAAG,IAAb;IACA,IAAIC,iBAAiB,GAAG,IAAxB;;IACA,IAAIC,UAAU,GAAG,YAAY;MACzBD,iBAAiB,KAAK,IAAtB,IAA8BA,iBAAiB,KAAK,KAAK,CAAzD,GAA6D,KAAK,CAAlE,GAAsEA,iBAAiB,CAACE,WAAlB,EAAtE;MACA,IAAIC,CAAC,GAAGJ,MAAR;MACAA,MAAM,GAAG,EAAT;MACAI,CAAC,IAAIL,UAAU,CAACM,IAAX,CAAgBD,CAAhB,CAAL;MACAT,SAAS,CAACE,eAAe,EAAhB,CAAT,CAA6BS,SAA7B,CAAwCL,iBAAiB,GAAGP,wBAAwB,CAACK,UAAD,EAAaG,UAAb,EAAyBT,IAAzB,CAApF;IACH,CAND;;IAOAS,UAAU;IACVJ,MAAM,CAACQ,SAAP,CAAiBZ,wBAAwB,CAACK,UAAD,EAAa,UAAUQ,KAAV,EAAiB;MAAE,OAAOP,MAAM,KAAK,IAAX,IAAmBA,MAAM,KAAK,KAAK,CAAnC,GAAuC,KAAK,CAA5C,GAAgDA,MAAM,CAACQ,IAAP,CAAYD,KAAZ,CAAvD;IAA4E,CAA5G,EAA8G,YAAY;MAC/JP,MAAM,IAAID,UAAU,CAACM,IAAX,CAAgBL,MAAhB,CAAV;MACAD,UAAU,CAACU,QAAX;IACH,CAHwC,EAGtCC,SAHsC,EAG3B,YAAY;MAAE,OAAQV,MAAM,GAAGC,iBAAiB,GAAG,IAArC;IAA6C,CAHhC,CAAzC;EAIH,CAfa,CAAd;AAgBH,C,CACD"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

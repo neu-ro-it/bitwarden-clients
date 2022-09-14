@@ -1,0 +1,40 @@
+{
+  "ast": null,
+  "code": "import { __extends } from \"tslib\";\nimport { Scheduler } from '../Scheduler';\n\nvar AsyncScheduler = function (_super) {\n  __extends(AsyncScheduler, _super);\n\n  function AsyncScheduler(SchedulerAction, now) {\n    if (now === void 0) {\n      now = Scheduler.now;\n    }\n\n    var _this = _super.call(this, SchedulerAction, now) || this;\n\n    _this.actions = [];\n    _this._active = false;\n    _this._scheduled = undefined;\n    return _this;\n  }\n\n  AsyncScheduler.prototype.flush = function (action) {\n    var actions = this.actions;\n\n    if (this._active) {\n      actions.push(action);\n      return;\n    }\n\n    var error;\n    this._active = true;\n\n    do {\n      if (error = action.execute(action.state, action.delay)) {\n        break;\n      }\n    } while (action = actions.shift());\n\n    this._active = false;\n\n    if (error) {\n      while (action = actions.shift()) {\n        action.unsubscribe();\n      }\n\n      throw error;\n    }\n  };\n\n  return AsyncScheduler;\n}(Scheduler);\n\nexport { AsyncScheduler }; //# sourceMappingURL=AsyncScheduler.js.map",
+  "map": {
+    "version": 3,
+    "names": [
+      "__extends",
+      "Scheduler",
+      "AsyncScheduler",
+      "_super",
+      "SchedulerAction",
+      "now",
+      "_this",
+      "call",
+      "actions",
+      "_active",
+      "_scheduled",
+      "undefined",
+      "prototype",
+      "flush",
+      "action",
+      "push",
+      "error",
+      "execute",
+      "state",
+      "delay",
+      "shift",
+      "unsubscribe"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/esm5/internal/scheduler/AsyncScheduler.js"
+    ],
+    "sourcesContent": [
+      "import { __extends } from \"tslib\";\nimport { Scheduler } from '../Scheduler';\nvar AsyncScheduler = (function (_super) {\n    __extends(AsyncScheduler, _super);\n    function AsyncScheduler(SchedulerAction, now) {\n        if (now === void 0) { now = Scheduler.now; }\n        var _this = _super.call(this, SchedulerAction, now) || this;\n        _this.actions = [];\n        _this._active = false;\n        _this._scheduled = undefined;\n        return _this;\n    }\n    AsyncScheduler.prototype.flush = function (action) {\n        var actions = this.actions;\n        if (this._active) {\n            actions.push(action);\n            return;\n        }\n        var error;\n        this._active = true;\n        do {\n            if ((error = action.execute(action.state, action.delay))) {\n                break;\n            }\n        } while ((action = actions.shift()));\n        this._active = false;\n        if (error) {\n            while ((action = actions.shift())) {\n                action.unsubscribe();\n            }\n            throw error;\n        }\n    };\n    return AsyncScheduler;\n}(Scheduler));\nexport { AsyncScheduler };\n//# sourceMappingURL=AsyncScheduler.js.map"
+    ],
+    "mappings": "AAAA,SAASA,SAAT,QAA0B,OAA1B;AACA,SAASC,SAAT,QAA0B,cAA1B;;AACA,IAAIC,cAAc,GAAI,UAAUC,MAAV,EAAkB;EACpCH,SAAS,CAACE,cAAD,EAAiBC,MAAjB,CAAT;;EACA,SAASD,cAAT,CAAwBE,eAAxB,EAAyCC,GAAzC,EAA8C;IAC1C,IAAIA,GAAG,KAAK,KAAK,CAAjB,EAAoB;MAAEA,GAAG,GAAGJ,SAAS,CAACI,GAAhB;IAAsB;;IAC5C,IAAIC,KAAK,GAAGH,MAAM,CAACI,IAAP,CAAY,IAAZ,EAAkBH,eAAlB,EAAmCC,GAAnC,KAA2C,IAAvD;;IACAC,KAAK,CAACE,OAAN,GAAgB,EAAhB;IACAF,KAAK,CAACG,OAAN,GAAgB,KAAhB;IACAH,KAAK,CAACI,UAAN,GAAmBC,SAAnB;IACA,OAAOL,KAAP;EACH;;EACDJ,cAAc,CAACU,SAAf,CAAyBC,KAAzB,GAAiC,UAAUC,MAAV,EAAkB;IAC/C,IAAIN,OAAO,GAAG,KAAKA,OAAnB;;IACA,IAAI,KAAKC,OAAT,EAAkB;MACdD,OAAO,CAACO,IAAR,CAAaD,MAAb;MACA;IACH;;IACD,IAAIE,KAAJ;IACA,KAAKP,OAAL,GAAe,IAAf;;IACA,GAAG;MACC,IAAKO,KAAK,GAAGF,MAAM,CAACG,OAAP,CAAeH,MAAM,CAACI,KAAtB,EAA6BJ,MAAM,CAACK,KAApC,CAAb,EAA0D;QACtD;MACH;IACJ,CAJD,QAIUL,MAAM,GAAGN,OAAO,CAACY,KAAR,EAJnB;;IAKA,KAAKX,OAAL,GAAe,KAAf;;IACA,IAAIO,KAAJ,EAAW;MACP,OAAQF,MAAM,GAAGN,OAAO,CAACY,KAAR,EAAjB,EAAmC;QAC/BN,MAAM,CAACO,WAAP;MACH;;MACD,MAAML,KAAN;IACH;EACJ,CApBD;;EAqBA,OAAOd,cAAP;AACH,CAhCqB,CAgCpBD,SAhCoB,CAAtB;;AAiCA,SAASC,cAAT,G,CACA"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

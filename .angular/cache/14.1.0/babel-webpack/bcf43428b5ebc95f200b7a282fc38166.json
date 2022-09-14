@@ -1,0 +1,29 @@
+{
+  "ast": null,
+  "code": "import \"core-js/modules/es.object.assign.js\";\nexport var config = {\n  depth: 10,\n  clearOnStoryChange: true,\n  limit: 50\n};\nexport var configureActions = function configureActions() {\n  var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};\n  Object.assign(config, options);\n};",
+  "map": {
+    "version": 3,
+    "names": [
+      "config",
+      "depth",
+      "clearOnStoryChange",
+      "limit",
+      "configureActions",
+      "options",
+      "arguments",
+      "length",
+      "undefined",
+      "Object",
+      "assign"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/@storybook/addon-actions/dist/esm/preview/configureActions.js"
+    ],
+    "sourcesContent": [
+      "import \"core-js/modules/es.object.assign.js\";\nexport var config = {\n  depth: 10,\n  clearOnStoryChange: true,\n  limit: 50\n};\nexport var configureActions = function configureActions() {\n  var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};\n  Object.assign(config, options);\n};"
+    ],
+    "mappings": "AAAA,OAAO,qCAAP;AACA,OAAO,IAAIA,MAAM,GAAG;EAClBC,KAAK,EAAE,EADW;EAElBC,kBAAkB,EAAE,IAFF;EAGlBC,KAAK,EAAE;AAHW,CAAb;AAKP,OAAO,IAAIC,gBAAgB,GAAG,SAASA,gBAAT,GAA4B;EACxD,IAAIC,OAAO,GAAGC,SAAS,CAACC,MAAV,GAAmB,CAAnB,IAAwBD,SAAS,CAAC,CAAD,CAAT,KAAiBE,SAAzC,GAAqDF,SAAS,CAAC,CAAD,CAA9D,GAAoE,EAAlF;EACAG,MAAM,CAACC,MAAP,CAAcV,MAAd,EAAsBK,OAAtB;AACD,CAHM"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

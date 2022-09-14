@@ -1,0 +1,25 @@
+{
+  "ast": null,
+  "code": "export var config = {\n  onUnhandledError: null,\n  onStoppedNotification: null,\n  Promise: undefined,\n  useDeprecatedSynchronousErrorHandling: false,\n  useDeprecatedNextContext: false\n}; //# sourceMappingURL=config.js.map",
+  "map": {
+    "version": 3,
+    "names": [
+      "config",
+      "onUnhandledError",
+      "onStoppedNotification",
+      "Promise",
+      "undefined",
+      "useDeprecatedSynchronousErrorHandling",
+      "useDeprecatedNextContext"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/esm5/internal/config.js"
+    ],
+    "sourcesContent": [
+      "export var config = {\n    onUnhandledError: null,\n    onStoppedNotification: null,\n    Promise: undefined,\n    useDeprecatedSynchronousErrorHandling: false,\n    useDeprecatedNextContext: false,\n};\n//# sourceMappingURL=config.js.map"
+    ],
+    "mappings": "AAAA,OAAO,IAAIA,MAAM,GAAG;EAChBC,gBAAgB,EAAE,IADF;EAEhBC,qBAAqB,EAAE,IAFP;EAGhBC,OAAO,EAAEC,SAHO;EAIhBC,qCAAqC,EAAE,KAJvB;EAKhBC,wBAAwB,EAAE;AALV,CAAb,C,CAOP"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

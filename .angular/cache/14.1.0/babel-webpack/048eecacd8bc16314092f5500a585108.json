@@ -1,0 +1,29 @@
+{
+  "ast": null,
+  "code": "\"use strict\";\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.never = exports.NEVER = void 0;\n\nvar Observable_1 = require(\"../Observable\");\n\nvar noop_1 = require(\"../util/noop\");\n\nexports.NEVER = new Observable_1.Observable(noop_1.noop);\n\nfunction never() {\n  return exports.NEVER;\n}\n\nexports.never = never; //# sourceMappingURL=never.js.map",
+  "map": {
+    "version": 3,
+    "names": [
+      "Object",
+      "defineProperty",
+      "exports",
+      "value",
+      "never",
+      "NEVER",
+      "Observable_1",
+      "require",
+      "noop_1",
+      "Observable",
+      "noop"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/cjs/internal/observable/never.js"
+    ],
+    "sourcesContent": [
+      "\"use strict\";\nObject.defineProperty(exports, \"__esModule\", { value: true });\nexports.never = exports.NEVER = void 0;\nvar Observable_1 = require(\"../Observable\");\nvar noop_1 = require(\"../util/noop\");\nexports.NEVER = new Observable_1.Observable(noop_1.noop);\nfunction never() {\n    return exports.NEVER;\n}\nexports.never = never;\n//# sourceMappingURL=never.js.map"
+    ],
+    "mappings": "AAAA;;AACAA,MAAM,CAACC,cAAP,CAAsBC,OAAtB,EAA+B,YAA/B,EAA6C;EAAEC,KAAK,EAAE;AAAT,CAA7C;AACAD,OAAO,CAACE,KAAR,GAAgBF,OAAO,CAACG,KAAR,GAAgB,KAAK,CAArC;;AACA,IAAIC,YAAY,GAAGC,OAAO,CAAC,eAAD,CAA1B;;AACA,IAAIC,MAAM,GAAGD,OAAO,CAAC,cAAD,CAApB;;AACAL,OAAO,CAACG,KAAR,GAAgB,IAAIC,YAAY,CAACG,UAAjB,CAA4BD,MAAM,CAACE,IAAnC,CAAhB;;AACA,SAASN,KAAT,GAAiB;EACb,OAAOF,OAAO,CAACG,KAAf;AACH;;AACDH,OAAO,CAACE,KAAR,GAAgBA,KAAhB,C,CACA"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

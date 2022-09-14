@@ -1,0 +1,32 @@
+{
+  "ast": null,
+  "code": "import { operate } from '../util/lift';\nimport { createOperatorSubscriber } from './OperatorSubscriber';\nimport { innerFrom } from '../observable/innerFrom';\nimport { noop } from '../util/noop';\nexport function skipUntil(notifier) {\n  return operate(function (source, subscriber) {\n    var taking = false;\n    var skipSubscriber = createOperatorSubscriber(subscriber, function () {\n      skipSubscriber === null || skipSubscriber === void 0 ? void 0 : skipSubscriber.unsubscribe();\n      taking = true;\n    }, noop);\n    innerFrom(notifier).subscribe(skipSubscriber);\n    source.subscribe(createOperatorSubscriber(subscriber, function (value) {\n      return taking && subscriber.next(value);\n    }));\n  });\n} //# sourceMappingURL=skipUntil.js.map",
+  "map": {
+    "version": 3,
+    "names": [
+      "operate",
+      "createOperatorSubscriber",
+      "innerFrom",
+      "noop",
+      "skipUntil",
+      "notifier",
+      "source",
+      "subscriber",
+      "taking",
+      "skipSubscriber",
+      "unsubscribe",
+      "subscribe",
+      "value",
+      "next"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/esm5/internal/operators/skipUntil.js"
+    ],
+    "sourcesContent": [
+      "import { operate } from '../util/lift';\nimport { createOperatorSubscriber } from './OperatorSubscriber';\nimport { innerFrom } from '../observable/innerFrom';\nimport { noop } from '../util/noop';\nexport function skipUntil(notifier) {\n    return operate(function (source, subscriber) {\n        var taking = false;\n        var skipSubscriber = createOperatorSubscriber(subscriber, function () {\n            skipSubscriber === null || skipSubscriber === void 0 ? void 0 : skipSubscriber.unsubscribe();\n            taking = true;\n        }, noop);\n        innerFrom(notifier).subscribe(skipSubscriber);\n        source.subscribe(createOperatorSubscriber(subscriber, function (value) { return taking && subscriber.next(value); }));\n    });\n}\n//# sourceMappingURL=skipUntil.js.map"
+    ],
+    "mappings": "AAAA,SAASA,OAAT,QAAwB,cAAxB;AACA,SAASC,wBAAT,QAAyC,sBAAzC;AACA,SAASC,SAAT,QAA0B,yBAA1B;AACA,SAASC,IAAT,QAAqB,cAArB;AACA,OAAO,SAASC,SAAT,CAAmBC,QAAnB,EAA6B;EAChC,OAAOL,OAAO,CAAC,UAAUM,MAAV,EAAkBC,UAAlB,EAA8B;IACzC,IAAIC,MAAM,GAAG,KAAb;IACA,IAAIC,cAAc,GAAGR,wBAAwB,CAACM,UAAD,EAAa,YAAY;MAClEE,cAAc,KAAK,IAAnB,IAA2BA,cAAc,KAAK,KAAK,CAAnD,GAAuD,KAAK,CAA5D,GAAgEA,cAAc,CAACC,WAAf,EAAhE;MACAF,MAAM,GAAG,IAAT;IACH,CAH4C,EAG1CL,IAH0C,CAA7C;IAIAD,SAAS,CAACG,QAAD,CAAT,CAAoBM,SAApB,CAA8BF,cAA9B;IACAH,MAAM,CAACK,SAAP,CAAiBV,wBAAwB,CAACM,UAAD,EAAa,UAAUK,KAAV,EAAiB;MAAE,OAAOJ,MAAM,IAAID,UAAU,CAACM,IAAX,CAAgBD,KAAhB,CAAjB;IAA0C,CAA1E,CAAzC;EACH,CARa,CAAd;AASH,C,CACD"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

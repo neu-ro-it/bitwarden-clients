@@ -1,0 +1,17 @@
+{
+  "ast": null,
+  "code": "\"use strict\";\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.noop = void 0;\n\nfunction noop() {}\n\nexports.noop = noop; //# sourceMappingURL=noop.js.map",
+  "map": {
+    "version": 3,
+    "names": ["Object", "defineProperty", "exports", "value", "noop"],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/cjs/internal/util/noop.js"
+    ],
+    "sourcesContent": [
+      "\"use strict\";\nObject.defineProperty(exports, \"__esModule\", { value: true });\nexports.noop = void 0;\nfunction noop() { }\nexports.noop = noop;\n//# sourceMappingURL=noop.js.map"
+    ],
+    "mappings": "AAAA;;AACAA,MAAM,CAACC,cAAP,CAAsBC,OAAtB,EAA+B,YAA/B,EAA6C;EAAEC,KAAK,EAAE;AAAT,CAA7C;AACAD,OAAO,CAACE,IAAR,GAAe,KAAK,CAApB;;AACA,SAASA,IAAT,GAAgB,CAAG;;AACnBF,OAAO,CAACE,IAAR,GAAeA,IAAf,C,CACA"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

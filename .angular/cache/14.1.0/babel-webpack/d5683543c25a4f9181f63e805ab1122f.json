@@ -1,0 +1,29 @@
+{
+  "ast": null,
+  "code": "\"use strict\";\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.queue = exports.queueScheduler = void 0;\n\nvar QueueAction_1 = require(\"./QueueAction\");\n\nvar QueueScheduler_1 = require(\"./QueueScheduler\");\n\nexports.queueScheduler = new QueueScheduler_1.QueueScheduler(QueueAction_1.QueueAction);\nexports.queue = exports.queueScheduler; //# sourceMappingURL=queue.js.map",
+  "map": {
+    "version": 3,
+    "names": [
+      "Object",
+      "defineProperty",
+      "exports",
+      "value",
+      "queue",
+      "queueScheduler",
+      "QueueAction_1",
+      "require",
+      "QueueScheduler_1",
+      "QueueScheduler",
+      "QueueAction"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/cjs/internal/scheduler/queue.js"
+    ],
+    "sourcesContent": [
+      "\"use strict\";\nObject.defineProperty(exports, \"__esModule\", { value: true });\nexports.queue = exports.queueScheduler = void 0;\nvar QueueAction_1 = require(\"./QueueAction\");\nvar QueueScheduler_1 = require(\"./QueueScheduler\");\nexports.queueScheduler = new QueueScheduler_1.QueueScheduler(QueueAction_1.QueueAction);\nexports.queue = exports.queueScheduler;\n//# sourceMappingURL=queue.js.map"
+    ],
+    "mappings": "AAAA;;AACAA,MAAM,CAACC,cAAP,CAAsBC,OAAtB,EAA+B,YAA/B,EAA6C;EAAEC,KAAK,EAAE;AAAT,CAA7C;AACAD,OAAO,CAACE,KAAR,GAAgBF,OAAO,CAACG,cAAR,GAAyB,KAAK,CAA9C;;AACA,IAAIC,aAAa,GAAGC,OAAO,CAAC,eAAD,CAA3B;;AACA,IAAIC,gBAAgB,GAAGD,OAAO,CAAC,kBAAD,CAA9B;;AACAL,OAAO,CAACG,cAAR,GAAyB,IAAIG,gBAAgB,CAACC,cAArB,CAAoCH,aAAa,CAACI,WAAlD,CAAzB;AACAR,OAAO,CAACE,KAAR,GAAgBF,OAAO,CAACG,cAAxB,C,CACA"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

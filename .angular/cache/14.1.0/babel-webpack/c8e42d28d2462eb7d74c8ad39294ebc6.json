@@ -1,0 +1,39 @@
+{
+  "ast": null,
+  "code": "\"use strict\";\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.delayWhen = void 0;\n\nvar concat_1 = require(\"../observable/concat\");\n\nvar take_1 = require(\"./take\");\n\nvar ignoreElements_1 = require(\"./ignoreElements\");\n\nvar mapTo_1 = require(\"./mapTo\");\n\nvar mergeMap_1 = require(\"./mergeMap\");\n\nfunction delayWhen(delayDurationSelector, subscriptionDelay) {\n  if (subscriptionDelay) {\n    return function (source) {\n      return concat_1.concat(subscriptionDelay.pipe(take_1.take(1), ignoreElements_1.ignoreElements()), source.pipe(delayWhen(delayDurationSelector)));\n    };\n  }\n\n  return mergeMap_1.mergeMap(function (value, index) {\n    return delayDurationSelector(value, index).pipe(take_1.take(1), mapTo_1.mapTo(value));\n  });\n}\n\nexports.delayWhen = delayWhen; //# sourceMappingURL=delayWhen.js.map",
+  "map": {
+    "version": 3,
+    "names": [
+      "Object",
+      "defineProperty",
+      "exports",
+      "value",
+      "delayWhen",
+      "concat_1",
+      "require",
+      "take_1",
+      "ignoreElements_1",
+      "mapTo_1",
+      "mergeMap_1",
+      "delayDurationSelector",
+      "subscriptionDelay",
+      "source",
+      "concat",
+      "pipe",
+      "take",
+      "ignoreElements",
+      "mergeMap",
+      "index",
+      "mapTo"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/cjs/internal/operators/delayWhen.js"
+    ],
+    "sourcesContent": [
+      "\"use strict\";\nObject.defineProperty(exports, \"__esModule\", { value: true });\nexports.delayWhen = void 0;\nvar concat_1 = require(\"../observable/concat\");\nvar take_1 = require(\"./take\");\nvar ignoreElements_1 = require(\"./ignoreElements\");\nvar mapTo_1 = require(\"./mapTo\");\nvar mergeMap_1 = require(\"./mergeMap\");\nfunction delayWhen(delayDurationSelector, subscriptionDelay) {\n    if (subscriptionDelay) {\n        return function (source) {\n            return concat_1.concat(subscriptionDelay.pipe(take_1.take(1), ignoreElements_1.ignoreElements()), source.pipe(delayWhen(delayDurationSelector)));\n        };\n    }\n    return mergeMap_1.mergeMap(function (value, index) { return delayDurationSelector(value, index).pipe(take_1.take(1), mapTo_1.mapTo(value)); });\n}\nexports.delayWhen = delayWhen;\n//# sourceMappingURL=delayWhen.js.map"
+    ],
+    "mappings": "AAAA;;AACAA,MAAM,CAACC,cAAP,CAAsBC,OAAtB,EAA+B,YAA/B,EAA6C;EAAEC,KAAK,EAAE;AAAT,CAA7C;AACAD,OAAO,CAACE,SAAR,GAAoB,KAAK,CAAzB;;AACA,IAAIC,QAAQ,GAAGC,OAAO,CAAC,sBAAD,CAAtB;;AACA,IAAIC,MAAM,GAAGD,OAAO,CAAC,QAAD,CAApB;;AACA,IAAIE,gBAAgB,GAAGF,OAAO,CAAC,kBAAD,CAA9B;;AACA,IAAIG,OAAO,GAAGH,OAAO,CAAC,SAAD,CAArB;;AACA,IAAII,UAAU,GAAGJ,OAAO,CAAC,YAAD,CAAxB;;AACA,SAASF,SAAT,CAAmBO,qBAAnB,EAA0CC,iBAA1C,EAA6D;EACzD,IAAIA,iBAAJ,EAAuB;IACnB,OAAO,UAAUC,MAAV,EAAkB;MACrB,OAAOR,QAAQ,CAACS,MAAT,CAAgBF,iBAAiB,CAACG,IAAlB,CAAuBR,MAAM,CAACS,IAAP,CAAY,CAAZ,CAAvB,EAAuCR,gBAAgB,CAACS,cAAjB,EAAvC,CAAhB,EAA2FJ,MAAM,CAACE,IAAP,CAAYX,SAAS,CAACO,qBAAD,CAArB,CAA3F,CAAP;IACH,CAFD;EAGH;;EACD,OAAOD,UAAU,CAACQ,QAAX,CAAoB,UAAUf,KAAV,EAAiBgB,KAAjB,EAAwB;IAAE,OAAOR,qBAAqB,CAACR,KAAD,EAAQgB,KAAR,CAArB,CAAoCJ,IAApC,CAAyCR,MAAM,CAACS,IAAP,CAAY,CAAZ,CAAzC,EAAyDP,OAAO,CAACW,KAAR,CAAcjB,KAAd,CAAzD,CAAP;EAAwF,CAAtI,CAAP;AACH;;AACDD,OAAO,CAACE,SAAR,GAAoBA,SAApB,C,CACA"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

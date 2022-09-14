@@ -1,0 +1,42 @@
+{
+  "ast": null,
+  "code": "import { __extends } from \"tslib\";\nimport { AsyncAction } from './AsyncAction';\nimport { immediateProvider } from './immediateProvider';\n\nvar AsapAction = function (_super) {\n  __extends(AsapAction, _super);\n\n  function AsapAction(scheduler, work) {\n    var _this = _super.call(this, scheduler, work) || this;\n\n    _this.scheduler = scheduler;\n    _this.work = work;\n    return _this;\n  }\n\n  AsapAction.prototype.requestAsyncId = function (scheduler, id, delay) {\n    if (delay === void 0) {\n      delay = 0;\n    }\n\n    if (delay !== null && delay > 0) {\n      return _super.prototype.requestAsyncId.call(this, scheduler, id, delay);\n    }\n\n    scheduler.actions.push(this);\n    return scheduler._scheduled || (scheduler._scheduled = immediateProvider.setImmediate(scheduler.flush.bind(scheduler, undefined)));\n  };\n\n  AsapAction.prototype.recycleAsyncId = function (scheduler, id, delay) {\n    if (delay === void 0) {\n      delay = 0;\n    }\n\n    if (delay != null && delay > 0 || delay == null && this.delay > 0) {\n      return _super.prototype.recycleAsyncId.call(this, scheduler, id, delay);\n    }\n\n    if (!scheduler.actions.some(function (action) {\n      return action.id === id;\n    })) {\n      immediateProvider.clearImmediate(id);\n      scheduler._scheduled = undefined;\n    }\n\n    return undefined;\n  };\n\n  return AsapAction;\n}(AsyncAction);\n\nexport { AsapAction }; //# sourceMappingURL=AsapAction.js.map",
+  "map": {
+    "version": 3,
+    "names": [
+      "__extends",
+      "AsyncAction",
+      "immediateProvider",
+      "AsapAction",
+      "_super",
+      "scheduler",
+      "work",
+      "_this",
+      "call",
+      "prototype",
+      "requestAsyncId",
+      "id",
+      "delay",
+      "actions",
+      "push",
+      "_scheduled",
+      "setImmediate",
+      "flush",
+      "bind",
+      "undefined",
+      "recycleAsyncId",
+      "some",
+      "action",
+      "clearImmediate"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/esm5/internal/scheduler/AsapAction.js"
+    ],
+    "sourcesContent": [
+      "import { __extends } from \"tslib\";\nimport { AsyncAction } from './AsyncAction';\nimport { immediateProvider } from './immediateProvider';\nvar AsapAction = (function (_super) {\n    __extends(AsapAction, _super);\n    function AsapAction(scheduler, work) {\n        var _this = _super.call(this, scheduler, work) || this;\n        _this.scheduler = scheduler;\n        _this.work = work;\n        return _this;\n    }\n    AsapAction.prototype.requestAsyncId = function (scheduler, id, delay) {\n        if (delay === void 0) { delay = 0; }\n        if (delay !== null && delay > 0) {\n            return _super.prototype.requestAsyncId.call(this, scheduler, id, delay);\n        }\n        scheduler.actions.push(this);\n        return scheduler._scheduled || (scheduler._scheduled = immediateProvider.setImmediate(scheduler.flush.bind(scheduler, undefined)));\n    };\n    AsapAction.prototype.recycleAsyncId = function (scheduler, id, delay) {\n        if (delay === void 0) { delay = 0; }\n        if ((delay != null && delay > 0) || (delay == null && this.delay > 0)) {\n            return _super.prototype.recycleAsyncId.call(this, scheduler, id, delay);\n        }\n        if (!scheduler.actions.some(function (action) { return action.id === id; })) {\n            immediateProvider.clearImmediate(id);\n            scheduler._scheduled = undefined;\n        }\n        return undefined;\n    };\n    return AsapAction;\n}(AsyncAction));\nexport { AsapAction };\n//# sourceMappingURL=AsapAction.js.map"
+    ],
+    "mappings": "AAAA,SAASA,SAAT,QAA0B,OAA1B;AACA,SAASC,WAAT,QAA4B,eAA5B;AACA,SAASC,iBAAT,QAAkC,qBAAlC;;AACA,IAAIC,UAAU,GAAI,UAAUC,MAAV,EAAkB;EAChCJ,SAAS,CAACG,UAAD,EAAaC,MAAb,CAAT;;EACA,SAASD,UAAT,CAAoBE,SAApB,EAA+BC,IAA/B,EAAqC;IACjC,IAAIC,KAAK,GAAGH,MAAM,CAACI,IAAP,CAAY,IAAZ,EAAkBH,SAAlB,EAA6BC,IAA7B,KAAsC,IAAlD;;IACAC,KAAK,CAACF,SAAN,GAAkBA,SAAlB;IACAE,KAAK,CAACD,IAAN,GAAaA,IAAb;IACA,OAAOC,KAAP;EACH;;EACDJ,UAAU,CAACM,SAAX,CAAqBC,cAArB,GAAsC,UAAUL,SAAV,EAAqBM,EAArB,EAAyBC,KAAzB,EAAgC;IAClE,IAAIA,KAAK,KAAK,KAAK,CAAnB,EAAsB;MAAEA,KAAK,GAAG,CAAR;IAAY;;IACpC,IAAIA,KAAK,KAAK,IAAV,IAAkBA,KAAK,GAAG,CAA9B,EAAiC;MAC7B,OAAOR,MAAM,CAACK,SAAP,CAAiBC,cAAjB,CAAgCF,IAAhC,CAAqC,IAArC,EAA2CH,SAA3C,EAAsDM,EAAtD,EAA0DC,KAA1D,CAAP;IACH;;IACDP,SAAS,CAACQ,OAAV,CAAkBC,IAAlB,CAAuB,IAAvB;IACA,OAAOT,SAAS,CAACU,UAAV,KAAyBV,SAAS,CAACU,UAAV,GAAuBb,iBAAiB,CAACc,YAAlB,CAA+BX,SAAS,CAACY,KAAV,CAAgBC,IAAhB,CAAqBb,SAArB,EAAgCc,SAAhC,CAA/B,CAAhD,CAAP;EACH,CAPD;;EAQAhB,UAAU,CAACM,SAAX,CAAqBW,cAArB,GAAsC,UAAUf,SAAV,EAAqBM,EAArB,EAAyBC,KAAzB,EAAgC;IAClE,IAAIA,KAAK,KAAK,KAAK,CAAnB,EAAsB;MAAEA,KAAK,GAAG,CAAR;IAAY;;IACpC,IAAKA,KAAK,IAAI,IAAT,IAAiBA,KAAK,GAAG,CAA1B,IAAiCA,KAAK,IAAI,IAAT,IAAiB,KAAKA,KAAL,GAAa,CAAnE,EAAuE;MACnE,OAAOR,MAAM,CAACK,SAAP,CAAiBW,cAAjB,CAAgCZ,IAAhC,CAAqC,IAArC,EAA2CH,SAA3C,EAAsDM,EAAtD,EAA0DC,KAA1D,CAAP;IACH;;IACD,IAAI,CAACP,SAAS,CAACQ,OAAV,CAAkBQ,IAAlB,CAAuB,UAAUC,MAAV,EAAkB;MAAE,OAAOA,MAAM,CAACX,EAAP,KAAcA,EAArB;IAA0B,CAArE,CAAL,EAA6E;MACzET,iBAAiB,CAACqB,cAAlB,CAAiCZ,EAAjC;MACAN,SAAS,CAACU,UAAV,GAAuBI,SAAvB;IACH;;IACD,OAAOA,SAAP;EACH,CAVD;;EAWA,OAAOhB,UAAP;AACH,CA5BiB,CA4BhBF,WA5BgB,CAAlB;;AA6BA,SAASE,UAAT,G,CACA"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

@@ -1,0 +1,47 @@
+{
+  "ast": null,
+  "code": "function _extends() {\n  _extends = Object.assign || function (target) {\n    for (var i = 1; i < arguments.length; i++) {\n      var source = arguments[i];\n\n      for (var key in source) {\n        if (Object.prototype.hasOwnProperty.call(source, key)) {\n          target[key] = source[key];\n        }\n      }\n    }\n\n    return target;\n  };\n\n  return _extends.apply(this, arguments);\n}\n\nimport \"core-js/modules/es.function.name.js\";\nimport \"core-js/modules/es.array.find.js\";\nimport \"core-js/modules/es.object.to-string.js\";\nimport \"core-js/modules/es.object.assign.js\";\nimport React, { useContext } from 'react';\nimport { DocsContext } from './DocsContext';\nimport { DocsStory } from './DocsStory';\nexport var Primary = function Primary(_ref) {\n  var name = _ref.name;\n\n  var _useContext = useContext(DocsContext),\n      getComponentStories = _useContext.componentStories;\n\n  var componentStories = getComponentStories();\n  var story;\n\n  if (componentStories) {\n    story = name ? componentStories.find(function (s) {\n      return s.name === name;\n    }) : componentStories[0];\n  }\n\n  return story ? /*#__PURE__*/React.createElement(DocsStory, _extends({}, story, {\n    expanded: false,\n    withToolbar: true\n  })) : null;\n};",
+  "map": {
+    "version": 3,
+    "names": [
+      "_extends",
+      "Object",
+      "assign",
+      "target",
+      "i",
+      "arguments",
+      "length",
+      "source",
+      "key",
+      "prototype",
+      "hasOwnProperty",
+      "call",
+      "apply",
+      "React",
+      "useContext",
+      "DocsContext",
+      "DocsStory",
+      "Primary",
+      "_ref",
+      "name",
+      "_useContext",
+      "getComponentStories",
+      "componentStories",
+      "story",
+      "find",
+      "s",
+      "createElement",
+      "expanded",
+      "withToolbar"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/@storybook/addon-docs/dist/esm/blocks/Primary.js"
+    ],
+    "sourcesContent": [
+      "function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }\n\nimport \"core-js/modules/es.function.name.js\";\nimport \"core-js/modules/es.array.find.js\";\nimport \"core-js/modules/es.object.to-string.js\";\nimport \"core-js/modules/es.object.assign.js\";\nimport React, { useContext } from 'react';\nimport { DocsContext } from './DocsContext';\nimport { DocsStory } from './DocsStory';\nexport var Primary = function Primary(_ref) {\n  var name = _ref.name;\n\n  var _useContext = useContext(DocsContext),\n      getComponentStories = _useContext.componentStories;\n\n  var componentStories = getComponentStories();\n  var story;\n\n  if (componentStories) {\n    story = name ? componentStories.find(function (s) {\n      return s.name === name;\n    }) : componentStories[0];\n  }\n\n  return story ? /*#__PURE__*/React.createElement(DocsStory, _extends({}, story, {\n    expanded: false,\n    withToolbar: true\n  })) : null;\n};"
+    ],
+    "mappings": "AAAA,SAASA,QAAT,GAAoB;EAAEA,QAAQ,GAAGC,MAAM,CAACC,MAAP,IAAiB,UAAUC,MAAV,EAAkB;IAAE,KAAK,IAAIC,CAAC,GAAG,CAAb,EAAgBA,CAAC,GAAGC,SAAS,CAACC,MAA9B,EAAsCF,CAAC,EAAvC,EAA2C;MAAE,IAAIG,MAAM,GAAGF,SAAS,CAACD,CAAD,CAAtB;;MAA2B,KAAK,IAAII,GAAT,IAAgBD,MAAhB,EAAwB;QAAE,IAAIN,MAAM,CAACQ,SAAP,CAAiBC,cAAjB,CAAgCC,IAAhC,CAAqCJ,MAArC,EAA6CC,GAA7C,CAAJ,EAAuD;UAAEL,MAAM,CAACK,GAAD,CAAN,GAAcD,MAAM,CAACC,GAAD,CAApB;QAA4B;MAAE;IAAE;;IAAC,OAAOL,MAAP;EAAgB,CAA5P;;EAA8P,OAAOH,QAAQ,CAACY,KAAT,CAAe,IAAf,EAAqBP,SAArB,CAAP;AAAyC;;AAE7T,OAAO,qCAAP;AACA,OAAO,kCAAP;AACA,OAAO,wCAAP;AACA,OAAO,qCAAP;AACA,OAAOQ,KAAP,IAAgBC,UAAhB,QAAkC,OAAlC;AACA,SAASC,WAAT,QAA4B,eAA5B;AACA,SAASC,SAAT,QAA0B,aAA1B;AACA,OAAO,IAAIC,OAAO,GAAG,SAASA,OAAT,CAAiBC,IAAjB,EAAuB;EAC1C,IAAIC,IAAI,GAAGD,IAAI,CAACC,IAAhB;;EAEA,IAAIC,WAAW,GAAGN,UAAU,CAACC,WAAD,CAA5B;EAAA,IACIM,mBAAmB,GAAGD,WAAW,CAACE,gBADtC;;EAGA,IAAIA,gBAAgB,GAAGD,mBAAmB,EAA1C;EACA,IAAIE,KAAJ;;EAEA,IAAID,gBAAJ,EAAsB;IACpBC,KAAK,GAAGJ,IAAI,GAAGG,gBAAgB,CAACE,IAAjB,CAAsB,UAAUC,CAAV,EAAa;MAChD,OAAOA,CAAC,CAACN,IAAF,KAAWA,IAAlB;IACD,CAFc,CAAH,GAEPG,gBAAgB,CAAC,CAAD,CAFrB;EAGD;;EAED,OAAOC,KAAK,GAAG,aAAaV,KAAK,CAACa,aAAN,CAAoBV,SAApB,EAA+BhB,QAAQ,CAAC,EAAD,EAAKuB,KAAL,EAAY;IAC7EI,QAAQ,EAAE,KADmE;IAE7EC,WAAW,EAAE;EAFgE,CAAZ,CAAvC,CAAhB,GAGN,IAHN;AAID,CAnBM"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

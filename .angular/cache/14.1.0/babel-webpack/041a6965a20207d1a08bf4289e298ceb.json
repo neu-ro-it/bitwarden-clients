@@ -1,0 +1,17 @@
+{
+  "ast": null,
+  "code": "import { from } from './from';\nexport function pairs(obj, scheduler) {\n  return from(Object.entries(obj), scheduler);\n} //# sourceMappingURL=pairs.js.map",
+  "map": {
+    "version": 3,
+    "names": ["from", "pairs", "obj", "scheduler", "Object", "entries"],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/esm5/internal/observable/pairs.js"
+    ],
+    "sourcesContent": [
+      "import { from } from './from';\nexport function pairs(obj, scheduler) {\n    return from(Object.entries(obj), scheduler);\n}\n//# sourceMappingURL=pairs.js.map"
+    ],
+    "mappings": "AAAA,SAASA,IAAT,QAAqB,QAArB;AACA,OAAO,SAASC,KAAT,CAAeC,GAAf,EAAoBC,SAApB,EAA+B;EAClC,OAAOH,IAAI,CAACI,MAAM,CAACC,OAAP,CAAeH,GAAf,CAAD,EAAsBC,SAAtB,CAAX;AACH,C,CACD"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

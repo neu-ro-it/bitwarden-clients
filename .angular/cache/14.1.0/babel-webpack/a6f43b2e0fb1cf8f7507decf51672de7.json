@@ -1,0 +1,30 @@
+{
+  "ast": null,
+  "code": "\"use strict\";\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.switchMapTo = void 0;\n\nvar switchMap_1 = require(\"./switchMap\");\n\nvar isFunction_1 = require(\"../util/isFunction\");\n\nfunction switchMapTo(innerObservable, resultSelector) {\n  return isFunction_1.isFunction(resultSelector) ? switchMap_1.switchMap(function () {\n    return innerObservable;\n  }, resultSelector) : switchMap_1.switchMap(function () {\n    return innerObservable;\n  });\n}\n\nexports.switchMapTo = switchMapTo; //# sourceMappingURL=switchMapTo.js.map",
+  "map": {
+    "version": 3,
+    "names": [
+      "Object",
+      "defineProperty",
+      "exports",
+      "value",
+      "switchMapTo",
+      "switchMap_1",
+      "require",
+      "isFunction_1",
+      "innerObservable",
+      "resultSelector",
+      "isFunction",
+      "switchMap"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/cjs/internal/operators/switchMapTo.js"
+    ],
+    "sourcesContent": [
+      "\"use strict\";\nObject.defineProperty(exports, \"__esModule\", { value: true });\nexports.switchMapTo = void 0;\nvar switchMap_1 = require(\"./switchMap\");\nvar isFunction_1 = require(\"../util/isFunction\");\nfunction switchMapTo(innerObservable, resultSelector) {\n    return isFunction_1.isFunction(resultSelector) ? switchMap_1.switchMap(function () { return innerObservable; }, resultSelector) : switchMap_1.switchMap(function () { return innerObservable; });\n}\nexports.switchMapTo = switchMapTo;\n//# sourceMappingURL=switchMapTo.js.map"
+    ],
+    "mappings": "AAAA;;AACAA,MAAM,CAACC,cAAP,CAAsBC,OAAtB,EAA+B,YAA/B,EAA6C;EAAEC,KAAK,EAAE;AAAT,CAA7C;AACAD,OAAO,CAACE,WAAR,GAAsB,KAAK,CAA3B;;AACA,IAAIC,WAAW,GAAGC,OAAO,CAAC,aAAD,CAAzB;;AACA,IAAIC,YAAY,GAAGD,OAAO,CAAC,oBAAD,CAA1B;;AACA,SAASF,WAAT,CAAqBI,eAArB,EAAsCC,cAAtC,EAAsD;EAClD,OAAOF,YAAY,CAACG,UAAb,CAAwBD,cAAxB,IAA0CJ,WAAW,CAACM,SAAZ,CAAsB,YAAY;IAAE,OAAOH,eAAP;EAAyB,CAA7D,EAA+DC,cAA/D,CAA1C,GAA2HJ,WAAW,CAACM,SAAZ,CAAsB,YAAY;IAAE,OAAOH,eAAP;EAAyB,CAA7D,CAAlI;AACH;;AACDN,OAAO,CAACE,WAAR,GAAsBA,WAAtB,C,CACA"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

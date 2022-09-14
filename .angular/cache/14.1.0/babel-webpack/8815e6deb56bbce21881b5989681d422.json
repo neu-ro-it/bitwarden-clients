@@ -1,0 +1,15 @@
+{
+  "ast": null,
+  "code": "",
+  "map": {
+    "version": 3,
+    "names": [],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/@storybook/addon-actions/dist/esm/models/HandlerFunction.js"
+    ],
+    "sourcesContent": [""],
+    "mappings": ""
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

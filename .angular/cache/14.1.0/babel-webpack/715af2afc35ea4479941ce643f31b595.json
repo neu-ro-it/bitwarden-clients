@@ -1,0 +1,37 @@
+{
+  "ast": null,
+  "code": "'use strict';\n\nvar GetIntrinsic = require('get-intrinsic');\n\nvar $ObjectCreate = GetIntrinsic('%Object.create%', true);\nvar $TypeError = GetIntrinsic('%TypeError%');\nvar $SyntaxError = GetIntrinsic('%SyntaxError%');\n\nvar IsArray = require('./IsArray');\n\nvar Type = require('./Type');\n\nvar hasProto = !({\n  __proto__: null\n} instanceof Object); // https://262.ecma-international.org/6.0/#sec-objectcreate\n\nmodule.exports = function OrdinaryObjectCreate(proto) {\n  if (proto !== null && Type(proto) !== 'Object') {\n    throw new $TypeError('Assertion failed: `proto` must be null or an object');\n  }\n\n  var additionalInternalSlotsList = arguments.length < 2 ? [] : arguments[1];\n\n  if (!IsArray(additionalInternalSlotsList)) {\n    throw new $TypeError('Assertion failed: `additionalInternalSlotsList` must be an Array');\n  } // var internalSlotsList = ['[[Prototype]]', '[[Extensible]]'];\n\n\n  if (additionalInternalSlotsList.length > 0) {\n    throw new $SyntaxError('es-abstract does not yet support internal slots'); // internalSlotsList.push(...additionalInternalSlotsList);\n  } // var O = MakeBasicObject(internalSlotsList);\n  // setProto(O, proto);\n  // return O;\n\n\n  if ($ObjectCreate) {\n    return $ObjectCreate(proto);\n  }\n\n  if (hasProto) {\n    return {\n      __proto__: proto\n    };\n  }\n\n  if (proto === null) {\n    throw new $SyntaxError('native Object.create support is required to create null objects');\n  }\n\n  var T = function T() {};\n\n  T.prototype = proto;\n  return new T();\n};",
+  "map": {
+    "version": 3,
+    "names": [
+      "GetIntrinsic",
+      "require",
+      "$ObjectCreate",
+      "$TypeError",
+      "$SyntaxError",
+      "IsArray",
+      "Type",
+      "hasProto",
+      "__proto__",
+      "Object",
+      "module",
+      "exports",
+      "OrdinaryObjectCreate",
+      "proto",
+      "additionalInternalSlotsList",
+      "arguments",
+      "length",
+      "T",
+      "prototype"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/es-abstract/2021/OrdinaryObjectCreate.js"
+    ],
+    "sourcesContent": [
+      "'use strict';\n\nvar GetIntrinsic = require('get-intrinsic');\n\nvar $ObjectCreate = GetIntrinsic('%Object.create%', true);\nvar $TypeError = GetIntrinsic('%TypeError%');\nvar $SyntaxError = GetIntrinsic('%SyntaxError%');\n\nvar IsArray = require('./IsArray');\nvar Type = require('./Type');\n\nvar hasProto = !({ __proto__: null } instanceof Object);\n\n// https://262.ecma-international.org/6.0/#sec-objectcreate\n\nmodule.exports = function OrdinaryObjectCreate(proto) {\n\tif (proto !== null && Type(proto) !== 'Object') {\n\t\tthrow new $TypeError('Assertion failed: `proto` must be null or an object');\n\t}\n\tvar additionalInternalSlotsList = arguments.length < 2 ? [] : arguments[1];\n\tif (!IsArray(additionalInternalSlotsList)) {\n\t\tthrow new $TypeError('Assertion failed: `additionalInternalSlotsList` must be an Array');\n\t}\n\t// var internalSlotsList = ['[[Prototype]]', '[[Extensible]]'];\n\tif (additionalInternalSlotsList.length > 0) {\n\t\tthrow new $SyntaxError('es-abstract does not yet support internal slots');\n\t\t// internalSlotsList.push(...additionalInternalSlotsList);\n\t}\n\t// var O = MakeBasicObject(internalSlotsList);\n\t// setProto(O, proto);\n\t// return O;\n\n\tif ($ObjectCreate) {\n\t\treturn $ObjectCreate(proto);\n\t}\n\tif (hasProto) {\n\t\treturn { __proto__: proto };\n\t}\n\n\tif (proto === null) {\n\t\tthrow new $SyntaxError('native Object.create support is required to create null objects');\n\t}\n\tvar T = function T() {};\n\tT.prototype = proto;\n\treturn new T();\n};\n"
+    ],
+    "mappings": "AAAA;;AAEA,IAAIA,YAAY,GAAGC,OAAO,CAAC,eAAD,CAA1B;;AAEA,IAAIC,aAAa,GAAGF,YAAY,CAAC,iBAAD,EAAoB,IAApB,CAAhC;AACA,IAAIG,UAAU,GAAGH,YAAY,CAAC,aAAD,CAA7B;AACA,IAAII,YAAY,GAAGJ,YAAY,CAAC,eAAD,CAA/B;;AAEA,IAAIK,OAAO,GAAGJ,OAAO,CAAC,WAAD,CAArB;;AACA,IAAIK,IAAI,GAAGL,OAAO,CAAC,QAAD,CAAlB;;AAEA,IAAIM,QAAQ,GAAG,EAAE;EAAEC,SAAS,EAAE;AAAb,aAA+BC,MAAjC,CAAf,C,CAEA;;AAEAC,MAAM,CAACC,OAAP,GAAiB,SAASC,oBAAT,CAA8BC,KAA9B,EAAqC;EACrD,IAAIA,KAAK,KAAK,IAAV,IAAkBP,IAAI,CAACO,KAAD,CAAJ,KAAgB,QAAtC,EAAgD;IAC/C,MAAM,IAAIV,UAAJ,CAAe,qDAAf,CAAN;EACA;;EACD,IAAIW,2BAA2B,GAAGC,SAAS,CAACC,MAAV,GAAmB,CAAnB,GAAuB,EAAvB,GAA4BD,SAAS,CAAC,CAAD,CAAvE;;EACA,IAAI,CAACV,OAAO,CAACS,2BAAD,CAAZ,EAA2C;IAC1C,MAAM,IAAIX,UAAJ,CAAe,kEAAf,CAAN;EACA,CAPoD,CAQrD;;;EACA,IAAIW,2BAA2B,CAACE,MAA5B,GAAqC,CAAzC,EAA4C;IAC3C,MAAM,IAAIZ,YAAJ,CAAiB,iDAAjB,CAAN,CAD2C,CAE3C;EACA,CAZoD,CAarD;EACA;EACA;;;EAEA,IAAIF,aAAJ,EAAmB;IAClB,OAAOA,aAAa,CAACW,KAAD,CAApB;EACA;;EACD,IAAIN,QAAJ,EAAc;IACb,OAAO;MAAEC,SAAS,EAAEK;IAAb,CAAP;EACA;;EAED,IAAIA,KAAK,KAAK,IAAd,EAAoB;IACnB,MAAM,IAAIT,YAAJ,CAAiB,iEAAjB,CAAN;EACA;;EACD,IAAIa,CAAC,GAAG,SAASA,CAAT,GAAa,CAAE,CAAvB;;EACAA,CAAC,CAACC,SAAF,GAAcL,KAAd;EACA,OAAO,IAAII,CAAJ,EAAP;AACA,CA9BD"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

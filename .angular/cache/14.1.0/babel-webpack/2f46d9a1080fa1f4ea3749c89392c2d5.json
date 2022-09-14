@@ -1,0 +1,42 @@
+{
+  "ast": null,
+  "code": "'use strict';\n\nvar hasSymbols = require('has-symbols')();\n\nvar GetIntrinsic = require('get-intrinsic');\n\nvar callBound = require('call-bind/callBound');\n\nvar isString = require('is-string');\n\nvar $iterator = GetIntrinsic('%Symbol.iterator%', true);\nvar $stringSlice = callBound('String.prototype.slice');\nvar $String = GetIntrinsic('%String%', true);\n\nmodule.exports = function getIteratorMethod(ES, iterable) {\n  var usingIterator;\n\n  if (hasSymbols) {\n    usingIterator = ES.GetMethod(iterable, $iterator);\n  } else if (ES.IsArray(iterable)) {\n    usingIterator = function () {\n      var i = -1;\n      var arr = this; // eslint-disable-line no-invalid-this\n\n      return {\n        next: function () {\n          i += 1;\n          return {\n            done: i >= arr.length,\n            value: arr[i]\n          };\n        }\n      };\n    };\n  } else if (isString(iterable)) {\n    usingIterator = function () {\n      var i = 0;\n      return {\n        next: function () {\n          var nextIndex = ES.AdvanceStringIndex($String(iterable), i, true);\n          var value = $stringSlice(iterable, i, nextIndex);\n          i = nextIndex;\n          return {\n            done: nextIndex > iterable.length,\n            value: value\n          };\n        }\n      };\n    };\n  }\n\n  return usingIterator;\n};",
+  "map": {
+    "version": 3,
+    "names": [
+      "hasSymbols",
+      "require",
+      "GetIntrinsic",
+      "callBound",
+      "isString",
+      "$iterator",
+      "$stringSlice",
+      "$String",
+      "module",
+      "exports",
+      "getIteratorMethod",
+      "ES",
+      "iterable",
+      "usingIterator",
+      "GetMethod",
+      "IsArray",
+      "i",
+      "arr",
+      "next",
+      "done",
+      "length",
+      "value",
+      "nextIndex",
+      "AdvanceStringIndex"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/es-abstract/helpers/getIteratorMethod.js"
+    ],
+    "sourcesContent": [
+      "'use strict';\n\nvar hasSymbols = require('has-symbols')();\nvar GetIntrinsic = require('get-intrinsic');\nvar callBound = require('call-bind/callBound');\nvar isString = require('is-string');\n\nvar $iterator = GetIntrinsic('%Symbol.iterator%', true);\nvar $stringSlice = callBound('String.prototype.slice');\nvar $String = GetIntrinsic('%String%', true);\n\nmodule.exports = function getIteratorMethod(ES, iterable) {\n\tvar usingIterator;\n\tif (hasSymbols) {\n\t\tusingIterator = ES.GetMethod(iterable, $iterator);\n\t} else if (ES.IsArray(iterable)) {\n\t\tusingIterator = function () {\n\t\t\tvar i = -1;\n\t\t\tvar arr = this; // eslint-disable-line no-invalid-this\n\t\t\treturn {\n\t\t\t\tnext: function () {\n\t\t\t\t\ti += 1;\n\t\t\t\t\treturn {\n\t\t\t\t\t\tdone: i >= arr.length,\n\t\t\t\t\t\tvalue: arr[i]\n\t\t\t\t\t};\n\t\t\t\t}\n\t\t\t};\n\t\t};\n\t} else if (isString(iterable)) {\n\t\tusingIterator = function () {\n\t\t\tvar i = 0;\n\t\t\treturn {\n\t\t\t\tnext: function () {\n\t\t\t\t\tvar nextIndex = ES.AdvanceStringIndex($String(iterable), i, true);\n\t\t\t\t\tvar value = $stringSlice(iterable, i, nextIndex);\n\t\t\t\t\ti = nextIndex;\n\t\t\t\t\treturn {\n\t\t\t\t\t\tdone: nextIndex > iterable.length,\n\t\t\t\t\t\tvalue: value\n\t\t\t\t\t};\n\t\t\t\t}\n\t\t\t};\n\t\t};\n\t}\n\treturn usingIterator;\n};\n"
+    ],
+    "mappings": "AAAA;;AAEA,IAAIA,UAAU,GAAGC,OAAO,CAAC,aAAD,CAAP,EAAjB;;AACA,IAAIC,YAAY,GAAGD,OAAO,CAAC,eAAD,CAA1B;;AACA,IAAIE,SAAS,GAAGF,OAAO,CAAC,qBAAD,CAAvB;;AACA,IAAIG,QAAQ,GAAGH,OAAO,CAAC,WAAD,CAAtB;;AAEA,IAAII,SAAS,GAAGH,YAAY,CAAC,mBAAD,EAAsB,IAAtB,CAA5B;AACA,IAAII,YAAY,GAAGH,SAAS,CAAC,wBAAD,CAA5B;AACA,IAAII,OAAO,GAAGL,YAAY,CAAC,UAAD,EAAa,IAAb,CAA1B;;AAEAM,MAAM,CAACC,OAAP,GAAiB,SAASC,iBAAT,CAA2BC,EAA3B,EAA+BC,QAA/B,EAAyC;EACzD,IAAIC,aAAJ;;EACA,IAAIb,UAAJ,EAAgB;IACfa,aAAa,GAAGF,EAAE,CAACG,SAAH,CAAaF,QAAb,EAAuBP,SAAvB,CAAhB;EACA,CAFD,MAEO,IAAIM,EAAE,CAACI,OAAH,CAAWH,QAAX,CAAJ,EAA0B;IAChCC,aAAa,GAAG,YAAY;MAC3B,IAAIG,CAAC,GAAG,CAAC,CAAT;MACA,IAAIC,GAAG,GAAG,IAAV,CAF2B,CAEX;;MAChB,OAAO;QACNC,IAAI,EAAE,YAAY;UACjBF,CAAC,IAAI,CAAL;UACA,OAAO;YACNG,IAAI,EAAEH,CAAC,IAAIC,GAAG,CAACG,MADT;YAENC,KAAK,EAAEJ,GAAG,CAACD,CAAD;UAFJ,CAAP;QAIA;MAPK,CAAP;IASA,CAZD;EAaA,CAdM,MAcA,IAAIZ,QAAQ,CAACQ,QAAD,CAAZ,EAAwB;IAC9BC,aAAa,GAAG,YAAY;MAC3B,IAAIG,CAAC,GAAG,CAAR;MACA,OAAO;QACNE,IAAI,EAAE,YAAY;UACjB,IAAII,SAAS,GAAGX,EAAE,CAACY,kBAAH,CAAsBhB,OAAO,CAACK,QAAD,CAA7B,EAAyCI,CAAzC,EAA4C,IAA5C,CAAhB;UACA,IAAIK,KAAK,GAAGf,YAAY,CAACM,QAAD,EAAWI,CAAX,EAAcM,SAAd,CAAxB;UACAN,CAAC,GAAGM,SAAJ;UACA,OAAO;YACNH,IAAI,EAAEG,SAAS,GAAGV,QAAQ,CAACQ,MADrB;YAENC,KAAK,EAAEA;UAFD,CAAP;QAIA;MATK,CAAP;IAWA,CAbD;EAcA;;EACD,OAAOR,aAAP;AACA,CAnCD"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

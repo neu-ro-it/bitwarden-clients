@@ -1,0 +1,33 @@
+{
+  "ast": null,
+  "code": "import { __read, __spreadArray } from \"tslib\";\nexport var timeoutProvider = {\n  setTimeout: function (handler, timeout) {\n    var args = [];\n\n    for (var _i = 2; _i < arguments.length; _i++) {\n      args[_i - 2] = arguments[_i];\n    }\n\n    var delegate = timeoutProvider.delegate;\n\n    if (delegate === null || delegate === void 0 ? void 0 : delegate.setTimeout) {\n      return delegate.setTimeout.apply(delegate, __spreadArray([handler, timeout], __read(args)));\n    }\n\n    return setTimeout.apply(void 0, __spreadArray([handler, timeout], __read(args)));\n  },\n  clearTimeout: function (handle) {\n    var delegate = timeoutProvider.delegate;\n    return ((delegate === null || delegate === void 0 ? void 0 : delegate.clearTimeout) || clearTimeout)(handle);\n  },\n  delegate: undefined\n}; //# sourceMappingURL=timeoutProvider.js.map",
+  "map": {
+    "version": 3,
+    "names": [
+      "__read",
+      "__spreadArray",
+      "timeoutProvider",
+      "setTimeout",
+      "handler",
+      "timeout",
+      "args",
+      "_i",
+      "arguments",
+      "length",
+      "delegate",
+      "apply",
+      "clearTimeout",
+      "handle",
+      "undefined"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/esm5/internal/scheduler/timeoutProvider.js"
+    ],
+    "sourcesContent": [
+      "import { __read, __spreadArray } from \"tslib\";\nexport var timeoutProvider = {\n    setTimeout: function (handler, timeout) {\n        var args = [];\n        for (var _i = 2; _i < arguments.length; _i++) {\n            args[_i - 2] = arguments[_i];\n        }\n        var delegate = timeoutProvider.delegate;\n        if (delegate === null || delegate === void 0 ? void 0 : delegate.setTimeout) {\n            return delegate.setTimeout.apply(delegate, __spreadArray([handler, timeout], __read(args)));\n        }\n        return setTimeout.apply(void 0, __spreadArray([handler, timeout], __read(args)));\n    },\n    clearTimeout: function (handle) {\n        var delegate = timeoutProvider.delegate;\n        return ((delegate === null || delegate === void 0 ? void 0 : delegate.clearTimeout) || clearTimeout)(handle);\n    },\n    delegate: undefined,\n};\n//# sourceMappingURL=timeoutProvider.js.map"
+    ],
+    "mappings": "AAAA,SAASA,MAAT,EAAiBC,aAAjB,QAAsC,OAAtC;AACA,OAAO,IAAIC,eAAe,GAAG;EACzBC,UAAU,EAAE,UAAUC,OAAV,EAAmBC,OAAnB,EAA4B;IACpC,IAAIC,IAAI,GAAG,EAAX;;IACA,KAAK,IAAIC,EAAE,GAAG,CAAd,EAAiBA,EAAE,GAAGC,SAAS,CAACC,MAAhC,EAAwCF,EAAE,EAA1C,EAA8C;MAC1CD,IAAI,CAACC,EAAE,GAAG,CAAN,CAAJ,GAAeC,SAAS,CAACD,EAAD,CAAxB;IACH;;IACD,IAAIG,QAAQ,GAAGR,eAAe,CAACQ,QAA/B;;IACA,IAAIA,QAAQ,KAAK,IAAb,IAAqBA,QAAQ,KAAK,KAAK,CAAvC,GAA2C,KAAK,CAAhD,GAAoDA,QAAQ,CAACP,UAAjE,EAA6E;MACzE,OAAOO,QAAQ,CAACP,UAAT,CAAoBQ,KAApB,CAA0BD,QAA1B,EAAoCT,aAAa,CAAC,CAACG,OAAD,EAAUC,OAAV,CAAD,EAAqBL,MAAM,CAACM,IAAD,CAA3B,CAAjD,CAAP;IACH;;IACD,OAAOH,UAAU,CAACQ,KAAX,CAAiB,KAAK,CAAtB,EAAyBV,aAAa,CAAC,CAACG,OAAD,EAAUC,OAAV,CAAD,EAAqBL,MAAM,CAACM,IAAD,CAA3B,CAAtC,CAAP;EACH,CAXwB;EAYzBM,YAAY,EAAE,UAAUC,MAAV,EAAkB;IAC5B,IAAIH,QAAQ,GAAGR,eAAe,CAACQ,QAA/B;IACA,OAAO,CAAC,CAACA,QAAQ,KAAK,IAAb,IAAqBA,QAAQ,KAAK,KAAK,CAAvC,GAA2C,KAAK,CAAhD,GAAoDA,QAAQ,CAACE,YAA9D,KAA+EA,YAAhF,EAA8FC,MAA9F,CAAP;EACH,CAfwB;EAgBzBH,QAAQ,EAAEI;AAhBe,CAAtB,C,CAkBP"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

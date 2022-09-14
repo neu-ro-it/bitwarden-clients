@@ -1,0 +1,50 @@
+{
+  "ast": null,
+  "code": "import \"core-js/modules/es.object.keys.js\";\nimport \"core-js/modules/es.symbol.js\";\nvar _excluded = [\"type\", \"control\"];\nimport \"core-js/modules/es.object.assign.js\";\n\nfunction _objectWithoutProperties(source, excluded) {\n  if (source == null) return {};\n\n  var target = _objectWithoutPropertiesLoose(source, excluded);\n\n  var key, i;\n\n  if (Object.getOwnPropertySymbols) {\n    var sourceSymbolKeys = Object.getOwnPropertySymbols(source);\n\n    for (i = 0; i < sourceSymbolKeys.length; i++) {\n      key = sourceSymbolKeys[i];\n      if (excluded.indexOf(key) >= 0) continue;\n      if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue;\n      target[key] = source[key];\n    }\n  }\n\n  return target;\n}\n\nfunction _objectWithoutPropertiesLoose(source, excluded) {\n  if (source == null) return {};\n  var target = {};\n  var sourceKeys = Object.keys(source);\n  var key, i;\n\n  for (i = 0; i < sourceKeys.length; i++) {\n    key = sourceKeys[i];\n    if (excluded.indexOf(key) >= 0) continue;\n    target[key] = source[key];\n  }\n\n  return target;\n}\n\nimport mapValues from 'lodash/mapValues';\n\nvar normalizeType = function normalizeType(type) {\n  return typeof type === 'string' ? {\n    name: type\n  } : type;\n};\n\nvar normalizeControl = function normalizeControl(control) {\n  return typeof control === 'string' ? {\n    type: control\n  } : control;\n};\n\nexport var normalizeInputType = function normalizeInputType(inputType, key) {\n  var type = inputType.type,\n      control = inputType.control,\n      rest = _objectWithoutProperties(inputType, _excluded);\n\n  var normalized = Object.assign({\n    name: key\n  }, rest);\n  if (type) normalized.type = normalizeType(type);\n\n  if (control) {\n    normalized.control = normalizeControl(control);\n  } else if (control === false) {\n    normalized.control = {\n      disable: true\n    };\n  }\n\n  return normalized;\n};\nexport var normalizeInputTypes = function normalizeInputTypes(inputTypes) {\n  return mapValues(inputTypes, normalizeInputType);\n};",
+  "map": {
+    "version": 3,
+    "names": [
+      "_excluded",
+      "_objectWithoutProperties",
+      "source",
+      "excluded",
+      "target",
+      "_objectWithoutPropertiesLoose",
+      "key",
+      "i",
+      "Object",
+      "getOwnPropertySymbols",
+      "sourceSymbolKeys",
+      "length",
+      "indexOf",
+      "prototype",
+      "propertyIsEnumerable",
+      "call",
+      "sourceKeys",
+      "keys",
+      "mapValues",
+      "normalizeType",
+      "type",
+      "name",
+      "normalizeControl",
+      "control",
+      "normalizeInputType",
+      "inputType",
+      "rest",
+      "normalized",
+      "assign",
+      "disable",
+      "normalizeInputTypes",
+      "inputTypes"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/@storybook/store/dist/esm/csf/normalizeInputTypes.js"
+    ],
+    "sourcesContent": [
+      "import \"core-js/modules/es.object.keys.js\";\nimport \"core-js/modules/es.symbol.js\";\nvar _excluded = [\"type\", \"control\"];\nimport \"core-js/modules/es.object.assign.js\";\n\nfunction _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }\n\nfunction _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }\n\nimport mapValues from 'lodash/mapValues';\n\nvar normalizeType = function normalizeType(type) {\n  return typeof type === 'string' ? {\n    name: type\n  } : type;\n};\n\nvar normalizeControl = function normalizeControl(control) {\n  return typeof control === 'string' ? {\n    type: control\n  } : control;\n};\n\nexport var normalizeInputType = function normalizeInputType(inputType, key) {\n  var type = inputType.type,\n      control = inputType.control,\n      rest = _objectWithoutProperties(inputType, _excluded);\n\n  var normalized = Object.assign({\n    name: key\n  }, rest);\n  if (type) normalized.type = normalizeType(type);\n\n  if (control) {\n    normalized.control = normalizeControl(control);\n  } else if (control === false) {\n    normalized.control = {\n      disable: true\n    };\n  }\n\n  return normalized;\n};\nexport var normalizeInputTypes = function normalizeInputTypes(inputTypes) {\n  return mapValues(inputTypes, normalizeInputType);\n};"
+    ],
+    "mappings": "AAAA,OAAO,mCAAP;AACA,OAAO,8BAAP;AACA,IAAIA,SAAS,GAAG,CAAC,MAAD,EAAS,SAAT,CAAhB;AACA,OAAO,qCAAP;;AAEA,SAASC,wBAAT,CAAkCC,MAAlC,EAA0CC,QAA1C,EAAoD;EAAE,IAAID,MAAM,IAAI,IAAd,EAAoB,OAAO,EAAP;;EAAW,IAAIE,MAAM,GAAGC,6BAA6B,CAACH,MAAD,EAASC,QAAT,CAA1C;;EAA8D,IAAIG,GAAJ,EAASC,CAAT;;EAAY,IAAIC,MAAM,CAACC,qBAAX,EAAkC;IAAE,IAAIC,gBAAgB,GAAGF,MAAM,CAACC,qBAAP,CAA6BP,MAA7B,CAAvB;;IAA6D,KAAKK,CAAC,GAAG,CAAT,EAAYA,CAAC,GAAGG,gBAAgB,CAACC,MAAjC,EAAyCJ,CAAC,EAA1C,EAA8C;MAAED,GAAG,GAAGI,gBAAgB,CAACH,CAAD,CAAtB;MAA2B,IAAIJ,QAAQ,CAACS,OAAT,CAAiBN,GAAjB,KAAyB,CAA7B,EAAgC;MAAU,IAAI,CAACE,MAAM,CAACK,SAAP,CAAiBC,oBAAjB,CAAsCC,IAAtC,CAA2Cb,MAA3C,EAAmDI,GAAnD,CAAL,EAA8D;MAAUF,MAAM,CAACE,GAAD,CAAN,GAAcJ,MAAM,CAACI,GAAD,CAApB;IAA4B;EAAE;;EAAC,OAAOF,MAAP;AAAgB;;AAE5e,SAASC,6BAAT,CAAuCH,MAAvC,EAA+CC,QAA/C,EAAyD;EAAE,IAAID,MAAM,IAAI,IAAd,EAAoB,OAAO,EAAP;EAAW,IAAIE,MAAM,GAAG,EAAb;EAAiB,IAAIY,UAAU,GAAGR,MAAM,CAACS,IAAP,CAAYf,MAAZ,CAAjB;EAAsC,IAAII,GAAJ,EAASC,CAAT;;EAAY,KAAKA,CAAC,GAAG,CAAT,EAAYA,CAAC,GAAGS,UAAU,CAACL,MAA3B,EAAmCJ,CAAC,EAApC,EAAwC;IAAED,GAAG,GAAGU,UAAU,CAACT,CAAD,CAAhB;IAAqB,IAAIJ,QAAQ,CAACS,OAAT,CAAiBN,GAAjB,KAAyB,CAA7B,EAAgC;IAAUF,MAAM,CAACE,GAAD,CAAN,GAAcJ,MAAM,CAACI,GAAD,CAApB;EAA4B;;EAAC,OAAOF,MAAP;AAAgB;;AAEnT,OAAOc,SAAP,MAAsB,kBAAtB;;AAEA,IAAIC,aAAa,GAAG,SAASA,aAAT,CAAuBC,IAAvB,EAA6B;EAC/C,OAAO,OAAOA,IAAP,KAAgB,QAAhB,GAA2B;IAChCC,IAAI,EAAED;EAD0B,CAA3B,GAEHA,IAFJ;AAGD,CAJD;;AAMA,IAAIE,gBAAgB,GAAG,SAASA,gBAAT,CAA0BC,OAA1B,EAAmC;EACxD,OAAO,OAAOA,OAAP,KAAmB,QAAnB,GAA8B;IACnCH,IAAI,EAAEG;EAD6B,CAA9B,GAEHA,OAFJ;AAGD,CAJD;;AAMA,OAAO,IAAIC,kBAAkB,GAAG,SAASA,kBAAT,CAA4BC,SAA5B,EAAuCnB,GAAvC,EAA4C;EAC1E,IAAIc,IAAI,GAAGK,SAAS,CAACL,IAArB;EAAA,IACIG,OAAO,GAAGE,SAAS,CAACF,OADxB;EAAA,IAEIG,IAAI,GAAGzB,wBAAwB,CAACwB,SAAD,EAAYzB,SAAZ,CAFnC;;EAIA,IAAI2B,UAAU,GAAGnB,MAAM,CAACoB,MAAP,CAAc;IAC7BP,IAAI,EAAEf;EADuB,CAAd,EAEdoB,IAFc,CAAjB;EAGA,IAAIN,IAAJ,EAAUO,UAAU,CAACP,IAAX,GAAkBD,aAAa,CAACC,IAAD,CAA/B;;EAEV,IAAIG,OAAJ,EAAa;IACXI,UAAU,CAACJ,OAAX,GAAqBD,gBAAgB,CAACC,OAAD,CAArC;EACD,CAFD,MAEO,IAAIA,OAAO,KAAK,KAAhB,EAAuB;IAC5BI,UAAU,CAACJ,OAAX,GAAqB;MACnBM,OAAO,EAAE;IADU,CAArB;EAGD;;EAED,OAAOF,UAAP;AACD,CAnBM;AAoBP,OAAO,IAAIG,mBAAmB,GAAG,SAASA,mBAAT,CAA6BC,UAA7B,EAAyC;EACxE,OAAOb,SAAS,CAACa,UAAD,EAAaP,kBAAb,CAAhB;AACD,CAFM"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

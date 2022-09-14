@@ -1,0 +1,35 @@
+{
+  "ast": null,
+  "code": "'use strict';\n\nvar define = require('define-properties');\n\nvar RequireObjectCoercible = require('es-abstract/2021/RequireObjectCoercible');\n\nvar callBound = require('call-bind/callBound');\n\nvar implementation = require('./implementation');\n\nvar getPolyfill = require('./polyfill');\n\nvar polyfill = getPolyfill();\n\nvar shim = require('./shim');\n\nvar $slice = callBound('Array.prototype.slice'); // eslint-disable-next-line no-unused-vars\n\nvar boundMapShim = function map(array, callbackfn) {\n  RequireObjectCoercible(array);\n  return polyfill.apply(array, $slice(arguments, 1));\n};\n\ndefine(boundMapShim, {\n  getPolyfill: getPolyfill,\n  implementation: implementation,\n  shim: shim\n});\nmodule.exports = boundMapShim;",
+  "map": {
+    "version": 3,
+    "names": [
+      "define",
+      "require",
+      "RequireObjectCoercible",
+      "callBound",
+      "implementation",
+      "getPolyfill",
+      "polyfill",
+      "shim",
+      "$slice",
+      "boundMapShim",
+      "map",
+      "array",
+      "callbackfn",
+      "apply",
+      "arguments",
+      "module",
+      "exports"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/array.prototype.map/index.js"
+    ],
+    "sourcesContent": [
+      "'use strict';\n\nvar define = require('define-properties');\nvar RequireObjectCoercible = require('es-abstract/2021/RequireObjectCoercible');\nvar callBound = require('call-bind/callBound');\n\nvar implementation = require('./implementation');\nvar getPolyfill = require('./polyfill');\nvar polyfill = getPolyfill();\nvar shim = require('./shim');\n\nvar $slice = callBound('Array.prototype.slice');\n\n// eslint-disable-next-line no-unused-vars\nvar boundMapShim = function map(array, callbackfn) {\n\tRequireObjectCoercible(array);\n\treturn polyfill.apply(array, $slice(arguments, 1));\n};\ndefine(boundMapShim, {\n\tgetPolyfill: getPolyfill,\n\timplementation: implementation,\n\tshim: shim\n});\n\nmodule.exports = boundMapShim;\n"
+    ],
+    "mappings": "AAAA;;AAEA,IAAIA,MAAM,GAAGC,OAAO,CAAC,mBAAD,CAApB;;AACA,IAAIC,sBAAsB,GAAGD,OAAO,CAAC,yCAAD,CAApC;;AACA,IAAIE,SAAS,GAAGF,OAAO,CAAC,qBAAD,CAAvB;;AAEA,IAAIG,cAAc,GAAGH,OAAO,CAAC,kBAAD,CAA5B;;AACA,IAAII,WAAW,GAAGJ,OAAO,CAAC,YAAD,CAAzB;;AACA,IAAIK,QAAQ,GAAGD,WAAW,EAA1B;;AACA,IAAIE,IAAI,GAAGN,OAAO,CAAC,QAAD,CAAlB;;AAEA,IAAIO,MAAM,GAAGL,SAAS,CAAC,uBAAD,CAAtB,C,CAEA;;AACA,IAAIM,YAAY,GAAG,SAASC,GAAT,CAAaC,KAAb,EAAoBC,UAApB,EAAgC;EAClDV,sBAAsB,CAACS,KAAD,CAAtB;EACA,OAAOL,QAAQ,CAACO,KAAT,CAAeF,KAAf,EAAsBH,MAAM,CAACM,SAAD,EAAY,CAAZ,CAA5B,CAAP;AACA,CAHD;;AAIAd,MAAM,CAACS,YAAD,EAAe;EACpBJ,WAAW,EAAEA,WADO;EAEpBD,cAAc,EAAEA,cAFI;EAGpBG,IAAI,EAAEA;AAHc,CAAf,CAAN;AAMAQ,MAAM,CAACC,OAAP,GAAiBP,YAAjB"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}

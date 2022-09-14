@@ -1,0 +1,37 @@
+{
+  "ast": null,
+  "code": "\"use strict\";\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.argsArgArrayOrObject = void 0;\nvar isArray = Array.isArray;\nvar getPrototypeOf = Object.getPrototypeOf,\n    objectProto = Object.prototype,\n    getKeys = Object.keys;\n\nfunction argsArgArrayOrObject(args) {\n  if (args.length === 1) {\n    var first_1 = args[0];\n\n    if (isArray(first_1)) {\n      return {\n        args: first_1,\n        keys: null\n      };\n    }\n\n    if (isPOJO(first_1)) {\n      var keys = getKeys(first_1);\n      return {\n        args: keys.map(function (key) {\n          return first_1[key];\n        }),\n        keys: keys\n      };\n    }\n  }\n\n  return {\n    args: args,\n    keys: null\n  };\n}\n\nexports.argsArgArrayOrObject = argsArgArrayOrObject;\n\nfunction isPOJO(obj) {\n  return obj && typeof obj === 'object' && getPrototypeOf(obj) === objectProto;\n} //# sourceMappingURL=argsArgArrayOrObject.js.map",
+  "map": {
+    "version": 3,
+    "names": [
+      "Object",
+      "defineProperty",
+      "exports",
+      "value",
+      "argsArgArrayOrObject",
+      "isArray",
+      "Array",
+      "getPrototypeOf",
+      "objectProto",
+      "prototype",
+      "getKeys",
+      "keys",
+      "args",
+      "length",
+      "first_1",
+      "isPOJO",
+      "map",
+      "key",
+      "obj"
+    ],
+    "sources": [
+      "/Users/danielleflinn/Documents/GitHub/clients/node_modules/rxjs/dist/cjs/internal/util/argsArgArrayOrObject.js"
+    ],
+    "sourcesContent": [
+      "\"use strict\";\nObject.defineProperty(exports, \"__esModule\", { value: true });\nexports.argsArgArrayOrObject = void 0;\nvar isArray = Array.isArray;\nvar getPrototypeOf = Object.getPrototypeOf, objectProto = Object.prototype, getKeys = Object.keys;\nfunction argsArgArrayOrObject(args) {\n    if (args.length === 1) {\n        var first_1 = args[0];\n        if (isArray(first_1)) {\n            return { args: first_1, keys: null };\n        }\n        if (isPOJO(first_1)) {\n            var keys = getKeys(first_1);\n            return {\n                args: keys.map(function (key) { return first_1[key]; }),\n                keys: keys,\n            };\n        }\n    }\n    return { args: args, keys: null };\n}\nexports.argsArgArrayOrObject = argsArgArrayOrObject;\nfunction isPOJO(obj) {\n    return obj && typeof obj === 'object' && getPrototypeOf(obj) === objectProto;\n}\n//# sourceMappingURL=argsArgArrayOrObject.js.map"
+    ],
+    "mappings": "AAAA;;AACAA,MAAM,CAACC,cAAP,CAAsBC,OAAtB,EAA+B,YAA/B,EAA6C;EAAEC,KAAK,EAAE;AAAT,CAA7C;AACAD,OAAO,CAACE,oBAAR,GAA+B,KAAK,CAApC;AACA,IAAIC,OAAO,GAAGC,KAAK,CAACD,OAApB;AACA,IAAIE,cAAc,GAAGP,MAAM,CAACO,cAA5B;AAAA,IAA4CC,WAAW,GAAGR,MAAM,CAACS,SAAjE;AAAA,IAA4EC,OAAO,GAAGV,MAAM,CAACW,IAA7F;;AACA,SAASP,oBAAT,CAA8BQ,IAA9B,EAAoC;EAChC,IAAIA,IAAI,CAACC,MAAL,KAAgB,CAApB,EAAuB;IACnB,IAAIC,OAAO,GAAGF,IAAI,CAAC,CAAD,CAAlB;;IACA,IAAIP,OAAO,CAACS,OAAD,CAAX,EAAsB;MAClB,OAAO;QAAEF,IAAI,EAAEE,OAAR;QAAiBH,IAAI,EAAE;MAAvB,CAAP;IACH;;IACD,IAAII,MAAM,CAACD,OAAD,CAAV,EAAqB;MACjB,IAAIH,IAAI,GAAGD,OAAO,CAACI,OAAD,CAAlB;MACA,OAAO;QACHF,IAAI,EAAED,IAAI,CAACK,GAAL,CAAS,UAAUC,GAAV,EAAe;UAAE,OAAOH,OAAO,CAACG,GAAD,CAAd;QAAsB,CAAhD,CADH;QAEHN,IAAI,EAAEA;MAFH,CAAP;IAIH;EACJ;;EACD,OAAO;IAAEC,IAAI,EAAEA,IAAR;IAAcD,IAAI,EAAE;EAApB,CAAP;AACH;;AACDT,OAAO,CAACE,oBAAR,GAA+BA,oBAA/B;;AACA,SAASW,MAAT,CAAgBG,GAAhB,EAAqB;EACjB,OAAOA,GAAG,IAAI,OAAOA,GAAP,KAAe,QAAtB,IAAkCX,cAAc,CAACW,GAAD,CAAd,KAAwBV,WAAjE;AACH,C,CACD"
+  },
+  "metadata": {},
+  "sourceType": "script"
+}
