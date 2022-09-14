@@ -572,6 +572,9 @@
   "createAccount": {
     "message": "Crea account"
   },
+  "startTrial": {
+    "message": "Inizia il periodo di prova"
+  },
   "logIn": {
     "message": "Accedi"
   },
@@ -592,6 +595,9 @@
   },
   "masterPassDesc": {
     "message": "La password principale è la password che utilizzi per accedere alla tua cassaforte. È molto importante che tu non la dimentichi. Non c'è modo di recuperare questa password nel caso che tu la dimenticassi."
+  },
+  "masterPassImportant": {
+    "message": "Le password principali non possono essere recuperate se dimenticate!"
   },
   "masterPassHintDesc": {
     "message": "Un suggerimento che può aiutarti a ricordare la tua password principale se la dimentichi."
@@ -623,17 +629,23 @@
   "invalidEmail": {
     "message": "L'indirizzo email non è valido."
   },
-  "masterPassRequired": {
-    "message": "La password principale è obbligatoria."
+  "masterPasswordRequired": {
+    "message": "È necessario inserire la password principale."
   },
-  "masterPassLength": {
-    "message": "La password principale deve essere almeno di 8 caratteri."
+  "confirmMasterPasswordRequired": {
+    "message": "È necessario reinserire la password principale."
+  },
+  "masterPasswordMinLength": {
+    "message": "La password principale deve essere lunga almeno 8 caratteri."
   },
   "masterPassDoesntMatch": {
     "message": "La conferma della password principale non corrisponde."
   },
   "newAccountCreated": {
     "message": "Il tuo nuovo account è stato creato! Ora puoi accedere."
+  },
+  "trialAccountCreated": {
+    "message": "Account creato con successo."
   },
   "masterPassSent": {
     "message": "Ti abbiamo inviato un'email con il tuo suggerimento per la password principale."
@@ -665,6 +677,9 @@
   },
   "invalidMasterPassword": {
     "message": "Password principale errata"
+  },
+  "invalidFilePassword": {
+    "message": "Password errata, usa la password che hai inserito alla creazione del file di esportazione."
   },
   "lockNow": {
     "message": "Blocca"
@@ -877,6 +892,48 @@
   },
   "fileFormat": {
     "message": "Formato file"
+  },
+  "fileEncryptedExportWarningDesc": {
+    "message": "Il file esportato sarà crittato, sarà necessaria una password per decrittare il file."
+  },
+  "exportPasswordDescription": {
+    "message": "La password sarà utilizzata per importare ed esportare il file"
+  },
+  "confirmMasterPassword": {
+    "message": "Conferma password principale"
+  },
+  "confirmFormat": {
+    "message": "Conferma formato"
+  },
+  "filePassword": {
+    "message": "Password del file"
+  },
+  "confirmFilePassword": {
+    "message": "Conferma password del file"
+  },
+  "accountBackupOptionDescription": {
+    "message": "Utilizza la chiave di crittografia del tuo account per crittare l'esportazione e limitare l'import all'attuale account Bitwarden."
+  },
+  "passwordProtectedOptionDescription": {
+    "message": "Imposta una password per crittare l'esportazione e importala in qualsiasi account Bitwarden, utilizzando la password impostata."
+  },
+  "fileTypeHeading": {
+    "message": "Tipo di file"
+  },
+  "accountBackup": {
+    "message": "Backup dell'account"
+  },
+  "passwordProtected": {
+    "message": "Protetto da password"
+  },
+  "filePasswordAndConfirmFilePasswordDoNotMatch": {
+    "message": "La password del file e la password inserita nel campo di conferma non corrispondono."
+  },
+  "confirmVaultImport": {
+    "message": "Conferma importazione della cassaforte"
+  },
+  "confirmVaultImportDesc": {
+    "message": "Questo file è protetto da password. Inserisci la password del file per importare i dati."
   },
   "exportSuccess": {
     "message": "I dati della tua cassaforte sono stati esportati."
@@ -1151,15 +1208,15 @@
   "languageDesc": {
     "message": "Cambia la lingua utilizzata dalla cassaforte web."
   },
-  "disableIcons": {
-    "message": "Disabilita icone dei siti web"
+  "enableFavicon": {
+    "message": "Mostra icone del sito"
   },
-  "disableIconsDesc": {
-    "message": "Le icone dei siti web forniscono un'immagine riconoscibile accanto a ogni elemento di accesso."
+  "faviconDesc": {
+    "message": "Mostra un'immagine riconoscibile accanto a ogni login."
   },
   "enableGravatars": {
     "message": "Abilita Gravatar",
-    "description": "'Gravatar' is the name of a service. See www.gravatar.com"
+    "description": "Use avatar images loaded from gravatar.com."
   },
   "enableGravatarsDesc": {
     "message": "Usa immagine profilo caricata da gravatar.com."
@@ -1238,6 +1295,9 @@
   "enabled": {
     "message": "Abilitato"
   },
+  "restoreAccess": {
+    "message": "Ripristina l'accesso"
+  },
   "premium": {
     "message": "Premium",
     "description": "Premium Membership"
@@ -1262,6 +1322,9 @@
   },
   "disable": {
     "message": "Disabilita"
+  },
+  "revokeAccess": {
+    "message": "Revoca l'accesso"
   },
   "twoStepLoginProviderEnabled": {
     "message": "Questo metodo di verifica in due passaggi è abilitato sul tuo account."
@@ -1654,6 +1717,12 @@
   "billing": {
     "message": "Fatturazione"
   },
+  "billingPlanLabel": {
+    "message": "Piano di fatturazione"
+  },
+  "paymentType": {
+    "message": "Metodo di pagamento"
+  },
   "accountCredit": {
     "message": "Credito account",
     "description": "Financial term. In the case of Bitwarden, a positive balance means that you owe money, while a negative balance means that you have a credit (Bitwarden owes you money)."
@@ -1770,6 +1839,9 @@
   "year": {
     "message": "anno"
   },
+  "yr": {
+    "message": "anno"
+  },
   "month": {
     "message": "mese"
   },
@@ -1797,6 +1869,9 @@
   },
   "billingInformation": {
     "message": "Dati di fatturazione"
+  },
+  "billingTrialSubLabel": {
+    "message": "Non verrà addebitato nulla sul vostro metodo di pagamento durante i sette giorni di prova gratuita."
   },
   "creditCard": {
     "message": "Carta di credito"
@@ -2154,10 +2229,34 @@
       }
     }
   },
+  "trialThankYou": {
+    "message": "Grazie per esserti iscritto a Bitwarden con il piano $PLAN$!",
+    "placeholders": {
+      "plan": {
+        "content": "$1",
+        "example": "Teams"
+      }
+    }
+  },
+  "trialPaidInfoMessage": {
+    "message": "La prova gratuita di 7 giorni del piano $PLAN$ sarà convertita in un abbonamento dopo 7 giorni.\n",
+    "placeholders": {
+      "plan": {
+        "content": "$1",
+        "example": "Teams"
+      }
+    }
+  },
+  "trialConfirmationEmail": {
+    "message": "Abbiamo inviato un'email di conferma all'email di fatturazione del vostro team "
+  },
   "monthly": {
     "message": "Mensile"
   },
   "annually": {
+    "message": "Annuale"
+  },
+  "annual": {
     "message": "Annuale"
   },
   "basePrice": {
@@ -2225,6 +2324,12 @@
   },
   "removeUserConfirmation": {
     "message": "Confermi di voler rimuovere questo utente?"
+  },
+  "removeOrgUserConfirmation": {
+    "message": "Quando un membro viene rimosso, non ha più accesso ai dati dell'organizzazione e questa azione è irreversibile. Per aggiungere di nuovo il membro all'organizzazione, è necessario invitarlo e inserirlo nuovamente nell'organizzazione."
+  },
+  "revokeUserConfirmation": {
+    "message": "Quando un membro viene revocato, non ha più accesso ai dati dell'organizzazione. Per ripristinare rapidamente l'accesso dei membri, accedere alla scheda Revoca."
   },
   "removeUserConfirmationKeyConnector": {
     "message": "Attenzione! Questo utente richiede Key Connector per gestire la crittografia. Rimuovere questo utente dalla propria organizzazione disabiliterà definitivamente l'account. Questa azione non può essere annullata. Vuoi procedere?"
@@ -2564,6 +2669,42 @@
   },
   "removedUserId": {
     "message": "Utente $ID$ rimosso.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "removeUserIdAccess": {
+    "message": "Rimuovi l'accesso di $ID$",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "revokedUserId": {
+    "message": "Accesso all'organizzazione revocato a $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "restoredUserId": {
+    "message": "Accesso all'organizzazione ripristinato per $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "revokeUserId": {
+    "message": "Accesso revocato a $ID$",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3111,7 +3252,7 @@
   "acceptPolicies": {
     "message": "Selezionando la casella accetti quanto segue:"
   },
-  "acceptPoliciesError": {
+  "acceptPoliciesRequired": {
     "message": "I termini di servizio e l'informativa sulla privacy non sono stati accettati."
   },
   "termsOfService": {
@@ -3160,6 +3301,9 @@
   },
   "organizationIsDisabled": {
     "message": "L'organizzazione è disabilitata."
+  },
+  "disabledOrganizationFilterError": {
+    "message": "Non è possibile accedere agli oggetti nelle organizzazioni disabilitate. Contatta il proprietario della tua organizzazione per ricevere assistenza."
   },
   "licenseIsExpired": {
     "message": "La licenza è scaduta."
@@ -3285,8 +3429,14 @@
   "clone": {
     "message": "Clona"
   },
+  "masterPassPolicyTitle": {
+    "message": "Requisiti della password principale"
+  },
   "masterPassPolicyDesc": {
     "message": "Imposta i requisiti minimi di complessità della password principale."
+  },
+  "twoStepLoginPolicyTitle": {
+    "message": "Richiedi login in due passaggi"
   },
   "twoStepLoginPolicyDesc": {
     "message": "Obbliga gli utenti a impostare l'autenticazione a due fattori sul loro account personale."
@@ -3617,6 +3767,9 @@
   },
   "disabled": {
     "message": "Disabilitato"
+  },
+  "revoked": {
+    "message": "Revocato"
   },
   "sendLink": {
     "message": "Collegamento del Send",
@@ -4219,6 +4372,12 @@
   "removeUsersWarning": {
     "message": "Sei sicuro di voler rimuovere i seguenti utenti? Il processo potrebbe richiedere alcuni secondi per essere completato e non può essere interrotto o annullato."
   },
+  "removeOrgUsersConfirmation": {
+    "message": "Quando i membri vengono rimossi, non hanno più accesso ai dati dell'organizzazione e questa azione è irreversibile. Per aggiungere di nuovo il membro all'organizzazione, è necessario invitarlo e inserirlo nuovamente nell'organizzazione. Il processo può richiedere alcuni secondi e non può essere interrotto o annullato."
+  },
+  "revokeUsersWarning": {
+    "message": "Quando i membri vengono revocati, non hanno più accesso ai dati dell'organizzazione. Per ripristinare rapidamente l'accesso dei membri, accedere alla scheda Revocati. Il processo può richiedere alcuni secondi e non può essere interrotto o annullato."
+  },
   "theme": {
     "message": "Tema"
   },
@@ -4249,6 +4408,12 @@
   "bulkRemovedMessage": {
     "message": "Rimosso correttamente"
   },
+  "bulkRevokedMessage": {
+    "message": "Accesso all'organizzazione revocato con successo"
+  },
+  "bulkRestoredMessage": {
+    "message": "Accesso all'organizzazione ripristinato con successo"
+  },
   "bulkFilteredMessage": {
     "message": "Escluso, non applicabile per questa azione."
   },
@@ -4257,6 +4422,12 @@
   },
   "removeUsers": {
     "message": "Rimuovi utenti"
+  },
+  "revokeUsers": {
+    "message": "Revoca utenti"
+  },
+  "restoreUsers": {
+    "message": "Ripristina utenti"
   },
   "error": {
     "message": "Errore"
@@ -4432,10 +4603,10 @@
     "message": "Il timeout della tua cassaforte supera le restrizioni impostate dalla tua organizzazione."
   },
   "vaultCustomTimeoutMinimum": {
-    "message": "Minimum custom timeout is 1 minute."
+    "message": "Il timeout minimo personalizzabile è di 1 minuto."
   },
   "vaultTimeoutRangeError": {
-    "message": "Vault Timeout is not within allowed range."
+    "message": "Il timeout della cassaforte non è all'interno dell'intervallo consentito."
   },
   "disablePersonalVaultExport": {
     "message": "Disabilita esportazione cassaforte personale"
@@ -4668,9 +4839,6 @@
   "sponsorshipCreated": {
     "message": "Sponsorizzazione creata"
   },
-  "revoke": {
-    "message": "Revoca"
-  },
   "emailSent": {
     "message": "Email inviata"
   },
@@ -4702,7 +4870,7 @@
     "message": "Conferma la tua identità per continuare."
   },
   "verificationCodeRequired": {
-    "message": "Il codice di verifica è obbligatorio."
+    "message": "È necessario inserire il codice di verifica."
   },
   "invalidVerificationCode": {
     "message": "Codice di verifica non valido"
@@ -4733,15 +4901,15 @@
   },
   "ssoPolicyHelpStart": {
     "message": "Abilita la",
-    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Use the require single-sign-on authentication policy to require all members to log in with SSO.'"
   },
   "ssoPolicyHelpLink": {
     "message": "policy SSO",
-    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Use the require single-sign-on authentication policy to require all members to log in with SSO.'"
   },
   "ssoPolicyHelpEnd": {
     "message": "per obbligare tutti i membri ad accedere con SSO.",
-    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Use the require single-sign-on authentication policy to require all members to log in with SSO.'"
   },
   "ssoPolicyHelpKeyConnector": {
     "message": "L'autenticazione SSO e i criteri dell'organizzazione unica sono necessari per configurare la decifratura del connettore chiave."
@@ -5048,7 +5216,7 @@
     "Description": "Used as a prefix to indicate the last time a sync occured. Example \"Last sync 1968-11-16 00:00:00\""
   },
   "sponsorshipsSynced": {
-    "message": "Self-hosted sponsorships synced."
+    "message": "Sponsorizzazione self-hosted sincronizzata."
   },
   "billingManagedByProvider": {
     "message": "Gestito da $PROVIDER$",
@@ -5077,24 +5245,117 @@
     "message": "Token di accesso API"
   },
   "deviceVerification": {
-    "message": "Device Verification"
+    "message": "Verifica del dispositivo"
   },
   "enableDeviceVerification": {
-    "message": "Enable Device Verification"
+    "message": "Abilita la verifica del dispositivo"
   },
   "deviceVerificationDesc": {
-    "message": "When enabled, verification codes are sent to your email address when logging in from an unrecognized device"
+    "message": "Se abilitato, i codici di verifica vengono inviati al tuo indirizzo email quando accedi da un dispositivo non riconosciuto"
   },
   "updatedDeviceVerification": {
-    "message": "Updated Device Verification"
+    "message": "Verifica del dispositivo aggiornata"
   },
   "areYouSureYouWantToEnableDeviceVerificationTheVerificationCodeEmailsWillArriveAtX": {
-    "message": "Are you sure you want to enable Device Verification? The verification code emails will arrive at: $EMAIL$",
+    "message": "Sei sicuro di voler abilitare la verifica del dispositivo? Le email con il codice di verifica saranno inviate a: $EMAIL$",
     "placeholders": {
       "email": {
         "content": "$1",
         "example": "My Email"
       }
     }
+  },
+  "premiumSubcriptionRequired": {
+    "message": "È richiesto un abbonamento Premium"
+  },
+  "scim": {
+    "message": "Provisioning SCIM",
+    "description": "The text, 'SCIM', is an acronymn and should not be translated."
+  },
+  "scimDescription": {
+    "message": "Recupera utenti e gruppi con il tuo identity provider preferito tramite il provisioning SCIM",
+    "description": "the text, 'SCIM', is an acronymn and should not be translated."
+  },
+  "scimEnabledCheckboxDesc": {
+    "message": "Abilita SCIM",
+    "description": "the text, 'SCIM', is an acronymn and should not be translated."
+  },
+  "scimEnabledCheckboxDescHelpText": {
+    "message": "Imposta il tuo identity provider preferito configurando l'URL e la chiave API SCIM",
+    "description": "the text, 'SCIM', is an acronymn and should not be translated."
+  },
+  "scimApiKeyHelperText": {
+    "message": "Questa chiave API ha accesso alla gestione degli utenti appartenenti alla tua organizzazione. Tienila segreta."
+  },
+  "copyScimKey": {
+    "message": "Copia la chiave API SCIM nei tuoi appunti",
+    "description": "the text, 'SCIM' and 'API', are acronymns and should not be translated."
+  },
+  "rotateScimKey": {
+    "message": "Ruota la chiave API SCIM",
+    "description": "the text, 'SCIM' and 'API', are acronymns and should not be translated."
+  },
+  "rotateScimKeyWarning": {
+    "message": "Sei sicuro di voler ruotare la chiave API SCIM? La chiave corrente non funzionerà più per nessuna delle integrazioni esistenti.",
+    "description": "the text, 'SCIM' and 'API', are acronymns and should not be translated."
+  },
+  "rotateKey": {
+    "message": "Ruota chiave"
+  },
+  "scimApiKey": {
+    "message": "Chiave API SCIM",
+    "description": "the text, 'SCIM' and 'API', are acronymns and should not be translated."
+  },
+  "copyScimUrl": {
+    "message": "Copia l'URL dell'endpoint SCIM negli appunti",
+    "description": "the text, 'SCIM' and 'URL', are acronymns and should not be translated."
+  },
+  "scimUrl": {
+    "message": "URL SCIM",
+    "description": "the text, 'SCIM' and 'URL', are acronymns and should not be translated."
+  },
+  "scimApiKeyRotated": {
+    "message": "La chiave API SCIM è stata ruotata con successo",
+    "description": "the text, 'SCIM' and 'API', are acronymns and should not be translated."
+  },
+  "scimSettingsSaved": {
+    "message": "Le impostazioni di SCIM sono state salvate con successo",
+    "description": "the text, 'SCIM', is an acronymn and should not be translated."
+  },
+  "inputRequired": {
+    "message": "Input richiesto."
+  },
+  "inputEmail": {
+    "message": "L'input non è un indirizzo email."
+  },
+  "inputMinLength": {
+    "message": "L'input deve contenere almeno $COUNT$ caratteri.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
+  },
+  "fieldsNeedAttention": {
+    "message": "Il/i campo/i $COUNT$ sopra richiedono la tua attenzione.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "4"
+      }
+    }
+  },
+  "turnOn": {
+    "message": "Attiva"
+  },
+  "on": {
+    "message": "Attivo"
+  },
+  "cardBrandMir": {
+    "message": "Mir"
+  },
+  "numberOfUsers": {
+    "message": "Numero di utenti"
   }
 }

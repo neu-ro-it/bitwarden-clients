@@ -59,7 +59,7 @@
     "message": "Το Vault μου"
   },
   "allVaults": {
-    "message": "All Vaults"
+    "message": "Όλα τα Vaults"
   },
   "tools": {
     "message": "Εργαλεία"
@@ -423,10 +423,13 @@
   "invalidEmail": {
     "message": "Μη έγκυρη διεύθυνση e-mail."
   },
-  "masterPassRequired": {
+  "masterPasswordRequired": {
     "message": "Απαιτείται κύριος κωδικός πρόσβασης."
   },
-  "masterPassLength": {
+  "confirmMasterPasswordRequired": {
+    "message": "Απαιτείται ξανά ο κύριος κωδικός πρόσβασης."
+  },
+  "masterPasswordMinlength": {
     "message": "Ο κύριος κωδικός πρέπει να έχει μήκος τουλάχιστον 8 χαρακτήρες."
   },
   "masterPassDoesntMatch": {
@@ -567,23 +570,23 @@
     "message": "Χωρίς Φάκελο",
     "description": "This is the folder for uncategorized items"
   },
-  "disableAddLoginNotification": {
-    "message": "Απενεργοποιήστε την Προσθήκη Ειδοποίησης Σύνδεσης"
+  "enableAddLoginNotification": {
+    "message": "Ζητήστε να προσθέσετε σύνδεση"
   },
   "addLoginNotificationDesc": {
     "message": "Η \"Προσθήκη Ειδοποίησης Σύνδεσης\" σας προτρέπει αυτόματα να αποθηκεύσετε νέες συνδέσεις στο vault σας κάθε φορά που θα συνδεθείτε για πρώτη φορά."
   },
-  "dontShowCardsCurrentTab": {
-    "message": "Να μην Εμφανίζονται Κάρτες στη Σελίδα Καρτέλας"
+  "showCardsCurrentTab": {
+    "message": "Εμφάνιση καρτών στη σελίδα Καρτέλας"
   },
-  "dontShowCardsCurrentTabDesc": {
-    "message": "Τα στοιχεία καρτών από το vault σας παρατίθενται στη σελίδα \"Τρέχουσα καρτέλα\" για εύκολη πρόσβαση με αυτόματη συμπλήρωση."
+  "showCardsCurrentTabDesc": {
+    "message": "Λίστα αντικειμένων καρτών στη σελίδα Καρτέλας για εύκολη αυτόματη συμπλήρωση."
   },
-  "dontShowIdentitiesCurrentTab": {
-    "message": "Να μην εμφανίζονται ταυτότητες στην καρτέλα"
+  "showIdentitiesCurrentTab": {
+    "message": "Εμφάνιση ταυτοτήτων στη σελίδα καρτέλας"
   },
-  "dontShowIdentitiesCurrentTabDesc": {
-    "message": "Στοιχεία ταυτότητας από το vault σας, παρατίθενται στη σελίδα \"Τρέχουσα καρτέλα\" για εύκολη πρόσβαση με αυτόματη συμπλήρωση."
+  "showIdentitiesCurrentTabDesc": {
+    "message": "Λίστα στοιχείων ταυτότητας στη σελίδα Καρτέλας για εύκολη αυτόματη συμπλήρωση."
   },
   "clearClipboard": {
     "message": "Εκκαθάριση Πρόχειρου",
@@ -599,11 +602,11 @@
   "notificationAddSave": {
     "message": "Ναι, Αποθήκευση Τώρα"
   },
-  "disableChangedPasswordNotification": {
-    "message": "Απενεργοποίηση ειδοποίησης αλλαγής κωδικού πρόσβασης"
+  "enableChangedPasswordNotification": {
+    "message": "Ζητήστε να ενημερώσετε την υπάρχουσα σύνδεση"
   },
-  "disableChangedPasswordNotificationDesc": {
-    "message": "Η \"Ειδοποίηση Αλλαγής Κωδικού\" σας ζητά αυτόματα να ενημερώσετε τον κωδικό πρόσβασης του εισερχόμενου στο vault σας κάθε φορά που εντοπίζει ότι το έχετε αλλάξει σε έναν ιστότοπο."
+  "changedPasswordNotificationDesc": {
+    "message": "Ζητήστε να ενημερώσετε τον κωδικό πρόσβασης μιας σύνδεσης όταν εντοπιστεί μια αλλαγή σε μια ιστοσελίδα."
   },
   "notificationChangeDesc": {
     "message": "Θέλετε να ενημερώσετε αυτό τον κωδικό στο Bitwarden ;"
@@ -611,11 +614,11 @@
   "notificationChangeSave": {
     "message": "Ναι, Ενημέρωση Τώρα"
   },
-  "disableContextMenuItem": {
-    "message": "Απενεργοποιήστε τις Επιλογές του Μενού Περιβάλλοντος"
+  "enableContextMenuItem": {
+    "message": "Εμφάνιση επιλογών μενού περιβάλλοντος"
   },
-  "disableContextMenuItemDesc": {
-    "message": "Οι επιλογές του μενού περιβάλλοντος παρέχουν γρήγορη πρόσβαση στην δημιουργία και σύνδεση κωδικών πρόσβασης για τον ιστότοπο στην τρέχουσα καρτέλα."
+  "contextMenuItemDesc": {
+    "message": "Χρησιμοποιήστε ένα δευτερεύον κλικ για να αποκτήσετε πρόσβαση στη δημιουργία κωδικού πρόσβασης και να ταιριάξετε τις συνδέσεις για την ιστοσελίδα. "
   },
   "defaultUriMatchDetection": {
     "message": "Προεπιλεγμένη ανίχνευση αντιστοιχίας URI",
@@ -806,14 +809,14 @@
   "refreshComplete": {
     "message": "Επιτυχής ανανέωση"
   },
-  "disableAutoTotpCopy": {
-    "message": "Απενεργοποίηση Aυτόματης Aντιγραφής TOTP"
+  "enableAutoTotpCopy": {
+    "message": "Αυτόματη αντιγραφή TOTP"
   },
   "disableAutoTotpCopyDesc": {
     "message": "Εάν η σύνδεση έχει συνημμένο κάποιο κλειδί επαλήθευσης, ο κωδικός επαλήθευσης TOTP αντιγράφεται αυτόματα στο πρόχειρο κάθε φορά που συμπληρώνετε αυτόματα τα στοιχεία σύνδεσης."
   },
-  "disableAutoBiometricsPrompt": {
-    "message": "Μην ζητάτε βιομετρικά στοιχεία κατά την εκκίνηση"
+  "enableAutoBiometricsPrompt": {
+    "message": "Ζητήστε βιομετρικά κατά την εκκίνηση"
   },
   "premiumRequired": {
     "message": "Απαιτείται Έκδοση Premium"
@@ -963,7 +966,7 @@
     "message": "Προεπιλεγμένη ρύθμιση αυτόματης συμπλήρωσης για στοιχεία σύνδεσης"
   },
   "defaultAutoFillOnPageLoadDesc": {
-    "message": "Αφού ενεργοποιήσετε την αυτόματη συμπλήρωση κατά τη Φόρτωση Σελίδας, μπορείτε να ενεργοποιήσετε ή να απενεργοποιήσετε τη λειτουργία για μεμονωμένα στοιχεία σύνδεσης. Αυτή είναι η προεπιλεγμένη ρύθμιση για στοιχεία σύνδεσης που δεν έχουν ρυθμιστεί ξεχωριστά."
+    "message": "Μπορείτε να απενεργοποιήσετε την αυτόματη συμπλήρωση φόρτωσης σελίδας για μεμονωμένα στοιχεία σύνδεσης από την προβολή Επεξεργασία στοιχείου."
   },
   "itemAutoFillOnPageLoad": {
     "message": "Αυτόματη συμπλήρωση της Φόρτισης Σελίδας (αν είναι ενεργοποιημένη στις Επιλογές)"
@@ -1033,17 +1036,17 @@
   "popupU2fCloseMessage": {
     "message": "Αυτό το πρόγραμμα περιήγησης δεν μπορεί να επεξεργαστεί αιτήματα του U2F σε αυτό το αναδυόμενο παράθυρο. Θέλετε να ανοίξετε το αναδυόμενο σε νέο παράθυρο, ώστε να μπορείτε να συνδεθείτε χρησιμοποιώντας U2F;"
   },
-  "disableFavicon": {
-    "message": "Απενεργοποίηση Εικονιδίων Ιστοσελίδας"
+  "enableFavicon": {
+    "message": "Εμφάνιση εικονιδίων ιστοσελίδας"
   },
-  "disableFaviconDesc": {
-    "message": "Τα εικονίδια ιστοσελίδων παρέχουν μια αναγνωρίσιμη εικόνα δίπλα σε κάθε στοιχείο σύνδεσης της λίστας σας."
+  "faviconDesc": {
+    "message": "Εμφάνιση μιας αναγνωρίσιμης εικόνας δίπλα σε κάθε σύνδεση."
   },
-  "disableBadgeCounter": {
-    "message": "Απενεργοποίηση Μετρητή Σημάτων"
+  "enableBadgeCounter": {
+    "message": "Εμφάνιση μετρητή εμβλημάτων"
   },
-  "disableBadgeCounterDesc": {
-    "message": "Ο μετρητής εμβλημάτων δείχνει πόσες συνδέσεις έχετε για την τρέχουσα σελίδα στο vault σας."
+  "badgeCounterDesc": {
+    "message": "Υποδείξτε πόσες συνδέσεις έχετε για την τρέχουσα ιστοσελίδα."
   },
   "cardholderName": {
     "message": "Όνομα κατόχου της κάρτας"
@@ -1480,7 +1483,7 @@
   "acceptPolicies": {
     "message": "Επιλέγοντας αυτό το πλαίσιο, συμφωνείτε με τα εξής:"
   },
-  "acceptPoliciesError": {
+  "acceptPoliciesRequired": {
     "message": "Οι Όροι Παροχής Υπηρεσιών και η Πολιτική Απορρήτου δεν έχουν αναγνωριστεί."
   },
   "termsOfService": {
@@ -1846,7 +1849,7 @@
       }
     }
   },
-  "vaultTimeoutToLarge": {
+  "vaultTimeoutTooLarge": {
     "message": "Το χρονικό όριο του vault σας υπερβαίνει τους περιορισμούς που έχει ορίσει ο οργανισμός σας."
   },
   "vaultExportDisabled": {
@@ -1947,10 +1950,10 @@
     "message": "Υπηρεσία"
   },
   "forwardedEmail": {
-    "message": "Forwarded Email Alias"
+    "message": "Προωθημένο Email Alias"
   },
   "forwardedEmailDesc": {
-    "message": "Generate an email alias with an external forwarding service."
+    "message": "Δημιουργήστε ένα alias email με μια εξωτερική υπηρεσία προώθησης."
   },
   "hostname": {
     "message": "Hostname",
@@ -1960,9 +1963,66 @@
     "message": "API Access Token"
   },
   "apiKey": {
-    "message": "API Key"
+    "message": "Kλειδί API"
   },
   "ssoKeyConnectorError": {
-    "message": "Key Connector error: make sure Key Connector is available and working correctly."
+    "message": "Σφάλμα Key Connector: βεβαιωθείτε ότι το Key Connector είναι διαθέσιμο και λειτουργεί σωστά."
+  },
+  "premiumSubcriptionRequired": {
+    "message": "Απαιτείται συνδρομή Premium"
+  },
+  "organizationIsDisabled": {
+    "message": "Ο οργανισμός είναι απενεργοποιημένος."
+  },
+  "disabledOrganizationFilterError": {
+    "message": "Δεν είναι δυνατή η πρόσβαση σε αντικείμενα σε απενεργοποιημένους οργανισμούς. Επικοινωνήστε με τον ιδιοκτήτη του Οργανισμού για βοήθεια."
+  },
+  "cardBrandMir": {
+    "message": "Mir"
+  },
+  "loggingInTo": {
+    "message": "Σύνδεση στο $DOMAIN$",
+    "placeholders": {
+      "domain": {
+        "content": "$1",
+        "example": "example.com"
+      }
+    }
+  },
+  "settingsEdited": {
+    "message": "Οι ρυθμίσεις έχουν επεξεργαστεί"
+  },
+  "environmentEditedClick": {
+    "message": "Κάντε κλικ εδώ"
+  },
+  "environmentEditedReset": {
+    "message": "επαναφορά στις προ-ρυθμισμένες ρυθμίσεις"
+  },
+  "serverVersion": {
+    "message": "Server Version"
+  },
+  "selfHosted": {
+    "message": "Self-Hosted"
+  },
+  "thirdParty": {
+    "message": "Third-Party"
+  },
+  "thirdPartyServerMessage": {
+    "message": "Connected to third-party server implementation, $SERVERNAME$. Please verify bugs using the official server, or report them to the third-party server.",
+    "placeholders": {
+      "servername": {
+        "content": "$1",
+        "example": "ThirdPartyServerName"
+      }
+    }
+  },
+  "lastSeenOn": {
+    "message": "last seen on $DATE$",
+    "placeholders": {
+      "date": {
+        "content": "$1",
+        "example": "Jun 15, 2015"
+      }
+    }
   }
 }

@@ -532,10 +532,13 @@
   "invalidEmail": {
     "message": "Vigane e-posti aadress."
   },
-  "masterPassRequired": {
+  "masterPasswordRequired": {
     "message": "Vajalik on ülemparooli sisestamine."
   },
-  "masterPassLength": {
+  "confirmMasterPasswordRequired": {
+    "message": "Vajalik on ülemparooli uuesti sisestamine."
+  },
+  "masterPasswordMinlength": {
     "message": "Ülemparool peab olema vähemalt 8 tähemärgi pikkune."
   },
   "masterPassDoesntMatch": {
@@ -894,11 +897,11 @@
     "message": "Puhastab automaatselt lõikelauale kopeeritud sisu.",
     "description": "Clipboard is the operating system thing where you copy/paste data to on your device."
   },
-  "disableFavicon": {
-    "message": "Keela veebilehel ikoonid"
+  "enableFavicon": {
+    "message": "Kuva veebilehtede ikoone"
   },
-  "disableFaviconDesc": {
-    "message": "Ikoonid aitavad hoidlas olevaid veebilehti paremini ära tunda."
+  "faviconDesc": {
+    "message": "Kuvab iga kirje kõrval lehekülje ikooni."
   },
   "enableMinToTray": {
     "message": "Minimeeri tegumiribale"
@@ -1381,14 +1384,29 @@
   "touchIdConsentMessage": {
     "message": "Kinnita Bitwardenisse sisselogimine."
   },
-  "noAutoPromptWindowsHello": {
-    "message": "Ära küsi käivitudes Windows Hello't."
+  "autoPromptWindowsHello": {
+    "message": "Küsi avamisel Windows Hello tuvastust"
   },
-  "noAutoPromptTouchId": {
-    "message": "Ära küsi käivitudes Touch ID'd."
+  "autoPromptTouchId": {
+    "message": "Küsi avamisel Touch ID tuvastust"
   },
   "lockWithMasterPassOnRestart": {
     "message": "Lukusta ülemparooliga, kui rakendus taaskäivitatakse"
+  },
+  "deleteAccount": {
+    "message": "Kustuta konto"
+  },
+  "deleteAccountDesc": {
+    "message": "Jätkates kustutatakse sinu konto ja kõik hoidla andmed."
+  },
+  "deleteAccountWarning": {
+    "message": "Konto kustutamine on ühekordne tegevus. Seda ei saa tagasi võtta."
+  },
+  "accountDeleted": {
+    "message": "Konto on kustutatud"
+  },
+  "accountDeletedDesc": {
+    "message": "Konto on suletud ja kõik sellega seonduvad andmed on kustutatud."
   },
   "preferences": {
     "message": "Eelistused"
@@ -1543,7 +1561,7 @@
   "acceptPolicies": {
     "message": "Märkeruudu markeerimisel nõustud järgnevaga:"
   },
-  "acceptPoliciesError": {
+  "acceptPoliciesRequired": {
     "message": "Kasutustingimuste ja Privaatsuspoliitikaga pole nõustutud."
   },
   "enableBrowserIntegration": {
@@ -1553,7 +1571,7 @@
     "message": "Brauseri integratsioon on vajalik biomeetria kasutamiseks brauseris."
   },
   "browserIntegrationUnsupportedTitle": {
-    "message": "Browser integration not supported"
+    "message": "Brauseri integratsioon ei ole toetatud"
   },
   "browserIntegrationMasOnlyDesc": {
     "message": "Paraku on brauseri integratsioon hetkel toetatud ainult Mac App Store'i versioonis."
@@ -1562,7 +1580,7 @@
     "message": "Paraku ei ole brauseri integratsioon hetkel Microsoft Store versioonis toetatud."
   },
   "browserIntegrationLinuxDesc": {
-    "message": "Unfortunately browser integration is currently not supported in the linux version."
+    "message": "Paraku ei ole brauseri integratsioon hetkel Linuxi versioonis toetatud."
   },
   "enableBrowserIntegrationFingerprint": {
     "message": "Nõua brauseri integratsiooni ülekinnitamist"
@@ -1960,5 +1978,20 @@
   },
   "apiKey": {
     "message": "API võti"
+  },
+  "premiumSubcriptionRequired": {
+    "message": "Vajalik on Premium versioon"
+  },
+  "organizationIsDisabled": {
+    "message": "Organisatsiooni ligipääs on keelatud."
+  },
+  "disabledOrganizationFilterError": {
+    "message": "Organisatsiooni alla kuuluvatele kirjetele ei ole ligipääsu. Kontakteeru oma organisatsiooni omanikuga."
+  },
+  "neverLockWarning": {
+    "message": "Oled kindel, et soovid kasutada valikut \"Mitte kunagi\"? Sellega talletatakse sinu hoidla krüpteerimise võtit seadme mälus. Peaksid olema väga hoolas ja kindel, et seade on ohutu ja selles ei ole pahavara."
+  },
+  "cardBrandMir": {
+    "message": "Mir"
   }
 }

@@ -423,10 +423,13 @@
   "invalidEmail": {
     "message": "Ogiltig e-postadress."
   },
-  "masterPassRequired": {
+  "masterPasswordRequired": {
     "message": "Huvudlösenord krävs."
   },
-  "masterPassLength": {
+  "confirmMasterPasswordRequired": {
+    "message": "Huvudlösenord måste anges igen."
+  },
+  "masterPasswordMinlength": {
     "message": "Huvudlösenordet måste vara minst 8 tecken långt."
   },
   "masterPassDoesntMatch": {
@@ -567,23 +570,23 @@
     "message": "Ingen mapp",
     "description": "This is the folder for uncategorized items"
   },
-  "disableAddLoginNotification": {
-    "message": "Inaktivera aviseringar för nya inloggningar"
+  "enableAddLoginNotification": {
+    "message": "Be om att lägga till inloggning"
   },
   "addLoginNotificationDesc": {
     "message": "Aviseringar för nya inloggningar frågar dig om du vill lägga till en inloggning automatiskt till ditt valv, när du använder en inloggning som inte redan finns i ditt valv."
   },
-  "dontShowCardsCurrentTab": {
-    "message": "Visa inte kort på fliksida"
+  "showCardsCurrentTab": {
+    "message": "Visa kort på fliksida"
   },
-  "dontShowCardsCurrentTabDesc": {
-    "message": "Kortobjekt från ditt valv listas på 'nuvarande flik'-sidan för enkel automatisk ifyllnad."
+  "showCardsCurrentTabDesc": {
+    "message": "Lista kortobjekt på fliksidan för enkel automatisk fyllning."
   },
-  "dontShowIdentitiesCurrentTab": {
-    "message": "Visa inte identiteter på fliksidan"
+  "showIdentitiesCurrentTab": {
+    "message": "Visa identiteter på fliksidan"
   },
-  "dontShowIdentitiesCurrentTabDesc": {
-    "message": "Identitetsobjekt från ditt valv listas på 'nuvarande flik'-sidan för enkel automatisk ifyllnad."
+  "showIdentitiesCurrentTabDesc": {
+    "message": "Lista identitetsobjekt på fliksidan för enkel automatisk fyllning."
   },
   "clearClipboard": {
     "message": "Rensa urklipp",
@@ -599,11 +602,11 @@
   "notificationAddSave": {
     "message": "Spara"
   },
-  "disableChangedPasswordNotification": {
-    "message": "Inaktivera notifikation för ändrade lösenord"
+  "enableChangedPasswordNotification": {
+    "message": "Be om att uppdatera befintlig inloggning"
   },
-  "disableChangedPasswordNotificationDesc": {
-    "message": "”Notifikation för ändrade lösenord” uppmanar dig automatiskt att uppdatera ett lösenord i ditt valv när den upptäcker att du har ändrat det på en webbplats."
+  "changedPasswordNotificationDesc": {
+    "message": "Be om att uppdatera ett lösenord när en ändring upptäcks på en webbplats."
   },
   "notificationChangeDesc": {
     "message": "Vill du uppdatera det här lösenordet i Bitwarden?"
@@ -611,11 +614,11 @@
   "notificationChangeSave": {
     "message": "Uppdatera"
   },
-  "disableContextMenuItem": {
-    "message": "Inaktivera innehållsmenyn"
+  "enableContextMenuItem": {
+    "message": "Visa alternativ för snabbmenyn"
   },
-  "disableContextMenuItemDesc": {
-    "message": "Innehållsmenyn (högerklick) ger dig snabbare åtkomst för att skapa ett slumpmässigt lösenord, och för att fylla i en inloggning i den nuvarande fliken."
+  "contextMenuItemDesc": {
+    "message": "Använd ett andra klick för att komma åt lösenordsgenerering och matchande inloggningar för webbplatsen. "
   },
   "defaultUriMatchDetection": {
     "message": "Standardmatchning för URI",
@@ -674,7 +677,7 @@
     "message": "Lär dig om organisationer"
   },
   "learnOrgConfirmation": {
-    "message": "Bitwarden gör det möjligt för dig att objekt i valvet med andra genom att använda en organisation. Vill du besöka bitwarden.com för att lära dig mer?"
+    "message": "Bitwarden gör det möjligt för dig att dela objekt i valvet med andra genom att använda en organisation. Vill du besöka bitwarden.com för att lära dig mer?"
   },
   "moveToOrganization": {
     "message": "Flytta till organisation"
@@ -806,14 +809,14 @@
   "refreshComplete": {
     "message": "Uppdatering färdig"
   },
-  "disableAutoTotpCopy": {
-    "message": "Inaktivera automatisk TOTP-kopiering"
+  "enableAutoTotpCopy": {
+    "message": "Kopiera TOTP automatiskt"
   },
   "disableAutoTotpCopyDesc": {
     "message": "Om din inloggning har en autentiseringsnyckel kopplad till den, kommer TOTP-verifieringskoden att automatiskt kopieras till urklipp när du automatiskt fyller i inloggningen."
   },
-  "disableAutoBiometricsPrompt": {
-    "message": "Fråga inte efter biometri vid uppstart"
+  "enableAutoBiometricsPrompt": {
+    "message": "Be om biometri vid start"
   },
   "premiumRequired": {
     "message": "Premium krävs"
@@ -1033,17 +1036,17 @@
   "popupU2fCloseMessage": {
     "message": "Den här webbläsaren kan inte bearbeta U2F-förfrågningar i detta popup-fönster. Vill du öppna ett nytt fönster så att du kan logga in med U2F?"
   },
-  "disableFavicon": {
-    "message": "Inaktivera webbplatsikoner"
+  "enableFavicon": {
+    "message": "Visa webbplatsikoner"
   },
-  "disableFaviconDesc": {
-    "message": "Webbplatsikoner ger en igenkännbar ikon bredvid varje inloggningsobjekt i ditt valv."
+  "faviconDesc": {
+    "message": "Visa en identifierbar bild bredvid varje inloggning."
   },
-  "disableBadgeCounter": {
-    "message": "Inaktivera märkesräknare"
+  "enableBadgeCounter": {
+    "message": "Visa aktivitetsräknaren"
   },
-  "disableBadgeCounterDesc": {
-    "message": "Märkesräknare visar hur många inloggningar du har för den aktuella sidan i ditt valv."
+  "badgeCounterDesc": {
+    "message": "Visa hur många inloggningar du har för den aktuella webbsidan."
   },
   "cardholderName": {
     "message": "Kortinnehavarens namn"
@@ -1480,7 +1483,7 @@
   "acceptPolicies": {
     "message": "Genom att markera denna ruta godkänner du följande:"
   },
-  "acceptPoliciesError": {
+  "acceptPoliciesRequired": {
     "message": "Användarvillkoren och Integritetspolicyn har inte accepterats."
   },
   "termsOfService": {
@@ -1846,8 +1849,8 @@
       }
     }
   },
-  "vaultTimeoutToLarge": {
-    "message": "Ditt valvs tid för timeout överskrider de begränsningar som fastställts av din organisation."
+  "vaultTimeoutTooLarge": {
+    "message": "Ditt valvs tidsgräns överskrider de begränsningar som fastställts av din organisation."
   },
   "vaultExportDisabled": {
     "message": "Valvexport inaktiverad"
@@ -1916,7 +1919,7 @@
     "message": "Typ av användarnamn"
   },
   "plusAddressedEmail": {
-    "message": "Plus Addressed Email",
+    "message": "Plusadresserad e-post",
     "description": "Username generator option that appends a random sub-address to the username. For example: address+subaddress@email.com"
   },
   "plusAddressedEmailDesc": {
@@ -1947,10 +1950,10 @@
     "message": "Tjänst"
   },
   "forwardedEmail": {
-    "message": "Forwarded Email Alias"
+    "message": "Vidarebefordrande e-postalias"
   },
   "forwardedEmailDesc": {
-    "message": "Generate an email alias with an external forwarding service."
+    "message": "Skapa ett e-postalias med en extern vidarebefordranstjänst."
   },
   "hostname": {
     "message": "Värdnamn",
@@ -1963,6 +1966,63 @@
     "message": "API-nyckel"
   },
   "ssoKeyConnectorError": {
-    "message": "Key Connector error: make sure Key Connector is available and working correctly."
+    "message": "Key Connector-fel: säkerställ att Key Connector är tillgänglig och fungerar korrekt."
+  },
+  "premiumSubcriptionRequired": {
+    "message": "Premiumabonnemang krävs"
+  },
+  "organizationIsDisabled": {
+    "message": "Organisationen är inaktiverad."
+  },
+  "disabledOrganizationFilterError": {
+    "message": "Objekt i inaktiverade organisationer är inte åtkomliga. Kontakta organisationens ägare för att få hjälp."
+  },
+  "cardBrandMir": {
+    "message": "Mir"
+  },
+  "loggingInTo": {
+    "message": "Loggar in på $DOMAIN$",
+    "placeholders": {
+      "domain": {
+        "content": "$1",
+        "example": "example.com"
+      }
+    }
+  },
+  "settingsEdited": {
+    "message": "Inställningarna har ändrats"
+  },
+  "environmentEditedClick": {
+    "message": "Klicka här"
+  },
+  "environmentEditedReset": {
+    "message": "för att återställa till förkonfigurerade inställningar"
+  },
+  "serverVersion": {
+    "message": "Serverversion"
+  },
+  "selfHosted": {
+    "message": "Self-Hosted"
+  },
+  "thirdParty": {
+    "message": "Tredje part"
+  },
+  "thirdPartyServerMessage": {
+    "message": "Connected to third-party server implementation, $SERVERNAME$. Please verify bugs using the official server, or report them to the third-party server.",
+    "placeholders": {
+      "servername": {
+        "content": "$1",
+        "example": "ThirdPartyServerName"
+      }
+    }
+  },
+  "lastSeenOn": {
+    "message": "sågs senast den $DATE$",
+    "placeholders": {
+      "date": {
+        "content": "$1",
+        "example": "Jun 15, 2015"
+      }
+    }
   }
 }

@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { UserNamePipe } from "@bitwarden/angular/pipes/user-name.pipe";
 import { ApiService } from "@bitwarden/common/abstractions/api.service";
 import { ExportService } from "@bitwarden/common/abstractions/export.service";
+import { FileDownloadService } from "@bitwarden/common/abstractions/fileDownload/fileDownload.service";
 import { I18nService } from "@bitwarden/common/abstractions/i18n.service";
 import { LogService } from "@bitwarden/common/abstractions/log.service";
 import { PlatformUtilsService } from "@bitwarden/common/abstractions/platformUtils.service";
@@ -11,12 +12,13 @@ import { ProviderService } from "@bitwarden/common/abstractions/provider.service
 import { EventResponse } from "@bitwarden/common/models/response/eventResponse";
 
 import { BaseEventsComponent } from "src/app/common/base.events.component";
-import { EventService } from "src/app/services/event.service";
+import { EventService } from "src/app/core";
 
 @Component({
   selector: "provider-events",
   templateUrl: "events.component.html",
 })
+// eslint-disable-next-line rxjs-angular/prefer-takeuntil
 export class EventsComponent extends BaseEventsComponent implements OnInit {
   exportFileName = "provider-events";
   providerId: string;
@@ -34,12 +36,21 @@ export class EventsComponent extends BaseEventsComponent implements OnInit {
     platformUtilsService: PlatformUtilsService,
     private router: Router,
     logService: LogService,
-    private userNamePipe: UserNamePipe
+    private userNamePipe: UserNamePipe,
+    fileDownloadService: FileDownloadService
   ) {
-    super(eventService, i18nService, exportService, platformUtilsService, logService);
+    super(
+      eventService,
+      i18nService,
+      exportService,
+      platformUtilsService,
+      logService,
+      fileDownloadService
+    );
   }
 
   async ngOnInit() {
+    // eslint-disable-next-line rxjs-angular/prefer-takeuntil, rxjs/no-async-subscribe
     this.route.parent.parent.params.subscribe(async (params) => {
       this.providerId = params.providerId;
       const provider = await this.providerService.get(this.providerId);

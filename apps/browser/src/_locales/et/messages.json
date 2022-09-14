@@ -423,10 +423,13 @@
   "invalidEmail": {
     "message": "Vigane e-posti aadress."
   },
-  "masterPassRequired": {
+  "masterPasswordRequired": {
     "message": "Vajalik on ülemparooli sisestamine."
   },
-  "masterPassLength": {
+  "confirmMasterPasswordRequired": {
+    "message": "Vajalik on ülemparooli uuesti sisestamine."
+  },
+  "masterPasswordMinlength": {
     "message": "Ülemparool peab olema vähemalt 8 tähemärgi pikkune."
   },
   "masterPassDoesntMatch": {
@@ -567,23 +570,23 @@
     "message": "Kaust puudub",
     "description": "This is the folder for uncategorized items"
   },
-  "disableAddLoginNotification": {
-    "message": "Keela \"Lisa konto andmed\" teavitus"
+  "enableAddLoginNotification": {
+    "message": "Küsi \"Lisa konto andmed\""
   },
   "addLoginNotificationDesc": {
     "message": "\"Lisa konto andmed\" teavitus ilmub pärast esimest sisselogimist ning võimaldab kontoandmeid automaatselt Bitwardenisse lisada."
   },
-  "dontShowCardsCurrentTab": {
-    "message": "Ära kuva \"Kaart\" vaates krediitkaardi andmeid"
+  "showCardsCurrentTab": {
+    "message": "Kuva \"Kaart\" vaates kaardiandmed"
   },
-  "dontShowCardsCurrentTabDesc": {
-    "message": "Krediit- ja teiste kaartide andmed kuvatakse vaikeseadena \"Kaart\" vaates, et neid oleks lihtsam sisestada."
+  "showCardsCurrentTabDesc": {
+    "message": "Kuvab \"Kaart\" vaates kaardiandmeid, et neid saaks kiiresti sisestada"
   },
-  "dontShowIdentitiesCurrentTab": {
-    "message": "Ära kuva \"Kaart\" vaates identiteete"
+  "showIdentitiesCurrentTab": {
+    "message": "Kuva \"Kaart\" vaates identiteete"
   },
-  "dontShowIdentitiesCurrentTabDesc": {
-    "message": "Identiteediandmeid kuvatakse vaikeseadena \"Kaart\" vaates, et neid oleks lihtsam sisestada."
+  "showIdentitiesCurrentTabDesc": {
+    "message": "Kuvab \"Kaart\" vaates identiteete, et neid saaks kiiresti sisestada"
   },
   "clearClipboard": {
     "message": "Lõikelaua sisu kustutamine",
@@ -599,11 +602,11 @@
   "notificationAddSave": {
     "message": "Jah, salvesta see"
   },
-  "disableChangedPasswordNotification": {
-    "message": "Keela Muudetud parooli teavitus"
+  "enableChangedPasswordNotification": {
+    "message": "Paku olemasolevate andmete uuendamist"
   },
-  "disableChangedPasswordNotificationDesc": {
-    "message": "Kui mistahes veebilehel on toimunud parooli vahetamine, annab \"Muudetud parooli teavitus\" märku, et värskendaksid seda ka Bitwardeni paroolihoidlas."
+  "changedPasswordNotificationDesc": {
+    "message": "Kui veebilehel tuvastatakse olemasolevate andmete muutmine, siis pakutakse nende andmete uuendamist Bitwardenis."
   },
   "notificationChangeDesc": {
     "message": "Soovid seda parooli ka Bitwardenis uuendada?"
@@ -611,11 +614,11 @@
   "notificationChangeSave": {
     "message": "Jah, uuenda"
   },
-  "disableContextMenuItem": {
-    "message": "Keela parema kliki menüü valikud"
+  "enableContextMenuItem": {
+    "message": "Kuva parema kliki menüü valikud"
   },
-  "disableContextMenuItemDesc": {
-    "message": "Parema kliki menüü abil saad kiiresti parooli genereerida ja konkreetse veebilehe kasutajakonto andmeid sisestada."
+  "contextMenuItemDesc": {
+    "message": "Võimaldab parema kliki menüüs kaustada Bitwardeni valikuid, nt kontoandmete täitmist või parooli genereerimist. "
   },
   "defaultUriMatchDetection": {
     "message": "Vaike URI sobivuse tuvastamine",
@@ -806,14 +809,14 @@
   "refreshComplete": {
     "message": "Uuendamine lõpetatud"
   },
-  "disableAutoTotpCopy": {
-    "message": "Keela automaatne TOTP kopeerimine"
+  "enableAutoTotpCopy": {
+    "message": "TOTP automaatne kopeerimine"
   },
   "disableAutoTotpCopyDesc": {
     "message": "Kui sinu sisselogimise andmetele on juurde lisatud autentimise võti, kopeeritakse TOTP kood automaatse täitmise kasutamisel lõikelauale."
   },
-  "disableAutoBiometricsPrompt": {
-    "message": "Ära küsi käivitudes biomeetrilist kinnitamist"
+  "enableAutoBiometricsPrompt": {
+    "message": "Küsi avamisel biomeetriat"
   },
   "premiumRequired": {
     "message": "Vajalik on Premium versioon"
@@ -1033,17 +1036,17 @@
   "popupU2fCloseMessage": {
     "message": "Kasutatav brauser ei suuda selles aknas U2F päringuid töödelda. Kas avan uue akna, et saaksid U2F abil sisse logida?"
   },
-  "disableFavicon": {
-    "message": "Keela veebilehel ikoonid"
+  "enableFavicon": {
+    "message": "Kuva veebilehtede ikoone"
   },
-  "disableFaviconDesc": {
-    "message": "Ikoonid aitavad hoidlas olevaid veebilehti paremini ära tunda."
+  "faviconDesc": {
+    "message": "Kuvab iga kirje kõrval lehekülje ikooni."
   },
-  "disableBadgeCounter": {
-    "message": "Keela kirjete loendur"
+  "enableBadgeCounter": {
+    "message": "Kuva kirjete arvu"
   },
-  "disableBadgeCounterDesc": {
-    "message": "Kirjete loendur kuvab Bitwardeni ikoonil konkreetse leheküljega seotud kirjete arvu."
+  "badgeCounterDesc": {
+    "message": "Kuvab numbrina konkreetsel veebilehel olevate kirjete arvu."
   },
   "cardholderName": {
     "message": "Kaardiomaniku nimi"
@@ -1480,7 +1483,7 @@
   "acceptPolicies": {
     "message": "Märkeruudu markeerimisel nõustud järgnevaga:"
   },
-  "acceptPoliciesError": {
+  "acceptPoliciesRequired": {
     "message": "Kasutustingimuste ja Privaatsuspoliitikaga pole nõustutud."
   },
   "termsOfService": {
@@ -1846,8 +1849,8 @@
       }
     }
   },
-  "vaultTimeoutToLarge": {
-    "message": "Valitud hoidla ajalõpp ei ole organisatsiooni poolt määratud reeglitega kooskõlas.  "
+  "vaultTimeoutTooLarge": {
+    "message": "Valitud hoidla ajalõpp ei ole organisatsiooni poolt määratud reeglitega kooskõlas."
   },
   "vaultExportDisabled": {
     "message": "Hoidla eksportimine on väljalülitatud"
@@ -1964,5 +1967,62 @@
   },
   "ssoKeyConnectorError": {
     "message": "Key Connectori viga: veendu, et Key Connector on saadaval ja töötab korrektselt."
+  },
+  "premiumSubcriptionRequired": {
+    "message": "Vajalik on Premium versioon"
+  },
+  "organizationIsDisabled": {
+    "message": "Organisatsiooni ligipääs on keelatud."
+  },
+  "disabledOrganizationFilterError": {
+    "message": "Organisatsiooni alla kuuluvatele kirjetele ei ole ligipääsu. Kontakteeru oma organisatsiooni omanikuga."
+  },
+  "cardBrandMir": {
+    "message": "Mir"
+  },
+  "loggingInTo": {
+    "message": "Sisselogimine läbi $DOMAIN$",
+    "placeholders": {
+      "domain": {
+        "content": "$1",
+        "example": "example.com"
+      }
+    }
+  },
+  "settingsEdited": {
+    "message": "Seaded on uuendatud"
+  },
+  "environmentEditedClick": {
+    "message": "Kliki siia,"
+  },
+  "environmentEditedReset": {
+    "message": "et taastada eelseadistatud seaded"
+  },
+  "serverVersion": {
+    "message": "Server Version"
+  },
+  "selfHosted": {
+    "message": "Self-Hosted"
+  },
+  "thirdParty": {
+    "message": "Third-Party"
+  },
+  "thirdPartyServerMessage": {
+    "message": "Connected to third-party server implementation, $SERVERNAME$. Please verify bugs using the official server, or report them to the third-party server.",
+    "placeholders": {
+      "servername": {
+        "content": "$1",
+        "example": "ThirdPartyServerName"
+      }
+    }
+  },
+  "lastSeenOn": {
+    "message": "last seen on $DATE$",
+    "placeholders": {
+      "date": {
+        "content": "$1",
+        "example": "Jun 15, 2015"
+      }
+    }
   }
 }

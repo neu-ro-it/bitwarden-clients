@@ -126,7 +126,7 @@
     "message": "Minimizirajte prilikom kopiranja u međuspremnik"
   },
   "minimizeOnCopyToClipboardDesc": {
-    "message": "Minimize when copying an item's data to the clipboard."
+    "message": "Minimize application when copying an item's data to the clipboard."
   },
   "toggleVisibility": {
     "message": "Isključi vidljivost"
@@ -532,11 +532,14 @@
   "invalidEmail": {
     "message": "Nepravilna email adresa."
   },
-  "masterPassRequired": {
-    "message": "Potrebna je glavna lozinka."
+  "masterPasswordRequired": {
+    "message": "Master password is required."
   },
-  "masterPassLength": {
-    "message": "Glavna lozinka mora imati najmanje 8 karaktera."
+  "confirmMasterPasswordRequired": {
+    "message": "Master password retype is required."
+  },
+  "masterPasswordMinlength": {
+    "message": "Master password must be at least 8 characters long."
   },
   "masterPassDoesntMatch": {
     "message": "Potvrda glavne lozinke ne odgovara."
@@ -830,10 +833,10 @@
     "message": "Prijava u dva koraka"
   },
   "vaultTimeout": {
-    "message": "Vault Timeout"
+    "message": "Vault timeout"
   },
   "vaultTimeoutDesc": {
-    "message": "Choose when your vault will timeout and perform the selected action."
+    "message": "Choose when your vault will take the vault timeout action."
   },
   "immediately": {
     "message": "Odmah"
@@ -894,11 +897,11 @@
     "message": "Automatsko brisanje kopiranih vrijednosti iz vašeg međuspremnika.",
     "description": "Clipboard is the operating system thing where you copy/paste data to on your device."
   },
-  "disableFavicon": {
-    "message": "Onesposobi ikone internet strane"
+  "enableFavicon": {
+    "message": "Show website icons"
   },
-  "disableFaviconDesc": {
-    "message": "Ikone internet strane omogućavaju prepoznatljivu sliku pored svake stavke za prijavu u vašem trezoru."
+  "faviconDesc": {
+    "message": "Show a recognizable image next to each login."
   },
   "enableMinToTray": {
     "message": "MInimiziraj u sistemsku traku"
@@ -946,7 +949,7 @@
     "message": "Start automatically on login"
   },
   "openAtLoginDesc": {
-    "message": "Start the Bitwarden Desktop application automatically on login."
+    "message": "Start the Bitwarden desktop application automatically on login."
   },
   "alwaysShowDock": {
     "message": "Always show in the Dock"
@@ -1381,14 +1384,29 @@
   "touchIdConsentMessage": {
     "message": "Verifikuj za Bitwarden."
   },
-  "noAutoPromptWindowsHello": {
-    "message": "Do not prompt for Windows Hello on launch."
+  "autoPromptWindowsHello": {
+    "message": "Ask for Windows Hello on launch"
   },
-  "noAutoPromptTouchId": {
-    "message": "Do not prompt for Touch ID on launch."
+  "autoPromptTouchId": {
+    "message": "Ask for Touch ID on launch"
   },
   "lockWithMasterPassOnRestart": {
     "message": "Zaključajte glavnom lozinkom pri ponovnom pokretanju"
+  },
+  "deleteAccount": {
+    "message": "Delete account"
+  },
+  "deleteAccountDesc": {
+    "message": "Proceed below to delete your account and all vault data."
+  },
+  "deleteAccountWarning": {
+    "message": "Deleting your account is permanent. It cannot be undone."
+  },
+  "accountDeleted": {
+    "message": "Account deleted"
+  },
+  "accountDeletedDesc": {
+    "message": "Your account has been closed and all associated data has been deleted."
   },
   "preferences": {
     "message": "Podešavanja"
@@ -1437,13 +1455,13 @@
     "message": "Jedno ili više pravila organizacije utiču na podešavanje vašeg generatora."
   },
   "vaultTimeoutAction": {
-    "message": "Vault Timeout Action"
+    "message": "Vault timeout action"
   },
   "vaultTimeoutActionLockDesc": {
-    "message": "A locked vault requires that you re-enter your master password to access it again."
+    "message": "Master password or other unlock method is required to access your vault again."
   },
   "vaultTimeoutActionLogOutDesc": {
-    "message": "A logged out vault requires that you re-authenticate to access it again."
+    "message": "Re-authentication is required to access your vault again."
   },
   "lock": {
     "message": "Lock",
@@ -1543,14 +1561,14 @@
   "acceptPolicies": {
     "message": "Označavanjem ovog polja pristajete na sledeće:"
   },
-  "acceptPoliciesError": {
-    "message": "Uslovi usluge i Politika privatnosti nisu prihvaćeni."
+  "acceptPoliciesRequired": {
+    "message": "Terms of Service and Privacy Policy have not been acknowledged."
   },
   "enableBrowserIntegration": {
-    "message": "Enable browser integration"
+    "message": "Allow browser integration"
   },
   "enableBrowserIntegrationDesc": {
-    "message": "Browser integration is used for biometrics in browser."
+    "message": "Used for biometrics in browser."
   },
   "browserIntegrationUnsupportedTitle": {
     "message": "Browser integration not supported"
@@ -1559,7 +1577,7 @@
     "message": "Unfortunately browser integration is only supported in the Mac App Store version for now."
   },
   "browserIntegrationWindowsStoreDesc": {
-    "message": "Unfortunately browser integration is currently not supported in the Windows Store version."
+    "message": "Unfortunately browser integration is currently not supported in the Microsoft Store version."
   },
   "browserIntegrationLinuxDesc": {
     "message": "Unfortunately browser integration is currently not supported in the linux version."
@@ -1568,7 +1586,7 @@
     "message": "Require verification for browser integration"
   },
   "enableBrowserIntegrationFingerprintDesc": {
-    "message": "Enable an additional layer of security by requiring fingerprint phrase validation when establishing a link between your desktop and browser. When enabled, this requires user intervention and verification each time a connection is established."
+    "message": "Add an additional layer of security by requiring fingerprint phrase confirmation when establishing a link between your desktop and browser. This requires user action and verification each time a connection is created."
   },
   "approve": {
     "message": "Approve"
@@ -1960,5 +1978,20 @@
   },
   "apiKey": {
     "message": "API Key"
+  },
+  "premiumSubcriptionRequired": {
+    "message": "Premium subscription required"
+  },
+  "organizationIsDisabled": {
+    "message": "Organization is disabled."
+  },
+  "disabledOrganizationFilterError": {
+    "message": "Items in disabled Organizations cannot be accessed. Contact your Organization owner for assistance."
+  },
+  "neverLockWarning": {
+    "message": "Are you sure you want to use the \"Never\" option? Setting your lock options to \"Never\" stores your vault's encryption key on your device. If you use this option you should ensure that you keep your device properly protected."
+  },
+  "cardBrandMir": {
+    "message": "Mir"
   }
 }

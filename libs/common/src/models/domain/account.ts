@@ -3,15 +3,16 @@ import { KdfType } from "../../enums/kdfType";
 import { UriMatchType } from "../../enums/uriMatchType";
 import { CipherData } from "../data/cipherData";
 import { CollectionData } from "../data/collectionData";
+import { EncryptedOrganizationKeyData } from "../data/encryptedOrganizationKeyData";
 import { EventData } from "../data/eventData";
 import { FolderData } from "../data/folderData";
 import { OrganizationData } from "../data/organizationData";
 import { PolicyData } from "../data/policyData";
 import { ProviderData } from "../data/providerData";
 import { SendData } from "../data/sendData";
+import { ServerConfigData } from "../data/server-config.data";
 import { CipherView } from "../view/cipherView";
 import { CollectionView } from "../view/collectionView";
-import { FolderView } from "../view/folderView";
 import { SendView } from "../view/sendView";
 
 import { EncString } from "./encString";
@@ -23,6 +24,7 @@ import { SymmetricCryptoKey } from "./symmetricCryptoKey";
 export class EncryptionPair<TEncrypted, TDecrypted> {
   encrypted?: TEncrypted;
   decrypted?: TDecrypted;
+  decryptedSerialized?: string;
 }
 
 export class DataEncryptionPair<TEncrypted, TDecrypted> {
@@ -30,15 +32,19 @@ export class DataEncryptionPair<TEncrypted, TDecrypted> {
   decrypted?: TDecrypted[];
 }
 
+// This is a temporary structure to handle migrated `DataEncryptionPair` to
+//  avoid needing a data migration at this stage. It should be replaced with
+//  proper data migrations when `DataEncryptionPair` is deprecated.
+export class TemporaryDataEncryption<TEncrypted> {
+  encrypted?: { [id: string]: TEncrypted };
+}
+
 export class AccountData {
   ciphers?: DataEncryptionPair<CipherData, CipherView> = new DataEncryptionPair<
     CipherData,
     CipherView
   >();
-  folders?: DataEncryptionPair<FolderData, FolderView> = new DataEncryptionPair<
-    FolderData,
-    FolderView
-  >();
+  folders? = new TemporaryDataEncryption<FolderData>();
   localData?: any;
   sends?: DataEncryptionPair<SendData, SendView> = new DataEncryptionPair<SendData, SendView>();
   collections?: DataEncryptionPair<CollectionData, CollectionView> = new DataEncryptionPair<
@@ -65,8 +71,11 @@ export class AccountKeys {
     string,
     SymmetricCryptoKey
   >();
-  organizationKeys?: EncryptionPair<any, Map<string, SymmetricCryptoKey>> = new EncryptionPair<
-    any,
+  organizationKeys?: EncryptionPair<
+    { [orgId: string]: EncryptedOrganizationKeyData },
+    Map<string, SymmetricCryptoKey>
+  > = new EncryptionPair<
+    { [orgId: string]: EncryptedOrganizationKeyData },
     Map<string, SymmetricCryptoKey>
   >();
   providerKeys?: EncryptionPair<any, Map<string, SymmetricCryptoKey>> = new EncryptionPair<
@@ -74,8 +83,8 @@ export class AccountKeys {
     Map<string, SymmetricCryptoKey>
   >();
   privateKey?: EncryptionPair<string, ArrayBuffer> = new EncryptionPair<string, ArrayBuffer>();
-  legacyEtmKey?: SymmetricCryptoKey;
   publicKey?: ArrayBuffer;
+  publicKeySerialized?: string;
   apiKeyClientSecret?: string;
 }
 
@@ -102,7 +111,6 @@ export class AccountProfile {
 export class AccountSettings {
   autoConfirmFingerPrints?: boolean;
   autoFillOnPageLoadDefault?: boolean;
-  biometricLocked?: boolean;
   biometricUnlock?: boolean;
   clearClipboard?: number;
   collapsedGroupings?: string[];
@@ -130,10 +138,15 @@ export class AccountSettings {
   generatorOptions?: any;
   pinProtected?: EncryptionPair<string, EncString> = new EncryptionPair<string, EncString>();
   protectedPin?: string;
-  settings?: any; // TODO: Merge whatever is going on here into the AccountSettings model properly
+  settings?: AccountSettingsSettings; // TODO: Merge whatever is going on here into the AccountSettings model properly
   vaultTimeout?: number;
   vaultTimeoutAction?: string = "lock";
+  serverConfig?: ServerConfigData;
 }
+
+export type AccountSettingsSettings = {
+  equivalentDomains?: { [id: string]: any };
+};
 
 export class AccountTokens {
   accessToken?: string;

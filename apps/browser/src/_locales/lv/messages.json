@@ -423,10 +423,13 @@
   "invalidEmail": {
     "message": "Nederīga e-pasta adrese."
   },
-  "masterPassRequired": {
-    "message": "Galvenā parole ir nepieciešama."
+  "masterPasswordRequired": {
+    "message": "Ir jānorāda galvenā parole."
   },
-  "masterPassLength": {
+  "confirmMasterPasswordRequired": {
+    "message": "Ir nepieciešama galvenās paroles atkārtota ievadīšana."
+  },
+  "masterPasswordMinlength": {
     "message": "Galvenajai parolei ir jābūt vismaz 8 rakstzīmes garai."
   },
   "masterPassDoesntMatch": {
@@ -567,23 +570,23 @@
     "message": "Nav mapes",
     "description": "This is the folder for uncategorized items"
   },
-  "disableAddLoginNotification": {
-    "message": "Atspējot piekļuves vienumu pievienošanas paziņojumu"
+  "enableAddLoginNotification": {
+    "message": "Vaicāt, lai pievienotu pierakstīšanās vienumu"
   },
   "addLoginNotificationDesc": {
     "message": "Iestatījums \"Piekļuves vienumu pievienošanas paziņojumi\" piedāvā saglabāt jaunus pieslēgšanās ierakstus, kad vien tie tiek izmantoti pirmo reizi ierakstoties."
   },
-  "dontShowCardsCurrentTab": {
-    "message": "Nerādīt kartes cilnes lapā"
+  "showCardsCurrentTab": {
+    "message": "Rādīt kartes cilnes lapā"
   },
-  "dontShowCardsCurrentTabDesc": {
-    "message": "Glabātavas karšu vienumi tiek attēloti 'Pašreizējā cilne' lapā vieglai piekļūšanai automātiskajai aizpildīšanai."
+  "showCardsCurrentTabDesc": {
+    "message": "Attēlot kartes ciļņu lapā vieglākai aizpildīšanai."
   },
-  "dontShowIdentitiesCurrentTab": {
-    "message": "Nerādīt identitātes cilnes pārskatā"
+  "showIdentitiesCurrentTab": {
+    "message": "Rādīt identitātes cilnes pārskatā"
   },
-  "dontShowIdentitiesCurrentTabDesc": {
-    "message": "Glabātavas identitātes vienumi tiek attēloti 'Pašreizējā cilne' lapā vieglai piekļūšanai automātiskajai aizpildīšanai."
+  "showIdentitiesCurrentTabDesc": {
+    "message": "Attēlot identitātes ciļņu lapā vieglākai aizpildīšanai."
   },
   "clearClipboard": {
     "message": "Notīrīt starpliktuvi",
@@ -599,11 +602,11 @@
   "notificationAddSave": {
     "message": "Jā, saglabāt"
   },
-  "disableChangedPasswordNotification": {
-    "message": "Atspējot mainītas paroles paziņojumu"
+  "enableChangedPasswordNotification": {
+    "message": "Vaicāt atjaunināt esošu pierakstīšanās vienumu"
   },
-  "disableChangedPasswordNotificationDesc": {
-    "message": "\"Mainītas paroles paziņojums\" vaicā atjaunināt pieteikšanās vienuma paroli glabātavā, kad vien tiek noteikts, ka tā ir mainīta tīmekļa vietnē."
+  "changedPasswordNotificationDesc": {
+    "message": "Vaicāt atjaunināt pierakstīšanās vienuma paroli, ja vietnē ir noteiktas tās izmaiņas."
   },
   "notificationChangeDesc": {
     "message": "Vai atjaunināt šo paroli Bitwarden?"
@@ -611,11 +614,11 @@
   "notificationChangeSave": {
     "message": "Jā, atjaunināt"
   },
-  "disableContextMenuItem": {
-    "message": "Atspējot konteksta izvēlnes iespējas"
+  "enableContextMenuItem": {
+    "message": "Rādīt konteksta izvēlnes iespējas"
   },
-  "disableContextMenuItemDesc": {
-    "message": "Konteksta izvēlnes iespējas piedāvā ātru piekļūšanu paroļu veidošanai un tīmekļa vietnes pieteikšanās vienumiem pašreizējā cilnē."
+  "contextMenuItemDesc": {
+    "message": "Izmantot orējo klikšķi, lai piekļūtu paroļu veidošanai un vietnei atbilstošajiem pierakstīšanās vienumiem. "
   },
   "defaultUriMatchDetection": {
     "message": "Noklusējuma URI atbilstības noteikšana",
@@ -806,14 +809,14 @@
   "refreshComplete": {
     "message": "Atsvaidzināšana pabeigta"
   },
-  "disableAutoTotpCopy": {
-    "message": "Atspējot automātisku TOTP ievietošanu starpliktuvē"
+  "enableAutoTotpCopy": {
+    "message": "Automātiski ievietot TOTP starpliktuvē"
   },
   "disableAutoTotpCopyDesc": {
     "message": "Ja pierakstīšanās datiem ir pievienota autentificētāja atslēga, TOTP apstiprinājuma kods tiks automātiski pārkopēts uz starpliktuvi, kad vien tiks automātiski aizpildīta pierakstīšanās veidne."
   },
-  "disableAutoBiometricsPrompt": {
-    "message": "Palaišanas brīdī nevaicāt par biometriju."
+  "enableAutoBiometricsPrompt": {
+    "message": "Palaižot vaicāt biometriju"
   },
   "premiumRequired": {
     "message": "Nepieciešams Premium"
@@ -1033,17 +1036,17 @@
   "popupU2fCloseMessage": {
     "message": "Šis pārlūks nevar apstrādāt U2F pieprasījumus šajā uznirstošajā logā. Vai atvērt to atsevišķā logā, lai varētu pierakstīties, izmantojot U2F?"
   },
-  "disableFavicon": {
-    "message": "Atspējot tīmekļa vietņu ikonas"
+  "enableFavicon": {
+    "message": "Rādīt vietņu ikonas"
   },
-  "disableFaviconDesc": {
-    "message": "Tīmekļa vietņu ikonas nodrošina atpazīstamu attēlu pie katra glabātavas pieteikšanās vienuma."
+  "faviconDesc": {
+    "message": "Attēlot atpazīstamu attēlu pie katra pierakstīšanās vienuma."
   },
-  "disableBadgeCounter": {
-    "message": "Atspējot skaitītāja nozīmīti"
+  "enableBadgeCounter": {
+    "message": "Rādīt skaita nozīmīti"
   },
-  "disableBadgeCounterDesc": {
-    "message": "Skaitītāja nozīmīte norāda, cik pierakstīšanās vienumu pašreizējai lapai ir atrodami glabātavā."
+  "badgeCounterDesc": {
+    "message": "Attēlot pašreizējāi tīmekļa vietnei atbilstošo pierakstīšanās vienumu skaitu."
   },
   "cardholderName": {
     "message": "Kartes īpašnieka vārds"
@@ -1480,8 +1483,8 @@
   "acceptPolicies": {
     "message": "Atzīmējot šo rūtiņu, Tu piekrīti sekojošajam:"
   },
-  "acceptPoliciesError": {
-    "message": "Nav pieņemti izmantošanas nosacījumi un privātuma politika."
+  "acceptPoliciesRequired": {
+    "message": "Nav apstiprināti izmantošanas nosacījumi un privātuma politika."
   },
   "termsOfService": {
     "message": "Izmantošanas nosacījumi"
@@ -1846,8 +1849,8 @@
       }
     }
   },
-  "vaultTimeoutToLarge": {
-    "message": "Glabātavas noildze pāŗsniedz apvienības uzstādītos ierobežojumus."
+  "vaultTimeoutTooLarge": {
+    "message": "Glabātavas noildze pārsniedz apvienības uzstādītos ierobežojumus."
   },
   "vaultExportDisabled": {
     "message": "Glabātavas izgūšana ir atspējota"
@@ -1964,5 +1967,62 @@
   },
   "ssoKeyConnectorError": {
     "message": "Key Connector kļūda: jāpārliecinās, ka Key Connector ir pieejams un darbojas pareizi."
+  },
+  "premiumSubcriptionRequired": {
+    "message": "Nepieciešams Premium abonements"
+  },
+  "organizationIsDisabled": {
+    "message": "Apvienība ir atspējota."
+  },
+  "disabledOrganizationFilterError": {
+    "message": "Atspējotu apvienību vienumiem nevar piekļūt. Jāsazinās ar apvienības īpašnieku, lai iegūtu palīdzību."
+  },
+  "cardBrandMir": {
+    "message": "Mir"
+  },
+  "loggingInTo": {
+    "message": "Pierakstās $DOMAIN$",
+    "placeholders": {
+      "domain": {
+        "content": "$1",
+        "example": "example.com"
+      }
+    }
+  },
+  "settingsEdited": {
+    "message": "Iestatījumi ir izmainīti"
+  },
+  "environmentEditedClick": {
+    "message": "Klikšķināt šeit"
+  },
+  "environmentEditedReset": {
+    "message": "lai atiestatītu pirmsuzstādītos iestatījumus"
+  },
+  "serverVersion": {
+    "message": "Servera versija"
+  },
+  "selfHosted": {
+    "message": "Pašizvietots"
+  },
+  "thirdParty": {
+    "message": "Trešās puses"
+  },
+  "thirdPartyServerMessage": {
+    "message": "Savienots ar trešās puses izvietotu serveri $SERVERNAME$. Lūgums pārbaudīt nepilnību esamību oficiālajā serverī vai ziņot par tām trešās puses servera uzturētājiem.",
+    "placeholders": {
+      "servername": {
+        "content": "$1",
+        "example": "ThirdPartyServerName"
+      }
+    }
+  },
+  "lastSeenOn": {
+    "message": "pēdējoreiz manīts $DATE$",
+    "placeholders": {
+      "date": {
+        "content": "$1",
+        "example": "Jun 15, 2015"
+      }
+    }
   }
 }

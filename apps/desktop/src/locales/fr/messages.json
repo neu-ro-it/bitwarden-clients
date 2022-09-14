@@ -532,10 +532,13 @@
   "invalidEmail": {
     "message": "Adresse e-mail invalide."
   },
-  "masterPassRequired": {
+  "masterPasswordRequired": {
     "message": "Le mot de passe maître est requis."
   },
-  "masterPassLength": {
+  "confirmMasterPasswordRequired": {
+    "message": "Le mot de passe maître doit être entré de nouveau."
+  },
+  "masterPasswordMinlength": {
     "message": "Le mot de passe maître doit au moins contenir 8 caractères."
   },
   "masterPassDoesntMatch": {
@@ -894,14 +897,14 @@
     "message": "Effacer automatiquement de votre presse-papiers les valeurs copiées.",
     "description": "Clipboard is the operating system thing where you copy/paste data to on your device."
   },
-  "disableFavicon": {
-    "message": "Désactiver les icônes des sites web"
+  "enableFavicon": {
+    "message": "Afficher les icônes du site web"
   },
-  "disableFaviconDesc": {
-    "message": "Les icônes des sites web permettent d'avoir une icône reconnaissable à côté de chaque identifiant dans votre coffre."
+  "faviconDesc": {
+    "message": "Afficher une image reconnaissable à côté de chaque identifiant."
   },
   "enableMinToTray": {
-    "message": "Réduire dans la zone de notification"
+    "message": "Réduire dans la barre d'outils"
   },
   "enableMinToTrayDesc": {
     "message": "Lorsque la fenêtre est réduite, afficher une icône dans la zone de notification à la place."
@@ -913,7 +916,7 @@
     "message": "Lorsque la fenêtre est réduite, privilégier l'affichage d'une icône dans la barre de menu."
   },
   "enableCloseToTray": {
-    "message": "Fermer dans la zone de notification"
+    "message": "Réduire dans la zone de notifications"
   },
   "enableCloseToTrayDesc": {
     "message": "Lorsque la fenêtre est fermée, afficher une icône dans la zone de notification."
@@ -925,13 +928,13 @@
     "message": "Lorsque la fenêtre est fermée, privilégier l'affichage d'une icône dans la barre de menu."
   },
   "enableTray": {
-    "message": "Activer le raccourci dans la zone de notification"
+    "message": "Activer le raccourci dans la zone de notifications"
   },
   "enableTrayDesc": {
     "message": "Toujours afficher une icône dans la zone de notification."
   },
   "startToTray": {
-    "message": "Démarrer dans la zone de notification"
+    "message": "Démarrer dans la zone de notifications"
   },
   "startToTrayDesc": {
     "message": "Au premier démarrage de l'application, afficher uniquement une icône dans la zone de notification."
@@ -1381,14 +1384,29 @@
   "touchIdConsentMessage": {
     "message": "déverouiller votre coffre"
   },
-  "noAutoPromptWindowsHello": {
-    "message": "Ne pas proposer Windows Hello au lancement."
+  "autoPromptWindowsHello": {
+    "message": "Ask for Windows Hello on launch"
   },
-  "noAutoPromptTouchId": {
-    "message": "Ne pas proposer Touch ID au lancement."
+  "autoPromptTouchId": {
+    "message": "Ask for Touch ID on launch"
   },
   "lockWithMasterPassOnRestart": {
     "message": "Verrouiller avec le mot de passe maître lors du redémarrage"
+  },
+  "deleteAccount": {
+    "message": "Supprimer le compte"
+  },
+  "deleteAccountDesc": {
+    "message": "Continuez ci-dessous pour supprimer votre compte et toutes les données associées."
+  },
+  "deleteAccountWarning": {
+    "message": "La suppression de votre compte est définitive. Cette action ne peut pas être annulée."
+  },
+  "accountDeleted": {
+    "message": "Compte supprimé"
+  },
+  "accountDeletedDesc": {
+    "message": "Votre compte a été fermé et toutes les données associées ont été supprimées."
   },
   "preferences": {
     "message": "Préférences"
@@ -1440,7 +1458,7 @@
     "message": "Action lors de l'expiration du délai du coffre"
   },
   "vaultTimeoutActionLockDesc": {
-    "message": "Un coffre verrouillé requiert la saisie de votre mot de passe maître pour y avoir à nouveau accès."
+    "message": "Un coffre-fort verrouillé nécessite la saisie de votre mot de passe principal pour y accéder de nouveau."
   },
   "vaultTimeoutActionLogOutDesc": {
     "message": "Un coffre déconnecté nécessite que vous vous ré-authentifiez pour y accéder de nouveau."
@@ -1543,8 +1561,8 @@
   "acceptPolicies": {
     "message": "En cochant cette case, vous acceptez les éléments suivants :"
   },
-  "acceptPoliciesError": {
-    "message": "Les conditions d'utilisation et la politique de confidentialité n'ont pas été acceptées."
+  "acceptPoliciesRequired": {
+    "message": "Les Conditions d'Utilisation et la Politique de Confidentialité n'ont pas été acceptées."
   },
   "enableBrowserIntegration": {
     "message": "Activer l'intégration avec le navigateur"
@@ -1960,5 +1978,20 @@
   },
   "apiKey": {
     "message": "Clé d'IPA"
+  },
+  "premiumSubcriptionRequired": {
+    "message": "Abonnement Premium requis"
+  },
+  "organizationIsDisabled": {
+    "message": "L'organisation est désactivée."
+  },
+  "disabledOrganizationFilterError": {
+    "message": "Les éléments des Organisations désactivées ne sont pas accessibles. Contactez le propriétaire de votre Organisation pour obtenir de l'aide."
+  },
+  "neverLockWarning": {
+    "message": "Êtes-vous sûr de vouloir utiliser l'option \"Jamais\" ? Définir le verrouillage sur \"Jamais\" stocke la clé de chiffrement de votre coffre sur votre appareil. Si vous utilisez cette option, vous devez vous assurer de correctement protéger votre appareil."
+  },
+  "cardBrandMir": {
+    "message": "Mir"
   }
 }

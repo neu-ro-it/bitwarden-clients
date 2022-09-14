@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { UserNamePipe } from "@bitwarden/angular/pipes/user-name.pipe";
 import { ApiService } from "@bitwarden/common/abstractions/api.service";
 import { ExportService } from "@bitwarden/common/abstractions/export.service";
+import { FileDownloadService } from "@bitwarden/common/abstractions/fileDownload/fileDownload.service";
 import { I18nService } from "@bitwarden/common/abstractions/i18n.service";
 import { LogService } from "@bitwarden/common/abstractions/log.service";
 import { OrganizationService } from "@bitwarden/common/abstractions/organization.service";
@@ -13,12 +14,13 @@ import { Organization } from "@bitwarden/common/models/domain/organization";
 import { EventResponse } from "@bitwarden/common/models/response/eventResponse";
 
 import { BaseEventsComponent } from "../../common/base.events.component";
-import { EventService } from "../../services/event.service";
+import { EventService } from "../../core";
 
 @Component({
   selector: "app-org-events",
   templateUrl: "events.component.html",
 })
+// eslint-disable-next-line rxjs-angular/prefer-takeuntil
 export class EventsComponent extends BaseEventsComponent implements OnInit {
   exportFileName = "org-events";
   organizationId: string;
@@ -37,12 +39,21 @@ export class EventsComponent extends BaseEventsComponent implements OnInit {
     logService: LogService,
     private userNamePipe: UserNamePipe,
     private organizationService: OrganizationService,
-    private providerService: ProviderService
+    private providerService: ProviderService,
+    fileDownloadService: FileDownloadService
   ) {
-    super(eventService, i18nService, exportService, platformUtilsService, logService);
+    super(
+      eventService,
+      i18nService,
+      exportService,
+      platformUtilsService,
+      logService,
+      fileDownloadService
+    );
   }
 
   async ngOnInit() {
+    // eslint-disable-next-line rxjs-angular/prefer-takeuntil, rxjs/no-async-subscribe
     this.route.parent.parent.params.subscribe(async (params) => {
       this.organizationId = params.organizationId;
       this.organization = await this.organizationService.get(this.organizationId);
