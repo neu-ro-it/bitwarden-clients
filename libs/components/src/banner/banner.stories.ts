@@ -1,7 +1,6 @@
 import { Meta, Story } from "@storybook/angular";
 
 import { BannerComponent } from "./banner.component";
-import bannerdocs from "./bannerdocs.mdx";
 
 export default {
   title: "Component Library/Banner",
@@ -10,8 +9,9 @@ export default {
     bannerType: "warning",
   },
   parameters: {
-    docs: {
-      page: bannerdocs,
+    design: {
+      type: "figma",
+      url: "https://www.figma.com/file/Zt3YSeb6E6lebAffrNLa0h/Tailwind-Component-Library?node-id=4369%3A16686",
     },
   },
 } as Meta;
