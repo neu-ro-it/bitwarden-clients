@@ -282,7 +282,7 @@
     "description": "Search item type"
   },
   "searchVault": {
-    "message": "Search Vault"
+    "message": "Search vault"
   },
   "allItems": {
     "message": "All items"
@@ -425,10 +425,10 @@
     "message": "Me"
   },
   "myVault": {
-    "message": "My Vault"
+    "message": "My vault"
   },
   "allVaults": {
-    "message": "All Vaults"
+    "message": "All vaults"
   },
   "vault": {
     "message": "Vault"
@@ -567,7 +567,7 @@
     "message": "No"
   },
   "loginOrCreateNewAccount": {
-    "message": "Log in or create a new account to access your secure Vault."
+    "message": "Log in or create a new account to access your secure vault."
   },
   "createAccount": {
     "message": "Create account"
@@ -594,7 +594,7 @@
     "message": "Master password"
   },
   "masterPassDesc": {
-    "message": "The master password is the password you use to access your Vault. It is very important that you do not forget your master password. There is no way to recover the password in the event that you forget it."
+    "message": "The master password is the password you use to access your vault. It is very important that you do not forget your master password. There is no way to recover the password in the event that you forget it."
   },
   "masterPassImportant": {
     "message": "Master passwords cannot be recovered if you forget it!"
@@ -657,7 +657,7 @@
     "message": "Email address"
   },
   "yourVaultIsLocked": {
-    "message": "Your Vault is locked. Verify your master password to continue."
+    "message": "Your vault is locked. Verify your master password to continue."
   },
   "unlock": {
     "message": "Unlock"
@@ -873,10 +873,10 @@
     "message": "Warning"
   },
   "confirmVaultExport": {
-    "message": "Confirm Vault export"
+    "message": "Confirm vault export"
   },
   "exportWarningDesc": {
-    "message": "This export contains your Vault data in an unencrypted format. You should not store or send the exported file over unsecure channels (such as email). Delete it immediately after you are done using it."
+    "message": "This export contains your vault data in an unencrypted format. You should not store or send the exported file over unsecure channels (such as email). Delete it immediately after you are done using it."
   },
   "encExportKeyWarningDesc": {
     "message": "This export encrypts your data using your account's encryption key. If you ever rotate your account's encryption key you should export again since you will not be able to decrypt this export file."
@@ -888,7 +888,7 @@
     "message": "Export"
   },
   "exportVault": {
-    "message": "Export Vault"
+    "message": "Export vault"
   },
   "fileFormat": {
     "message": "File format"
@@ -930,7 +930,7 @@
     "message": "“File password”  and “Confirm File Password“ do not match."
   },
   "confirmVaultImport": {
-    "message": "Confirm Vault import"
+    "message": "Confirm vault import"
   },
   "confirmVaultImportDesc": {
     "message": "This file is password-protected. Please enter the file password to import data."
@@ -1100,22 +1100,22 @@
     "message": "All sessions deauthorized"
   },
   "purgeVault": {
-    "message": "Purge Vault"
+    "message": "Purge vault"
   },
   "purgedOrganizationVault": {
-    "message": "Purged organization Vault."
+    "message": "Purged organization vault."
   },
   "vaultAccessedByProvider": {
     "message": "Vault accessed by Provider."
   },
   "purgeVaultDesc": {
-    "message": "Proceed below to delete all items and folders in your Vault. Items that belong to an organization that you share with will not be deleted."
+    "message": "Proceed below to delete all items and folders in your vault. Items that belong to an organization that you share with will not be deleted."
   },
   "purgeOrgVaultDesc": {
-    "message": "Proceed below to delete all items in the organization's Vault."
+    "message": "Proceed below to delete all items in the organization's vault."
   },
   "purgeVaultWarning": {
-    "message": "Purging your Vault is permanent. It cannot be undone."
+    "message": "Purging your vault is permanent. It cannot be undone."
   },
   "vaultPurged": {
     "message": "Vault purged."
@@ -1124,7 +1124,7 @@
     "message": "Delete account"
   },
   "deleteAccountDesc": {
-    "message": "Proceed below to delete your account and all Vault data."
+    "message": "Proceed below to delete your account and all vault data."
   },
   "deleteAccountWarning": {
     "message": "Deleting your account is permanent. It cannot be undone."
@@ -1524,7 +1524,7 @@
   },
   "reportsDesc": {
     "message": "Identify and close security gaps in your online accounts by clicking the reports below.",
-    "description": "Vault Health Reports can be used to evaluate the security of your Bitwarden individual or organization Vault."
+    "description": "Vault Health Reports can be used to evaluate the security of your Bitwarden individual or organization vault."
   },
   "unsecuredWebsitesReport": {
     "message": "Unsecure websites"
@@ -1536,7 +1536,7 @@
     "message": "Unsecured websites found"
   },
   "unsecuredWebsitesFoundDesc": {
-    "message": "We found $COUNT$ items in your Vault with unsecured URIs. You should change their URI scheme to https:// if the website allows it.",
+    "message": "We found $COUNT$ items in your vault with unsecured URIs. You should change their URI scheme to https:// if the website allows it.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1545,7 +1545,7 @@
     }
   },
   "noUnsecuredWebsites": {
-    "message": "No items in your Vault have unsecured URIs."
+    "message": "No items in your vault have unsecured URIs."
   },
   "inactive2faReport": {
     "message": "Inactive two-step login"
@@ -1557,7 +1557,7 @@
     "message": "Logins without 2FA found"
   },
   "inactive2faFoundDesc": {
-    "message": "We found $COUNT$ website(s) in your Vault that may not be configured with two-factor authentication (according to 2fa.directory). To further protect these accounts, you should set up two-factor authentication.",
+    "message": "We found $COUNT$ website(s) in your vault that may not be configured with two-factor authentication (according to 2fa.directory). To further protect these accounts, you should set up two-factor authentication.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1566,7 +1566,7 @@
     }
   },
   "noInactive2fa": {
-    "message": "No websites were found in your Vault with a missing two-factor authentication configuration."
+    "message": "No websites were found in your vault with a missing two-factor authentication configuration."
   },
   "instructions": {
     "message": "Instructions"
@@ -1581,7 +1581,7 @@
     "message": "Exposed passwords found"
   },
   "exposedPasswordsFoundDesc": {
-    "message": "We found $COUNT$ items in your Vault that have passwords that were exposed in known data breaches. You should change them to use a new password.",
+    "message": "We found $COUNT$ items in your vault that have passwords that were exposed in known data breaches. You should change them to use a new password.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1590,7 +1590,7 @@
     }
   },
   "noExposedPasswords": {
-    "message": "No items in your Vault have passwords that have been exposed in known data breaches."
+    "message": "No items in your vault have passwords that have been exposed in known data breaches."
   },
   "checkExposedPasswords": {
     "message": "Check exposed passwords"
@@ -1614,7 +1614,7 @@
     "message": "Weak passwords found"
   },
   "weakPasswordsFoundDesc": {
-    "message": "We found $COUNT$ items in your Vault with passwords that are not strong. You should update them to use stronger passwords.",
+    "message": "We found $COUNT$ items in your vault with passwords that are not strong. You should update them to use stronger passwords.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1623,7 +1623,7 @@
     }
   },
   "noWeakPasswords": {
-    "message": "No items in your Vault have weak passwords."
+    "message": "No items in your vault have weak passwords."
   },
   "reusedPasswordsReport": {
     "message": "Reused passwords"
@@ -1635,7 +1635,7 @@
     "message": "Reused passwords found"
   },
   "reusedPasswordsFoundDesc": {
-    "message": "We found $COUNT$ passwords that are being reused in your Vault. You should change them to a unique value.",
+    "message": "We found $COUNT$ passwords that are being reused in your vault. You should change them to a unique value.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1644,7 +1644,7 @@
     }
   },
   "noReusedPasswords": {
-    "message": "No logins in your Vault have passwords that are being reused."
+    "message": "No logins in your vault have passwords that are being reused."
   },
   "reusedXTimes": {
     "message": "Reused $COUNT$ times",
@@ -1768,10 +1768,10 @@
     "message": "Emergency access"
   },
   "premiumSignUpReports": {
-    "message": "Password hygiene, account health, and data breach reports to keep your Vault safe."
+    "message": "Password hygiene, account health, and data breach reports to keep your vault safe."
   },
   "premiumSignUpTotp": {
-    "message": "TOTP verification code (2FA) generator for logins in your Vault."
+    "message": "TOTP verification code (2FA) generator for logins in your vault."
   },
   "premiumSignUpSupport": {
     "message": "Priority customer support."
@@ -2054,7 +2054,7 @@
     "message": "Your account's email address must be verified."
   },
   "newOrganizationDesc": {
-    "message": "Organizations allow you to share parts of your Vault with others as well as manage related users for a specific entity such as a family, small team, or large company."
+    "message": "Organizations allow you to share parts of your vault with others as well as manage related users for a specific entity such as a family, small team, or large company."
   },
   "generalInformation": {
     "message": "General information"
@@ -2488,10 +2488,10 @@
     "message": "Login attempt failed with incorrect two-step login."
   },
   "exportedVault": {
-    "message": "Exported Vault."
+    "message": "Exported vault."
   },
   "exportedOrganizationVault": {
-    "message": "Exported organization Vault."
+    "message": "Exported organization vault."
   },
   "editedOrgSettings": {
     "message": "Edited organization settings."
@@ -2812,7 +2812,7 @@
     }
   },
   "accessedClientVault": {
-    "message": "Accessed $ID$ organization Vault.",
+    "message": "Accessed $ID$ organization vault.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3268,7 +3268,7 @@
     "message": "Vault timeout"
   },
   "vaultTimeoutDesc": {
-    "message": "Choose when your Vault will take the Vault timeout action."
+    "message": "Choose when your vault will take the vault timeout action."
   },
   "oneMinute": {
     "message": "1 minute"
@@ -3362,7 +3362,7 @@
     "description": "This is a verb. ex. 'Fix The Car'"
   },
   "oldAttachmentsNeedFixDesc": {
-    "message": "There are old file attachments in your Vault that need to be fixed before you can rotate your account's encryption key."
+    "message": "There are old file attachments in your vault that need to be fixed before you can rotate your account's encryption key."
   },
   "yourAccountsFingerprint": {
     "message": "Your account's fingerprint phrase",
@@ -3508,10 +3508,10 @@
     "message": "Vault timeout action"
   },
   "vaultTimeoutActionLockDesc": {
-    "message": "Master password or other unlock method is required to access your Vault again."
+    "message": "Master password or other unlock method is required to access your vault again."
   },
   "vaultTimeoutActionLogOutDesc": {
-    "message": "Re-authentication is required to access your Vault again."
+    "message": "Re-authentication is required to access your vault again."
   },
   "lock": {
     "message": "Lock",
@@ -3600,7 +3600,7 @@
     }
   },
   "vaultTimeoutLogOutConfirmation": {
-    "message": "Logging out will remove all access to your Vault and requires online authentication after the timeout period. Are you sure you want to use this setting?"
+    "message": "Logging out will remove all access to your vault and requires online authentication after the timeout period. Are you sure you want to use this setting?"
   },
   "vaultTimeoutLogOutConfirmationTitle": {
     "message": "Timeout action confirmation"
@@ -3624,7 +3624,7 @@
     "message": "Set master password"
   },
   "ssoCompleteRegistration": {
-    "message": "In order to complete logging in with SSO, please set a master password to access and protect your Vault."
+    "message": "In order to complete logging in with SSO, please set a master password to access and protect your vault."
   },
   "identifier": {
     "message": "Identifier"
@@ -3879,7 +3879,7 @@
     "message": "Emergency access approved"
   },
   "viewDesc": {
-    "message": "Can view all items in your own Vault."
+    "message": "Can view all items in your own vault."
   },
   "takeover": {
     "message": "Takeover"
@@ -3982,16 +3982,16 @@
     }
   },
   "personalOwnership": {
-    "message": "Remove individual Vault"
+    "message": "Remove individual vault"
   },
   "personalOwnershipPolicyDesc": {
-    "message": "Require members to save items to an organization by removing the individual Vault option."
+    "message": "Require members to save items to an organization by removing the individual vault option."
   },
   "personalOwnershipExemption": {
     "message": "Organization owners and administrators are exempt from this policy's enforcement."
   },
   "personalOwnershipSubmitError": {
-    "message": "Due to an enterprise policy, you are restricted from saving items to your individual Vault. Change the ownership option to an organization and choose from available collections."
+    "message": "Due to an enterprise policy, you are restricted from saving items to your individual vault. Change the ownership option to an organization and choose from available collections."
   },
   "disableSend": {
     "message": "Remove Send"
@@ -4118,7 +4118,7 @@
     "message": "An organization policy is affecting your ownership options."
   },
   "personalOwnershipPolicyInEffectImports": {
-    "message": "An organization policy has disabled importing items into your individual Vault."
+    "message": "An organization policy has disabled importing items into your individual vault."
   },
   "personalOwnershipCheckboxDesc": {
     "message": "Disable personal ownership for organization users"
@@ -4560,7 +4560,7 @@
     "message": "Update master password"
   },
   "updateMasterPasswordWarning": {
-    "message": "Your master password was recently changed by an administrator in your organization. In order to access the Vault, you must update your master password now. Proceeding will log you out of your current session, requiring you to log back in. Active sessions on other devices may continue to remain active for up to one hour."
+    "message": "Your master password was recently changed by an administrator in your organization. In order to access the vault, you must update your master password now. Proceeding will log you out of your current session, requiring you to log back in. Active sessions on other devices may continue to remain active for up to one hour."
   },
   "masterPasswordInvalidWarning": {
     "message": "Your master password does not meet the policy requirements of this organization. In order to join the organization, you must update your master password now. Proceeding will log you out of your current session, requiring you to log back in. Active sessions on other devices may continue to remain active for up to one hour."
@@ -4569,13 +4569,13 @@
     "message": "Vault timeout"
   },
   "maximumVaultTimeoutDesc": {
-    "message": "Set a maximum Vault timeout for members."
+    "message": "Set a maximum vault timeout for members."
   },
   "maximumVaultTimeoutLabel": {
-    "message": "Maximum Vault timeout"
+    "message": "Maximum vault timeout"
   },
   "invalidMaximumVaultTimeout": {
-    "message": "Invalid maximum Vault timeout."
+    "message": "Invalid maximum vault timeout."
   },
   "hours": {
     "message": "Hours"
@@ -4584,7 +4584,7 @@
     "message": "Minutes"
   },
   "vaultTimeoutPolicyInEffect": {
-    "message": "Your organization policies are affecting your Vault timeout. Maximum allowed Vault Timeout is $HOURS$ hour(s) and $MINUTES$ minute(s)",
+    "message": "Your organization policies are affecting your vault timeout. Maximum allowed vault timeout is $HOURS$ hour(s) and $MINUTES$ minute(s)",
     "placeholders": {
       "hours": {
         "content": "$1",
@@ -4597,10 +4597,10 @@
     }
   },
   "customVaultTimeout": {
-    "message": "Custom Vault timeout"
+    "message": "Custom vault timeout"
   },
   "vaultTimeoutToLarge": {
-    "message": "Your Vault timeout exceeds the restriction set by your organization."
+    "message": "Your vault timeout exceeds the restriction set by your organization."
   },
   "vaultCustomTimeoutMinimum": {
     "message": "Minimum custom timeout is 1 minute."
@@ -4609,16 +4609,16 @@
     "message": "Vault timeout is not within allowed range."
   },
   "disablePersonalVaultExport": {
-    "message": "Remove individual Vault export"
+    "message": "Remove individual vault export"
   },
   "disablePersonalVaultExportDesc": {
-    "message": "Do not allow members to export their individual Vault data."
+    "message": "Do not allow members to export their individual vault data."
   },
   "vaultExportDisabled": {
     "message": "Vault export disabled"
   },
   "personalVaultExportPolicyInEffect": {
-    "message": "One or more organization policies prevents you from exporting your individual Vault."
+    "message": "One or more organization policies prevents you from exporting your individual vault."
   },
   "selectType": {
     "message": "Select SSO type"
@@ -4918,13 +4918,13 @@
     "message": "Member decryption options"
   },
   "memberDecryptionPassDesc": {
-    "message": "Once authenticated, members will decrypt Vault data using their master passwords."
+    "message": "Once authenticated, members will decrypt vault data using their master passwords."
   },
   "keyConnector": {
     "message": "Key connector"
   },
   "memberDecryptionKeyConnectorDesc": {
-    "message": "Connect Login with SSO to your self-hosted decryption key server. Using this option, members won’t need to use their master passwords to decrypt Vault data. Contact Bitwarden Support for set up assistance."
+    "message": "Connect Login with SSO to your self-hosted decryption key server. Using this option, members won’t need to use their master passwords to decrypt vault data. Contact Bitwarden Support for set up assistance."
   },
   "keyConnectorPolicyRestriction": {
     "message": "\"Login with SSO and Key Connector Decryption\" is enabled. This policy will only apply to owners and admins."
@@ -5086,13 +5086,13 @@
     "message": "Your session has timed out. Please go back and try logging in again."
   },
   "exportingPersonalVaultTitle": {
-    "message": "Exporting individual Vault"
+    "message": "Exporting individual vault"
   },
   "exportingOrganizationVaultTitle": {
-    "message": "Exporting organization Vault"
+    "message": "Exporting organization vault"
   },
   "exportingPersonalVaultDescription": {
-    "message": "Only the individual Vault items associated with $EMAIL$ will be exported. Organization Vault items will not be included.",
+    "message": "Only the individual vault items associated with $EMAIL$ will be exported. Organization vault items will not be included.",
     "placeholders": {
       "email": {
         "content": "$1",
@@ -5101,7 +5101,7 @@
     }
   },
   "exportingOrganizationVaultDescription": {
-    "message": "Only the organization Vault associated with $ORGANIZATION$ will be exported. Personal Vault items and items from other organizations will not be included.",
+    "message": "Only the organization vault associated with $ORGANIZATION$ will be exported. Individual vault items and items from other organizations will not be included.",
     "placeholders": {
       "organization": {
         "content": "$1",
