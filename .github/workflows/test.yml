@@ -84,13 +84,7 @@ jobs:
           override: true
 
       - name: Build
-        uses: actions-rs/cargo@9e120dd99b0fbad1c065f686657e914e76bd7b72
-        with:
-          command: build
-          args: ${{ matrix.features }}
+        run: cargo build
 
       - name: Test
-        uses: actions-rs/cargo@9e120dd99b0fbad1c065f686657e914e76bd7b72
-        with:
-          command: test
-          args: -p ${{ matrix.package }} -- --test-threads=1
+        run: cargo test --test-threads=1
