@@ -90,5 +90,5 @@ jobs:
       - name: Test
         working-directory: ./apps/desktop/desktop_native
         run: |
-          dbus-launch --sh-syntax
+          eval "$(dbus-launch --sh-syntax)"
           cargo test -- --test-threads=1
