@@ -91,4 +91,6 @@ jobs:
         working-directory: ./apps/desktop/desktop_native
         run: |
           eval "$(dbus-launch --sh-syntax)"
+          mkdir -p ~/.cache
+          mkdir -p ~/.local/share/keyrings
           cargo test -- --test-threads=1
