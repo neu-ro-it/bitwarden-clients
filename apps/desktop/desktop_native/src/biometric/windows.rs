@@ -75,6 +75,7 @@ mod tests {
     use super::*;
 
     #[test]
+    #[cfg(feature = "manual_test")]
     fn test_prompt() {
         prompt(
             vec![0, 0, 0, 0, 0, 0, 0, 0],
@@ -84,6 +85,7 @@ mod tests {
     }
 
     #[test]
+    #[cfg(feature = "manual_test")]
     fn test_available() {
         assert!(available().unwrap())
     }

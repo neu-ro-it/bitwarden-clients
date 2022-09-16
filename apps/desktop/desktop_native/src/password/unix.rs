@@ -65,6 +65,7 @@ mod tests {
     use super::*;
 
     #[test]
+    #[cfg(feature = "manual_test")]
     fn test() {
         scopeguard::defer!(delete_password("BitwardenTest", "BitwardenTest").unwrap_or({}););
         set_password("BitwardenTest", "BitwardenTest", "Random").unwrap();
@@ -82,6 +83,7 @@ mod tests {
     }
 
     #[test]
+    #[cfg(feature = "manual_test")]
     fn test_error_no_password() {
         match get_password("BitwardenTest", "BitwardenTest") {
             Ok(_) => panic!("Got a result"),
