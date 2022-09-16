@@ -58,7 +58,6 @@ jobs:
 
   rust:
     name: rust - ${{ matrix.os }}
-    working-directory: ./apps/desktop/desktop_native
     runs-on: ${{ matrix.os || 'ubuntu-latest' }}
 
     strategy:
@@ -67,6 +66,10 @@ jobs:
           - ubuntu-latest
           - macOS-latest
           - windows-latest
+
+    defaults:
+      run:
+        working-directory: ./apps/desktop/desktop_native
 
     steps:
       - name: Checkout repo
