@@ -188,10 +188,6 @@ export default class MainBackground {
 
     // Services
     const lockedCallback = async (userId?: string) => {
-      if (BrowserApi.manifestVersion === 3) {
-        BrowserApi.sendMessage("updateBadge");
-      }
-
       if (this.notificationsService != null) {
         this.notificationsService.updateConnection(false);
       }
@@ -567,14 +563,12 @@ export default class MainBackground {
       // Set Private Mode windows to the default icon - they do not share state with the background page
       const privateWindows = await BrowserApi.getPrivateModeWindows();
       privateWindows.forEach(async (win) => {
-        await this.actionSetIcon(chrome.browserAction, "", win.id);
-        await this.actionSetIcon(this.sidebarAction, "", win.id);
+        (await new UpdateBadge().initServices(this as any)).setBadgeIcon("", win.id);
       });
 
       BrowserApi.onWindowCreated(async (win) => {
         if (win.incognito) {
-          await this.actionSetIcon(chrome.browserAction, "", win.id);
-          await this.actionSetIcon(this.sidebarAction, "", win.id);
+          (await new UpdateBadge().initServices(this as any)).setBadgeIcon("", win.id);
         }
       });
     }
@@ -591,21 +585,7 @@ export default class MainBackground {
   }
 
   async setIcon() {
-    if ((!chrome.browserAction && !this.sidebarAction) || this.isPrivateMode) {
-      return;
-    }
-
-    const authStatus = await this.authService.getAuthStatus();
-
-    let suffix = "";
-    if (authStatus === AuthenticationStatus.LoggedOut) {
-      suffix = "_gray";
-    } else if (authStatus === AuthenticationStatus.Locked) {
-      suffix = "_locked";
-    }
-
-    await this.actionSetIcon(chrome.browserAction, suffix);
-    await this.actionSetIcon(this.sidebarAction, suffix);
+    (await new UpdateBadge().initServices(this as any)).run();
   }
 
   async refreshBadge() {

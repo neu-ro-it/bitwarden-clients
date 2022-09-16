@@ -206,18 +206,16 @@ export class UpdateBadge {
   async setBadgeIcon(iconSuffix: string, windowId?: number) {
     const options: IconDetails = {
       path: {
-        19: "images/icon19" + iconSuffix + ".png",
-        38: "images/icon38" + iconSuffix + ".png",
+        19: "/images/icon19" + iconSuffix + ".png",
+        38: "/images/icon38" + iconSuffix + ".png",
       },
     };
 
-    if (this.platformUtilsService.isFirefox()) {
-      options.windowId = windowId;
-    }
+    if (this.platformUtilsService.isFirefox() || this.platformUtilsService.isSafari()) {
+      if (this.platformUtilsService.isFirefox()) {
+        options.windowId = windowId;
+      }
 
-    if (this.platformUtilsService.isSafari()) {
-      // Workaround since Safari 14.0.3 returns a pending promise
-      // which doesn't resolve within a reasonable time.
       if (this.badgeAction?.setIcon) {
         this.badgeAction.setIcon(options);
       }
