@@ -1,12 +1,15 @@
 use anyhow::{anyhow, Result};
 use widestring::{U16CString, U16String};
-use windows::{Win32::{
-    Foundation::{GetLastError, ERROR_NOT_FOUND, FILETIME, WIN32_ERROR},
-    Security::Credentials::{
-        CredDeleteW, CredFree, CredReadW, CredWriteW, CREDENTIALW, CRED_FLAGS,
-        CRED_PERSIST_ENTERPRISE, CRED_TYPE_GENERIC,
+use windows::{
+    core::{PCWSTR, PWSTR},
+    Win32::{
+        Foundation::{GetLastError, ERROR_NOT_FOUND, FILETIME, WIN32_ERROR},
+        Security::Credentials::{
+            CredDeleteW, CredFree, CredReadW, CredWriteW, CREDENTIALW, CRED_FLAGS,
+            CRED_PERSIST_ENTERPRISE, CRED_TYPE_GENERIC,
+        },
     },
-}, core::{PCWSTR, PWSTR}};
+};
 
 const CRED_FLAGS_NONE: u32 = 0;
 
@@ -92,7 +95,7 @@ pub fn set_password(service: &str, account: &str, password: &str) -> Result<()> 
     let credential = CREDENTIALW {
         Flags: CRED_FLAGS(CRED_FLAGS_NONE),
         Type: CRED_TYPE_GENERIC,
-        TargetName: PWSTR( unsafe { target_name.as_mut_ptr() }),
+        TargetName: PWSTR(unsafe { target_name.as_mut_ptr() }),
         Comment: PWSTR::null(),
         LastWritten: last_written,
         CredentialBlobSize: credential_len,
@@ -101,14 +104,13 @@ pub fn set_password(service: &str, account: &str, password: &str) -> Result<()> 
         AttributeCount: 0,
         Attributes: std::ptr::null_mut(),
         TargetAlias: PWSTR::null(),
-        UserName: PWSTR( unsafe { user_name.as_mut_ptr() }),
+        UserName: PWSTR(unsafe { user_name.as_mut_ptr() }),
     };
 
     let result = unsafe { CredWriteW(&credential, 0) };
     if !result.as_bool() {
         return Err(anyhow!(unsafe { GetLastError() }.0.to_string()));
     }
-
 
     Ok(())
 }
