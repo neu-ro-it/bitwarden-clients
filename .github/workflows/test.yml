@@ -99,6 +99,7 @@ jobs:
           cargo test -- --test-threads=1
 
       - name: Test
+        if: ${{ matrix.os!='ubuntu-latest' }}
         working-directory: ./apps/desktop/desktop_native
         run: |
           cargo test -- --test-threads=1
