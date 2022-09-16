@@ -87,7 +87,8 @@ jobs:
         working-directory: ./apps/desktop/desktop_native
         run: cargo build
 
-      - name: Test
+      - name: Start dbus
+        if: ${{ matrix.os=='ubuntu-latest' }}
         working-directory: ./apps/desktop/desktop_native
         run: |
           eval "$(dbus-launch --sh-syntax)"
@@ -96,3 +97,9 @@ jobs:
           eval "$(printf '\n' | gnome-keyring-daemon --unlock)"
           eval "$(printf '\n' | /usr/bin/gnome-keyring-daemon --start)"
           cargo test -- --test-threads=1
+
+      - name: Test
+        working-directory: ./apps/desktop/desktop_native
+        run: |
+          cargo test -- --test-threads=1
+
