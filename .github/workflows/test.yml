@@ -87,4 +87,4 @@ jobs:
         run: cargo build
 
       - name: Test
-        run: cargo test --test-threads=1
+        run: cargo test -- --test-threads=1
