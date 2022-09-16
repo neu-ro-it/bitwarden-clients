@@ -67,10 +67,6 @@ jobs:
           - macOS-latest
           - windows-latest
 
-    defaults:
-      run:
-        working-directory: ./apps/desktop/desktop_native
-
     steps:
       - name: Install gnome-keyring
         run: sudo apt-get install -y gnome-keyring
@@ -87,9 +83,11 @@ jobs:
           override: true
 
       - name: Build
+        working-directory: ./apps/desktop/desktop_native
         run: cargo build
 
       - name: Test
+        working-directory: ./apps/desktop/desktop_native
         run: |
           dbus-launch --sh-syntax
           cargo test -- --test-threads=1
