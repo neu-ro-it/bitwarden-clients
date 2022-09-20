@@ -1309,13 +1309,13 @@
     "message": "Premium required"
   },
   "premiumRequiredDesc": {
-    "message": "A premium membership is required to use this feature."
+    "message": "A Premium membership is required to use this feature."
   },
   "youHavePremiumAccess": {
-    "message": "You have premium access"
+    "message": "You have Premium access"
   },
   "alreadyPremiumFromOrg": {
-    "message": "You already have access to premium features because of an organization you are a member of."
+    "message": "You already have access to Premium features because of an organization you are a member of."
   },
   "manage": {
     "message": "Manage"
@@ -1749,14 +1749,14 @@
     "message": "Your account's credit can be used to make purchases. Any available credit will be automatically applied towards invoices generated for this account."
   },
   "goPremium": {
-    "message": "Go premium",
-    "description": "Another way of saying \"Get a premium membership\""
+    "message": "Go Premium",
+    "description": "Another way of saying \"Get a Premium membership\""
   },
   "premiumUpdated": {
-    "message": "You've upgraded to premium."
+    "message": "You've upgraded to Premium."
   },
   "premiumUpgradeUnlockFeatures": {
-    "message": "Upgrade your account to a premium membership and unlock some great additional features."
+    "message": "Upgrade your account to a Premium membership and unlock some great additional features."
   },
   "premiumSignUpStorage": {
     "message": "1 GB encrypted storage for file attachments."
@@ -1777,7 +1777,7 @@
     "message": "Priority customer support."
   },
   "premiumSignUpFuture": {
-    "message": "All future premium features. More coming soon!"
+    "message": "All future Premium features. More coming soon!"
   },
   "premiumPrice": {
     "message": "All for just $PRICE$ /year!",
@@ -1795,7 +1795,7 @@
     "message": "Premium access"
   },
   "premiumAccessDesc": {
-    "message": "You can add premium access to all members of your organization for $PRICE$ /$INTERVAL$.",
+    "message": "You can add Premium access to all members of your organization for $PRICE$ /$INTERVAL$.",
     "placeholders": {
       "price": {
         "content": "$1",
@@ -2030,7 +2030,7 @@
     "message": "Updated payment method."
   },
   "purchasePremium": {
-    "message": "Purchase premium"
+    "message": "Purchase Premium"
   },
   "licenseFile": {
     "message": "License file"
@@ -2045,7 +2045,7 @@
     }
   },
   "uploadLicenseFilePremium": {
-    "message": "To upgrade your account to a premium membership you need to upload a valid license file."
+    "message": "To upgrade your account to a Premium membership you need to upload a valid license file."
   },
   "uploadLicenseFileOrg": {
     "message": "To create an on-premises hosted organization you need to upload a valid license file."
