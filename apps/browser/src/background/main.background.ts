@@ -211,7 +211,7 @@ export default class MainBackground {
     this.storageService = new BrowserLocalStorageService();
     this.secureStorageService = new BrowserLocalStorageService();
     this.memoryStorageService =
-      chrome.runtime.getManifest().manifest_version == 3
+      BrowserApi.manifestVersion == 3
         ? new LocalBackedSessionStorageService(
             new EncryptService(this.cryptoFunctionService, this.logService, false),
             new KeyGenerationService(this.cryptoFunctionService)
