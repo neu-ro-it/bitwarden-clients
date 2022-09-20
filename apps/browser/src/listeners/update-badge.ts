@@ -1,3 +1,4 @@
+import { AbstractEncryptService } from "@bitwarden/common/abstractions/abstractEncrypt.service";
 import { AuthService } from "@bitwarden/common/abstractions/auth.service";
 import { CipherService } from "@bitwarden/common/abstractions/cipher.service";
 import { CryptoService } from "@bitwarden/common/abstractions/crypto.service";
@@ -120,7 +121,10 @@ export class UpdateBadge {
 
     // TODO: init bitwardenContainerService
     if (!self.bitwardenContainerService) {
-      new ContainerService(serviceCache.cryptoService as CryptoService).attachToGlobal(self);
+      new ContainerService(
+        serviceCache.cryptoService as CryptoService,
+        serviceCache.encryptService as AbstractEncryptService
+      ).attachToGlobal(self);
     }
 
     return this;
