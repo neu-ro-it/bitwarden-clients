@@ -191,7 +191,6 @@ export default class MainBackground {
       if (this.notificationsService != null) {
         this.notificationsService.updateConnection(false);
       }
-      await this.setIcon();
       await this.refreshBadge();
       await this.refreshMenu(true);
       if (this.systemService != null) {
@@ -576,16 +575,12 @@ export default class MainBackground {
     return new Promise<void>((resolve) => {
       setTimeout(async () => {
         await this.environmentService.setUrlsFromStorage();
-        await this.setIcon();
+        await this.refreshBadge();
         this.fullSync(true);
         setTimeout(() => this.notificationsService.init(), 2500);
         resolve();
       }, 500);
     });
-  }
-
-  async setIcon() {
-    (await new UpdateBadge().initServices(this as any)).run();
   }
 
   async refreshBadge() {
@@ -644,7 +639,6 @@ export default class MainBackground {
     if (BrowserApi.manifestVersion === 3) {
       BrowserApi.sendMessage("updateBadge");
     }
-    await this.setIcon();
     await this.refreshBadge();
     await this.refreshMenu(true);
     await this.reseedStorage();

@@ -72,7 +72,6 @@ export default class RuntimeBackground {
           }
         }
 
-        await this.main.setIcon();
         await this.main.refreshBadge();
         await this.main.refreshMenu(false);
         this.notificationsService.updateConnection(msg.command === "unlocked");
