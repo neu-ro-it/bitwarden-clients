@@ -109,6 +109,8 @@ import RuntimeBackground from "./runtime.background";
 import TabsBackground from "./tabs.background";
 import WebRequestBackground from "./webRequest.background";
 
+type CommonSidebarAction = typeof chrome.sidebarAction | OperaSidebarAction;
+
 export default class MainBackground {
   messagingService: MessagingServiceAbstraction;
   storageService: AbstractStorageService;
@@ -174,7 +176,7 @@ export default class MainBackground {
   private tabsBackground: TabsBackground;
   private webRequestBackground: WebRequestBackground;
 
-  private sidebarAction: any;
+  private sidebarAction: CommonSidebarAction;
   private buildingContextMenu: boolean;
   private menuOptionsLoaded: any[] = [];
   private syncTimeout: any;
@@ -464,7 +466,7 @@ export default class MainBackground {
       ? null
       : typeof opr !== "undefined" && opr.sidebarAction
       ? opr.sidebarAction
-      : (window as any).chrome.sidebarAction;
+      : window.chrome.sidebarAction;
 
     // Background
     this.runtimeBackground = new RuntimeBackground(
@@ -996,7 +998,11 @@ export default class MainBackground {
     });
   }
 
-  private async actionSetIcon(theAction: any, suffix: string, windowId?: number): Promise<any> {
+  private async actionSetIcon(
+    theAction: CommonSidebarAction | typeof chrome.browserAction,
+    suffix: string,
+    windowId?: number
+  ): Promise<any> {
     if (!theAction || !theAction.setIcon) {
       return;
     }
@@ -1042,7 +1048,7 @@ export default class MainBackground {
       return;
     }
 
-    if (this.sidebarAction.setBadgeText) {
+    if ("setBadgeText" in this.sidebarAction) {
       this.sidebarAction.setBadgeText({
         text: text,
         tabId: tabId,

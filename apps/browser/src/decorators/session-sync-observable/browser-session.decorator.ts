@@ -21,8 +21,15 @@ export function browserSession<TCtor extends Constructor<any>>(constructor: TCto
     constructor(...args: any[]) {
       super(...args);
 
-      // Require state service to be injected
-      const stateService = args.find((arg) => arg instanceof StateService);
+      // Require state service to be injected or be stateservice
+      let stateService: StateService | undefined;
+      if (this instanceof StateService) {
+        // eslint-disable-next-line @typescript-eslint/no-this-alias
+        stateService = this;
+      } else {
+        stateService = args.find((arg) => arg instanceof StateService);
+      }
+
       if (!stateService) {
         throw new Error(
           `Cannot decorate ${constructor.name} with browserSession, Browser's StateService must be injected`

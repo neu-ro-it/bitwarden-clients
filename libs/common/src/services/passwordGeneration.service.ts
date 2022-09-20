@@ -8,10 +8,11 @@ import { PolicyType } from "../enums/policyType";
 import { EEFLongWordList } from "../misc/wordlist";
 import { EncString } from "../models/domain/encString";
 import { GeneratedPasswordHistory } from "../models/domain/generatedPasswordHistory";
+import { PasswordGeneratorOptions } from "../models/domain/passwordGeneratorOptions";
 import { PasswordGeneratorPolicyOptions } from "../models/domain/passwordGeneratorPolicyOptions";
 import { Policy } from "../models/domain/policy";
 
-const DefaultOptions = {
+const DefaultOptions: PasswordGeneratorOptions = {
   length: 14,
   ambiguous: false,
   number: true,
@@ -38,7 +39,7 @@ export class PasswordGenerationService implements PasswordGenerationServiceAbstr
     private stateService: StateService
   ) {}
 
-  async generatePassword(options: any): Promise<string> {
+  async generatePassword(options: PasswordGeneratorOptions): Promise<string> {
     // overload defaults with given options
     const o = Object.assign({}, DefaultOptions, options);
 
@@ -144,7 +145,7 @@ export class PasswordGenerationService implements PasswordGenerationServiceAbstr
     return password;
   }
 
-  async generatePassphrase(options: any): Promise<string> {
+  async generatePassphrase(options: PasswordGeneratorOptions): Promise<string> {
     const o = Object.assign({}, DefaultOptions, options);
 
     if (o.numWords == null || o.numWords <= 2) {
@@ -177,7 +178,7 @@ export class PasswordGenerationService implements PasswordGenerationServiceAbstr
     return wordList.join(o.wordSeparator);
   }
 
-  async getOptions(): Promise<[any, PasswordGeneratorPolicyOptions]> {
+  async getOptions(): Promise<[PasswordGeneratorOptions, PasswordGeneratorPolicyOptions]> {
     let options = await this.stateService.getPasswordGenerationOptions();
     if (options == null) {
       options = Object.assign({}, DefaultOptions);
@@ -191,8 +192,8 @@ export class PasswordGenerationService implements PasswordGenerationServiceAbstr
   }
 
   async enforcePasswordGeneratorPoliciesOnOptions(
-    options: any
-  ): Promise<[any, PasswordGeneratorPolicyOptions]> {
+    options: PasswordGeneratorOptions
+  ): Promise<[PasswordGeneratorOptions, PasswordGeneratorPolicyOptions]> {
     let enforcedPolicyOptions = await this.getPasswordGeneratorPolicyOptions();
     if (enforcedPolicyOptions != null) {
       if (options.length < enforcedPolicyOptions.minLength) {
@@ -335,7 +336,7 @@ export class PasswordGenerationService implements PasswordGenerationServiceAbstr
     return enforcedOptions;
   }
 
-  async saveOptions(options: any) {
+  async saveOptions(options: PasswordGeneratorOptions) {
     await this.stateService.setPasswordGenerationOptions(options);
   }
 
@@ -358,7 +359,7 @@ export class PasswordGenerationService implements PasswordGenerationServiceAbstr
       : new Array<GeneratedPasswordHistory>();
   }
 
-  async addHistory(password: string): Promise<any> {
+  async addHistory(password: string): Promise<void> {
     // Cannot add new history if no key is available
     const hasKey = await this.cryptoService.hasKey();
     if (!hasKey) {
@@ -384,7 +385,7 @@ export class PasswordGenerationService implements PasswordGenerationServiceAbstr
     return await this.stateService.setEncryptedPasswordGenerationHistory(newHistory);
   }
 
-  async clear(userId?: string): Promise<any> {
+  async clear(userId?: string): Promise<void> {
     await this.stateService.setEncryptedPasswordGenerationHistory(null, { userId: userId });
     await this.stateService.setDecryptedPasswordGenerationHistory(null, { userId: userId });
   }
@@ -403,7 +404,10 @@ export class PasswordGenerationService implements PasswordGenerationServiceAbstr
     return result;
   }
 
-  normalizeOptions(options: any, enforcedPolicyOptions: PasswordGeneratorPolicyOptions) {
+  normalizeOptions(
+    options: PasswordGeneratorOptions,
+    enforcedPolicyOptions: PasswordGeneratorPolicyOptions
+  ) {
     options.minLowercase = 0;
     options.minUppercase = 0;
 

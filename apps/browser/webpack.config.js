@@ -218,6 +218,8 @@ if (manifestVersion == 2) {
       return chunk.name === "background";
     },
   };
+} else {
+  config.entry["content/miscUtils"] = "./src/content/miscUtils.ts";
 }
 
 module.exports = config;
