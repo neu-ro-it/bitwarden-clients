@@ -202,7 +202,7 @@ export default class MainBackground {
     const logoutCallback = async (expired: boolean, userId?: string) =>
       await this.logout(expired, userId);
 
-    this.messagingService = isPrivateMode
+    this.messagingService = this.popupOnlyContext
       ? new BrowserMessagingPrivateModeBackgroundService()
       : new BrowserMessagingService();
     this.logService = new ConsoleLogService(false);
