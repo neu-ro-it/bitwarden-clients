@@ -21,7 +21,7 @@ export function browserSession<TCtor extends Constructor<any>>(constructor: TCto
     constructor(...args: any[]) {
       super(...args);
 
-      // Require state service to be injected or be stateservice
+      // Require state service to be injected
       const stateService = args.find((arg) => arg instanceof StateService);
       if (!stateService) {
         throw new Error(
