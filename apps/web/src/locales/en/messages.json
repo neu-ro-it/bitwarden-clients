@@ -2950,7 +2950,7 @@
     "message": "If you cannot access your account through your normal two-step login methods, you can use your two-step login recovery code to disable all two-step providers on your account."
   },
   "recoverAccountTwoStep": {
-    "message": "Recover account twoo-step login"
+    "message": "Recover account two-step login"
   },
   "twoStepRecoverDisabled": {
     "message": "Two-step login has been disabled on your account."
@@ -3636,7 +3636,7 @@
     "message": "Log in using your organization's single sign-on portal. Please enter your organization's identifier to begin."
   },
   "enterpriseSingleSignOn": {
-    "message": "Enterprise single sign-On"
+    "message": "Enterprise single sign-on"
   },
   "ssoHandOff": {
     "message": "You may now close this tab and continue in the extension."
@@ -5242,7 +5242,7 @@
     "description": "Part of a URL."
   },
   "apiAccessToken": {
-    "message": "API access Ttken"
+    "message": "API access token"
   },
   "deviceVerification": {
     "message": "Device verification"
