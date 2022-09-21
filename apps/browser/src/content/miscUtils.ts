@@ -12,7 +12,6 @@ async function onMessageListener(
   switch (msg.command) {
     case "copyText":
       await copyText(msg.text);
-      responseCallback(null);
       break;
     case "clearClipboard":
       await copyText("\u0000");
