@@ -1498,7 +1498,7 @@
     "message": "Waiting for you to touch the button on your security key"
   },
   "twoFactorU2fClickSave": {
-    "message": "Click the \"Save\" button below to activate this security key for two-step login."
+    "message": "Use the \"Save\" button below to activate this security key for two-step login."
   },
   "twoFactorU2fProblemReadingTryAgain": {
     "message": "There was a problem reading the security key. Try again."
@@ -1877,7 +1877,7 @@
     "message": "Credit card"
   },
   "paypalClickSubmit": {
-    "message": "Click the PayPal button to log into your PayPal account, then click the Submit button below to continue."
+    "message": "Select the PayPal button to log into your PayPal account, then click the Submit button below to continue."
   },
   "cancelSubscription": {
     "message": "Cancel subscription"
@@ -2206,10 +2206,10 @@
     "message": "Users get access to Premium features"
   },
   "controlAccessWithGroups": {
-    "message": "Control user access with Groups"
+    "message": "Control user access with groups"
   },
   "syncUsersFromDirectory": {
-    "message": "Sync your users and Groups from a directory"
+    "message": "Sync your users and groups from a directory"
   },
   "trackAuditLogs": {
     "message": "Track user actions with audit logs"
@@ -2965,7 +2965,7 @@
     "message": "If your account exists, we've sent you an email with further instructions."
   },
   "deleteRecoverConfirmDesc": {
-    "message": "You have requested to delete your Bitwarden account. Click the button below to confirm."
+    "message": "You have requested to delete your Bitwarden account. Use the button below to confirm."
   },
   "myOrganization": {
     "message": "My organization"
@@ -4777,7 +4777,7 @@
     "message": "Accept offer for an existing organization or create a new Families organization."
   },
   "setupSponsoredFamiliesLoginDesc": {
-    "message": "You've been offered a free Bitwarden Families Plan organization. To continue, you need to log in to the account that received the offer."
+    "message": "You've been offered a free Bitwarden Families plan organization. To continue, you need to log in to the account that received the offer."
   },
   "sponsoredFamiliesAcceptFailed": {
     "message": "Unable to accept offer. Please resend the offer email from your enterprise account and try again."
@@ -4822,7 +4822,7 @@
     }
   },
   "freeFamiliesPlan": {
-    "message": "Free Families Plan"
+    "message": "Free Families plan"
   },
   "redeemNow": {
     "message": "Redeem now"
