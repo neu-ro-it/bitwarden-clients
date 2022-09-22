@@ -760,7 +760,7 @@
     "message": "Please use a supported web browser (such as Chrome) and/or add additional providers that are better supported across web browsers (such as an authenticator app)."
   },
   "twoStepOptions": {
-    "message": "Two-step login Options"
+    "message": "Two-step login options"
   },
   "recoveryCodeDesc": {
     "message": "Lost access to all of your two-step login providers? Use your recovery code to turn off all two-step login providers from your account."
