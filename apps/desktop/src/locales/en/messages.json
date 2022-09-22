@@ -157,7 +157,7 @@
     "message": "Company"
   },
   "ssn": {
-    "message": "Social security number"
+    "message": "Social Security number"
   },
   "passportNumber": {
     "message": "Passport number"
