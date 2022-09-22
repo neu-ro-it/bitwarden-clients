@@ -1290,10 +1290,10 @@
     "description": "Two-step login providers such as YubiKey, Duo, Authenticator apps, Email, etc."
   },
   "enable": {
-    "message": "Enable"
+    "message": "Turn on"
   },
   "enabled": {
-    "message": "Enabled"
+    "message": "Turned on"
   },
   "restoreAccess": {
     "message": "Restore access"
@@ -1366,10 +1366,10 @@
     "message": "In case you need to add it to another device, below is the QR code (or key) required by your authenticator app."
   },
   "twoStepDisableDesc": {
-    "message": "Are you sure you want to deactivate this two-step login provider?"
+    "message": "Are you sure you want to turn off this two-step login provider?"
   },
   "twoStepDisabled": {
-    "message": "Two-step login provider deactivated."
+    "message": "Two-step login provider turned off."
   },
   "twoFactorYubikeyAdd": {
     "message": "Add a new YubiKey to your account"
@@ -1387,7 +1387,7 @@
     "message": "Save the form."
   },
   "twoFactorYubikeyWarning": {
-    "message": "Due to platform limitations, YubiKeys cannot be used on all Bitwarden applications. You should turn on another two-step login provider so that you can access your account when YubiKeys cannot be used. Supported platforms:"
+    "message": "Due to platform limitations, YubiKeys cannot be used on all Bitwarden applications. You should set up another two-step login provider so that you can access your account when YubiKeys cannot be used. Supported platforms:"
   },
   "twoFactorYubikeySupportUsb": {
     "message": "Web vault, desktop application, CLI, and all browser extensions on a device with a USB port that can accept your YubiKey."
@@ -3442,7 +3442,7 @@
     "message": "Require members to set up two-step login."
   },
   "twoStepLoginPolicyWarning": {
-    "message": "Organization members who are not owners or admins and do not have two-step login turned on for their account will be removed from the organization and will receive an email notifying them about the change."
+    "message": "Organization members who are not owners or admins and do not have two-step login set up for their account will be removed from the organization and will receive an email notifying them about the change."
   },
   "twoStepLoginPolicyUserWarning": {
     "message": "You are a member of an organization that requires two-step login to be set up on your user account. If you turn off all two-step login providers you will be automatically removed from these organizations."
