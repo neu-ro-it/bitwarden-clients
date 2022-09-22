@@ -620,7 +620,7 @@
     "message": "Insert your security key into your computer's USB port. If it has a button, touch it."
   },
   "recoveryCodeDesc": {
-    "message": "Lost access to all of your two-factor providers? Use your recovery code to disable all two-factor providers from your account."
+    "message": "Lost access to all of your two-factor providers? Use your recovery code to turn off all two-factor providers on your account."
   },
   "recoveryCodeTitle": {
     "message": "Recovery code"
@@ -650,7 +650,7 @@
     "message": "FIDO2 WebAuthn"
   },
   "webAuthnDesc": {
-    "message": "Use any WebAuthn enabled security key to access your account."
+    "message": "Use any WebAuthn compatible security key to access your account."
   },
   "emailTitle": {
     "message": "Email"
@@ -662,7 +662,7 @@
     "message": "Login unavailable"
   },
   "noTwoStepProviders": {
-    "message": "This account has two-step login enabled, however, none of the configured two-step providers are supported by this device."
+    "message": "This account has two-step login set up, however, none of the configured two-step providers are supported by this device."
   },
   "noTwoStepProviders2": {
     "message": "Please add additional providers that are better supported across devices (such as an authenticator app)."
@@ -827,7 +827,7 @@
     "message": "Invalid master password"
   },
   "twoStepLoginConfirmation": {
-    "message": "Two-step login makes your account more secure by requiring you to verify your login with another device such as a security key, authenticator app, SMS, phone call, or email. Two-step login can be enabled on the bitwarden.com web vault. Do you want to visit the website now?"
+    "message": "Two-step login makes your account more secure by requiring you to verify your login with another device such as a security key, authenticator app, SMS, phone call, or email. Two-step login can be set up on the bitwarden.com web vault. Do you want to visit the website now?"
   },
   "twoStepLogin": {
     "message": "Two-step login"
@@ -958,10 +958,10 @@
     "message": "Show the Bitwarden icon in the Dock even when minimized to the menu bar."
   },
   "confirmTrayTitle": {
-    "message": "Confirm disable tray"
+    "message": "Confirm hiding tray"
   },
   "confirmTrayDesc": {
-    "message": "Disabling this setting will also disable all other tray related settings."
+    "message": "Turning off this setting will also turn off all other tray related settings."
   },
   "language": {
     "message": "Language"
@@ -1598,10 +1598,10 @@
     "message": "Please ensure the shown fingerprint is identical to the fingerprint showed in the browser extension."
   },
   "biometricsNotEnabledTitle": {
-    "message": "Biometrics not enabled"
+    "message": "Biometrics not set up"
   },
   "biometricsNotEnabledDesc": {
-    "message": "Browser biometrics requires desktop biometrics to be enabled in the settings first."
+    "message": "Browser biometrics requires desktop biometrics to be set up in the settings first."
   },
   "personalOwnershipSubmitError": {
     "message": "Due to an enterprise policy, you are restricted from saving items to your individual vault. Change the ownership option to an organization and choose from available collections."
@@ -1662,7 +1662,7 @@
     "message": "Current access count"
   },
   "disableSend": {
-    "message": "Disable this Send so that no one can access it.",
+    "message": "Deactivate this Send so that no one can access it.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendPasswordDesc": {
@@ -1741,7 +1741,7 @@
     "message": "Copy the link to share this Send to my clipboard upon save."
   },
   "sendDisabled": {
-    "message": "Send disabled",
+    "message": "Send removed",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendDisabledWarning": {
@@ -1825,7 +1825,7 @@
     "message": "This organization has an enterprise policy that will automatically enroll you in password reset. Enrollment will allow organization administrators to change your master password."
   },
   "vaultExportDisabled": {
-    "message": "Vault export disabled"
+    "message": "Vault export removed"
   },
   "personalVaultExportPolicyInEffect": {
     "message": "One or more organization policies prevents you from exporting your personal vault."
@@ -1983,10 +1983,10 @@
     "message": "Premium subscription required"
   },
   "organizationIsDisabled": {
-    "message": "Organization is disabled."
+    "message": "Organization suspended"
   },
   "disabledOrganizationFilterError" : {
-    "message" : "Items in disabled organizations cannot be accessed. Contact your organization owner for assistance."
+    "message" : "Items in suspended organizations cannot be accessed. Contact your organization owner for assistance."
   },
   "neverLockWarning": {
     "message": "Are you sure you want to use the \"Never\" option? Setting your lock options to \"Never\" stores your vault's encryption key on your device. If you use this option you should ensure that you keep your device properly protected."
