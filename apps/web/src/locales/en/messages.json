@@ -3681,13 +3681,13 @@
     "message": "Require single sign-on authentication"
   },
   "requireSsoPolicyDesc": {
-    "message": "Require members to log in with the Enterprise Single Sign-On method."
+    "message": "Require members to log in with the Enterprise single sign-on method."
   },
   "prerequisite": {
     "message": "Prerequisite"
   },
   "requireSsoPolicyReq": {
-    "message": "The single organization enterprise policy must be turned on before activating this policy."
+    "message": "The single organization Enterprise policy must be turned on before activating this policy."
   },
   "requireSsoPolicyReqError": {
     "message": "Single organization policy not set up."
@@ -3991,7 +3991,7 @@
     "message": "Organization owners and administrators are exempt from this policy's enforcement."
   },
   "personalOwnershipSubmitError": {
-    "message": "Due to an enterprise policy, you are restricted from saving items to your individual vault. Change the ownership option to an organization and choose from available collections."
+    "message": "Due to an Enterprise policy, you are restricted from saving items to your individual vault. Change the ownership option to an organization and choose from available collections."
   },
   "disableSend": {
     "message": "Remove Send"
@@ -4008,7 +4008,7 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendDisabledWarning": {
-    "message": "Due to an enterprise policy, you are only able to delete an existing Send.",
+    "message": "Due to an Enterprise policy, you are only able to delete an existing Send.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendOptions": {
@@ -4340,7 +4340,7 @@
     "message": "Require new users to be enrolled automatically"
   },
   "resetPasswordAutoEnrollInviteWarning": {
-    "message": "This organization has an enterprise policy that will automatically enroll you in password reset. Enrollment will allow organization administrators to change your master password."
+    "message": "This organization has an Enterprise policy that will automatically enroll you in password reset. Enrollment will allow organization administrators to change your master password."
   },
   "resetPasswordOrgKeysError": {
     "message": "Organization keys response is null"
