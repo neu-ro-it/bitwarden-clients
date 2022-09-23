@@ -19,6 +19,13 @@ export class BrowserApi {
     });
   }
 
+  static async getTab(tabId: number) {
+    if (tabId == null) {
+      return null;
+    }
+    return await chrome.tabs.get(tabId);
+  }
+
   static async getTabFromCurrentWindow(): Promise<chrome.tabs.Tab> | null {
     return await BrowserApi.tabsQueryFirst({
       active: true,
@@ -204,5 +211,17 @@ export class BrowserApi {
     return new Promise((resolve) => {
       chrome.runtime.getPlatformInfo(resolve);
     });
+  }
+
+  static getBrowserAction() {
+    return BrowserApi.manifestVersion === 3 ? chrome.action : chrome.browserAction;
+  }
+
+  static getSidebarAction(win: Window | typeof global) {
+    return navigator.userAgent.indexOf(" Safari/") !== -1 // is Safari
+      ? null
+      : typeof (win as any).opr !== "undefined" && opr.sidebarAction
+      ? (win as any).opr.sidebarAction
+      : (win as any).chrome.sidebarAction;
   }
 }
