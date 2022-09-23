@@ -28,24 +28,17 @@ export default class BrowserPlatformUtilsService implements PlatformUtilsService
       return this.deviceCache;
     }
 
-    if (
-      navigator.userAgent.indexOf(" Firefox/") !== -1 ||
-      navigator.userAgent.indexOf(" Gecko/") !== -1
-    ) {
+    if (BrowserPlatformUtilsService.isFirefox()) {
       this.deviceCache = DeviceType.FirefoxExtension;
-    } else if (
-      (!!(this.window as any).opr && !!opr.addons) ||
-      !!(this.window as any).opera ||
-      navigator.userAgent.indexOf(" OPR/") >= 0
-    ) {
+    } else if (BrowserPlatformUtilsService.isOpera(this.window)) {
       this.deviceCache = DeviceType.OperaExtension;
-    } else if (navigator.userAgent.indexOf(" Edg/") !== -1) {
+    } else if (BrowserPlatformUtilsService.isEdge()) {
       this.deviceCache = DeviceType.EdgeExtension;
-    } else if (navigator.userAgent.indexOf(" Vivaldi/") !== -1) {
+    } else if (BrowserPlatformUtilsService.isVivaldi()) {
       this.deviceCache = DeviceType.VivaldiExtension;
-    } else if ((this.window as any).chrome && navigator.userAgent.indexOf(" Chrome/") !== -1) {
+    } else if (BrowserPlatformUtilsService.isChrome(this.window)) {
       this.deviceCache = DeviceType.ChromeExtension;
-    } else if (navigator.userAgent.indexOf(" Safari/") !== -1) {
+    } else if (BrowserPlatformUtilsService.isSafari()) {
       this.deviceCache = DeviceType.SafariExtension;
     }
 
@@ -61,24 +54,55 @@ export default class BrowserPlatformUtilsService implements PlatformUtilsService
     return ClientType.Browser;
   }
 
+  static isFirefox(): boolean {
+    return (
+      navigator.userAgent.indexOf(" Firefox/") !== -1 ||
+      navigator.userAgent.indexOf(" Gecko/") !== -1
+    );
+  }
+
   isFirefox(): boolean {
     return this.getDevice() === DeviceType.FirefoxExtension;
+  }
+
+  static isChrome(win: Window | typeof global): boolean {
+    return (win as any).chrome && navigator.userAgent.indexOf(" Chrome/") !== -1;
   }
 
   isChrome(): boolean {
     return this.getDevice() === DeviceType.ChromeExtension;
   }
 
+  static isEdge(): boolean {
+    return navigator.userAgent.indexOf(" Edg/") !== -1;
+  }
+
   isEdge(): boolean {
     return this.getDevice() === DeviceType.EdgeExtension;
+  }
+
+  static isOpera(win: Window | typeof global): boolean {
+    return (
+      (!!(win as any).opr && !!opr.addons) ||
+      !!(win as any).opera ||
+      navigator.userAgent.indexOf(" OPR/") >= 0
+    );
   }
 
   isOpera(): boolean {
     return this.getDevice() === DeviceType.OperaExtension;
   }
 
+  static isVivaldi(): boolean {
+    return navigator.userAgent.indexOf(" Vivaldi/") !== -1;
+  }
+
   isVivaldi(): boolean {
     return this.getDevice() === DeviceType.VivaldiExtension;
+  }
+
+  static isSafari(): boolean {
+    return navigator.userAgent.indexOf(" Safari/") !== -1;
   }
 
   isSafari(): boolean {
