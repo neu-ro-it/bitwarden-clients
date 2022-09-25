@@ -117,9 +117,11 @@ export class ViewComponent implements OnDestroy, OnInit {
     this.showPremiumRequiredTotp =
       this.cipher.login.totp && !this.canAccessPremium && !this.cipher.organizationUseTotp;
 
-    this.folder = await (
-      await firstValueFrom(this.folderService.folderViews$)
-    ).find((f) => f.id == this.cipher.folderId);
+    if (this.cipher.folderId) {
+      this.folder = await (
+        await firstValueFrom(this.folderService.folderViews$)
+      ).find((f) => f.id == this.cipher.folderId);
+    }
 
     if (
       this.cipher.type === CipherType.Login &&

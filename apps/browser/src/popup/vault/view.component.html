@@ -472,13 +472,13 @@
     <div class="box-content">
       <div class="box-content-row">
         <label
-          for="folder"
+          for="folderName"
           class="draggable"
           draggable="true"
           (dragstart)="setTextDataOnDrag($event, folder.name)"
           >{{ "folder" | i18n }}</label
         >
-        <input id="FolderId" type="text" name="folderId" [value]="folder.name" readonly />
+        <input id="folderName" type="text" name="folderId" [value]="folder.name" readonly />
       </div>
     </div>
   </div>
