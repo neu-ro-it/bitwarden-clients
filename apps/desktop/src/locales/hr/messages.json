@@ -1393,6 +1393,21 @@
   "lockWithMasterPassOnRestart": {
     "message": "Zaključaj glavnom lozinkom kod svakog pokretanja"
   },
+  "deleteAccount": {
+    "message": "Delete account"
+  },
+  "deleteAccountDesc": {
+    "message": "Proceed below to delete your account and all vault data."
+  },
+  "deleteAccountWarning": {
+    "message": "Deleting your account is permanent. It cannot be undone."
+  },
+  "accountDeleted": {
+    "message": "Account deleted"
+  },
+  "accountDeletedDesc": {
+    "message": "Your account has been closed and all associated data has been deleted."
+  },
   "preferences": {
     "message": "Postavke"
   },
@@ -1964,6 +1979,9 @@
   "apiKey": {
     "message": "API ključ"
   },
+  "premiumSubcriptionRequired": {
+    "message": "Premium subscription required"
+  },
   "organizationIsDisabled": {
     "message": "Organization is disabled."
   },
@@ -1975,5 +1993,8 @@
   },
   "cardBrandMir": {
     "message": "Mir"
+  },
+  "vault": {
+    "message": "Vault"
   }
 }

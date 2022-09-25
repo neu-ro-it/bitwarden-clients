@@ -19,13 +19,14 @@ import { KeyConnectorService } from "@bitwarden/common/abstractions/keyConnector
 import { NotificationsService } from "@bitwarden/common/abstractions/notifications.service";
 import { PasswordGenerationService } from "@bitwarden/common/abstractions/passwordGeneration.service";
 import { PlatformUtilsService } from "@bitwarden/common/abstractions/platformUtils.service";
-import { PolicyService } from "@bitwarden/common/abstractions/policy.service";
+import { InternalPolicyService } from "@bitwarden/common/abstractions/policy/policy.service.abstraction";
 import { SearchService } from "@bitwarden/common/abstractions/search.service";
 import { SettingsService } from "@bitwarden/common/abstractions/settings.service";
 import { StateService } from "@bitwarden/common/abstractions/state.service";
-import { SyncService } from "@bitwarden/common/abstractions/sync.service";
-import { VaultTimeoutService } from "@bitwarden/common/abstractions/vaultTimeout.service";
+import { SyncService } from "@bitwarden/common/abstractions/sync/sync.service.abstraction";
+import { VaultTimeoutService } from "@bitwarden/common/abstractions/vaultTimeout/vaultTimeout.service";
 
+import { PolicyListService, RouterService } from "./core";
 import { DisableSendPolicy } from "./organizations/policies/disable-send.component";
 import { MasterPasswordPolicy } from "./organizations/policies/master-password.component";
 import { PasswordGeneratorPolicy } from "./organizations/policies/password-generator.component";
@@ -35,8 +36,6 @@ import { ResetPasswordPolicy } from "./organizations/policies/reset-password.com
 import { SendOptionsPolicy } from "./organizations/policies/send-options.component";
 import { SingleOrgPolicy } from "./organizations/policies/single-org.component";
 import { TwoFactorAuthenticationPolicy } from "./organizations/policies/two-factor-authentication.component";
-import { PolicyListService } from "./services/policy-list.service";
-import { RouterService } from "./services/router.service";
 
 const BroadcasterSubscriptionId = "AppComponent";
 const IdleTimeout = 60000 * 10; // 10 minutes
@@ -74,7 +73,7 @@ export class AppComponent implements OnDestroy, OnInit {
     private routerService: RouterService,
     private stateService: StateService,
     private eventService: EventService,
-    private policyService: PolicyService,
+    private policyService: InternalPolicyService,
     protected policyListService: PolicyListService,
     private keyConnectorService: KeyConnectorService
   ) {}
@@ -148,11 +147,11 @@ export class AppComponent implements OnDestroy, OnInit {
             const premiumConfirmed = await this.platformUtilsService.showDialog(
               this.i18nService.t("premiumRequiredDesc"),
               this.i18nService.t("premiumRequired"),
-              this.i18nService.t("learnMore"),
+              this.i18nService.t("upgrade"),
               this.i18nService.t("cancel")
             );
             if (premiumConfirmed) {
-              this.router.navigate(["settings/premium"]);
+              this.router.navigate(["settings/subscription/premium"]);
             }
             break;
           }
@@ -216,7 +215,7 @@ export class AppComponent implements OnDestroy, OnInit {
   ngOnDestroy() {
     this.broadcasterService.unsubscribe(BroadcasterSubscriptionId);
     this.destroy$.next();
-    this.destroy$.unsubscribe();
+    this.destroy$.complete();
   }
 
   private async logOut(expired: boolean) {

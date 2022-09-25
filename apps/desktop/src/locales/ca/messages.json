@@ -1393,6 +1393,21 @@
   "lockWithMasterPassOnRestart": {
     "message": "Bloqueja amb la contrasenya mestra en reiniciar"
   },
+  "deleteAccount": {
+    "message": "Suprimeix el compte"
+  },
+  "deleteAccountDesc": {
+    "message": "Procediu a continuació per suprimir el vostre compte i totes les dades associades."
+  },
+  "deleteAccountWarning": {
+    "message": "La supressió del compte és permanent. No es pot desfer."
+  },
+  "accountDeleted": {
+    "message": "S'ha suprimit el compte"
+  },
+  "accountDeletedDesc": {
+    "message": "El vostre compte s'ha tancat i s'han suprimit totes les dades associades."
+  },
   "preferences": {
     "message": "Preferències"
   },
@@ -1964,6 +1979,9 @@
   "apiKey": {
     "message": "Clau de l'API"
   },
+  "premiumSubcriptionRequired": {
+    "message": "Cal una subscripció premium"
+  },
   "organizationIsDisabled": {
     "message": "L'organització està inhabilitada."
   },
@@ -1975,5 +1993,8 @@
   },
   "cardBrandMir": {
     "message": "Mir"
+  },
+  "vault": {
+    "message": "Caixa forta"
   }
 }

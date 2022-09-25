@@ -49,6 +49,10 @@ export class LoginComponent extends CaptchaProtectedComponent implements OnInit 
     super(environmentService, i18nService, platformUtilsService);
   }
 
+  get selfHostedDomain() {
+    return this.environmentService.hasBaseUrl() ? this.environmentService.getWebVaultUrl() : null;
+  }
+
   async ngOnInit() {
     if (this.email == null || this.email === "") {
       this.email = await this.stateService.getRememberedEmail();
@@ -87,7 +91,7 @@ export class LoginComponent extends CaptchaProtectedComponent implements OnInit 
       this.platformUtilsService.showToast(
         "error",
         this.i18nService.t("errorOccurred"),
-        this.i18nService.t("masterPassRequired")
+        this.i18nService.t("masterPasswordRequired")
       );
       return;
     }

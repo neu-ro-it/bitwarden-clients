@@ -1393,6 +1393,21 @@
   "lockWithMasterPassOnRestart": {
     "message": "重啟後使用主密碼鎖定"
   },
+  "deleteAccount": {
+    "message": "刪除帳戶"
+  },
+  "deleteAccountDesc": {
+    "message": "接下來的操作將刪除您的帳戶及所有密碼庫資料。"
+  },
+  "deleteAccountWarning": {
+    "message": "刪除您的帳戶是永久性的。並且無法復原。"
+  },
+  "accountDeleted": {
+    "message": "帳戶已刪除"
+  },
+  "accountDeletedDesc": {
+    "message": "您的帳戶已經關閉，所有關聯的資料已經被刪除。"
+  },
   "preferences": {
     "message": "偏好設定"
   },
@@ -1925,7 +1940,7 @@
     "message": "Catch-all 電子郵件"
   },
   "catchallEmailDesc": {
-    "message": "使用您的網域配置的 Catch-all 收件匣。"
+    "message": "使用您的網域設定的 Catch-all 收件匣。"
   },
   "random": {
     "message": "隨機"
@@ -1964,6 +1979,9 @@
   "apiKey": {
     "message": "API 金鑰"
   },
+  "premiumSubcriptionRequired": {
+    "message": "需要進階版訂閲"
+  },
   "organizationIsDisabled": {
     "message": "組織已停用。"
   },
@@ -1975,5 +1993,8 @@
   },
   "cardBrandMir": {
     "message": "Mir"
+  },
+  "vault": {
+    "message": "密碼庫"
   }
 }

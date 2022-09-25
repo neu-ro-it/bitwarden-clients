@@ -1,9 +1,22 @@
 /* eslint-disable no-useless-escape */
 import { getHostname, parse } from "tldts";
 
+import { CryptoService } from "@bitwarden/common/abstractions/crypto.service";
+
+import { AbstractEncryptService } from "../abstractions/abstractEncrypt.service";
 import { I18nService } from "../abstractions/i18n.service";
 
 const nodeURL = typeof window === "undefined" ? require("url") : null;
+
+declare global {
+  /* eslint-disable-next-line no-var */
+  var bitwardenContainerService: BitwardenContainerService;
+}
+
+interface BitwardenContainerService {
+  getCryptoService: () => CryptoService;
+  getEncryptService: () => AbstractEncryptService;
+}
 
 export class Utils {
   static inited = false;
@@ -11,7 +24,7 @@ export class Utils {
   static isBrowser = true;
   static isMobileBrowser = false;
   static isAppleMobileBrowser = false;
-  static global: any = null;
+  static global: typeof global = null;
   // Transpiled version of /\p{Emoji_Presentation}/gu using https://mothereff.in/regexpu. Used for compatability in older browsers.
   static regexpEmojiPresentation =
     /(?:[\u231A\u231B\u23E9-\u23EC\u23F0\u23F3\u25FD\u25FE\u2614\u2615\u2648-\u2653\u267F\u2693\u26A1\u26AA\u26AB\u26BD\u26BE\u26C4\u26C5\u26CE\u26D4\u26EA\u26F2\u26F3\u26F5\u26FA\u26FD\u2705\u270A\u270B\u2728\u274C\u274E\u2753-\u2755\u2757\u2795-\u2797\u27B0\u27BF\u2B1B\u2B1C\u2B50\u2B55]|\uD83C[\uDC04\uDCCF\uDD8E\uDD91-\uDD9A\uDDE6-\uDDFF\uDE01\uDE1A\uDE2F\uDE32-\uDE36\uDE38-\uDE3A\uDE50\uDE51\uDF00-\uDF20\uDF2D-\uDF35\uDF37-\uDF7C\uDF7E-\uDF93\uDFA0-\uDFCA\uDFCF-\uDFD3\uDFE0-\uDFF0\uDFF4\uDFF8-\uDFFF]|\uD83D[\uDC00-\uDC3E\uDC40\uDC42-\uDCFC\uDCFF-\uDD3D\uDD4B-\uDD4E\uDD50-\uDD67\uDD7A\uDD95\uDD96\uDDA4\uDDFB-\uDE4F\uDE80-\uDEC5\uDECC\uDED0-\uDED2\uDED5-\uDED7\uDEEB\uDEEC\uDEF4-\uDEFC\uDFE0-\uDFEB]|\uD83E[\uDD0C-\uDD3A\uDD3C-\uDD45\uDD47-\uDD78\uDD7A-\uDDCB\uDDCD-\uDDFF\uDE70-\uDE74\uDE78-\uDE7A\uDE80-\uDE86\uDE90-\uDEA8\uDEB0-\uDEB6\uDEC0-\uDEC2\uDED0-\uDED6])/g;
@@ -28,16 +41,25 @@ export class Utils {
       (process as any).release != null &&
       (process as any).release.name === "node";
     Utils.isBrowser = typeof window !== "undefined";
+
     Utils.isMobileBrowser = Utils.isBrowser && this.isMobile(window);
     Utils.isAppleMobileBrowser = Utils.isBrowser && this.isAppleMobile(window);
-    Utils.global = Utils.isNode && !Utils.isBrowser ? global : window;
+
+    if (Utils.isNode) {
+      Utils.global = global;
+    } else if (Utils.isBrowser) {
+      Utils.global = window;
+    } else {
+      // If it's not browser or node then it must be a service worker
+      Utils.global = self;
+    }
   }
 
   static fromB64ToArray(str: string): Uint8Array {
     if (Utils.isNode) {
       return new Uint8Array(Buffer.from(str, "base64"));
     } else {
-      const binaryString = window.atob(str);
+      const binaryString = Utils.global.atob(str);
       const bytes = new Uint8Array(binaryString.length);
       for (let i = 0; i < binaryString.length; i++) {
         bytes[i] = binaryString.charCodeAt(i);
@@ -76,6 +98,9 @@ export class Utils {
   }
 
   static fromByteStringToArray(str: string): Uint8Array {
+    if (str == null) {
+      return null;
+    }
     const arr = new Uint8Array(str.length);
     for (let i = 0; i < str.length; i++) {
       arr[i] = str.charCodeAt(i);
@@ -92,7 +117,7 @@ export class Utils {
       for (let i = 0; i < bytes.byteLength; i++) {
         binary += String.fromCharCode(bytes[i]);
       }
-      return window.btoa(binary);
+      return Utils.global.btoa(binary);
     }
   }
 
@@ -156,7 +181,7 @@ export class Utils {
     if (Utils.isNode) {
       return Buffer.from(utfStr, "utf8").toString("base64");
     } else {
-      return decodeURIComponent(escape(window.btoa(utfStr)));
+      return decodeURIComponent(escape(Utils.global.btoa(utfStr)));
     }
   }
 
@@ -168,7 +193,7 @@ export class Utils {
     if (Utils.isNode) {
       return Buffer.from(b64Str, "base64").toString("utf8");
     } else {
-      return decodeURIComponent(escape(window.atob(b64Str)));
+      return decodeURIComponent(escape(Utils.global.atob(b64Str)));
     }
   }
 
@@ -334,6 +359,49 @@ export class Utils {
     return s.charAt(0).toUpperCase() + s.slice(1);
   }
 
+  /**
+   * There are a few ways to calculate text color for contrast, this one seems to fit accessibility guidelines best.
+   * https://stackoverflow.com/a/3943023/6869691
+   *
+   * @param {string} bgColor
+   * @param {number} [threshold] see stackoverflow link above
+   * @param {boolean} [svgTextFill]
+   * Indicates if this method is performed on an SVG <text> 'fill' attribute (e.g. <text fill="black"></text>).
+   * This check is necessary because the '!important' tag cannot be used in a 'fill' attribute.
+   */
+  static pickTextColorBasedOnBgColor(bgColor: string, threshold = 186, svgTextFill = false) {
+    const bgColorHexNums = bgColor.charAt(0) === "#" ? bgColor.substring(1, 7) : bgColor;
+    const r = parseInt(bgColorHexNums.substring(0, 2), 16); // hexToR
+    const g = parseInt(bgColorHexNums.substring(2, 4), 16); // hexToG
+    const b = parseInt(bgColorHexNums.substring(4, 6), 16); // hexToB
+    const blackColor = svgTextFill ? "black" : "black !important";
+    const whiteColor = svgTextFill ? "white" : "white !important";
+    return r * 0.299 + g * 0.587 + b * 0.114 > threshold ? blackColor : whiteColor;
+  }
+
+  static stringToColor(str: string): string {
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
+      hash = str.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    let color = "#";
+    for (let i = 0; i < 3; i++) {
+      const value = (hash >> (i * 8)) & 0xff;
+      color += ("00" + value.toString(16)).substr(-2);
+    }
+    return color;
+  }
+
+  /**
+   * @throws Will throw an error if the ContainerService has not been attached to the window object
+   */
+  static getContainerService(): BitwardenContainerService {
+    if (this.global.bitwardenContainerService == null) {
+      throw new Error("global bitwardenContainerService not initialized.");
+    }
+    return this.global.bitwardenContainerService;
+  }
+
   private static isMobile(win: Window) {
     let mobile = false;
     ((a) => {
@@ -364,7 +432,7 @@ export class Utils {
         return new nodeURL.URL(uriString);
       } else if (typeof URL === "function") {
         return new URL(uriString);
-      } else if (window != null) {
+      } else if (typeof window !== "undefined") {
         const hasProtocol = uriString.indexOf("://") > -1;
         if (!hasProtocol && uriString.indexOf(".") > -1) {
           uriString = "http://" + uriString;

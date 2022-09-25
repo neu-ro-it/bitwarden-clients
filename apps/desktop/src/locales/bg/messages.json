@@ -1393,6 +1393,21 @@
   "lockWithMasterPassOnRestart": {
     "message": "Заключване с главната парола при повторно пускане"
   },
+  "deleteAccount": {
+    "message": "Изтриване на регистрацията"
+  },
+  "deleteAccountDesc": {
+    "message": "Ако продължите, ще изтриете регистрацията си и всички данни в трезора си."
+  },
+  "deleteAccountWarning": {
+    "message": "Изтриването на регистрацията е окончателно и необратимо."
+  },
+  "accountDeleted": {
+    "message": "Регистрацията е изтрита"
+  },
+  "accountDeletedDesc": {
+    "message": "Регистрацията Ви е окончателно прекратена и всички данни към нея са изтрити."
+  },
   "preferences": {
     "message": "Настройки"
   },
@@ -1964,6 +1979,9 @@
   "apiKey": {
     "message": "Ключ за API"
   },
+  "premiumSubcriptionRequired": {
+    "message": "Изисква се платен абонамент"
+  },
   "organizationIsDisabled": {
     "message": "Организацията е изключена."
   },
@@ -1975,5 +1993,8 @@
   },
   "cardBrandMir": {
     "message": "Мир"
+  },
+  "vault": {
+    "message": "Трезор"
   }
 }

@@ -26,9 +26,9 @@
     >
       <button
         appStopClick
-        appBlurClick
         (click)="selectAllVaults()"
         [ngClass]="{ active: !myVaultOnly && !selectOrganizationId }"
+        appA11yTitle="{{ 'vault' | i18n }}: {{ 'allVaults' | i18n }}"
       >
         <i class="bwi bwi-fw bwi-filter" aria-hidden="true"></i>
         &nbsp;{{ "allVaults" | i18n }}
@@ -36,8 +36,8 @@
       <button
         *ngIf="!enforcePersonalOwnwership"
         appStopClick
-        appBlurClick
         (click)="selectMyVault()"
+        appA11yTitle="{{ 'vault' | i18n }}: {{ 'myVault' | i18n }}"
       >
         <i class="bwi bwi-fw bwi-user" aria-hidden="true"></i>
         &nbsp;{{ "myVault" | i18n }}
@@ -45,8 +45,8 @@
       <button
         *ngFor="let organization of organizations"
         appStopClick
-        appBlurClick
         (click)="selectOrganization(organization)"
+        appA11yTitle="{{ 'vault' | i18n }}: {{ organization.name }}"
       >
         <i
           *ngIf="organization.planProductType !== 1"
@@ -58,7 +58,7 @@
           class="bwi bwi-fw bwi-family"
           aria-hidden="true"
         ></i>
-        <span>&nbsp;{{ organization.name | ellipsis: 21:true }}</span>
+        <span>&nbsp;{{ organization.name | ellipsis: (organization.enabled ? 21 : 18):true }}</span>
         <i
           *ngIf="!organization.enabled"
           class="bwi bwi-fw bwi-exclamation-triangle text-danger"

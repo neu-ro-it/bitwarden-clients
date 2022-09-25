@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { FormBuilder } from "@angular/forms";
+import { UntypedFormBuilder } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { first } from "rxjs/operators";
 
@@ -13,19 +13,21 @@ import { I18nService } from "@bitwarden/common/abstractions/i18n.service";
 import { LogService } from "@bitwarden/common/abstractions/log.service";
 import { PasswordGenerationService } from "@bitwarden/common/abstractions/passwordGeneration.service";
 import { PlatformUtilsService } from "@bitwarden/common/abstractions/platformUtils.service";
-import { PolicyService } from "@bitwarden/common/abstractions/policy.service";
+import { PolicyApiServiceAbstraction } from "@bitwarden/common/abstractions/policy/policy-api.service.abstraction";
+import { PolicyService } from "@bitwarden/common/abstractions/policy/policy.service.abstraction";
 import { StateService } from "@bitwarden/common/abstractions/state.service";
 import { PolicyData } from "@bitwarden/common/models/data/policyData";
 import { MasterPasswordPolicyOptions } from "@bitwarden/common/models/domain/masterPasswordPolicyOptions";
 import { Policy } from "@bitwarden/common/models/domain/policy";
 import { ReferenceEventRequest } from "@bitwarden/common/models/request/referenceEventRequest";
 
-import { RouterService } from "../services/router.service";
+import { RouterService } from "../core";
 
 @Component({
   selector: "app-register",
   templateUrl: "register.component.html",
 })
+// eslint-disable-next-line rxjs-angular/prefer-takeuntil
 export class RegisterComponent extends BaseRegisterComponent {
   email = "";
   showCreateOrgMessage = false;
@@ -36,7 +38,7 @@ export class RegisterComponent extends BaseRegisterComponent {
 
   constructor(
     formValidationErrorService: FormValidationErrorsService,
-    formBuilder: FormBuilder,
+    formBuilder: UntypedFormBuilder,
     authService: AuthService,
     router: Router,
     i18nService: I18nService,
@@ -46,6 +48,7 @@ export class RegisterComponent extends BaseRegisterComponent {
     stateService: StateService,
     platformUtilsService: PlatformUtilsService,
     passwordGenerationService: PasswordGenerationService,
+    private policyApiService: PolicyApiServiceAbstraction,
     private policyService: PolicyService,
     environmentService: EnvironmentService,
     logService: LogService,
@@ -68,6 +71,7 @@ export class RegisterComponent extends BaseRegisterComponent {
   }
 
   async ngOnInit() {
+    // eslint-disable-next-line rxjs-angular/prefer-takeuntil
     this.route.queryParams.pipe(first()).subscribe((qParams) => {
       this.referenceData = new ReferenceEventRequest();
       if (qParams.email != null && qParams.email.indexOf("@") > -1) {
@@ -110,7 +114,7 @@ export class RegisterComponent extends BaseRegisterComponent {
     const invite = await this.stateService.getOrganizationInvitation();
     if (invite != null) {
       try {
-        const policies = await this.apiService.getPoliciesByToken(
+        const policies = await this.policyApiService.getPoliciesByToken(
           invite.organizationId,
           invite.token,
           invite.email,

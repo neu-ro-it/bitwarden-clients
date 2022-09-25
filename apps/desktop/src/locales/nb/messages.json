@@ -1393,6 +1393,21 @@
   "lockWithMasterPassOnRestart": {
     "message": "Lås med hovedpassord ved omstart"
   },
+  "deleteAccount": {
+    "message": "Slett konto"
+  },
+  "deleteAccountDesc": {
+    "message": "Proceed below to delete your account and all vault data."
+  },
+  "deleteAccountWarning": {
+    "message": "Deleting your account is permanent. It cannot be undone."
+  },
+  "accountDeleted": {
+    "message": "Konto slettet"
+  },
+  "accountDeletedDesc": {
+    "message": "Your account has been closed and all associated data has been deleted."
+  },
   "preferences": {
     "message": "Innstillinger"
   },
@@ -1964,8 +1979,11 @@
   "apiKey": {
     "message": "API-nøkkel"
   },
+  "premiumSubcriptionRequired": {
+    "message": "Premium subscription required"
+  },
   "organizationIsDisabled": {
-    "message": "Organization is disabled."
+    "message": "Organisasjonen er deaktivert."
   },
   "disabledOrganizationFilterError": {
     "message": "Items in disabled Organizations cannot be accessed. Contact your Organization owner for assistance."
@@ -1975,5 +1993,8 @@
   },
   "cardBrandMir": {
     "message": "Mir"
+  },
+  "vault": {
+    "message": "Vault"
   }
 }

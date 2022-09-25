@@ -9,7 +9,7 @@ import { I18nService } from "@bitwarden/common/abstractions/i18n.service";
 import { LogService } from "@bitwarden/common/abstractions/log.service";
 import { MessagingService } from "@bitwarden/common/abstractions/messaging.service";
 import { PlatformUtilsService } from "@bitwarden/common/abstractions/platformUtils.service";
-import { SyncService } from "@bitwarden/common/abstractions/sync.service";
+import { SyncService } from "@bitwarden/common/abstractions/sync/sync.service.abstraction";
 import { EncString } from "@bitwarden/common/models/domain/encString";
 import { CipherWithIdRequest } from "@bitwarden/common/models/request/cipherWithIdRequest";
 import { FolderWithIdRequest } from "@bitwarden/common/models/request/folderWithIdRequest";
@@ -45,7 +45,7 @@ export class UpdateKeyComponent {
       this.platformUtilsService.showToast(
         "error",
         this.i18nService.t("errorOccurred"),
-        this.i18nService.t("masterPassRequired")
+        this.i18nService.t("masterPasswordRequired")
       );
       return;
     }

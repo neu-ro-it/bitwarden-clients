@@ -1393,6 +1393,21 @@
   "lockWithMasterPassOnRestart": {
     "message": "Blocca con la password principale al riavvio"
   },
+  "deleteAccount": {
+    "message": "Elimina account"
+  },
+  "deleteAccountDesc": {
+    "message": "Procedi sotto per eliminare il tuo account e tutti i dati della tua cassaforte."
+  },
+  "deleteAccountWarning": {
+    "message": "L'eliminazione dell'account è permanente. Questa azione non è reversibile."
+  },
+  "accountDeleted": {
+    "message": "Account eliminato"
+  },
+  "accountDeletedDesc": {
+    "message": "Il tuo account è stato eliminato e tutti i dati associati sono stati rimossi."
+  },
   "preferences": {
     "message": "Preferenze"
   },
@@ -1446,7 +1461,7 @@
     "message": "Una cassaforte bloccata richiede l'inserimento della password principale per accedere nuovamente."
   },
   "vaultTimeoutActionLogOutDesc": {
-    "message": "La disconnessione dalla cassaforte richiede l'inserimento della password principale per accedere nuovamente."
+    "message": "Per accedere nuovamente alla cassaforte è necessaria una nuova autenticazione."
   },
   "lock": {
     "message": "Blocca",
@@ -1550,7 +1565,7 @@
     "message": "I termini di servizio e l'informativa sulla privacy non sono stati accettati."
   },
   "enableBrowserIntegration": {
-    "message": "Abilita l'integrazione con il browser"
+    "message": "Abilita l'integrazione del browser"
   },
   "enableBrowserIntegrationDesc": {
     "message": "L'integrazione del browser è utilizzata per l'autenticazione biometrica."
@@ -1949,7 +1964,7 @@
     "message": "Cerca nella cassaforte"
   },
   "forwardedEmail": {
-    "message": "Alias email inoltrate"
+    "message": "Alias email inoltrata"
   },
   "forwardedEmailDesc": {
     "message": "Genera un alias email con un servizio di inoltro esterno."
@@ -1964,6 +1979,9 @@
   "apiKey": {
     "message": "Chiave API"
   },
+  "premiumSubcriptionRequired": {
+    "message": "È richiesto un abbonamento Premium"
+  },
   "organizationIsDisabled": {
     "message": "L'organizzazione è disabilitata."
   },
@@ -1975,5 +1993,8 @@
   },
   "cardBrandMir": {
     "message": "Mir"
+  },
+  "vault": {
+    "message": "Cassaforte"
   }
 }

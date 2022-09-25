@@ -64,18 +64,25 @@ const moduleRules = [
     ],
   },
   {
-    test: /(?:\.ngfactory\.js|\.ngstyle\.js|\.ts)$/,
+    test: /\.[cm]?js$/,
+    use: [
+      {
+        loader: "babel-loader",
+        options: {
+          configFile: false,
+          plugins: ["@angular/compiler-cli/linker/babel"],
+        },
+      },
+    ],
+  },
+  {
+    test: /\.[jt]sx?$/,
     loader: "@ngtools/webpack",
   },
 ];
 
 const plugins = [
   new CleanWebpackPlugin(),
-  // ref: https://github.com/angular/angular/issues/20357
-  new webpack.ContextReplacementPlugin(
-    /\@angular(\\|\/)core(\\|\/)fesm5/,
-    path.resolve(__dirname, "./src")
-  ),
   new HtmlWebpackPlugin({
     template: "./src/index.html",
     filename: "index.html",
@@ -142,6 +149,9 @@ const plugins = [
     filename: "[name].[contenthash].css",
     chunkFilename: "[id].[contenthash].css",
   }),
+  new webpack.ProvidePlugin({
+    process: "process/browser.js",
+  }),
   new webpack.EnvironmentPlugin({
     ENV: ENV,
     NODE_ENV: NODE_ENV === "production" ? "production" : "development",
@@ -152,9 +162,6 @@ const plugins = [
     BRAINTREE_KEY: envConfig["braintreeKey"] ?? "",
     PAYPAL_CONFIG: envConfig["paypal"] ?? {},
     FLAGS: envConfig["flags"] ?? {},
-  }),
-  new webpack.ProvidePlugin({
-    process: "process/browser",
   }),
   new AngularWebpackPlugin({
     tsConfigPath: "tsconfig.json",
@@ -202,6 +209,12 @@ const devServer =
             secure: false,
             changeOrigin: true,
           },
+          "/icons": {
+            target: envConfig.dev?.proxyIcons,
+            pathRewrite: { "^/icons": "" },
+            secure: false,
+            changeOrigin: true,
+          },
         },
         headers: (req) => {
           if (!req.originalUrl.includes("connector.html")) {
@@ -222,7 +235,7 @@ const devServer =
                     https://*.paypal.com
                     'sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU='
                     'sha256-JVRXyYPueLWdwGwY9m/7u4QlZ1xeQdqUj2t8OVIzZE4=';
-                    'sha256-0xHKHIT3+e2Gknxsm/cpErSprhL+o254L/y5bljg74U='
+                    'sha256-or0p3LaHetJ4FRq+flVORVFFNsOjQGWrDvX8Jf7ACWg='
                   img-src
                     'self'
                     data:
@@ -258,7 +271,9 @@ const devServer =
                     https://*.braintree-api.com
                     https://*.blob.core.windows.net
                     https://app.simplelogin.io/api/alias/random/new
-                    https://app.anonaddy.com/api/v1/aliases;
+                    https://quack.duckduckgo.com/api/email/addresses
+                    https://app.anonaddy.com/api/v1/aliases
+                    https://api.fastmail.com;
                   object-src
                     'self'
                     blob:;`,
@@ -282,8 +297,8 @@ const webpackConfig = {
   devtool: "source-map",
   devServer: devServer,
   entry: {
-    "app/polyfills": "./src/app/polyfills.ts",
-    "app/main": "./src/app/main.ts",
+    "app/polyfills": "./src/polyfills.ts",
+    "app/main": "./src/main.ts",
     "connectors/webauthn": "./src/connectors/webauthn.ts",
     "connectors/webauthn-fallback": "./src/connectors/webauthn-fallback.ts",
     "connectors/duo": "./src/connectors/duo.ts",

@@ -872,16 +872,16 @@
     "message": "4 godziny"
   },
   "onIdle": {
-    "message": "Po bezczynności przez 5 minut"
+    "message": "Podczas bezczynności systemu"
   },
   "onSleep": {
-    "message": "Po uśpieniu komputera"
+    "message": "Podczas uśpienia systemu"
   },
   "onLocked": {
     "message": "Po zablokowaniu komputera"
   },
   "onRestart": {
-    "message": "Po uruchomieniu ponownym"
+    "message": "Po restarcie aplikacji"
   },
   "never": {
     "message": "Nigdy"
@@ -1392,6 +1392,21 @@
   },
   "lockWithMasterPassOnRestart": {
     "message": "Zablokuj hasłem głównym po uruchomieniu ponownym"
+  },
+  "deleteAccount": {
+    "message": "Usuń konto"
+  },
+  "deleteAccountDesc": {
+    "message": "Kontynuuj poniżej, aby usunąć swoje konto i wszystkie dane sejfu."
+  },
+  "deleteAccountWarning": {
+    "message": "Usunięcie konta jest nieodwracalne. Ta czynność nie może zostać cofnięta."
+  },
+  "accountDeleted": {
+    "message": "Konto zostało usunięte"
+  },
+  "accountDeletedDesc": {
+    "message": "Konto zostało zamknięte i wszystkie powiązane z nim dane zostały usunięte."
   },
   "preferences": {
     "message": "Ustawienia"
@@ -1964,6 +1979,9 @@
   "apiKey": {
     "message": "Klucz interfejsu API"
   },
+  "premiumSubcriptionRequired": {
+    "message": "Wymagana jest subskrypcja Premium"
+  },
   "organizationIsDisabled": {
     "message": "Organizacja jest wyłączona."
   },
@@ -1975,5 +1993,8 @@
   },
   "cardBrandMir": {
     "message": "Mir"
+  },
+  "vault": {
+    "message": "Sejf"
   }
 }

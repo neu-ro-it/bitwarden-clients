@@ -217,4 +217,10 @@ describe("Utils Service", () => {
       expect(Utils.newGuid()).toMatch(validGuid);
     });
   });
+
+  describe("fromByteStringToArray", () => {
+    it("should handle null", () => {
+      expect(Utils.fromByteStringToArray(null)).toEqual(null);
+    });
+  });
 });

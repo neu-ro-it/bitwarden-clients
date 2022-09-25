@@ -104,7 +104,7 @@ export class Main {
     this.updaterMain = new UpdaterMain(
       this.i18nService,
       this.windowMain,
-      "desktop",
+      "clients",
       null,
       null,
       null,
@@ -171,7 +171,10 @@ export class Main {
           await this.biometricMain.init();
         }
 
-        if (await this.stateService.getEnableBrowserIntegration()) {
+        if (
+          (await this.stateService.getEnableBrowserIntegration()) ||
+          (await this.stateService.getEnableDuckDuckGoBrowserIntegration())
+        ) {
           this.nativeMessagingMain.listen();
         }
 
