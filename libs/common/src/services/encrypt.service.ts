@@ -170,16 +170,19 @@ export class EncryptService implements AbstractEncryptService {
   async decryptItem<T>(item: IDecryptable<T>, key: SymmetricCryptoKey) {
     const encStringProps = getEncStringList(item);
 
-    const promises: Promise<string>[] = [];
+    const promises: Promise<any>[] = [];
 
     // TODO: check that each is actually an encstring?
     // TODO: general error handling if any problem decrypting? (Error: could not decrypt text)
     // relies on each encString cacheing its result - is that itself a good pattern that we want to extend here?
     encStringProps.forEach((prop) =>
       promises.push(
-        this.decryptToUtf8((item as any)[prop], key).then(
-          (decryptedValue) => ((item as any)[prop].decryptedValue = decryptedValue)
-        )
+        this.decryptToUtf8((item as any)[prop], key)
+          .then((decryptedValue) => ((item as any)[prop].decryptedValue = decryptedValue))
+          .catch((e) => {
+            this.logService.error(e);
+            (item as any)[prop].decryptedValue = "[error: cannot decrypt]";
+          })
       )
     );
 

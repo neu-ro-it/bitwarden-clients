@@ -189,9 +189,12 @@ describe("EncryptService", () => {
   });
 
   describe("decryptItem", () => {
+    beforeEach(() => {
+      jest.clearAllMocks();
+    });
+
     it("proof of concept test", async () => {
       const date = new Date();
-
       const login = new Login();
       login.uris = null;
       login.username = new EncString("3.myUsername_Encrypted");
@@ -213,6 +216,33 @@ describe("EncryptService", () => {
         username: "myUsername",
         password: "myPassword",
         totp: "myTotp",
+        passwordRevisionDate: date,
+        autofillOnPageLoad: true,
+      });
+      expect(result).toBeInstanceOf(LoginView);
+    });
+
+    it("handles decryption errors", async () => {
+      const date = new Date();
+      const login = new Login();
+      login.uris = null;
+      login.username = new EncString("3.myUsername_Encrypted");
+      login.password = new EncString("3.myPassword_Encrypted");
+      login.totp = new EncString("3.myTotp_Encrypted");
+      login.passwordRevisionDate = date;
+      login.autofillOnPageLoad = true;
+
+      jest.spyOn(encryptService, "decryptToUtf8").mockRejectedValue("some decryption error");
+
+      const result = await encryptService.decryptItem(login, mock<SymmetricCryptoKey>());
+
+      const decryptionError = "[error: cannot decrypt]";
+
+      expect(result).toEqual({
+        uris: null,
+        username: decryptionError,
+        password: decryptionError,
+        totp: decryptionError,
         passwordRevisionDate: date,
         autofillOnPageLoad: true,
       });
