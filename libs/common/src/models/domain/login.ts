@@ -97,9 +97,10 @@ export class Login extends Domain implements IDecryptable<LoginView> {
     view.passwordRevisionDate = this.passwordRevisionDate;
 
     // Encrypted properties
-    view.username = this.username.decryptedValue;
-    view.password = this.password.decryptedValue;
-    view.totp = this.totp.decryptedValue;
+    view.username = this.username?.decryptedValue;
+    view.password = this.password?.decryptedValue;
+    view.totp = this.totp?.decryptedValue;
+    view.uris = this.uris?.map((uri) => uri.toView());
 
     return view;
   }

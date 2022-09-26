@@ -175,21 +175,27 @@ export class EncryptService implements AbstractEncryptService {
     const promises: Promise<any>[] = [];
 
     // Decrypt all encStrings of object
-    // relies on each encString cacheing its result - is that itself a good pattern that we want to extend here?
+    // relies on each encString cacheing its result - is that a good pattern that we want to extend here?
     const encStringProps = getEncStringList(item);
-    encStringProps?.forEach((prop) =>
+    encStringProps?.forEach((prop) => {
+      const propValue = (item as any)[prop];
+      if (propValue == null) {
+        return;
+      }
+
       promises.push(
-        this.decryptToUtf8((item as any)[prop], key)
+        this.decryptToUtf8(propValue, key)
           .then((decryptedValue) => ((item as any)[prop].decryptedValue = decryptedValue))
           .catch((e) => {
             this.logService.error(e);
             (item as any)[prop].decryptedValue = "[error: cannot decrypt]";
           })
-      )
-    );
+      );
+    });
 
     // Decrypt all nested IDecryptables (recursive call)
     const decryptableProps = getDecryptableList(item);
+
     decryptableProps?.forEach((prop) => {
       const propValue = (item as any)[prop];
       if (propValue == null) {

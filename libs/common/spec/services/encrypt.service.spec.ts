@@ -11,6 +11,9 @@ import { LoginView } from "@bitwarden/common/models/view/loginView";
 import { EncryptService } from "@bitwarden/common/services/encrypt.service";
 
 import { makeStaticByteArray } from "../utils";
+import { LoginUri } from "@bitwarden/common/models/domain/loginUri";
+import { LoginUriView } from "@bitwarden/common/models/view/loginUriView";
+import { UriMatchType } from "@bitwarden/common/enums/uriMatchType";
 
 describe("EncryptService", () => {
   const cryptoFunctionService = mock<CryptoFunctionService>();
@@ -193,7 +196,7 @@ describe("EncryptService", () => {
       jest.clearAllMocks();
     });
 
-    it("proof of concept test", async () => {
+    it("decrypts encStrings on target object", async () => {
       const date = new Date();
       const login = new Login();
       login.uris = null;
@@ -211,8 +214,7 @@ describe("EncryptService", () => {
 
       const result = await encryptService.decryptItem(login, mock<SymmetricCryptoKey>());
 
-      expect(result).toEqual({
-        uris: null,
+      expect(result).toMatchObject({
         username: "myUsername",
         password: "myPassword",
         totp: "myTotp",
@@ -222,7 +224,7 @@ describe("EncryptService", () => {
       expect(result).toBeInstanceOf(LoginView);
     });
 
-    it("handles decryption errors", async () => {
+    it("handles decryption errors in encStrings", async () => {
       const date = new Date();
       const login = new Login();
       login.uris = null;
@@ -238,8 +240,7 @@ describe("EncryptService", () => {
 
       const decryptionError = "[error: cannot decrypt]";
 
-      expect(result).toEqual({
-        uris: null,
+      expect(result).toMatchObject({
         username: decryptionError,
         password: decryptionError,
         totp: decryptionError,
@@ -247,6 +248,39 @@ describe("EncryptService", () => {
         autofillOnPageLoad: true,
       });
       expect(result).toBeInstanceOf(LoginView);
+    });
+
+    it("decrypts nested IDecryptables", async () => {
+      const uri1 = new LoginUri();
+      uri1.uri = new EncString("3.someUri_Encrypted");
+      uri1.match = UriMatchType.Domain;
+
+      const uri2 = new LoginUri();
+      uri2.uri = new EncString("3.anotherUri_Encrypted");
+      uri2.match = UriMatchType.Host;
+
+      const login = new Login();
+      login.uris = [uri1, uri2];
+
+      jest
+        .spyOn(encryptService, "decryptToUtf8")
+        .mockImplementation((encString, key) =>
+          Promise.resolve(encString.data.replace("_Encrypted", ""))
+        );
+
+      const result = await encryptService.decryptItem(login, mock<SymmetricCryptoKey>());
+
+      expect(result.uris[0]).toMatchObject({
+        uri: "someUri",
+        match: UriMatchType.Domain,
+      });
+      expect(result.uris[0]).toBeInstanceOf(LoginUriView);
+
+      expect(result.uris[1]).toMatchObject({
+        uri: "anotherUri",
+        match: UriMatchType.Host,
+      });
+      expect(result.uris[1]).toBeInstanceOf(LoginUriView);
     });
   });
 });
