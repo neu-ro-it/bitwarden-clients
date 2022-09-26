@@ -172,8 +172,6 @@ export class EncryptService implements AbstractEncryptService {
 
     const promises: Promise<any>[] = [];
 
-    // TODO: check that each is actually an encstring?
-    // TODO: general error handling if any problem decrypting? (Error: could not decrypt text)
     // relies on each encString cacheing its result - is that itself a good pattern that we want to extend here?
     encStringProps.forEach((prop) =>
       promises.push(
