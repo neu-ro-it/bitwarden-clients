@@ -1,5 +1,3 @@
-import "reflect-metadata";
-
 const metadataKey = Symbol("encStringList");
 
 export function encString(prototype: any, propertyKey: string) {

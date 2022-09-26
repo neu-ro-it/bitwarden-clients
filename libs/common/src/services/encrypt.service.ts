@@ -9,6 +9,7 @@ import { AbstractEncryptService } from "../abstractions/abstractEncrypt.service"
 import { EncryptionType } from "../enums/encryptionType";
 import { IDecryptable } from "../interfaces/IDecryptable";
 import { IEncrypted } from "../interfaces/IEncrypted";
+import { getDecryptableList } from "../misc/decryptable.decorator";
 import { getEncStringList } from "../misc/encString.decorator";
 import { EncArrayBuffer } from "../models/domain/encArrayBuffer";
 
@@ -168,12 +169,12 @@ export class EncryptService implements AbstractEncryptService {
   }
 
   async decryptItem<T>(item: IDecryptable<T>, key: SymmetricCryptoKey) {
-    const encStringProps = getEncStringList(item);
-
     const promises: Promise<any>[] = [];
 
+    // Decrypt all encStrings of object
     // relies on each encString cacheing its result - is that itself a good pattern that we want to extend here?
-    encStringProps.forEach((prop) =>
+    const encStringProps = getEncStringList(item);
+    encStringProps?.forEach((prop) =>
       promises.push(
         this.decryptToUtf8((item as any)[prop], key)
           .then((decryptedValue) => ((item as any)[prop].decryptedValue = decryptedValue))
@@ -183,6 +184,18 @@ export class EncryptService implements AbstractEncryptService {
           })
       )
     );
+
+    // Decrypt all nested IDecryptables (recursive call)
+    const decryptableProps = getDecryptableList(item);
+    decryptableProps?.forEach((prop) => {
+      const propValue = (item as any)[prop];
+
+      if (propValue instanceof Array) {
+        propValue.forEach((subItem) => promises.push(this.decryptItem(subItem, key)));
+      } else {
+        promises.push(this.decryptItem(propValue, key));
+      }
+    });
 
     await Promise.all(promises);
 
