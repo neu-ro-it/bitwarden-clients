@@ -1,5 +1,5 @@
 import { IDecryptable } from "@bitwarden/common/interfaces/IDecryptable";
-import { encString } from "@bitwarden/common/misc/encString.decorator";
+import { encString } from "@bitwarden/common/misc/decryptable.decorator";
 
 import { UriMatchType } from "../../enums/uriMatchType";
 import { LoginUriData } from "../data/loginUriData";

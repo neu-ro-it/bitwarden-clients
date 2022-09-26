@@ -9,8 +9,7 @@ import { AbstractEncryptService } from "../abstractions/abstractEncrypt.service"
 import { EncryptionType } from "../enums/encryptionType";
 import { IDecryptable } from "../interfaces/IDecryptable";
 import { IEncrypted } from "../interfaces/IEncrypted";
-import { getDecryptableList } from "../misc/decryptable.decorator";
-import { getEncStringList } from "../misc/encString.decorator";
+import { getEncStringList, getDecryptableList } from "../misc/decryptable.decorator";
 import { EncArrayBuffer } from "../models/domain/encArrayBuffer";
 
 export class EncryptService implements AbstractEncryptService {
@@ -169,6 +168,10 @@ export class EncryptService implements AbstractEncryptService {
   }
 
   async decryptItem<T>(item: IDecryptable<T>, key: SymmetricCryptoKey) {
+    if (item == null) {
+      throw new Error("Cannot decrypt a null item");
+    }
+
     const promises: Promise<any>[] = [];
 
     // Decrypt all encStrings of object
@@ -189,6 +192,9 @@ export class EncryptService implements AbstractEncryptService {
     const decryptableProps = getDecryptableList(item);
     decryptableProps?.forEach((prop) => {
       const propValue = (item as any)[prop];
+      if (propValue == null) {
+        return;
+      }
 
       if (propValue instanceof Array) {
         propValue.forEach((subItem) => promises.push(this.decryptItem(subItem, key)));

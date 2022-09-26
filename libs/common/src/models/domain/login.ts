@@ -1,6 +1,5 @@
 import { IDecryptable } from "@bitwarden/common/interfaces/IDecryptable";
-import { decryptable } from "@bitwarden/common/misc/decryptable.decorator";
-import { encString } from "@bitwarden/common/misc/encString.decorator";
+import { encString, decryptable } from "@bitwarden/common/misc/decryptable.decorator";
 
 import { LoginData } from "../data/loginData";
 import { LoginView } from "../view/loginView";

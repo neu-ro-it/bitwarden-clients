@@ -37,9 +37,6 @@ import { SendOptionsPolicy } from "./organizations/policies/send-options.compone
 import { SingleOrgPolicy } from "./organizations/policies/single-org.component";
 import { TwoFactorAuthenticationPolicy } from "./organizations/policies/two-factor-authentication.component";
 
-// This must only be imported once, it's available in the global scope
-import "reflect-metadata";
-
 const BroadcasterSubscriptionId = "AppComponent";
 const IdleTimeout = 60000 * 10; // 10 minutes
 

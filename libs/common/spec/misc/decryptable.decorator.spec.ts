@@ -1,4 +1,4 @@
-import { encString, getEncStringList } from "@bitwarden/common/misc/encString.decorator";
+import { encString, getEncStringList } from "@bitwarden/common/misc/decryptable.decorator";
 
 class TestClass {
   @encString
