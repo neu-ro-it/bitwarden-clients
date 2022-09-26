@@ -1,3 +1,7 @@
+import { IDecryptable } from "@bitwarden/common/interfaces/IDecryptable";
+import { decryptable } from "@bitwarden/common/misc/decryptable.decorator";
+import { encString } from "@bitwarden/common/misc/encString.decorator";
+
 import { LoginData } from "../data/loginData";
 import { LoginView } from "../view/loginView";
 
@@ -6,12 +10,12 @@ import { EncString } from "./encString";
 import { LoginUri } from "./loginUri";
 import { SymmetricCryptoKey } from "./symmetricCryptoKey";
 
-export class Login extends Domain {
-  uris: LoginUri[];
-  username: EncString;
-  password: EncString;
+export class Login extends Domain implements IDecryptable<LoginView> {
+  @decryptable uris: LoginUri[];
+  @encString username: EncString;
+  @encString password: EncString;
   passwordRevisionDate?: Date;
-  totp: EncString;
+  @encString totp: EncString;
   autofillOnPageLoad: boolean;
 
   constructor(obj?: LoginData) {
@@ -84,5 +88,20 @@ export class Login extends Domain {
     }
 
     return l;
+  }
+
+  toView() {
+    const view = new LoginView();
+
+    // Unencrypted properties
+    view.autofillOnPageLoad = this.autofillOnPageLoad;
+    view.passwordRevisionDate = this.passwordRevisionDate;
+
+    // Encrypted properties
+    view.username = this.username.decryptedValue;
+    view.password = this.password.decryptedValue;
+    view.totp = this.totp.decryptedValue;
+
+    return view;
   }
 }

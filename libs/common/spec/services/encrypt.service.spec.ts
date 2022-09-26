@@ -5,7 +5,9 @@ import { LogService } from "@bitwarden/common/abstractions/log.service";
 import { EncryptionType } from "@bitwarden/common/enums/encryptionType";
 import { EncArrayBuffer } from "@bitwarden/common/models/domain/encArrayBuffer";
 import { EncString } from "@bitwarden/common/models/domain/encString";
+import { Login } from "@bitwarden/common/models/domain/login";
 import { SymmetricCryptoKey } from "@bitwarden/common/models/domain/symmetricCryptoKey";
+import { LoginView } from "@bitwarden/common/models/view/loginView";
 import { EncryptService } from "@bitwarden/common/services/encrypt.service";
 
 import { makeStaticByteArray } from "../utils";
@@ -183,6 +185,38 @@ describe("EncryptService", () => {
       const actual = encryptService.resolveLegacyKey(key, encString);
 
       expect(actual).toEqual(key);
+    });
+  });
+
+  describe("decryptItem", () => {
+    it("proof of concept test", async () => {
+      const date = new Date();
+
+      const login = new Login();
+      login.uris = null;
+      login.username = new EncString("3.myUsername_Encrypted");
+      login.password = new EncString("3.myPassword_Encrypted");
+      login.totp = new EncString("3.myTotp_Encrypted");
+      login.passwordRevisionDate = date;
+      login.autofillOnPageLoad = true;
+
+      jest
+        .spyOn(encryptService, "decryptToUtf8")
+        .mockImplementation((encString, key) =>
+          Promise.resolve(encString.data.replace("_Encrypted", ""))
+        );
+
+      const result = await encryptService.decryptItem(login, mock<SymmetricCryptoKey>());
+
+      expect(result).toEqual({
+        uris: null,
+        username: "myUsername",
+        password: "myPassword",
+        totp: "myTotp",
+        passwordRevisionDate: date,
+        autofillOnPageLoad: true,
+      });
+      expect(result).toBeInstanceOf(LoginView);
     });
   });
 });

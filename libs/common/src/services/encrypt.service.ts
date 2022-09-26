@@ -7,7 +7,9 @@ import { SymmetricCryptoKey } from "@bitwarden/common/models/domain/symmetricCry
 
 import { AbstractEncryptService } from "../abstractions/abstractEncrypt.service";
 import { EncryptionType } from "../enums/encryptionType";
+import { IDecryptable } from "../interfaces/IDecryptable";
 import { IEncrypted } from "../interfaces/IEncrypted";
+import { getEncStringList } from "../misc/encString.decorator";
 import { EncArrayBuffer } from "../models/domain/encArrayBuffer";
 
 export class EncryptService implements AbstractEncryptService {
@@ -163,6 +165,27 @@ export class EncryptService implements AbstractEncryptService {
     }
 
     return obj;
+  }
+
+  async decryptItem<T>(item: IDecryptable<T>, key: SymmetricCryptoKey) {
+    const encStringProps = getEncStringList(item);
+
+    const promises: Promise<string>[] = [];
+
+    // TODO: check that each is actually an encstring?
+    // TODO: general error handling if any problem decrypting? (Error: could not decrypt text)
+    // relies on each encString cacheing its result - is that itself a good pattern that we want to extend here?
+    encStringProps.forEach((prop) =>
+      promises.push(
+        this.decryptToUtf8((item as any)[prop], key).then(
+          (decryptedValue) => ((item as any)[prop].decryptedValue = decryptedValue)
+        )
+      )
+    );
+
+    await Promise.all(promises);
+
+    return item.toView();
   }
 
   private logMacFailed(msg: string) {
