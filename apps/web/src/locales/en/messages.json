@@ -5390,5 +5390,11 @@
   },
   "numberOfUsers": {
     "message": "Number of users"
+  },
+  "loggingInAs": {
+    "message": "Logging in as"
+  },
+  "notYou": {
+    "message": "Not you?"
   }
 }

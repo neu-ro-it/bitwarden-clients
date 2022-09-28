@@ -5,6 +5,7 @@ import { first } from "rxjs/operators";
 
 import { LoginComponent as BaseLoginComponent } from "@bitwarden/angular/components/login.component";
 import { ApiService } from "@bitwarden/common/abstractions/api.service";
+import { AppIdService } from "@bitwarden/common/abstractions/appId.service";
 import { AuthService } from "@bitwarden/common/abstractions/auth.service";
 import { CryptoFunctionService } from "@bitwarden/common/abstractions/cryptoFunction.service";
 import { EnvironmentService } from "@bitwarden/common/abstractions/environment.service";
@@ -37,6 +38,8 @@ export class LoginComponent extends BaseLoginComponent {
   showPasswordless = false;
 
   constructor(
+    apiService: ApiService,
+    appIdService: AppIdService,
     authService: AuthService,
     router: Router,
     i18nService: I18nService,
@@ -45,7 +48,6 @@ export class LoginComponent extends BaseLoginComponent {
     environmentService: EnvironmentService,
     passwordGenerationService: PasswordGenerationService,
     cryptoFunctionService: CryptoFunctionService,
-    private apiService: ApiService,
     private policyApiService: PolicyApiServiceAbstraction,
     private policyService: InternalPolicyService,
     logService: LogService,
@@ -57,6 +59,8 @@ export class LoginComponent extends BaseLoginComponent {
     formValidationErrorService: FormValidationErrorsService
   ) {
     super(
+      apiService,
+      appIdService,
       authService,
       router,
       platformUtilsService,
