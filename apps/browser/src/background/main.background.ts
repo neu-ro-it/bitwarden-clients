@@ -177,7 +177,7 @@ export default class MainBackground {
   private tabsBackground: TabsBackground;
   private webRequestBackground: WebRequestBackground;
 
-  private sidebarAction: CommonSidebarAction;
+  private sidebarAction: any;
   private buildingContextMenu: boolean;
   private menuOptionsLoaded: any[] = [];
   private syncTimeout: any;
