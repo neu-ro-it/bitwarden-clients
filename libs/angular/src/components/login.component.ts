@@ -38,13 +38,17 @@ export class LoginComponent extends CaptchaProtectedComponent implements OnInit 
   formGroup = this.formBuilder.group({
     email: ["", [Validators.required, Validators.email]],
     masterPassword: ["", [Validators.required, Validators.minLength(8)]],
-    rememberEmail: [true],
+    rememberEmail: [false],
   });
 
   protected twoFactorRoute = "2fa";
   protected successRoute = "vault";
   protected forcePasswordResetRoute = "update-temp-password";
   protected alwaysRememberEmail = false;
+
+  get loggedEmail() {
+    return this.formGroup.get("email")?.value;
+  }
 
   constructor(
     protected apiService: ApiService,
@@ -71,7 +75,7 @@ export class LoginComponent extends CaptchaProtectedComponent implements OnInit 
   }
 
   async ngOnInit() {
-    let email = this.formGroup.get("email")?.value;
+    let email = this.loggedEmail;
     if (email == null || email === "") {
       email = await this.stateService.getRememberedEmail();
       this.formGroup.get("email")?.setValue(email);
@@ -84,10 +88,14 @@ export class LoginComponent extends CaptchaProtectedComponent implements OnInit 
       const rememberEmail = (await this.stateService.getRememberedEmail()) != null;
       this.formGroup.get("rememberEmail")?.setValue(rememberEmail);
     }
+
+    if (email) {
+      this.validateEmail();
+    }
   }
 
   async submit(showToast = true) {
-    const email = this.formGroup.get("email")?.value;
+    const email = this.loggedEmail;
     const masterPassword = this.formGroup.get("masterPassword")?.value;
     const rememberEmail = this.formGroup.get("rememberEmail")?.value;
 
@@ -199,6 +207,14 @@ export class LoginComponent extends CaptchaProtectedComponent implements OnInit 
     );
   }
 
+  async validateEmail() {
+    const emailInvalid = this.formGroup.get("email").invalid;
+    if (!emailInvalid) {
+      this.toggleValidateEmail(true);
+      await this.getLoginWithDevice(this.loggedEmail);
+    }
+  }
+
   private getErrorToastMessage() {
     const error: AllValidationErrors = this.formValidationErrorService
       .getFormValidationErrors(this.formGroup.controls)
@@ -236,7 +252,7 @@ export class LoginComponent extends CaptchaProtectedComponent implements OnInit 
   }
 
   protected focusInput() {
-    const email = this.formGroup.get("email")?.value;
+    const email = this.loggedEmail;
     document.getElementById(email == null || email === "" ? "email" : "masterPassword").focus();
   }
 }

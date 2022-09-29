@@ -575,6 +575,9 @@
   "loginWithDeviceEnabledInfo": {
     "message": "Log in with device must be enabled in the settings of the Bitwarden mobile app. Need another option?"
   },
+  "loginWithMasterPassword": {
+    "message": "Log in with master password"
+  },
   "createAccount": {
     "message": "Create Account"
   },

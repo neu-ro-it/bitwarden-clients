@@ -104,8 +104,6 @@ export class LoginComponent extends BaseLoginComponent {
         this.routerService.setPreviousUrl(route.toString());
       }
       await super.ngOnInit();
-      const rememberEmail = await this.stateService.getRememberEmail();
-      this.formGroup.get("rememberEmail")?.setValue(rememberEmail);
     });
 
     const invite = await this.stateService.getOrganizationInvitation();
