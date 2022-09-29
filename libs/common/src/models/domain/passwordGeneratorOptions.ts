@@ -1,17 +1,17 @@
 export type PasswordGeneratorOptions = {
   length: number;
   ambiguous?: boolean;
-  uppercase: boolean;
+  uppercase?: boolean;
   minUppercase?: number;
-  lowercase: boolean;
+  lowercase?: boolean;
   minLowercase?: number;
-  number: boolean;
+  number?: boolean;
   minNumber?: number;
-  special: boolean;
+  special?: boolean;
   minSpecial?: number;
-  numWords: number;
-  wordSeparator: string;
-  capitalize: boolean;
-  includeNumber: boolean;
-  type: "password" | "passphrase";
+  numWords?: number;
+  wordSeparator?: string;
+  capitalize?: boolean;
+  includeNumber?: boolean;
+  type?: "password" | "passphrase";
 };
