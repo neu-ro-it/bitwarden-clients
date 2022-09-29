@@ -33,8 +33,8 @@ export default class BrowserPlatformUtilsService implements PlatformUtilsService
     ) {
       this.deviceCache = DeviceType.FirefoxExtension;
     } else if (
-      (typeof opr !== "undefined" && typeof opr.addons !== "undefined") ||
-      typeof opera !== "undefined" ||
+      (self.opr && self.opr.addons) ||
+      self.opera ||
       navigator.userAgent.indexOf(" OPR/") >= 0
     ) {
       this.deviceCache = DeviceType.OperaExtension;
@@ -42,7 +42,7 @@ export default class BrowserPlatformUtilsService implements PlatformUtilsService
       this.deviceCache = DeviceType.EdgeExtension;
     } else if (navigator.userAgent.indexOf(" Vivaldi/") !== -1) {
       this.deviceCache = DeviceType.VivaldiExtension;
-    } else if (chrome && navigator.userAgent.indexOf(" Chrome/") !== -1) {
+    } else if (window.chrome && navigator.userAgent.indexOf(" Chrome/") !== -1) {
       this.deviceCache = DeviceType.ChromeExtension;
     } else if (navigator.userAgent.indexOf(" Safari/") !== -1) {
       this.deviceCache = DeviceType.SafariExtension;

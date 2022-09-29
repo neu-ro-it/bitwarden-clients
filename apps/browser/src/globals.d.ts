@@ -1,6 +1,5 @@
 declare function escape(s: string): string;
 declare function unescape(s: string): string;
-
 /**
  * @link https://dev.opera.com/extensions/addons-api/
  */
@@ -46,8 +45,8 @@ type OperaSidebarAction = {
    */
   setIcon: (
     details: {
-      imageData?: ImageDataType | { [size: number]: ImageDataType };
-      path?: string | { [size: number]: string };
+      imageData?: ImageDataType | Record<number, ImageDataType>;
+      path?: string | Record<number, string>;
       tabId?: number;
     },
     callback?: () => void
@@ -123,6 +122,11 @@ declare namespace chrome {
         | "onBlur"
       >
     | undefined;
+}
+
+interface Window {
+  opr: Opera | undefined;
+  opera: unknown;
 }
 
 declare let opr: Opera | undefined;
