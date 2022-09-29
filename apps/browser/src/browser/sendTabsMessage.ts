@@ -1,4 +1,4 @@
-import { TabMessage } from "src/types/tab-messages";
+import { TabMessage } from "../types/tab-messages";
 
 export const sendTabsMessage = <T = unknown>(
   tabId: number,
