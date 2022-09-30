@@ -1,6 +1,5 @@
 import { EventService as AbstractEventService } from "@bitwarden/common/abstractions/event.service";
 import { EventService } from "@bitwarden/common/services/event.service";
-import { NoopEventService } from "@bitwarden/common/services/noopEvent.service";
 
 import { apiServiceFactory, ApiServiceInitOptions } from "./api-service.factory";
 import { cipherServiceFactory, CipherServiceInitOptions } from "./cipher-service.factory";
@@ -12,11 +11,7 @@ import {
 } from "./organization-service.factory";
 import { stateServiceFactory, StateServiceInitOptions } from "./state-service.factory";
 
-type EventServiceFactoryOptions = FactoryOptions & {
-  eventServiceOptions: {
-    useNoopService: boolean;
-  };
-};
+type EventServiceFactoryOptions = FactoryOptions;
 
 export type EventServiceInitOptions = EventServiceFactoryOptions &
   ApiServiceInitOptions &
@@ -30,10 +25,6 @@ export function eventServiceFactory(
   opts: EventServiceInitOptions
 ): Promise<AbstractEventService> {
   return factory(cache, "eventService", opts, async () => {
-    if (opts.eventServiceOptions.useNoopService) {
-      return new NoopEventService();
-    }
-
     return new EventService(
       await apiServiceFactory(cache, opts),
       await cipherServiceFactory(cache, opts),

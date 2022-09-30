@@ -1,5 +1,5 @@
 import MainBackground from "./background/main.background";
-import { onAlarmListener } from "./listeners/onAlarmListener";
+import { onAlarmListener } from "./listeners/on-alarm-listener";
 import { onCommandListener } from "./listeners/onCommandListener";
 import { onInstallListener } from "./listeners/onInstallListener";
 

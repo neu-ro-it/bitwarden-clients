@@ -41,7 +41,7 @@
     },
     {
       "all_frames": true,
-      "js": ["content/miscUtils.js"],
+      "js": ["content/misc-utils.js"],
       "matches": ["http://*/*", "https://*/*", "file:///*"],
       "run_at": "document_end"
     }
