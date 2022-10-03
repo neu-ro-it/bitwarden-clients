@@ -10,10 +10,14 @@ import { SymmetricCryptoKey } from "./symmetricCryptoKey";
 export class EncString implements IEncrypted {
   encryptedString?: string;
   encryptionType?: EncryptionType;
-  decryptedValue?: string;
   data?: string;
   iv?: string;
   mac?: string;
+
+  /**
+   * @deprecated: EncStrings no longer store their decrypted values as this risks leaking data
+   */
+  private decryptedValue?: string;
 
   constructor(
     encryptedStringOrType: string | EncryptionType,

@@ -89,7 +89,7 @@ export class Login extends Domain implements IDecryptable<LoginView> {
     return l;
   }
 
-  toView() {
+  toView(decryptedProperties: any) {
     const view = new LoginView();
 
     // Unencrypted properties
@@ -97,10 +97,7 @@ export class Login extends Domain implements IDecryptable<LoginView> {
     view.passwordRevisionDate = this.passwordRevisionDate;
 
     // Encrypted properties
-    view.username = this.username?.decryptedValue;
-    view.password = this.password?.decryptedValue;
-    view.totp = this.totp?.decryptedValue;
-    view.uris = this.uris?.map((uri) => uri.toView());
+    Object.assign(view, decryptedProperties);
 
     return view;
   }

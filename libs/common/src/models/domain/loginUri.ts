@@ -56,10 +56,12 @@ export class LoginUri extends Domain implements IDecryptable<LoginUriView> {
     return u;
   }
 
-  toView() {
+  toView(decryptedProperties: any) {
     const view = new LoginUriView();
-    view.uri = this.uri.decryptedValue;
     view.match = this.match;
+
+    Object.assign(view, decryptedProperties);
+
     return view;
   }
 }

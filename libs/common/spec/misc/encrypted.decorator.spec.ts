@@ -9,7 +9,7 @@ class TestClass {
   someOtherProperty: Date;
 }
 
-describe("encString decorator", () => {
+describe("encrypted decorator", () => {
   it("adds property name to list", () => {
     const testClass = new TestClass();
     const result = getEncryptedProperties(testClass);

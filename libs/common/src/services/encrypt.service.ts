@@ -11,6 +11,7 @@ import { IDecryptable } from "../interfaces/IDecryptable";
 import { IEncrypted } from "../interfaces/IEncrypted";
 import { getEncryptedProperties } from "../misc/encrypted.decorator";
 import { EncArrayBuffer } from "../models/domain/encArrayBuffer";
+import { View } from "../models/view/view";
 
 export class EncryptService implements AbstractEncryptService {
   constructor(
@@ -173,8 +174,8 @@ export class EncryptService implements AbstractEncryptService {
     }
 
     const promises: Promise<any>[] = [];
+    const decryptedValues: Record<string, string | View | Array<string> | Array<View>> = {};
 
-    // TODO: do not store decrypted value in domain object - copy to intermediate temp object and then pass to view
     const encryptedProperties = getEncryptedProperties(item);
     encryptedProperties?.forEach((prop) => {
       const propValue = (item as any)[prop];
@@ -186,26 +187,39 @@ export class EncryptService implements AbstractEncryptService {
         // decrypt the EncString
         promises.push(
           this.decryptToUtf8(propValue, key)
-            .then((decryptedValue) => ((item as any)[prop].decryptedValue = decryptedValue))
+            .then((decryptedValue) => (decryptedValues[prop] = decryptedValue))
             .catch((e) => {
               this.logService.error(e);
-              (item as any)[prop].decryptedValue = "[error: cannot decrypt]";
+              decryptedValues[prop] = "[error: cannot decrypt]";
             })
         );
         return;
       }
 
       // else it's a nested object with EncStrings, recursive call
+      // TODO: what about an array of encstrings?
       if (propValue instanceof Array) {
-        propValue.forEach((subItem) => promises.push(this.decryptItem(subItem, key)));
+        decryptedValues[prop] = [];
+
+        propValue.forEach((subItem) =>
+          promises.push(
+            this.decryptItem(subItem, key).then((decryptedValue) =>
+              (decryptedValues[prop] as Array<View>).push(decryptedValue)
+            )
+          )
+        );
       } else {
-        promises.push(this.decryptItem(propValue, key));
+        promises.push(
+          this.decryptItem(propValue, key).then(
+            (decryptedValue) => (decryptedValues[prop] = decryptedValue)
+          )
+        );
       }
     });
 
     await Promise.all(promises);
 
-    return item.toView();
+    return item.toView(decryptedValues);
   }
 
   private logMacFailed(msg: string) {

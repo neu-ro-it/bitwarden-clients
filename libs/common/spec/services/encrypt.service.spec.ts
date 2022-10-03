@@ -3,17 +3,18 @@ import { mockReset, mock } from "jest-mock-extended";
 import { CryptoFunctionService } from "@bitwarden/common/abstractions/cryptoFunction.service";
 import { LogService } from "@bitwarden/common/abstractions/log.service";
 import { EncryptionType } from "@bitwarden/common/enums/encryptionType";
+import { UriMatchType } from "@bitwarden/common/enums/uriMatchType";
 import { EncArrayBuffer } from "@bitwarden/common/models/domain/encArrayBuffer";
 import { EncString } from "@bitwarden/common/models/domain/encString";
 import { Login } from "@bitwarden/common/models/domain/login";
+import { LoginUri } from "@bitwarden/common/models/domain/loginUri";
 import { SymmetricCryptoKey } from "@bitwarden/common/models/domain/symmetricCryptoKey";
-import { LoginView } from "@bitwarden/common/models/view/loginView";
+import { LoginUriView } from "@bitwarden/common/models/view/loginUriView";
 import { EncryptService } from "@bitwarden/common/services/encrypt.service";
 
 import { makeStaticByteArray } from "../utils";
-import { LoginUri } from "@bitwarden/common/models/domain/loginUri";
-import { LoginUriView } from "@bitwarden/common/models/view/loginUriView";
-import { UriMatchType } from "@bitwarden/common/enums/uriMatchType";
+
+import { SimpleEncryptedObject, SimpleEncryptedObjectView } from "./encryptedObject";
 
 describe("EncryptService", () => {
   const cryptoFunctionService = mock<CryptoFunctionService>();
@@ -196,91 +197,78 @@ describe("EncryptService", () => {
       jest.clearAllMocks();
     });
 
-    it("decrypts encStrings on target object", async () => {
-      const date = new Date();
-      const login = new Login();
-      login.uris = null;
-      login.username = new EncString("3.myUsername_Encrypted");
-      login.password = new EncString("3.myPassword_Encrypted");
-      login.totp = new EncString("3.myTotp_Encrypted");
-      login.passwordRevisionDate = date;
-      login.autofillOnPageLoad = true;
-
-      jest
-        .spyOn(encryptService, "decryptToUtf8")
-        .mockImplementation((encString, key) =>
-          Promise.resolve(encString.data.replace("_Encrypted", ""))
-        );
-
-      const result = await encryptService.decryptItem(login, mock<SymmetricCryptoKey>());
-
-      expect(result).toMatchObject({
-        username: "myUsername",
-        password: "myPassword",
-        totp: "myTotp",
-        passwordRevisionDate: date,
-        autofillOnPageLoad: true,
+    describe("given an object with encStrings", () => {
+      beforeEach(() => {
+        jest
+          .spyOn(encryptService, "decryptToUtf8")
+          .mockImplementation((encString, key) =>
+            Promise.resolve(encString.data.replace("_Encrypted", ""))
+          );
       });
-      expect(result).toBeInstanceOf(LoginView);
+
+      it("decrypts encStrings", async () => {
+        const target = new SimpleEncryptedObject();
+
+        const result = await encryptService.decryptItem(target, mock<SymmetricCryptoKey>());
+
+        expect(result).toMatchObject({
+          foo: "foo",
+          bar: "bar",
+          plainValue: 9000,
+        });
+        expect(result).toBeInstanceOf(SimpleEncryptedObjectView);
+      });
     });
 
-    it("handles decryption errors in encStrings", async () => {
-      const date = new Date();
-      const login = new Login();
-      login.uris = null;
-      login.username = new EncString("3.myUsername_Encrypted");
-      login.password = new EncString("3.myPassword_Encrypted");
-      login.totp = new EncString("3.myTotp_Encrypted");
-      login.passwordRevisionDate = date;
-      login.autofillOnPageLoad = true;
+    describe("given an object with nested IDecryptables", () => {
+      it("decrypts an array of Decryptables", async () => {
+        const uri1 = new LoginUri();
+        uri1.uri = new EncString("3.someUri_Encrypted");
+        uri1.match = UriMatchType.Domain;
 
+        const uri2 = new LoginUri();
+        uri2.uri = new EncString("3.anotherUri_Encrypted");
+        uri2.match = UriMatchType.Host;
+
+        const login = new Login();
+        login.uris = [uri1, uri2];
+
+        jest
+          .spyOn(encryptService, "decryptToUtf8")
+          .mockImplementation((encString, key) =>
+            Promise.resolve(encString.data.replace("_Encrypted", ""))
+          );
+
+        const result = await encryptService.decryptItem(login, mock<SymmetricCryptoKey>());
+
+        expect(result.uris[0]).toMatchObject({
+          uri: "someUri",
+          match: UriMatchType.Domain,
+        });
+        expect(result.uris[0]).toBeInstanceOf(LoginUriView);
+
+        expect(result.uris[1]).toMatchObject({
+          uri: "anotherUri",
+          match: UriMatchType.Host,
+        });
+        expect(result.uris[1]).toBeInstanceOf(LoginUriView);
+      });
+    });
+
+    it("handles decryption errors", async () => {
+      const target = new SimpleEncryptedObject();
       jest.spyOn(encryptService, "decryptToUtf8").mockRejectedValue("some decryption error");
 
-      const result = await encryptService.decryptItem(login, mock<SymmetricCryptoKey>());
+      const result = await encryptService.decryptItem(target, mock<SymmetricCryptoKey>());
 
       const decryptionError = "[error: cannot decrypt]";
 
       expect(result).toMatchObject({
-        username: decryptionError,
-        password: decryptionError,
-        totp: decryptionError,
-        passwordRevisionDate: date,
-        autofillOnPageLoad: true,
+        foo: decryptionError,
+        bar: decryptionError,
+        plainValue: 9000,
       });
-      expect(result).toBeInstanceOf(LoginView);
-    });
-
-    it("decrypts nested IDecryptables", async () => {
-      const uri1 = new LoginUri();
-      uri1.uri = new EncString("3.someUri_Encrypted");
-      uri1.match = UriMatchType.Domain;
-
-      const uri2 = new LoginUri();
-      uri2.uri = new EncString("3.anotherUri_Encrypted");
-      uri2.match = UriMatchType.Host;
-
-      const login = new Login();
-      login.uris = [uri1, uri2];
-
-      jest
-        .spyOn(encryptService, "decryptToUtf8")
-        .mockImplementation((encString, key) =>
-          Promise.resolve(encString.data.replace("_Encrypted", ""))
-        );
-
-      const result = await encryptService.decryptItem(login, mock<SymmetricCryptoKey>());
-
-      expect(result.uris[0]).toMatchObject({
-        uri: "someUri",
-        match: UriMatchType.Domain,
-      });
-      expect(result.uris[0]).toBeInstanceOf(LoginUriView);
-
-      expect(result.uris[1]).toMatchObject({
-        uri: "anotherUri",
-        match: UriMatchType.Host,
-      });
-      expect(result.uris[1]).toBeInstanceOf(LoginUriView);
+      expect(result).toBeInstanceOf(SimpleEncryptedObjectView);
     });
   });
 });
