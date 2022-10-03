@@ -1,9 +1,9 @@
-import { encString, getEncStringList } from "@bitwarden/common/misc/decryptable.decorator";
+import { encrypted, getEncryptedProperties } from "@bitwarden/common/misc/encrypted.decorator";
 
 class TestClass {
-  @encString
+  @encrypted
   encryptedString: string;
-  @encString
+  @encrypted
   anotherEncryptedString: string;
 
   someOtherProperty: Date;
@@ -12,7 +12,7 @@ class TestClass {
 describe("encString decorator", () => {
   it("adds property name to list", () => {
     const testClass = new TestClass();
-    const result = getEncStringList(testClass);
+    const result = getEncryptedProperties(testClass);
     expect(result).toEqual(["encryptedString", "anotherEncryptedString"]);
   });
 });

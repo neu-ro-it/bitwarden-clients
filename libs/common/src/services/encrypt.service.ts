@@ -9,7 +9,7 @@ import { AbstractEncryptService } from "../abstractions/abstractEncrypt.service"
 import { EncryptionType } from "../enums/encryptionType";
 import { IDecryptable } from "../interfaces/IDecryptable";
 import { IEncrypted } from "../interfaces/IEncrypted";
-import { getEncStringList, getDecryptableList } from "../misc/decryptable.decorator";
+import { getEncryptedProperties } from "../misc/encrypted.decorator";
 import { EncArrayBuffer } from "../models/domain/encArrayBuffer";
 
 export class EncryptService implements AbstractEncryptService {
@@ -174,34 +174,28 @@ export class EncryptService implements AbstractEncryptService {
 
     const promises: Promise<any>[] = [];
 
-    // Decrypt all encStrings of object
-    // relies on each encString cacheing its result - is that a good pattern that we want to extend here?
-    const encStringProps = getEncStringList(item);
-    encStringProps?.forEach((prop) => {
+    // TODO: do not store decrypted value in domain object - copy to intermediate temp object and then pass to view
+    const encryptedProperties = getEncryptedProperties(item);
+    encryptedProperties?.forEach((prop) => {
       const propValue = (item as any)[prop];
       if (propValue == null) {
         return;
       }
 
-      promises.push(
-        this.decryptToUtf8(propValue, key)
-          .then((decryptedValue) => ((item as any)[prop].decryptedValue = decryptedValue))
-          .catch((e) => {
-            this.logService.error(e);
-            (item as any)[prop].decryptedValue = "[error: cannot decrypt]";
-          })
-      );
-    });
-
-    // Decrypt all nested IDecryptables (recursive call)
-    const decryptableProps = getDecryptableList(item);
-
-    decryptableProps?.forEach((prop) => {
-      const propValue = (item as any)[prop];
-      if (propValue == null) {
+      if (propValue instanceof EncString) {
+        // decrypt the EncString
+        promises.push(
+          this.decryptToUtf8(propValue, key)
+            .then((decryptedValue) => ((item as any)[prop].decryptedValue = decryptedValue))
+            .catch((e) => {
+              this.logService.error(e);
+              (item as any)[prop].decryptedValue = "[error: cannot decrypt]";
+            })
+        );
         return;
       }
 
+      // else it's a nested object with EncStrings, recursive call
       if (propValue instanceof Array) {
         propValue.forEach((subItem) => promises.push(this.decryptItem(subItem, key)));
       } else {

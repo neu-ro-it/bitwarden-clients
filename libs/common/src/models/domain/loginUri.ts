@@ -1,5 +1,5 @@
 import { IDecryptable } from "@bitwarden/common/interfaces/IDecryptable";
-import { encString } from "@bitwarden/common/misc/decryptable.decorator";
+import { encrypted } from "@bitwarden/common/misc/encrypted.decorator";
 
 import { UriMatchType } from "../../enums/uriMatchType";
 import { LoginUriData } from "../data/loginUriData";
@@ -10,7 +10,7 @@ import { EncString } from "./encString";
 import { SymmetricCryptoKey } from "./symmetricCryptoKey";
 
 export class LoginUri extends Domain implements IDecryptable<LoginUriView> {
-  @encString
+  @encrypted
   uri: EncString;
   match: UriMatchType;
 
