@@ -197,7 +197,7 @@ describe("EncryptService", () => {
       jest.clearAllMocks();
     });
 
-    describe("given an object with encStrings", () => {
+    describe("decrypts", () => {
       beforeEach(() => {
         jest
           .spyOn(encryptService, "decryptToUtf8")
@@ -206,7 +206,7 @@ describe("EncryptService", () => {
           );
       });
 
-      it("decrypts encStrings", async () => {
+      it("encStrings", async () => {
         const target = new SimpleEncryptedObject();
 
         const result = await encryptService.decryptItem(target, mock<SymmetricCryptoKey>());
@@ -218,10 +218,10 @@ describe("EncryptService", () => {
         });
         expect(result).toBeInstanceOf(SimpleEncryptedObjectView);
       });
-    });
 
-    describe("given an object with nested IDecryptables", () => {
-      it("decrypts an array of Decryptables", async () => {
+      it.todo("nested IDecryptables");
+
+      it("an array of nested IDecryptables", async () => {
         const uri1 = new LoginUri();
         uri1.uri = new EncString("3.someUri_Encrypted");
         uri1.match = UriMatchType.Domain;
