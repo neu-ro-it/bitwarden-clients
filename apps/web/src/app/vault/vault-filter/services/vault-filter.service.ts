@@ -41,7 +41,7 @@ const NestingDelimiter = "/";
 export class VaultFilterService implements VaultFilterServiceAbstraction, OnDestroy {
   protected _collapsedFilterNodes = new BehaviorSubject<Set<string>>(null);
   collapsedFilterNodes$: Observable<Set<string>> = this._collapsedFilterNodes.pipe(
-    switchMap(async (nodes) => nodes ?? (await this.buildCollapsedFilterNodes()))
+    switchMap(async (nodes) => nodes ?? (await this.getCollapsedFilterNodes()))
   );
 
   organizationTree$: Observable<TreeNode<OrganizationFilter>> =
@@ -112,17 +112,17 @@ export class VaultFilterService implements VaultFilterServiceAbstraction, OnDest
     this.collectionViews$.next(await this.collectionService.getAllDecrypted());
   }
 
-  async storeCollapsedFilterNodes(collapsedFilterNodes: Set<string>): Promise<void> {
+  async setCollapsedFilterNodes(collapsedFilterNodes: Set<string>): Promise<void> {
     await this.stateService.setCollapsedGroupings(Array.from(collapsedFilterNodes));
     this._collapsedFilterNodes.next(collapsedFilterNodes);
   }
 
-  protected async buildCollapsedFilterNodes(): Promise<Set<string>> {
+  protected async getCollapsedFilterNodes(): Promise<Set<string>> {
     const nodes = new Set(await this.stateService.getCollapsedGroupings());
     return nodes;
   }
 
-  updateOrganizationFilter(organization: Organization) {
+  setOrganizationFilter(organization: Organization) {
     if (organization?.id != "AllVaults") {
       this._organizationFilter.next(organization);
     } else {
@@ -136,7 +136,7 @@ export class VaultFilterService implements VaultFilterServiceAbstraction, OnDest
       return;
     }
     collapsedFilterNodes.delete("AllVaults");
-    await this.storeCollapsedFilterNodes(collapsedFilterNodes);
+    await this.setCollapsedFilterNodes(collapsedFilterNodes);
   }
 
   protected async buildOrganizationTree(

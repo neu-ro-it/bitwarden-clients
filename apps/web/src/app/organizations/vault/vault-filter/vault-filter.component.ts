@@ -23,7 +23,7 @@ export class VaultFilterComponent extends BaseVaultFilterComponent implements On
         this.initCollections(value);
       }
       this._organization = value;
-      this.vaultFilterService.updateOrganizationFilter(this._organization);
+      this.vaultFilterService.setOrganizationFilter(this._organization);
     }
   }
   _organization: Organization;
@@ -69,8 +69,6 @@ export class VaultFilterComponent extends BaseVaultFilterComponent implements On
   }
 
   async buildAllFilters() {
-    this.vaultFilterService.updateOrganizationFilter(this._organization);
-
     const builderFilter = {} as VaultFilterList;
     builderFilter.typeFilter = await this.addTypeFilter();
     builderFilter.collectionFilter = await this.addCollectionFilter();

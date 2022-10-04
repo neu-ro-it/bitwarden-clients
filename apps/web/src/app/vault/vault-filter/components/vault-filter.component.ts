@@ -147,7 +147,7 @@ export class VaultFilterComponent implements OnInit, OnDestroy {
     if (orgNode?.node.id !== "AllVaults") {
       filter.selectedOrganizationNode = orgNode;
     }
-    this.vaultFilterService.updateOrganizationFilter(orgNode.node);
+    this.vaultFilterService.setOrganizationFilter(orgNode.node);
     await this.vaultFilterService.expandOrgFilter();
     this.applyVaultFilter(filter);
   };

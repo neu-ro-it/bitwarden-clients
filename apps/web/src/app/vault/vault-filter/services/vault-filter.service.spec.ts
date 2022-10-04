@@ -64,7 +64,7 @@ describe("vault filter service", () => {
         }
       });
 
-      vaultFilterService.storeCollapsedFilterNodes(nodes);
+      vaultFilterService.setCollapsedFilterNodes(nodes);
     });
 
     it("loads from state on initialization", async () => {
@@ -128,7 +128,7 @@ describe("vault filter service", () => {
     describe("filtered folders", () => {
       it("returns folders filtered by current organization", async () => {
         // Org must be updated before folderService else the subscription uses the null org default value
-        vaultFilterService.updateOrganizationFilter(createOrganization("org test id", "Test Org"));
+        vaultFilterService.setOrganizationFilter(createOrganization("org test id", "Test Org"));
 
         const storedCiphers = [
           createCipherView("1", "org test id", "folder test id"),
@@ -169,7 +169,7 @@ describe("vault filter service", () => {
   describe("collections", () => {
     describe("filtered collections", () => {
       it("returns collections filtered by current organization", async () => {
-        vaultFilterService.updateOrganizationFilter(createOrganization("org test id", "Test Org"));
+        vaultFilterService.setOrganizationFilter(createOrganization("org test id", "Test Org"));
 
         const storedCollections = [
           createCollectionView("1", "collection 1", "org test id"),
