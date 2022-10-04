@@ -1,5 +1,5 @@
 export abstract class AccountService {}
 
 export abstract class InternalAccountService extends AccountService {
-  abstract delete(): Promise<any>;
+  abstract delete(): void;
 }
