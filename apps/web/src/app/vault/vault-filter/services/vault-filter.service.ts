@@ -44,10 +44,10 @@ export class VaultFilterService implements VaultFilterServiceAbstraction, OnDest
     switchMap(async (nodes) => nodes ?? (await this.buildCollapsedFilterNodes()))
   );
 
-  protected _organizations = new ReplaySubject<Organization[]>(1);
-  organizationTree$: Observable<TreeNode<OrganizationFilter>> = this._organizations.pipe(
-    switchMap((orgs) => this.buildOrganizationTree(orgs))
-  );
+  organizationTree$: Observable<TreeNode<OrganizationFilter>> =
+    this.organizationService.organizations$.pipe(
+      switchMap((orgs) => this.buildOrganizationTree(orgs))
+    );
 
   protected _filteredFolders = new ReplaySubject<FolderView[]>(1);
   filteredFolders$: Observable<FolderView[]> = this._filteredFolders.asObservable();
@@ -80,10 +80,6 @@ export class VaultFilterService implements VaultFilterServiceAbstraction, OnDest
   }
 
   protected loadSubscriptions() {
-    this.organizationService.organizations$
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(this._organizations);
-
     this.folderService.folderViews$
       .pipe(
         combineLatestWith(this._organizationFilter),
