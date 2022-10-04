@@ -228,9 +228,6 @@ export class VaultFilterComponent implements OnInit, OnDestroy {
       PolicyType.PersonalOwnership
     );
 
-    const optionsComponent = !personalVaultPolicy
-      ? { component: OrganizationOptionsComponent }
-      : null;
     const addAction = !singleOrgPolicy
       ? { text: "newOrganization", route: "/create-organization" }
       : null;
@@ -242,7 +239,7 @@ export class VaultFilterComponent implements OnInit, OnDestroy {
         isSelectable: true,
       },
       action: this.applyOrganizationFilter,
-      options: optionsComponent,
+      options: { component: OrganizationOptionsComponent },
       add: addAction,
       divider: true,
     };
