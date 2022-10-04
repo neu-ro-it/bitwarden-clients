@@ -11,12 +11,8 @@ import { SettingsService } from "@bitwarden/common/services/settings.service";
 import { StateMigrationService } from "@bitwarden/common/services/stateMigration.service";
 import { WebCryptoFunctionService } from "@bitwarden/common/services/webCryptoFunction.service";
 
-import {
-  passwordGenerationServiceFactory,
-  PasswordGenerationServiceInitOptions,
-} from "../background/service_factories/password-generation-service.factory";
-import { stateServiceFactory } from "../background/service_factories/state-service.factory";
-import { sendTabsMessage } from "../browser/sendTabsMessage";
+import { generatePasswordToClipboardCommandFactory } from "../background/service_factories/generate-password-to-clipboard-command.factory";
+import { PasswordGenerationServiceInitOptions } from "../background/service_factories/password-generation-service.factory";
 import { AutoFillActiveTabCommand } from "../commands/autoFillActiveTabCommand";
 import { Account } from "../models/account";
 import { StateService as AbstractStateService } from "../services/abstractions/state.service";
@@ -151,7 +147,6 @@ const doGeneratePasswordToClipboard = async (tab: chrome.tabs.Tab): Promise<void
   const stateFactory = new StateFactory(GlobalState, Account);
 
   const cache = {};
-
   const options: PasswordGenerationServiceInitOptions = {
     cryptoFunctionServiceOptions: {
       win: self,
@@ -175,21 +170,6 @@ const doGeneratePasswordToClipboard = async (tab: chrome.tabs.Tab): Promise<void
     },
   };
 
-  const passwordGenerationService = await passwordGenerationServiceFactory(cache, options);
-
-  const [passwordGenerationOptions] = await passwordGenerationService.getOptions();
-  const password = await passwordGenerationService.generatePassword(passwordGenerationOptions);
-  sendTabsMessage(tab.id, {
-    command: "copyText",
-    text: password,
-  });
-
-  const stateService = await stateServiceFactory(cache, options);
-  const clearClipboard = await stateService.getClearClipboard();
-
-  if (clearClipboard != null) {
-    chrome.alarms.create("clearClipboard", {
-      when: Date.now() + clearClipboard * 1000,
-    });
-  }
+  const command = await generatePasswordToClipboardCommandFactory(cache, options);
+  command.generatePasswordToClipboard(tab);
 };
