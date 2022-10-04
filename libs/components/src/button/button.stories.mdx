@@ -42,9 +42,9 @@ export const BlockTemplate = (args) => ({
 export const IconTemplate = (args) => ({
   props: args,
   template: `
-   <button bitButton [disabled]="disabled" [loading]="loading" [buttonType]="buttonType" [block]="block"><i class="bwi bwi-plus tw-mr-2"></i>Button</button>
-   <button bitButton [disabled]="disabled" [loading]="loading" [buttonType]="buttonType" [block]="block"><i class="bwi bwi-plus tw-mr-2"></i>Button</button>
-   <button bitButton [disabled]="disabled" [loading]="loading" [buttonType]="buttonType" [block]="block"><i class="bwi bwi-plus tw-mr-2"></i>Button</button>
+   <button bitButton [disabled]="disabled" [loading]="loading" [buttonType]="buttonType" [block]="block" class="tw-mr-2"><i class="bwi bwi-plus tw-mr-2"></i>Button</button>
+   <button bitButton [disabled]="disabled" [loading]="loading" [buttonType]="buttonType" [block]="block" class="tw-mr-2"><i class="bwi bwi-plus tw-mr-2"></i>Button</button>
+   <button bitButton [disabled]="disabled" [loading]="loading" [buttonType]="buttonType" [block]="block" class="tw-mr-2"><i class="bwi bwi-plus tw-mr-2"></i>Button</button> `,
 });
 
 # Buttons
@@ -135,3 +135,8 @@ Typically button widths expand with their text. However, in some causes buttons 
 </Canvas>
 
 ### Accessiblity
+
+Buttons may be used on `backround`, `background-alt`, `secondary-100` and `secondary-200` colors. WCAG 2.0 contrast has not been checked on other backgrounds.
+
+**Loading buttons:**
+Include an aria-label attribute that defaults to “loading” but can be configurable per implementation. On click, the screen reader should announce the aria-label. Once the action is compelted, use another messaging pattern to alert the user that the action is complete (ex. success toast).
