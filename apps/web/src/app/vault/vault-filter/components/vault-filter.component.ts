@@ -125,10 +125,8 @@ export class VaultFilterComponent implements OnInit, OnDestroy {
   }
 
   searchTextChanged(t: string) {
-    if (t) {
-      this.searchText = t;
-      this.onSearchTextChanged.emit(t);
-    }
+    this.searchText = t;
+    this.onSearchTextChanged.emit(t);
   }
 
   protected applyVaultFilter(filter: VaultFilter) {
