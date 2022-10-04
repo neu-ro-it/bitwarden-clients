@@ -1,10 +1,10 @@
 import { Meta, Story, Canvas, ArgsTable, Source } from "@storybook/addon-docs/blocks";
 
-import { ButtonDirective } from "./button.directive";
+import { ButtonComponent } from "./button.component";
 
 <Meta
   title="Component Library/Button"
-  component={ButtonDirective}
+  component={ButtonComponent}
   parameters={{
     design: {
       type: "figma",
@@ -16,8 +16,35 @@ import { ButtonDirective } from "./button.directive";
 export const Template = (args) => ({
   props: args,
   template: `
-    <button bitButton [buttonType]="buttonType" [block]="block">Button</button>
-    <a bitButton [buttonType]="buttonType" [block]="block" href="#" class="tw-ml-2">Link</a>  `,
+   <button bitButton [disabled]="disabled" [loading]="loading" [buttonType]="buttonType" [block]="block">Button</button>
+    <a bitButton [disabled]="disabled" [loading]="loading" [buttonType]="buttonType" [block]="block" href="#" class="tw-ml-2">Link</a>  `,
+});
+
+export const AllStylesTemplate = (args) => ({
+  props: args,
+  template: `
+    <button bitButton [disabled]="disabled" [loading]="loading" [block]="block" buttonType="primary" class="tw-mr-2">Primary</button>
+    <button bitButton [disabled]="disabled" [loading]="loading" [block]="block" buttonType="secondary" class="tw-mr-2">Secondary</button>
+    <button bitButton [disabled]="disabled" [loading]="loading" [block]="block" buttonType="danger" class="tw-mr-2">Danger</button>`,
+});
+
+export const BlockTemplate = (args) => ({
+  props: args,
+  template: `
+    <span class="tw-flex">
+      <button bitButton [buttonType]="buttonType" [block]="block"> Button</button>
+      <a bitButton [buttonType]="buttonType" [block]="block" href="#" class="tw-ml-2"> Link</a>
+      <button bitButton [buttonType]="buttonType" block class="tw-ml-2">block Button</button>
+      <a bitButton [buttonType]="buttonType" block href="#" class="tw-ml-2">block Link</a>
+    </span> `,
+});
+
+export const IconTemplate = (args) => ({
+  props: args,
+  template: `
+   <button bitButton [disabled]="disabled" [loading]="loading" [buttonType]="buttonType" [block]="block"><i class="bwi bwi-plus tw-mr-2"></i>Button</button>
+   <button bitButton [disabled]="disabled" [loading]="loading" [buttonType]="buttonType" [block]="block"><i class="bwi bwi-plus tw-mr-2"></i>Button</button>
+   <button bitButton [disabled]="disabled" [loading]="loading" [buttonType]="buttonType" [block]="block"><i class="bwi bwi-plus tw-mr-2"></i>Button</button>
 });
 
 # Buttons
@@ -66,3 +93,45 @@ Use the Danger styling when the user may preform a permanent action.
     {Template.bind({})}
   </Story>
 </Canvas>
+
+### Disabled and Loading
+
+The Disabled and Loading states use the default state’s color with a 60% opacity or tw-opacity-60.
+
+**Disabled**
+
+<Canvas>
+  <Story name="Disabled" args={{ disabled: "true" }} height="290px">
+    {AllStylesTemplate.bind({})}
+  </Story>
+</Canvas>
+
+**Loading**
+
+<Canvas>
+  <Story name="Loading" args={{ loading: "true" }} height="290px">
+    {AllStylesTemplate.bind({})}
+  </Story>
+</Canvas>
+
+**Note:** The loading state's width should remain the same as the width of the primary content. See accessiblity notes below for expected screen reader behavior.
+
+## Block Buttons
+
+Typically button widths expand with their text. However, in some causes buttons can also be block, where the width is fixed and the text wraps to 2 lines if the text exceeds the button’s width.
+
+<Canvas>
+  <Story name="Block" args={{ block: "true" }} height="290px">
+    {BlockTemplate.bind({})}
+  </Story>
+</Canvas>
+
+### Buttons with Icons
+
+<Canvas>
+  <Story name="With Icon" args={{ buttonType: "primary" }} height="290px">
+    {IconTemplate.bind({})}
+  </Story>
+</Canvas>
+
+### Accessiblity
