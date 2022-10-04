@@ -1,5 +1,5 @@
 import { mock, MockProxy } from "jest-mock-extended";
-import { firstValueFrom, ReplaySubject } from "rxjs";
+import { firstValueFrom, ReplaySubject, take } from "rxjs";
 
 import { CipherService } from "@bitwarden/common/abstractions/cipher.service";
 import { CollectionService } from "@bitwarden/common/abstractions/collection.service";
@@ -58,7 +58,7 @@ describe("vault filter service", () => {
   describe("collapsed filter nodes", () => {
     const nodes = new Set(["1", "2"]);
     it("updates observable when saving", (complete) => {
-      vaultFilterService.collapsedFilterNodes$.subscribe((value) => {
+      vaultFilterService.collapsedFilterNodes$.pipe(take(1)).subscribe((value) => {
         if (value === nodes) {
           complete();
         }
