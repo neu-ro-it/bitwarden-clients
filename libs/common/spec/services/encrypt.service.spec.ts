@@ -14,7 +14,12 @@ import { EncryptService } from "@bitwarden/common/services/encrypt.service";
 
 import { makeStaticByteArray } from "../utils";
 
-import { SimpleEncryptedObject, SimpleEncryptedObjectView } from "./encryptedObject";
+import {
+  NestedArrayEncryptedObjectView,
+  NestedEncryptedObject,
+  SimpleEncryptedObject,
+  SimpleEncryptedObjectView,
+} from "./encryptedObject";
 
 describe("EncryptService", () => {
   const cryptoFunctionService = mock<CryptoFunctionService>();
@@ -198,6 +203,12 @@ describe("EncryptService", () => {
     });
 
     describe("decrypts", () => {
+      const simpleObjectDecrypted = {
+        username: "myUsername",
+        password: "myPassword",
+        accessCount: 9000,
+      };
+
       beforeEach(() => {
         jest
           .spyOn(encryptService, "decryptToUtf8")
@@ -211,15 +222,24 @@ describe("EncryptService", () => {
 
         const result = await encryptService.decryptItem(target, mock<SymmetricCryptoKey>());
 
-        expect(result).toMatchObject({
-          username: "myUsername",
-          password: "myPassword",
-          accessCount: 9000,
-        });
+        expect(result).toMatchObject(simpleObjectDecrypted);
         expect(result).toBeInstanceOf(SimpleEncryptedObjectView);
       });
 
-      it.todo("nested IDecryptables");
+      it("nested IDecryptables", async () => {
+        const target = new NestedEncryptedObject();
+
+        const result = await encryptService.decryptItem(target, mock<SymmetricCryptoKey>());
+
+        expect(result).toMatchObject({
+          nestedLogin1: simpleObjectDecrypted,
+          nestedLogin2: simpleObjectDecrypted,
+          collectionId: "myCollectionId",
+        });
+        expect(result).toBeInstanceOf(NestedArrayEncryptedObjectView);
+        expect(result.nestedLogin1).toBeInstanceOf(SimpleEncryptedObjectView);
+        expect(result.nestedLogin2).toBeInstanceOf(SimpleEncryptedObjectView);
+      });
 
       it("an array of nested IDecryptables", async () => {
         const uri1 = new LoginUri();
