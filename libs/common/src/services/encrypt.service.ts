@@ -168,13 +168,13 @@ export class EncryptService implements AbstractEncryptService {
     return obj;
   }
 
-  async decryptItem<T>(item: IDecryptable<T>, key: SymmetricCryptoKey) {
+  async decryptItem<T>(item: IDecryptable<T>, key: SymmetricCryptoKey): Promise<T> {
     if (item == null) {
       throw new Error("Cannot decrypt a null item");
     }
 
     const promises: Promise<any>[] = [];
-    const decryptedValues: Record<string, string | View | Array<string> | Array<View>> = {};
+    const decryptedValues: Record<string, string | View | Array<View>> = {};
 
     const encryptedProperties = getEncryptedProperties(item);
     encryptedProperties?.forEach((prop) => {
@@ -183,8 +183,8 @@ export class EncryptService implements AbstractEncryptService {
         return;
       }
 
+      // Case 1: the property is an EncString
       if (propValue instanceof EncString) {
-        // decrypt the EncString
         promises.push(
           this.decryptToUtf8(propValue, key)
             .then((decryptedValue) => (decryptedValues[prop] = decryptedValue))
@@ -196,8 +196,8 @@ export class EncryptService implements AbstractEncryptService {
         return;
       }
 
-      // else it's a nested object with EncStrings, recursive call
-      // TODO: what about an array of encstrings?
+      // Case 2: the property is an array of nested decryptables
+      // NB: arrays of EncStrings are not supported at this time (no current use cases)
       if (propValue instanceof Array) {
         decryptedValues[prop] = [];
 
@@ -209,6 +209,7 @@ export class EncryptService implements AbstractEncryptService {
           )
         );
       } else {
+        // Case 3: the property is a single nested decryptable
         promises.push(
           this.decryptItem(propValue, key).then(
             (decryptedValue) => (decryptedValues[prop] = decryptedValue)
