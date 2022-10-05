@@ -40,7 +40,7 @@ export class NestedEncryptedObject implements IDecryptable<NestedEncryptedObject
 
   toView(decryptedProperties: any) {
     return Object.assign(
-      new NestedArrayEncryptedObjectView(),
+      new NestedEncryptedObjectView(),
       {
         // Manually copy over unencrypted values
         collectionId: this.collectionId,
