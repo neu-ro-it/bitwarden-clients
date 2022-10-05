@@ -201,12 +201,6 @@ describe("EncryptService", () => {
     });
 
     describe("decrypts", () => {
-      const simpleObjectDecrypted = {
-        username: "myUsername",
-        password: "myPassword",
-        accessCount: 9000,
-      };
-
       beforeEach(() => {
         jest
           .spyOn(encryptService, "decryptToUtf8")
@@ -216,11 +210,15 @@ describe("EncryptService", () => {
       });
 
       it("encStrings", async () => {
-        const target = new SimpleEncryptedObject();
+        const target = new SimpleEncryptedObject(1);
 
         const result = await encryptService.decryptItem(target, mock<SymmetricCryptoKey>());
 
-        expect(result).toMatchObject(simpleObjectDecrypted);
+        expect(result).toMatchObject({
+          id: 1,
+          username: "myUsername1",
+          password: "myPassword1",
+        });
         expect(result).toBeInstanceOf(SimpleEncryptedObjectView);
       });
 
@@ -230,8 +228,16 @@ describe("EncryptService", () => {
         const result = await encryptService.decryptItem(target, mock<SymmetricCryptoKey>());
 
         expect(result).toMatchObject({
-          nestedLogin1: simpleObjectDecrypted,
-          nestedLogin2: simpleObjectDecrypted,
+          nestedLogin1: {
+            id: 1,
+            username: "myUsername1",
+            password: "myPassword1",
+          },
+          nestedLogin2: {
+            id: 2,
+            username: "myUsername2",
+            password: "myPassword2",
+          },
           collectionId: "myCollectionId",
         });
         expect(result).toBeInstanceOf(NestedEncryptedObjectView);
@@ -245,7 +251,18 @@ describe("EncryptService", () => {
         const result = await encryptService.decryptItem(target, mock<SymmetricCryptoKey>());
 
         expect(result).toMatchObject({
-          logins: [simpleObjectDecrypted, simpleObjectDecrypted],
+          logins: [
+            {
+              id: 1,
+              username: "myUsername1",
+              password: "myPassword1",
+            },
+            {
+              id: 2,
+              username: "myUsername2",
+              password: "myPassword2",
+            },
+          ],
           collectionId: "myCollectionId",
         });
 
@@ -256,7 +273,7 @@ describe("EncryptService", () => {
     });
 
     it("handles decryption errors", async () => {
-      const target = new SimpleEncryptedObject();
+      const target = new SimpleEncryptedObject(1);
       jest.spyOn(encryptService, "decryptToUtf8").mockRejectedValue("some decryption error");
 
       const result = await encryptService.decryptItem(target, mock<SymmetricCryptoKey>());
@@ -264,9 +281,9 @@ describe("EncryptService", () => {
       const decryptionError = "[error: cannot decrypt]";
 
       expect(result).toMatchObject({
+        id: 1,
         username: decryptionError,
         password: decryptionError,
-        accessCount: 9000,
       });
       expect(result).toBeInstanceOf(SimpleEncryptedObjectView);
     });
