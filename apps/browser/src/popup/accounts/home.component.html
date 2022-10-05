@@ -2,9 +2,17 @@
   <div class="content">
     <div class="logo-image"></div>
     <p class="lead text-center">{{ "loginOrCreateNewAccount" | i18n }}</p>
-    <button type="button" class="btn primary block" routerLink="/login">
-      <b>{{ "login" | i18n }}</b>
-    </button>
+    <ng-container *ngIf="!loginInitiated; else loginForm">
+      <button type="button" class="btn primary block" (click)="loginInitiated = !loginInitiated">
+        <b>{{ "login" | i18n }}</b>
+      </button>
+    </ng-container>
+    <ng-template #loginForm>
+      <div class="box-content-row" appBoxRow>
+        <label for="email">{{ "emailAddress" | i18n }}</label>
+        <input id="email" type="email" formControlName="email" appInputVerbatim="false" />
+      </div>
+    </ng-template>
     <p class="createAccountLink">
       {{ "newAroundHere" | i18n }}
       <a routerLink="/register">{{ "createAccount" | i18n }}</a>
