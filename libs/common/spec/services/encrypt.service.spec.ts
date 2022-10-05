@@ -212,9 +212,9 @@ describe("EncryptService", () => {
         const result = await encryptService.decryptItem(target, mock<SymmetricCryptoKey>());
 
         expect(result).toMatchObject({
-          foo: "foo",
-          bar: "bar",
-          plainValue: 9000,
+          username: "myUsername",
+          password: "myPassword",
+          accessCount: 9000,
         });
         expect(result).toBeInstanceOf(SimpleEncryptedObjectView);
       });
@@ -264,9 +264,9 @@ describe("EncryptService", () => {
       const decryptionError = "[error: cannot decrypt]";
 
       expect(result).toMatchObject({
-        foo: decryptionError,
-        bar: decryptionError,
-        plainValue: 9000,
+        username: decryptionError,
+        password: decryptionError,
+        accessCount: 9000,
       });
       expect(result).toBeInstanceOf(SimpleEncryptedObjectView);
     });
