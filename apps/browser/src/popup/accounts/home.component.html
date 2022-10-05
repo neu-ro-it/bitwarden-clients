@@ -5,9 +5,10 @@
     <button type="button" class="btn primary block" routerLink="/login">
       <b>{{ "login" | i18n }}</b>
     </button>
-    <button type="button" class="btn block" routerLink="/register">
-      {{ "createAccount" | i18n }}
-    </button>
+    <p>
+      {{ "newAroundHere" | i18n }}
+      <a routerLink="/register">{{ "createAccount" | i18n }}</a>
+    </p>
   </div>
 </div>
 <button type="button" routerLink="/environment" class="settings-icon">
