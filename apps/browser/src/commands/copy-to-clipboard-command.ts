@@ -1,4 +1,4 @@
-import { sendTabsMessage } from "../browser/sendTabsMessage";
+import { BrowserApi } from "../browser/browserApi";
 
 /**
  * Copies text to the clipboard in a MV3 safe way.
@@ -10,7 +10,7 @@ export const copyToClipboard = async (tab: chrome.tabs.Tab, text: string) => {
     throw new Error("Cannot copy text to clipboard with a tab that does not have an id.");
   }
 
-  sendTabsMessage(tab.id, {
+  BrowserApi.sendTabsMessage(tab.id, {
     command: "copyText",
     text: text,
   });

@@ -1,4 +1,4 @@
-import { sendTabsMessage } from "../browser/sendTabsMessage";
+import { BrowserApi } from "../browser/browserApi";
 
 export const onAlarmListener = async (alarm: chrome.alarms.Alarm) => {
   switch (alarm.name) {
@@ -7,7 +7,7 @@ export const onAlarmListener = async (alarm: chrome.alarms.Alarm) => {
         active: true,
       });
       if (tabs && tabs.length > 0) {
-        sendTabsMessage(tabs[0].id, { command: "clearClipboard" });
+        BrowserApi.sendTabsMessage(tabs[0].id, { command: "clearClipboard" });
       }
       break;
     }

@@ -11,9 +11,13 @@ import { SettingsService } from "@bitwarden/common/services/settings.service";
 import { StateMigrationService } from "@bitwarden/common/services/stateMigration.service";
 import { WebCryptoFunctionService } from "@bitwarden/common/services/webCryptoFunction.service";
 
-import { generatePasswordToClipboardCommandFactory } from "../background/service_factories/generate-password-to-clipboard-command.factory";
-import { PasswordGenerationServiceInitOptions } from "../background/service_factories/password-generation-service.factory";
+import {
+  passwordGenerationServiceFactory,
+  PasswordGenerationServiceInitOptions,
+} from "../background/service_factories/password-generation-service.factory";
+import { stateServiceFactory } from "../background/service_factories/state-service.factory";
 import { AutoFillActiveTabCommand } from "../commands/autoFillActiveTabCommand";
+import { GeneratePasswordToClipboardCommand } from "../commands/generate-password-to-clipboard-command";
 import { Account } from "../models/account";
 import { StateService as AbstractStateService } from "../services/abstractions/state.service";
 import AutofillService from "../services/autofill.service";
@@ -170,6 +174,9 @@ const doGeneratePasswordToClipboard = async (tab: chrome.tabs.Tab): Promise<void
     },
   };
 
-  const command = await generatePasswordToClipboardCommandFactory(cache, options);
+  const command = new GeneratePasswordToClipboardCommand(
+    await passwordGenerationServiceFactory(cache, options),
+    await stateServiceFactory(cache, options)
+  );
   command.generatePasswordToClipboard(tab);
 };
