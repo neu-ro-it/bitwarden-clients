@@ -65,8 +65,8 @@ export default class BrowserPlatformUtilsService implements PlatformUtilsService
     return this.getDevice() === DeviceType.FirefoxExtension;
   }
 
-  static isChrome(win: Window | typeof global): boolean {
-    return (win as any).chrome && navigator.userAgent.indexOf(" Chrome/") !== -1;
+  static isChrome(win: Window & typeof globalThis): boolean {
+    return win.chrome && navigator.userAgent.indexOf(" Chrome/") !== -1;
   }
 
   isChrome(): boolean {
@@ -81,11 +81,9 @@ export default class BrowserPlatformUtilsService implements PlatformUtilsService
     return this.getDevice() === DeviceType.EdgeExtension;
   }
 
-  static isOpera(win: Window | typeof global): boolean {
+  static isOpera(win: Window & typeof globalThis): boolean {
     return (
-      (!!(win as any).opr && !!opr.addons) ||
-      !!(win as any).opera ||
-      navigator.userAgent.indexOf(" OPR/") >= 0
+      (!!win.opr && !!win.opr.addons) || !!win.opera || navigator.userAgent.indexOf(" OPR/") >= 0
     );
   }
 
@@ -360,7 +358,7 @@ export default class BrowserPlatformUtilsService implements PlatformUtilsService
   }
 
   sidebarViewName(): string {
-    if ((this.window as any).chrome.sidebarAction && this.isFirefox()) {
+    if (this.window.chrome.sidebarAction && this.isFirefox()) {
       return "sidebar";
     } else if (this.isOpera() && typeof opr !== "undefined" && opr.sidebarAction) {
       return "sidebar_panel";
