@@ -122,7 +122,6 @@ export class WindowMain {
       alwaysOnTop: this.enableAlwaysOnTop,
       webPreferences: {
         spellcheck: false,
-        nodeIntegration: true,
         backgroundThrottling: false,
         contextIsolation: false,
       },
