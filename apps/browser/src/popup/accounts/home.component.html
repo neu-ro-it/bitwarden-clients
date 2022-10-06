@@ -3,7 +3,7 @@
     <div class="logo-image"></div>
     <p class="lead text-center">{{ "loginOrCreateNewAccount" | i18n }}</p>
     <ng-container *ngIf="!loginInitiated; else loginForm">
-      <button type="button" class="btn primary block" (click)="loginInitiated = !loginInitiated">
+      <button type="button" class="btn primary block" (click)="initiateLogin()">
         <b>{{ "login" | i18n }}</b>
       </button>
     </ng-container>
