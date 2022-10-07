@@ -47,7 +47,7 @@ export class LoginComponent extends CaptchaProtectedComponent implements OnInit 
   protected alwaysRememberEmail = false;
 
   get loggedEmail() {
-    return this.formGroup.get("email")?.value;
+    return this.formGroup.value.email;
   }
 
   constructor(
@@ -249,6 +249,7 @@ export class LoginComponent extends CaptchaProtectedComponent implements OnInit 
 
   private toggleValidateEmail(value: boolean) {
     this.validatedEmail = value;
+    this.formGroup.controls.masterPassword.reset();
   }
 
   protected focusInput() {
