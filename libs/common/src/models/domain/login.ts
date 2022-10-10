@@ -1,7 +1,5 @@
 import { Jsonify } from "type-fest";
 
-import { IDecryptable } from "../../interfaces/IDecryptable";
-import { encrypted } from "../../misc/encrypted.decorator";
 import { LoginData } from "../data/loginData";
 import { LoginView } from "../view/loginView";
 
@@ -10,12 +8,12 @@ import { EncString } from "./encString";
 import { LoginUri } from "./loginUri";
 import { SymmetricCryptoKey } from "./symmetricCryptoKey";
 
-export class Login extends Domain implements IDecryptable<LoginView> {
-  @encrypted uris: LoginUri[];
-  @encrypted username: EncString;
-  @encrypted password: EncString;
+export class Login extends Domain {
+  uris: LoginUri[];
+  username: EncString;
+  password: EncString;
   passwordRevisionDate?: Date;
-  @encrypted totp: EncString;
+  totp: EncString;
   autofillOnPageLoad: boolean;
 
   constructor(obj?: LoginData) {
@@ -88,19 +86,6 @@ export class Login extends Domain implements IDecryptable<LoginView> {
     }
 
     return l;
-  }
-
-  toView(decryptedProperties: any) {
-    const view = new LoginView();
-
-    // Unencrypted properties
-    view.autofillOnPageLoad = this.autofillOnPageLoad;
-    view.passwordRevisionDate = this.passwordRevisionDate;
-
-    // Encrypted properties
-    Object.assign(view, decryptedProperties);
-
-    return view;
   }
 
   static fromJSON(obj: Partial<Jsonify<Login>>): Login {

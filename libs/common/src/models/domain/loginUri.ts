@@ -1,8 +1,6 @@
 import { Jsonify } from "type-fest";
 
 import { UriMatchType } from "../../enums/uriMatchType";
-import { IDecryptable } from "../../interfaces/IDecryptable";
-import { encrypted } from "../../misc/encrypted.decorator";
 import { LoginUriData } from "../data/loginUriData";
 import { LoginUriView } from "../view/loginUriView";
 
@@ -10,8 +8,7 @@ import Domain from "./domainBase";
 import { EncString } from "./encString";
 import { SymmetricCryptoKey } from "./symmetricCryptoKey";
 
-export class LoginUri extends Domain implements IDecryptable<LoginUriView> {
-  @encrypted
+export class LoginUri extends Domain {
   uri: EncString;
   match: UriMatchType;
 
@@ -55,15 +52,6 @@ export class LoginUri extends Domain implements IDecryptable<LoginUriView> {
       ["match"]
     );
     return u;
-  }
-
-  toView(decryptedProperties: any) {
-    const view = new LoginUriView();
-    view.match = this.match;
-
-    Object.assign(view, decryptedProperties);
-
-    return view;
   }
 
   static fromJSON(obj: Jsonify<LoginUri>): LoginUri {
