@@ -33,4 +33,6 @@ export abstract class StateService extends BaseStateServiceAbstraction<Account> 
     value: BrowserComponentState,
     options?: StorageOptions
   ) => Promise<void>;
+  getClearClipboardTime: () => Promise<number>;
+  setClearClipboardTime: (time: number) => Promise<void>;
 }

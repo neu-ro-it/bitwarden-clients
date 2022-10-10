@@ -1,5 +1,6 @@
 import { PasswordGenerationService } from "@bitwarden/common/abstractions/passwordGeneration.service";
-import { StateService } from "@bitwarden/common/abstractions/state.service";
+
+import { StateService } from "../services/abstractions/state.service";
 
 import { copyToClipboard } from "./copy-to-clipboard-command";
 
@@ -18,9 +19,7 @@ export class GeneratePasswordToClipboardCommand {
     const clearClipboard = await this.stateService.getClearClipboard();
 
     if (clearClipboard != null) {
-      chrome.alarms.create("clearClipboard", {
-        when: Date.now() + clearClipboard * 1000,
-      });
+      await this.stateService.setClearClipboardTime(Date.now() + clearClipboard * 1000);
     }
   }
 }
