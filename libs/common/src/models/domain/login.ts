@@ -1,6 +1,7 @@
-import { IDecryptable } from "@bitwarden/common/interfaces/IDecryptable";
-import { encrypted } from "@bitwarden/common/misc/encrypted.decorator";
+import { Jsonify } from "type-fest";
 
+import { IDecryptable } from "../../interfaces/IDecryptable";
+import { encrypted } from "../../misc/encrypted.decorator";
 import { LoginData } from "../data/loginData";
 import { LoginView } from "../view/loginView";
 
@@ -100,5 +101,26 @@ export class Login extends Domain implements IDecryptable<LoginView> {
     Object.assign(view, decryptedProperties);
 
     return view;
+  }
+
+  static fromJSON(obj: Partial<Jsonify<Login>>): Login {
+    if (obj == null) {
+      return null;
+    }
+
+    const username = EncString.fromJSON(obj.username);
+    const password = EncString.fromJSON(obj.password);
+    const totp = EncString.fromJSON(obj.totp);
+    const passwordRevisionDate =
+      obj.passwordRevisionDate == null ? null : new Date(obj.passwordRevisionDate);
+    const uris = obj.uris?.map((uri: any) => LoginUri.fromJSON(uri));
+
+    return Object.assign(new Login(), obj, {
+      username,
+      password,
+      totp,
+      passwordRevisionDate: passwordRevisionDate,
+      uris: uris,
+    });
   }
 }

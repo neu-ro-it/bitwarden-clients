@@ -1,7 +1,8 @@
-import { IDecryptable } from "@bitwarden/common/interfaces/IDecryptable";
-import { encrypted } from "@bitwarden/common/misc/encrypted.decorator";
+import { Jsonify } from "type-fest";
 
 import { UriMatchType } from "../../enums/uriMatchType";
+import { IDecryptable } from "../../interfaces/IDecryptable";
+import { encrypted } from "../../misc/encrypted.decorator";
 import { LoginUriData } from "../data/loginUriData";
 import { LoginUriView } from "../view/loginUriView";
 
@@ -63,5 +64,16 @@ export class LoginUri extends Domain implements IDecryptable<LoginUriView> {
     Object.assign(view, decryptedProperties);
 
     return view;
+  }
+
+  static fromJSON(obj: Jsonify<LoginUri>): LoginUri {
+    if (obj == null) {
+      return null;
+    }
+
+    const uri = EncString.fromJSON(obj.uri);
+    return Object.assign(new LoginUri(), obj, {
+      uri,
+    });
   }
 }
