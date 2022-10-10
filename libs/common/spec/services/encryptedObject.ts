@@ -1,4 +1,4 @@
-import { IDecryptable } from "../../src/interfaces/IDecryptable";
+import { Decryptable } from "../../src/interfaces/decryptable.interface";
 import { encrypted } from "../../src/misc/encrypted.decorator";
 import { EncString } from "../../src/models/domain/encString";
 
@@ -11,7 +11,7 @@ export class SimpleEncryptedObjectView {
 /**
  * An object with EncStrings and non-encrypted fields.
  */
-export class SimpleEncryptedObject implements IDecryptable<SimpleEncryptedObjectView> {
+export class SimpleEncryptedObject implements Decryptable<SimpleEncryptedObjectView> {
   @encrypted username = new EncString("3.myUsername" + this.id + "_Encrypted");
   @encrypted password = new EncString("3.myPassword" + this.id + "_Encrypted");
 
@@ -34,7 +34,7 @@ export class NestedEncryptedObjectView {}
 /**
  * An object with nested encrypted objects (i.e. objects containing EncStrings)
  */
-export class NestedEncryptedObject implements IDecryptable<NestedEncryptedObjectView> {
+export class NestedEncryptedObject implements Decryptable<NestedEncryptedObjectView> {
   @encrypted nestedLogin1 = new SimpleEncryptedObject(1);
   @encrypted nestedLogin2 = new SimpleEncryptedObject(2);
   collectionId = "myCollectionId";
@@ -56,7 +56,7 @@ export class NestedArrayEncryptedObjectView {}
 /**
  * An object with nested encrypted objects (i.e. objects containing EncStrings) in an array
  */
-export class NestedArrayEncryptedObject implements IDecryptable<NestedArrayEncryptedObjectView> {
+export class NestedArrayEncryptedObject implements Decryptable<NestedArrayEncryptedObjectView> {
   @encrypted logins = [new SimpleEncryptedObject(1), new SimpleEncryptedObject(2)];
   collectionId = "myCollectionId";
 

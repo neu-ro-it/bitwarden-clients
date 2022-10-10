@@ -2,8 +2,8 @@ import { AbstractEncryptService } from "../abstractions/abstractEncrypt.service"
 import { CryptoFunctionService } from "../abstractions/cryptoFunction.service";
 import { LogService } from "../abstractions/log.service";
 import { EncryptionType } from "../enums/encryptionType";
-import { IDecryptable } from "../interfaces/IDecryptable";
 import { IEncrypted } from "../interfaces/IEncrypted";
+import { Decryptable } from "../interfaces/decryptable.interface";
 import { getEncryptedProperties } from "../misc/encrypted.decorator";
 import { Utils } from "../misc/utils";
 import { EncArrayBuffer } from "../models/domain/encArrayBuffer";
@@ -167,7 +167,7 @@ export class EncryptService implements AbstractEncryptService {
     return obj;
   }
 
-  async decryptItem<T>(item: IDecryptable<T>, key: SymmetricCryptoKey): Promise<T> {
+  async decryptItem<T>(item: Decryptable<T>, key: SymmetricCryptoKey): Promise<T> {
     if (item == null) {
       throw new Error("Cannot decrypt a null item");
     }

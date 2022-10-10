@@ -1,3 +1,3 @@
-export interface IDecryptable<T> {
+export interface Decryptable<T> {
   toView: (decryptedProperties: any) => T;
 }

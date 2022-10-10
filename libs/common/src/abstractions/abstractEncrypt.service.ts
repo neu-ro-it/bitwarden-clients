@@ -1,5 +1,5 @@
-import { IDecryptable } from "../interfaces/IDecryptable";
 import { IEncrypted } from "../interfaces/IEncrypted";
+import { Decryptable } from "../interfaces/decryptable.interface";
 import { EncArrayBuffer } from "../models/domain/encArrayBuffer";
 import { EncString } from "../models/domain/encString";
 import { SymmetricCryptoKey } from "../models/domain/symmetricCryptoKey";
@@ -13,5 +13,5 @@ export abstract class AbstractEncryptService {
   abstract decryptToUtf8: (encString: EncString, key: SymmetricCryptoKey) => Promise<string>;
   abstract decryptToBytes: (encThing: IEncrypted, key: SymmetricCryptoKey) => Promise<ArrayBuffer>;
   abstract resolveLegacyKey: (key: SymmetricCryptoKey, encThing: IEncrypted) => SymmetricCryptoKey;
-  abstract decryptItem: <T>(item: IDecryptable<T>, key: SymmetricCryptoKey) => Promise<T>;
+  abstract decryptItem: <T>(item: Decryptable<T>, key: SymmetricCryptoKey) => Promise<T>;
 }
