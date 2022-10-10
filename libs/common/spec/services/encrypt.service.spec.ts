@@ -17,7 +17,7 @@ import {
   NestedEncryptedObjectView,
   SimpleEncryptedObject,
   SimpleEncryptedObjectView,
-} from "./encryptedObject";
+} from "./encrypted-objects";
 
 describe("EncryptService", () => {
   const cryptoFunctionService = mock<CryptoFunctionService>();
