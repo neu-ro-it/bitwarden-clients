@@ -141,7 +141,7 @@ export class UpdateBadge {
     if (this.badgeAction?.setBadgeBackgroundColor) {
       this.badgeAction.setBadgeBackgroundColor({ color });
     }
-    if (this.sidebarAction?.setBadgeBackgroundColor) {
+    if (this.isOperaSidebar(this.sidebarAction)) {
       this.sidebarAction.setBadgeBackgroundColor({ color });
     }
   }
@@ -173,9 +173,10 @@ export class UpdateBadge {
   }
 
   private setSideBarText(text: string, tabId?: number) {
-    if (this.sidebarAction?.setBadgeText) {
+    if (this.isOperaSidebar(this.sidebarAction)) {
       this.sidebarAction.setBadgeText({ text, tabId });
-    } else if (this.sidebarAction?.setTitle) {
+    } else if (this.sidebarAction) {
+      // Firefox
       const title = `Bitwarden${Utils.isNullOrEmpty(text) ? "" : ` [${text}]`}`;
       this.sidebarAction.setTitle({ title, tabId });
     }
@@ -265,5 +266,11 @@ export class UpdateBadge {
     this.inited = true;
 
     return this;
+  }
+
+  private isOperaSidebar(
+    action: OperaSidebarAction | FirefoxSidebarAction
+  ): action is OperaSidebarAction {
+    return action != null && (action as OperaSidebarAction).setBadgeText != null;
   }
 }
