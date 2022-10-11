@@ -3,7 +3,7 @@ import { EventService } from "@bitwarden/common/services/event.service";
 
 import { apiServiceFactory, ApiServiceInitOptions } from "./api-service.factory";
 import { cipherServiceFactory, CipherServiceInitOptions } from "./cipher-service.factory";
-import { CachedServices, factory, FactoryOptions } from "./factory-options";
+import { FactoryOptions, CachedServices, factory } from "./factory-options";
 import { logServiceFactory, LogServiceInitOptions } from "./log-service.factory";
 import {
   organizationServiceFactory,
@@ -11,9 +11,9 @@ import {
 } from "./organization-service.factory";
 import { stateServiceFactory, StateServiceInitOptions } from "./state-service.factory";
 
-type EventServiceFactoryOptions = FactoryOptions;
+type EventServiceOptions = FactoryOptions;
 
-export type EventServiceInitOptions = EventServiceFactoryOptions &
+export type EventServiceInitOptions = EventServiceOptions &
   ApiServiceInitOptions &
   CipherServiceInitOptions &
   StateServiceInitOptions &
@@ -24,13 +24,17 @@ export function eventServiceFactory(
   cache: { eventService?: AbstractEventService } & CachedServices,
   opts: EventServiceInitOptions
 ): Promise<AbstractEventService> {
-  return factory(cache, "eventService", opts, async () => {
-    return new EventService(
-      await apiServiceFactory(cache, opts),
-      await cipherServiceFactory(cache, opts),
-      await stateServiceFactory(cache, opts),
-      await logServiceFactory(cache, opts),
-      await organizationServiceFactory(cache, opts)
-    );
-  });
+  return factory(
+    cache,
+    "eventService",
+    opts,
+    async () =>
+      new EventService(
+        await apiServiceFactory(cache, opts),
+        await cipherServiceFactory(cache, opts),
+        await stateServiceFactory(cache, opts),
+        await logServiceFactory(cache, opts),
+        await organizationServiceFactory(cache, opts)
+      )
+  );
 }

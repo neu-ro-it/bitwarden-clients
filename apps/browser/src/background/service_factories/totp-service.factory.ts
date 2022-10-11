@@ -8,13 +8,13 @@ import {
 import { CachedServices, factory, FactoryOptions } from "./factory-options";
 import { logServiceFactory, LogServiceInitOptions } from "./log-service.factory";
 
-type TotpServiceFactoryOptions = FactoryOptions;
+type TotpServiceOptions = FactoryOptions;
 
-export type TotpServiceInitOptions = TotpServiceFactoryOptions &
+export type TotpServiceInitOptions = TotpServiceOptions &
   CryptoFunctionServiceInitOptions &
   LogServiceInitOptions;
 
-export function totpServiceFactory(
+export function totpServiceFacotry(
   cache: { totpService?: AbstractTotpService } & CachedServices,
   opts: TotpServiceInitOptions
 ): Promise<AbstractTotpService> {

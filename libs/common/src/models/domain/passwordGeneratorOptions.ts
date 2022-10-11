@@ -1,5 +1,5 @@
 export type PasswordGeneratorOptions = {
-  length: number;
+  length?: number;
   ambiguous?: boolean;
   uppercase?: boolean;
   minUppercase?: number;
