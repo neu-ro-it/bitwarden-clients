@@ -217,11 +217,11 @@ export class BrowserApi {
     return BrowserApi.manifestVersion === 3 ? chrome.action : chrome.browserAction;
   }
 
-  static getSidebarAction(win: Window | typeof global) {
+  static getSidebarAction(win: Window & typeof globalThis) {
     return navigator.userAgent.indexOf(" Safari/") !== -1 // is Safari
       ? null
-      : typeof (win as any).opr !== "undefined" && opr.sidebarAction
-      ? (win as any).opr.sidebarAction
-      : (win as any).chrome.sidebarAction;
+      : typeof win.opr !== "undefined" && opr.sidebarAction
+      ? win.opr.sidebarAction
+      : win.chrome.sidebarAction;
   }
 }
