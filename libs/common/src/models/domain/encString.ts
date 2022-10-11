@@ -14,7 +14,7 @@ export class EncString implements IEncrypted {
   mac?: string;
 
   /**
-   * @deprecated: EncStrings no longer store their decrypted values as this risks leaking data
+   * @deprecated: EncStrings no longer store their decrypted values
    */
   private decryptedValue?: string;
 
