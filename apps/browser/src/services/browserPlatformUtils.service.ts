@@ -38,7 +38,7 @@ export default class BrowserPlatformUtilsService implements PlatformUtilsService
       this.deviceCache = DeviceType.VivaldiExtension;
     } else if (BrowserPlatformUtilsService.isChrome(this.win)) {
       this.deviceCache = DeviceType.ChromeExtension;
-    } else if (BrowserPlatformUtilsService.isSafari()) {
+    } else if (BrowserPlatformUtilsService.isSafari(this.win)) {
       this.deviceCache = DeviceType.SafariExtension;
     }
 
@@ -99,8 +99,11 @@ export default class BrowserPlatformUtilsService implements PlatformUtilsService
     return this.getDevice() === DeviceType.VivaldiExtension;
   }
 
-  static isSafari(): boolean {
-    return navigator.userAgent.indexOf(" Safari/") !== -1;
+  static isSafari(win: Window & typeof globalThis): boolean {
+    // Opera masquerades as Safari, so make sure we're not there first
+    return (
+      !BrowserPlatformUtilsService.isOpera(win) && navigator.userAgent.indexOf(" Safari/") !== -1
+    );
   }
 
   isSafari(): boolean {

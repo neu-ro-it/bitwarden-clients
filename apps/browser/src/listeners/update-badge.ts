@@ -17,16 +17,6 @@ import { Account } from "../models/account";
 import { StateService } from "../services/abstractions/state.service";
 import BrowserPlatformUtilsService from "../services/browserPlatformUtils.service";
 
-type BadgeUpdateType = {
-  setBadgeText: (textDetails: { text: string; tabId: number }) => Promise<void>;
-  setIcon: (iconDetails: { path: any; windowId?: number }, callback?: () => void) => void;
-  setBadgeBackgroundColor: (colorDetails: { color: string; tabId?: number }) => Promise<void>;
-};
-
-type SideBarType = {
-  setTitle: (titleDetails: { title: string; tabId: number }) => Promise<void>;
-};
-
 export type BadgeOptions = {
   tab?: chrome.tabs.Tab;
   windowId?: number;
@@ -36,9 +26,10 @@ export class UpdateBadge {
   private authService: AuthService;
   private stateService: StateService;
   private cipherService: CipherService;
-  private badgeAction: BadgeUpdateType;
-  private sidebarAction: BadgeUpdateType & SideBarType;
+  private badgeAction: typeof chrome.action;
+  private sidebarAction: OperaSidebarAction | FirefoxSidebarAction;
   private inited = false;
+  private win: Window & typeof globalThis;
 
   private static readonly listenedToCommands = [
     "updateBadge",
@@ -52,15 +43,15 @@ export class UpdateBadge {
   ];
 
   static async tabsOnActivatedListener(activeInfo: chrome.tabs.TabActiveInfo) {
-    await new UpdateBadge().run({ tabId: activeInfo.tabId });
+    await new UpdateBadge(self).run({ tabId: activeInfo.tabId });
   }
 
   static async tabsOnReplacedListener(addedTabId: number, removedTabId: number) {
-    await new UpdateBadge().run({ tabId: addedTabId });
+    await new UpdateBadge(self).run({ tabId: addedTabId });
   }
 
   static async tabsOnUpdatedListener(tabId: number) {
-    await new UpdateBadge().run({ tabId });
+    await new UpdateBadge(self).run({ tabId });
   }
 
   static async messageListener(
@@ -71,12 +62,13 @@ export class UpdateBadge {
       return;
     }
 
-    await new UpdateBadge().run();
+    await new UpdateBadge(self).run();
   }
 
-  constructor() {
+  constructor(win: Window & typeof globalThis) {
     this.badgeAction = BrowserApi.getBrowserAction();
     this.sidebarAction = BrowserApi.getSidebarAction(self);
+    this.win = win;
   }
 
   async run(opts?: {
@@ -216,7 +208,9 @@ export class UpdateBadge {
   }
 
   private get useSyncApiCalls() {
-    return BrowserPlatformUtilsService.isFirefox() || BrowserPlatformUtilsService.isSafari();
+    return (
+      BrowserPlatformUtilsService.isFirefox() || BrowserPlatformUtilsService.isSafari(this.win)
+    );
   }
 
   private async initServices(existingServiceCache?: Record<string, unknown>): Promise<UpdateBadge> {

@@ -1,3 +1,5 @@
+import BrowserPlatformUtilsService from "../services/browserPlatformUtils.service";
+
 export class BrowserApi {
   static isWebExtensionsApi: boolean = typeof browser !== "undefined";
   static isSafariApi: boolean =
@@ -218,9 +220,9 @@ export class BrowserApi {
   }
 
   static getSidebarAction(win: Window & typeof globalThis) {
-    return navigator.userAgent.indexOf(" Safari/") !== -1 // is Safari
+    return BrowserPlatformUtilsService.isSafari(win)
       ? null
-      : typeof win.opr !== "undefined" && opr.sidebarAction
+      : typeof win.opr !== "undefined" && win.opr.sidebarAction
       ? win.opr.sidebarAction
       : win.chrome.sidebarAction;
   }

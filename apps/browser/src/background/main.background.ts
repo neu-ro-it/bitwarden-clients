@@ -566,12 +566,12 @@ export default class MainBackground {
       // Set Private Mode windows to the default icon - they do not share state with the background page
       const privateWindows = await BrowserApi.getPrivateModeWindows();
       privateWindows.forEach(async (win) => {
-        await new UpdateBadge().setBadgeIcon("", win.id);
+        await new UpdateBadge(self).setBadgeIcon("", win.id);
       });
 
       BrowserApi.onWindowCreated(async (win) => {
         if (win.incognito) {
-          await new UpdateBadge().setBadgeIcon("", win.id);
+          await new UpdateBadge(self).setBadgeIcon("", win.id);
         }
       });
     }
@@ -588,7 +588,7 @@ export default class MainBackground {
   }
 
   async refreshBadge() {
-    await new UpdateBadge().run({ existingServices: this as any });
+    await new UpdateBadge(self).run({ existingServices: this as any });
   }
 
   async refreshMenu(forLocked = false) {
