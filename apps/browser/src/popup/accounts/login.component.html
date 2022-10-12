@@ -6,7 +6,17 @@
     <h1 class="center">
       <span class="title">{{ "logIn" | i18n }}</span>
     </h1>
-    <div class="right"></div>
+    <div class="right">
+      <app-avatar
+        [data]="loggedEmail"
+        [email]="loggedEmail"
+        [circle]="true"
+        dynamic="true"
+        fontSize="16"
+        size="30"
+      >
+      </app-avatar>
+    </div>
   </header>
   <main tabindex="-1">
     <div class="box">
