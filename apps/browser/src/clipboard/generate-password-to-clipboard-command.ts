@@ -2,6 +2,7 @@ import { PasswordGenerationService } from "@bitwarden/common/abstractions/passwo
 
 import { StateService } from "../services/abstractions/state.service";
 
+import { setClearClipboardTime } from "./clipboard-state";
 import { copyToClipboard } from "./copy-to-clipboard-command";
 
 export class GeneratePasswordToClipboardCommand {
@@ -19,7 +20,7 @@ export class GeneratePasswordToClipboardCommand {
     const clearClipboard = await this.stateService.getClearClipboard();
 
     if (clearClipboard != null) {
-      await this.stateService.setClearClipboardTime(Date.now() + clearClipboard * 1000);
+      await setClearClipboardTime(this.stateService, Date.now() + clearClipboard * 1000);
     }
   }
 }

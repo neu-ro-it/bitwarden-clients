@@ -4,6 +4,17 @@ import { BrowserApi } from "../browser/browserApi";
 import { StateService } from "../services/abstractions/state.service";
 
 import { ClearClipboard } from "./clearClipboard";
+import { getClearClipboardTime, setClearClipboardTime } from "./clipboard-state";
+
+jest.mock("./clipboard-state", () => {
+  return {
+    getClearClipboardTime: jest.fn(),
+    setClearClipboardTime: jest.fn(),
+  };
+});
+
+const getClearClipboardTimeMock = getClearClipboardTime as jest.Mock;
+const setClearClipboardTimeMock = setClearClipboardTime as jest.Mock;
 
 describe("clearClipboard", () => {
   describe("run", () => {
@@ -33,7 +44,7 @@ describe("clearClipboard", () => {
 
       jest.spyOn(BrowserApi, "sendTabsMessage").mockReturnValue();
 
-      stateService.getClearClipboardTime.mockResolvedValue(clearTime.getTime());
+      getClearClipboardTimeMock.mockResolvedValue(clearTime.getTime());
 
       await ClearClipboard.run(executionTime, serviceCache);
 
@@ -48,7 +59,7 @@ describe("clearClipboard", () => {
       const executionTime = new Date(2022, 1, 1, 12);
       const clearTime = new Date(2022, 1, 1, 11);
 
-      stateService.getClearClipboardTime.mockResolvedValue(clearTime.getTime());
+      setClearClipboardTimeMock.mockResolvedValue(clearTime.getTime());
 
       await ClearClipboard.run(executionTime, serviceCache);
 
@@ -58,7 +69,7 @@ describe("clearClipboard", () => {
     it("has an undefined clearTime", async () => {
       const executionTime = new Date(2022, 1, 1);
 
-      stateService.getClearClipboardTime.mockResolvedValue(undefined);
+      getClearClipboardTimeMock.mockResolvedValue(undefined);
 
       await ClearClipboard.run(executionTime, serviceCache);
 

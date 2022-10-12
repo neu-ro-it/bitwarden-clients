@@ -5,6 +5,8 @@ import { stateServiceFactory } from "../background/service_factories/state-servi
 import { BrowserApi } from "../browser/browserApi";
 import { Account } from "../models/account";
 
+import { getClearClipboardTime } from "./clipboard-state";
+
 export class ClearClipboard {
   static async run(executionTime: Date, serviceCache: Record<string, unknown>) {
     const stateFactory = new StateFactory(GlobalState, Account);
@@ -26,7 +28,7 @@ export class ClearClipboard {
       },
     });
 
-    const clearClipboardTime = await stateService.getClearClipboardTime();
+    const clearClipboardTime = await getClearClipboardTime(stateService);
 
     if (!clearClipboardTime) {
       return;

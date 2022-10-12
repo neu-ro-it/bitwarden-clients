@@ -129,12 +129,4 @@ export class StateService
       this.reconcileOptions(options, await this.defaultInMemoryOptions())
     );
   }
-
-  async setClearClipboardTime(time: number): Promise<void> {
-    this.setInSessionMemory("clearClipboardTime", time);
-  }
-
-  async getClearClipboardTime(): Promise<number | undefined> {
-    return this.getFromSessionMemory("clearClipboardTime");
-  }
 }
