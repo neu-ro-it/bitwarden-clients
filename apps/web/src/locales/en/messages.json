@@ -997,7 +997,7 @@
   },
   "capitalize": {
     "message": "Capitalize",
-    "description": "Make the first letter of a work uppercase."
+    "description": "Make the first letter of a word uppercase."
   },
   "includeNumber": {
     "message": "Include number"
@@ -4769,7 +4769,7 @@
     "message": "Sign authentication requests"
   },
   "ssoSettingsSaved": {
-    "message": "Single sign-on configuration was saved."
+    "message": "Single sign-on configuration saved"
   },
   "sponsoredFamilies": {
     "message": "Free Bitwarden Families"
@@ -4967,16 +4967,16 @@
     "message": "\"Login with SSO and Key Connector Decryption\" is activated. This policy will only apply to owners and admins."
   },
   "enabledSso": {
-    "message": "Turn on SSO"
+    "message": "SSO turned on"
   },
   "disabledSso": {
-    "message": "Turn off SSO"
+    "message": "SSO turned on"
   },
   "enabledKeyConnector": {
-    "message": "Activate Key Connector"
+    "message": "Key Connector activated"
   },
   "disabledKeyConnector": {
-    "message": "Deactivate Key Connector"
+    "message": "Key Connector deactivated"
   },
   "keyConnectorWarning": {
     "message": "Once members begin using Key Connector, your organization cannot revert to master password decryption. Proceed only if you are comfortable deploying and managing a key server."
