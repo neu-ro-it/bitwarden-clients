@@ -988,7 +988,7 @@
     "description": "Copy to clipboard"
   },
   "checkForUpdates": {
-    "message": "Check for Updates…"
+    "message": "Check for updates…"
   },
   "version": {
     "message": "Version $VERSION_NUM$",
@@ -1000,7 +1000,7 @@
     }
   },
   "restartToUpdate": {
-    "message": "Restart to Update"
+    "message": "Restart to update"
   },
   "restartToUpdateDesc": {
     "message": "Version $VERSION_NUM$ is ready to install. You must restart the application to complete the installation. Do you want to restart and update now?",
@@ -1012,7 +1012,7 @@
     }
   },
   "updateAvailable": {
-    "message": "Update Available"
+    "message": "Update available"
   },
   "updateAvailableDesc": {
     "message": "An update was found. Do you want to download it now?"
@@ -1036,11 +1036,11 @@
     "message": "Copy Username"
   },
   "copyNumber": {
-    "message": "Copy Number",
+    "message": "Copy number",
     "description": "Copy credit card number"
   },
   "copySecurityCode": {
-    "message": "Copy Security Code",
+    "message": "Copy security code",
     "description": "Copy credit card security code (CVV)"
   },
   "premiumMembership": {
@@ -1146,7 +1146,7 @@
     "message": "Reload"
   },
   "toggleDevTools": {
-    "message": "Toggle Developer Tools"
+    "message": "Toggle developer tools"
   },
   "minimize": {
     "message": "Minimize",
@@ -1156,7 +1156,7 @@
     "message": "Zoom"
   },
   "bringAllToFront": {
-    "message": "Bring All to Front",
+    "message": "Bring all to front",
     "description": "Bring all windows to front (foreground)"
   },
   "aboutBitwarden": {
@@ -1169,7 +1169,7 @@
     "message": "Hide Bitwarden"
   },
   "hideOthers": {
-    "message": "Hide Others"
+    "message": "Hide others"
   },
   "showAll": {
     "message": "Show All"
@@ -1418,7 +1418,7 @@
     "message": "Always show an icon in the menu bar."
   },
   "hideToMenuBar": {
-    "message": "Hide to Menu Bar"
+    "message": "Hide to menu bar"
   },
   "selectOneCollection": {
     "message": "You must select at least one collection."
@@ -1861,7 +1861,7 @@
     "message": "Key connector error: make sure key connector is available and working correctly."
   },
   "lockAllVaults": {
-    "message": "Lock All Vaults"
+    "message": "Lock all vaults"
   },
   "accountLimitReached": {
     "message": "No more than 5 accounts may be logged in at the same time."
