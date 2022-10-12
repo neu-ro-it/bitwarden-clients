@@ -16,6 +16,9 @@
               <input id="email" type="email" formControlName="email" appInputVerbatim="false" />
             </div>
           </div>
+          <div class="box-footer no-margin" *ngIf="selfHostedDomain">
+            {{ "loggingInTo" | i18n: selfHostedDomain }}
+          </div>
         </div>
         <button type="submit" class="btn primary block">
           <b>{{ "continue" | i18n }}</b>

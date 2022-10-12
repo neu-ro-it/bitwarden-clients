@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 
+import { EnvironmentService } from "@bitwarden/common/abstractions/environment.service";
 import { I18nService } from "@bitwarden/common/abstractions/i18n.service";
 import { PlatformUtilsService } from "@bitwarden/common/abstractions/platformUtils.service";
 import { StateService } from "@bitwarden/common/abstractions/state.service";
@@ -26,7 +27,8 @@ export class HomeComponent {
     private stateService: StateService,
     private formBuilder: FormBuilder,
     private router: Router,
-    private i18nService: I18nService
+    private i18nService: I18nService,
+    private environmentService: EnvironmentService
   ) {}
 
   async initiateLogin(): Promise<void> {
@@ -46,5 +48,9 @@ export class HomeComponent {
     }
     this.stateService.setRememberedEmail(this.email.value);
     this.router.navigate(["login"]);
+  }
+
+  get selfHostedDomain() {
+    return this.environmentService.hasBaseUrl() ? this.environmentService.getWebVaultUrl() : null;
   }
 }
