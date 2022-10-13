@@ -1,4 +1,4 @@
-import { Meta } from "@storybook/addon-docs/";
+import { Meta, Story } from "@storybook/addon-docs/";
 
 <Meta title="Common/Banner" />
 
@@ -6,9 +6,9 @@ import { Meta } from "@storybook/addon-docs/";
 
 Banners are used for important communication with the user that needs to be seen right away, but has little effect on the experience. Banners appear at the top of the user's screen on page load and presist across all pages a user navigates to.
 
-Banners should always be dismissable and never use a timeout. If a user dismisses a banner, it should not reappear during that same active session.
+They should always be dismissable and never use a timeout. If a user dismisses a banner, it should not reappear during that same active session.
 
-Banners should be used sparingly, as they can feel intrusive to the user if they appear unexpectedly. Their effectiveness may decrease if too many are used.
+Use banners sparingly, as they can feel intrusive to the user if they appear unexpectedly. Their effectiveness may decrease if too many are used.
 
 Avoid stacking multiple banners.
 
@@ -22,20 +22,29 @@ Use the following guidelines to help choose the correct type of banner.
 
 ### Premium
 
-<bit-banner><div class="tw-flex tw-items-center tw-gap-2 tw-py-2.5 tw-px-4 tw-text-contrast tw-bg-success-500" role="status" aria-live="polite"><i aria-hidden="true" class="bwi tw-align-middle bwi-star"></i><!----><span class="tw-grow tw-text-base">Content Really Long Text Lorem Ipsum Ipsum Ipsum <button>Button</button></span><button class="tw-border-0 tw-bg-transparent tw-p-0 tw-text-contrast"><i aria-hidden="true" class="bwi bwi-close tw-text-sm"></i><!----></button></div></bit-banner>
+<Story id="component-library-banner--premium" />
 Used primarily to encourage user to upgrade to premium.
 
 ### Info
 
-<bit-banner><div class="tw-flex tw-items-center tw-gap-2 tw-py-2.5 tw-px-4 tw-text-contrast tw-bg-info-500" role="status" aria-live="polite"><i aria-hidden="true" class="bwi tw-align-middle bwi-info-circle"></i><!----><span class="tw-grow tw-text-base">Content Really Long Text Lorem Ipsum Ipsum Ipsum <button>Button</button></span><button class="tw-border-0 tw-bg-transparent tw-p-0 tw-text-contrast"><i aria-hidden="true" class="bwi bwi-close tw-text-sm"></i><!----></button></div></bit-banner>
+<bit-banner bannerType="info">
+  Content Really Long Text Lorem Ipsum Ipsum Ipsum
+  <button>Button</button>
+</bit-banner>
 Used to communicate release notes or server maintenance or other informative event.
 
 ### Warning
 
-<bit-banner><div class="tw-flex tw-items-center tw-gap-2 tw-py-2.5 tw-px-4 tw-text-contrast tw-bg-warning-500" role="status" aria-live="polite"><i aria-hidden="true" class="bwi tw-align-middle bwi-exclamation-triangle"></i><!----><span class="tw-grow tw-text-base">Content Really Long Text Lorem Ipsum Ipsum Ipsum <button>Button</button></span><button class="tw-border-0 tw-bg-transparent tw-p-0 tw-text-contrast"><i aria-hidden="true" class="bwi bwi-close tw-text-sm"></i><!----></button></div></bit-banner>
+<bit-banner bannerType="warning">
+  Content Really Long Text Lorem Ipsum Ipsum Ipsum
+  <button>Button</button>
+</bit-banner>
 Used to alert the user of outdated info or versions.
 
 ### Danger
 
-<bit-banner><div class="tw-flex tw-items-center tw-gap-2 tw-py-2.5 tw-px-4 tw-text-contrast tw-bg-danger-500" role="status" aria-live="polite"><i aria-hidden="true" class="bwi tw-align-middle bwi-error"></i><!----><span class="tw-grow tw-text-base">Content Really Long Text Lorem Ipsum Ipsum Ipsum <button>Button</button></span><button class="tw-border-0 tw-bg-transparent tw-p-0 tw-text-contrast"><i aria-hidden="true" class="bwi bwi-close tw-text-sm"></i><!----></button></div></bit-banner>
+<bit-banner bannerType="danger">
+  Content Really Long Text Lorem Ipsum Ipsum Ipsum
+  <button>Button</button>
+</bit-banner>
 Rarely used, but may be used to alert users over critical messages or very outdated versions.
