@@ -20,9 +20,20 @@
             {{ "loggingInTo" | i18n: selfHostedDomain }}
           </div>
         </div>
-        <button type="submit" class="btn primary block">
-          <b>{{ "continue" | i18n }}</b>
-        </button>
+        <div>
+          <input
+            id="rememberEmail"
+            type="checkbox"
+            name="rememberEmail"
+            formControlName="rememberEmail"
+          />
+          <label for="rememberEmail">{{ "rememberEmail" | i18n }}</label>
+        </div>
+        <div class="box">
+          <button type="submit" class="btn primary block">
+            <b>{{ "continue" | i18n }}</b>
+          </button>
+        </div>
       </form>
     </ng-template>
     <p class="createAccountLink">

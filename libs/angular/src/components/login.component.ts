@@ -45,6 +45,7 @@ export class LoginComponent extends CaptchaProtectedComponent implements OnInit 
   protected successRoute = "vault";
   protected forcePasswordResetRoute = "update-temp-password";
   protected alwaysRememberEmail = false;
+  protected skipRememberEmail = false;
 
   get loggedEmail() {
     return this.formGroup.get("email")?.value;
@@ -135,7 +136,7 @@ export class LoginComponent extends CaptchaProtectedComponent implements OnInit 
       const response = await this.formPromise;
       if (rememberEmail || this.alwaysRememberEmail) {
         await this.stateService.setRememberedEmail(email);
-      } else {
+      } else if (!this.skipRememberEmail) {
         await this.stateService.setRememberedEmail(null);
       }
       if (this.handleCaptchaRequired(response)) {

@@ -16,6 +16,7 @@ export class HomeComponent {
 
   formGroup = this.formBuilder.group({
     email: ["", [Validators.required, Validators.email]],
+    rememberEmail: [false],
   });
 
   get email() {
@@ -46,8 +47,10 @@ export class HomeComponent {
       );
       return;
     }
-    this.stateService.setRememberedEmail(this.email.value);
-    this.router.navigate(["login"]);
+    if (this.formGroup.value.rememberEmail) {
+      this.stateService.setRememberedEmail(this.email.value);
+    }
+    this.router.navigate(["login"], { queryParams: { email: this.email.value } });
   }
 
   get selfHostedDomain() {
