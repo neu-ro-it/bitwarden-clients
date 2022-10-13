@@ -1,6 +1,6 @@
 import { Component, NgZone } from "@angular/core";
 import { FormBuilder } from "@angular/forms";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 
 import { LoginComponent as BaseLoginComponent } from "@bitwarden/angular/components/login.component";
 import { ApiService } from "@bitwarden/common/abstractions/api.service";
@@ -39,7 +39,8 @@ export class LoginComponent extends BaseLoginComponent {
     logService: LogService,
     ngZone: NgZone,
     formBuilder: FormBuilder,
-    formValidationErrorService: FormValidationErrorsService
+    formValidationErrorService: FormValidationErrorsService,
+    route: ActivatedRoute
   ) {
     super(
       apiService,
@@ -55,7 +56,8 @@ export class LoginComponent extends BaseLoginComponent {
       logService,
       ngZone,
       formBuilder,
-      formValidationErrorService
+      formValidationErrorService,
+      route
     );
     super.onSuccessfulLogin = async () => {
       await syncService.fullSync(true);

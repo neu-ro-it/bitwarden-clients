@@ -43,7 +43,7 @@ export class LoginComponent extends BaseLoginComponent {
     authService: AuthService,
     router: Router,
     i18nService: I18nService,
-    private route: ActivatedRoute,
+    route: ActivatedRoute,
     platformUtilsService: PlatformUtilsService,
     environmentService: EnvironmentService,
     passwordGenerationService: PasswordGenerationService,
@@ -72,7 +72,8 @@ export class LoginComponent extends BaseLoginComponent {
       logService,
       ngZone,
       formBuilder,
-      formValidationErrorService
+      formValidationErrorService,
+      route
     );
     this.onSuccessfulLogin = async () => {
       this.messagingService.send("setFullWidth");
@@ -84,9 +85,6 @@ export class LoginComponent extends BaseLoginComponent {
   async ngOnInit() {
     // eslint-disable-next-line rxjs-angular/prefer-takeuntil, rxjs/no-async-subscribe
     this.route.queryParams.pipe(first()).subscribe(async (qParams) => {
-      if (qParams.email != null && qParams.email.indexOf("@") > -1) {
-        this.formGroup.get("email")?.setValue(qParams.email);
-      }
       if (qParams.premium != null) {
         this.routerService.setPreviousUrl("/settings/premium");
       } else if (qParams.org != null) {
