@@ -1,0 +1,38 @@
+<form #form [formGroup]="formGroup" (ngSubmit)="submit()" [appApiAction]="formPromise">
+  <bit-dialog dialogSize="small">
+    <ng-container bitDialogTitle>{{ title | i18n }}</ng-container>
+    <span
+      bitDialogTitle
+      class="tw-text-sm tw-normal-case tw-text-muted"
+      *ngIf="data.projects.length == 1"
+    >
+      {{ " " + data.projects[0].name }}
+    </span>
+    <span
+      bitDialogTitle
+      class="tw-text-sm tw-normal-case tw-text-muted"
+      *ngIf="data.projects.length > 1"
+    >
+      {{ " " + data.projects.length + " " }} {{ "projects" | i18n }}
+    </span>
+
+    <div bitDialogContent>
+      <bit-callout type="warning" [title]="'warning' | i18n">
+        {{ dialogContent }}
+      </bit-callout>
+      <bit-form-field>
+        <bit-label>{{ dialogConfirmationLabel }}</bit-label>
+        <input bitInput formControlName="confirmDelete" />
+      </bit-form-field>
+    </div>
+
+    <div bitDialogFooter class="tw-flex tw-gap-2">
+      <button bitButton buttonType="danger" [loading]="form.loading">
+        {{ title | i18n }}
+      </button>
+      <button bitButton buttonType="secondary" bitDialogClose (click)="dialogRef.close()">
+        {{ "cancel" | i18n }}
+      </button>
+    </div>
+  </bit-dialog>
+</form>
