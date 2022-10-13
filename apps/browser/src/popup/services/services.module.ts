@@ -61,6 +61,7 @@ import BrowserMessagingPrivateModePopupService from "../../services/browserMessa
 import { VaultFilterService } from "../../services/vaultFilter.service";
 
 import { DebounceNavigationService } from "./debounceNavigationService";
+import { HomeGuard } from "./home.guard";
 import { InitService } from "./init.service";
 import { LockGuardService } from "./lock-guard.service";
 import { PasswordRepromptService } from "./password-reprompt.service";
@@ -322,6 +323,7 @@ function getBgService<T>(service: keyof MainBackground) {
         );
       },
     },
+    HomeGuard,
   ],
 })
 export class ServicesModule {}
