@@ -38,13 +38,25 @@ const sessionTimeoutLength = 2 * 60 * 1000; // 2 minutes
 
 export class AuthService implements AuthServiceAbstraction {
   get email(): string {
-    return this.logInStrategy instanceof PasswordLogInStrategy ? this.logInStrategy.email : null;
+    if (
+      this.logInStrategy instanceof PasswordLogInStrategy ||
+      this.logInStrategy instanceof PasswordlessLogInStrategy
+    ) {
+      return this.logInStrategy.email;
+    }
+
+    return null;
   }
 
   get masterPasswordHash(): string {
-    return this.logInStrategy instanceof PasswordLogInStrategy
-      ? this.logInStrategy.masterPasswordHash
-      : null;
+    if (
+      this.logInStrategy instanceof PasswordLogInStrategy ||
+      this.logInStrategy instanceof PasswordlessLogInStrategy
+    ) {
+      return this.logInStrategy.masterPasswordHash;
+    }
+
+    return null;
   }
 
   private logInStrategy:
@@ -194,6 +206,10 @@ export class AuthService implements AuthServiceAbstraction {
 
   authingWithPassword(): boolean {
     return this.logInStrategy instanceof PasswordLogInStrategy;
+  }
+
+  authingWithPasswordless(): boolean {
+    return this.logInStrategy instanceof PasswordlessLogInStrategy;
   }
 
   async getAuthStatus(userId?: string): Promise<AuthenticationStatus> {
