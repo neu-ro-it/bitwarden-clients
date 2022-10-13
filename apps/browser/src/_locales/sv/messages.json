@@ -1997,5 +1997,32 @@
   },
   "environmentEditedReset": {
     "message": "för att återställa till förkonfigurerade inställningar"
+  },
+  "serverVersion": {
+    "message": "Serverversion"
+  },
+  "selfHosted": {
+    "message": "Lokalt installerad"
+  },
+  "thirdParty": {
+    "message": "Tredje part"
+  },
+  "thirdPartyServerMessage": {
+    "message": "Ansluten till implementering på tredjepartsserver, $SERVERNAME$. Verifiera buggar med den officiella servern eller rapportera dem till tredjepartsservern.",
+    "placeholders": {
+      "servername": {
+        "content": "$1",
+        "example": "ThirdPartyServerName"
+      }
+    }
+  },
+  "lastSeenOn": {
+    "message": "sågs senast den $DATE$",
+    "placeholders": {
+      "date": {
+        "content": "$1",
+        "example": "Jun 15, 2015"
+      }
+    }
   }
 }

@@ -1570,6 +1570,12 @@
   "enableBrowserIntegrationDesc": {
     "message": "Интеграција прегледача се користи за биометрију у прегледачу."
   },
+  "enableDuckDuckGoBrowserIntegration": {
+    "message": "Дозволи DuckDuckGo интерграцију претраживача"
+  },
+  "enableDuckDuckGoBrowserIntegrationDesc": {
+    "message": "Употребити Bitwarden сеф када користите DuckDuckGo."
+  },
   "browserIntegrationUnsupportedTitle": {
     "message": "Интеграција са претраживачем није подржана"
   },
@@ -1596,6 +1602,21 @@
   },
   "verifyBrowserDesc": {
     "message": "Уверите се да је приказани отисак идентичан отиску приказаном у додатку прегледача."
+  },
+  "verifyNativeMessagingConnectionTitle": {
+    "message": "$APPID$ жели да се повеже са Bitwarden",
+    "placeholders": {
+      "appid": {
+        "content": "$1",
+        "example": "My App"
+      }
+    }
+  },
+  "verifyNativeMessagingConnectionDesc": {
+    "message": "Да ли желите да одобрите овај захтев?"
+  },
+  "verifyNativeMessagingConnectionWarning": {
+    "message": "Ако нисте ви покренули овај захтев, немојте га одобрити."
   },
   "biometricsNotEnabledTitle": {
     "message": "Биометрија није омогућена"
@@ -1993,5 +2014,8 @@
   },
   "cardBrandMir": {
     "message": "Mir"
+  },
+  "vault": {
+    "message": "Сеф"
   }
 }

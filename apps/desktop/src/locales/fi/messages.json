@@ -764,7 +764,7 @@
     "message": "Hanki apua"
   },
   "fileBugReport": {
-    "message": "Jätä virheilmoitus"
+    "message": "Lähetä virheilmoitus"
   },
   "blog": {
     "message": "Blogi"
@@ -1568,16 +1568,22 @@
     "message": "Salli selainintegraatio"
   },
   "enableBrowserIntegrationDesc": {
-    "message": "Käytetään selainten biometriatukeen."
+    "message": "Käytetään verkkoselainten biometriatukeen."
+  },
+  "enableDuckDuckGoBrowserIntegration": {
+    "message": "Salli integraatio DuckDuckGo-selaimeen"
+  },
+  "enableDuckDuckGoBrowserIntegrationDesc": {
+    "message": "Käytä Bitwarden-holvia DuckDuckGo-selaimessa."
   },
   "browserIntegrationUnsupportedTitle": {
     "message": "Selainintegraatiota ei tueta"
   },
   "browserIntegrationMasOnlyDesc": {
-    "message": "Valitettavasti selainintegraatiota tukee toistaiseksi vain Mac App Store -versio."
+    "message": "Valitettavasti selainintegraatiota tuetaan toistaiseksi vain Mac App Store -versiossa."
   },
   "browserIntegrationWindowsStoreDesc": {
-    "message": "Valitettavasti selainintegraatiota ei toistaiseksi tueta sovelluksen Microsoft Store -versiossa."
+    "message": "Valitettavasti selainintegraatiota ei toistaiseksi tueta Microsoft Store -versiossa."
   },
   "browserIntegrationLinuxDesc": {
     "message": "Valitettavasti selainintegraatiota ei toistaiseksi tueta Linux-versiossa."
@@ -1596,6 +1602,21 @@
   },
   "verifyBrowserDesc": {
     "message": "Varmista, että näytetty tunnistelauseke on identtinen selainlaajennuksessa näkyvän lausekkeen kanssa."
+  },
+  "verifyNativeMessagingConnectionTitle": {
+    "message": "$APPID$ haluaa yhdistää Bitwardeniin",
+    "placeholders": {
+      "appid": {
+        "content": "$1",
+        "example": "My App"
+      }
+    }
+  },
+  "verifyNativeMessagingConnectionDesc": {
+    "message": "Haluatko hyväksyä pyynnön?"
+  },
+  "verifyNativeMessagingConnectionWarning": {
+    "message": "Älä hyväksy pyyntöä, jos et tunnista sitä."
   },
   "biometricsNotEnabledTitle": {
     "message": "Biometria ei ole käytössä"
@@ -1993,5 +2014,8 @@
   },
   "cardBrandMir": {
     "message": "Mir"
+  },
+  "vault": {
+    "message": "Holvi"
   }
 }

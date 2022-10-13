@@ -1969,19 +1969,19 @@
     "message": "Key Connector feil: Sjekk at Key Connector er tilgjengelig og fungerer."
   },
   "premiumSubcriptionRequired": {
-    "message": "Premium subscription required"
+    "message": "Premium abonnement kreves"
   },
   "organizationIsDisabled": {
-    "message": "Organization is disabled."
+    "message": "Organisasjonen er deaktivert."
   },
   "disabledOrganizationFilterError": {
-    "message": "Items in disabled Organizations cannot be accessed. Contact your Organization owner for assistance."
+    "message": "Elementer i deaktiverte organisasjoner kan ikke aksesseres. Kontakt organisasjonseier for hjelp."
   },
   "cardBrandMir": {
     "message": "Mir"
   },
   "loggingInTo": {
-    "message": "Logging in to $DOMAIN$",
+    "message": "Logger inn på $DOMAIN$",
     "placeholders": {
       "domain": {
         "content": "$1",
@@ -1990,12 +1990,39 @@
     }
   },
   "settingsEdited": {
-    "message": "Settings have been edited"
+    "message": "Innstillingene har blitt endret"
   },
   "environmentEditedClick": {
-    "message": "Click here"
+    "message": "Klikk her"
   },
   "environmentEditedReset": {
-    "message": "to reset to pre-configured settings"
+    "message": "for å tilbakestille til forhåndskonfigurerte innstillinger"
+  },
+  "serverVersion": {
+    "message": "Server Versjon"
+  },
+  "selfHosted": {
+    "message": "Selvbetjent"
+  },
+  "thirdParty": {
+    "message": "Tredjepart"
+  },
+  "thirdPartyServerMessage": {
+    "message": "Koblet til tredjeparts server-implementeringen $SERVERNAME$. Kontroller feil ved hjelp av den offisielle serveren, eller rapporter dem til tredjepartsserveren.",
+    "placeholders": {
+      "servername": {
+        "content": "$1",
+        "example": "ThirdPartyServerName"
+      }
+    }
+  },
+  "lastSeenOn": {
+    "message": "sist sett den: $DATE$",
+    "placeholders": {
+      "date": {
+        "content": "$1",
+        "example": "Jun 15, 2015"
+      }
+    }
   }
 }

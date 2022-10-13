@@ -430,7 +430,7 @@
     "message": "마스터 비밀번호를 재입력해야 합니다."
   },
   "masterPasswordMinlength": {
-    "message": "Master password must be at least 8 characters long."
+    "message": "마스터 비밀번호는 최소 8자 이상이어야 합니다."
   },
   "masterPassDoesntMatch": {
     "message": "마스터 비밀번호 확인과 마스터 비밀번호가 일치하지 않습니다."
@@ -1997,5 +1997,32 @@
   },
   "environmentEditedReset": {
     "message": "to reset to pre-configured settings"
+  },
+  "serverVersion": {
+    "message": "Server Version"
+  },
+  "selfHosted": {
+    "message": "Self-Hosted"
+  },
+  "thirdParty": {
+    "message": "Third-Party"
+  },
+  "thirdPartyServerMessage": {
+    "message": "Connected to third-party server implementation, $SERVERNAME$. Please verify bugs using the official server, or report them to the third-party server.",
+    "placeholders": {
+      "servername": {
+        "content": "$1",
+        "example": "ThirdPartyServerName"
+      }
+    }
+  },
+  "lastSeenOn": {
+    "message": "last seen on: $DATE$",
+    "placeholders": {
+      "date": {
+        "content": "$1",
+        "example": "Jun 15, 2015"
+      }
+    }
   }
 }

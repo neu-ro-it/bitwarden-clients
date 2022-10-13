@@ -1997,5 +1997,32 @@
   },
   "environmentEditedReset": {
     "message": "per restablir els paràmetres preconfigurats"
+  },
+  "serverVersion": {
+    "message": "Versió del servidor"
+  },
+  "selfHosted": {
+    "message": "Autoallotjat"
+  },
+  "thirdParty": {
+    "message": "Tercers"
+  },
+  "thirdPartyServerMessage": {
+    "message": "Connectat a la implementació del servidor de tercers, $SERVERNAME$. Verifiqueu els errors utilitzant el servidor oficial o comuniqueu-los al servidor de tercers.",
+    "placeholders": {
+      "servername": {
+        "content": "$1",
+        "example": "ThirdPartyServerName"
+      }
+    }
+  },
+  "lastSeenOn": {
+    "message": "vist per última vegada el $DATE$",
+    "placeholders": {
+      "date": {
+        "content": "$1",
+        "example": "Jun 15, 2015"
+      }
+    }
   }
 }
