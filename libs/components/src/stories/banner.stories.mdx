@@ -6,13 +6,13 @@ import { Meta, Story } from "@storybook/addon-docs";
 
 Banners are used for important communication with the user that needs to be seen right away, but has little effect on the experience. Banners appear at the top of the user's screen on page load and presist across all pages a user navigates to.
 
-They should always be dismissable and never use a timeout. If a user dismisses a banner, it should not reappear during that same active session.
+- They should always be dismissable and never use a timeout. If a user dismisses a banner, it should not reappear during that same active session.
 
-Use banners sparingly, as they can feel intrusive to the user if they appear unexpectedly. Their effectiveness may decrease if too many are used.
+- Use banners sparingly, as they can feel intrusive to the user if they appear unexpectedly. Their effectiveness may decrease if too many are used.
 
-Avoid stacking multiple banners.
+- Avoid stacking multiple banners.
 
-Banners support a button link (text button).
+- Banners support a button link (text button).
 
 ## Types
 
@@ -43,3 +43,7 @@ Used to alert the user of outdated info or versions.
 <Story id="component-library-banner--danger" />
 
 Rarely used, but may be used to alert users over critical messages or very outdated versions.
+
+## Accessibility
+
+Include `role="status" aria-live="polite"` attributes to ensure screen readers announce the content prior to the test of the page.
