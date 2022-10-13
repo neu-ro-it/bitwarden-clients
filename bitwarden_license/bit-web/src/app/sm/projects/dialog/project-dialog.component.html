@@ -11,7 +11,13 @@
       <button bitButton [loading]="form.loading">
         {{ "save" | i18n }}
       </button>
-      <button bitButton buttonType="secondary" bitDialogClose (click)="dialogRef.close()">
+      <button
+        bitButton
+        buttonType="secondary"
+        type="button"
+        bitDialogClose
+        (click)="dialogRef.close()"
+      >
         {{ "cancel" | i18n }}
       </button>
     </div>
