@@ -109,4 +109,10 @@ export class LoginComponent extends BaseLoginComponent {
         codeChallenge
     );
   }
+
+  async clearRememberedEmail(e: Event) {
+    e.stopPropagation();
+    await this.stateService.setRememberedEmail(null);
+    this.router.navigate(["home"]);
+  }
 }
