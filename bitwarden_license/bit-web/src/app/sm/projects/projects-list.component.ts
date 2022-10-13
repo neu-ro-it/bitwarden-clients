@@ -53,6 +53,10 @@ export class ProjectsListComponent implements OnDestroy {
       : this.selection.select(...this.projects.map((s) => s.id));
   }
 
+  deleteProject(projectId: string) {
+    this.deleteProjectEvent.emit(this.projects.filter((p) => p.id == projectId));
+  }
+
   bulkDeleteProjects() {
     this.deleteProjectEvent.emit(
       this.projects.filter((project) => this.selection.isSelected(project.id))

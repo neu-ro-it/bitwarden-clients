@@ -71,11 +71,7 @@
           <i class="bwi bwi-fw bwi-eye tw-text-xl" aria-hidden="true"></i>
           {{ "viewProject" | i18n }}
         </button>
-        <button
-          type="button"
-          bitMenuItem
-          (click)="deleteProjectEvent.emit({ projectIds: [project.id], projectName: project.name })"
-        >
+        <button type="button" bitMenuItem (click)="deleteProject(project.id)">
           <i class="bwi bwi-fw bwi-trash tw-text-xl tw-text-danger" aria-hidden="true"></i>
           <span class="tw-text-danger">{{ "deleteProject" | i18n }}</span>
         </button>
