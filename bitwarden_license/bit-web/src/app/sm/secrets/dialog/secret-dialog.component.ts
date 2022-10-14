@@ -55,7 +55,7 @@ export class SecretDialogComponent implements OnInit {
   }
 
   get title() {
-    return this.data.operation === OperationType.Add ? "addSecret" : "editSecret";
+    return this.data.operation === OperationType.Add ? "newSecret" : "editSecret";
   }
 
   async submit() {
