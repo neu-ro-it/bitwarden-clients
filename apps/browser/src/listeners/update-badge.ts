@@ -5,7 +5,7 @@ import { CryptoService } from "@bitwarden/common/abstractions/crypto.service";
 import { AuthenticationStatus } from "@bitwarden/common/enums/authenticationStatus";
 import { StateFactory } from "@bitwarden/common/factories/stateFactory";
 import { Utils } from "@bitwarden/common/misc/utils";
-import { GlobalState } from "@bitwarden/common/models/domain/globalState";
+import { GlobalState } from "@bitwarden/common/models/domain/global-state";
 import { ContainerService } from "@bitwarden/common/services/container.service";
 
 import IconDetails from "../background/models/iconDetails";
