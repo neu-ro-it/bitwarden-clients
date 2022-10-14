@@ -1,5 +1,5 @@
 import { DialogRef, DIALOG_DATA } from "@angular/cdk/dialog";
-import { Component, Inject } from "@angular/core";
+import { Component, Inject, OnInit } from "@angular/core";
 import {
   FormControl,
   FormGroup,
@@ -29,7 +29,7 @@ export interface ProjectDeleteOperation {
   selector: "sm-project-delete-dialog",
   templateUrl: "./project-delete-dialog.component.html",
 })
-export class ProjectDeleteDialogComponent {
+export class ProjectDeleteDialogComponent implements OnInit {
   formPromise: Promise<any>;
 
   formGroup = new FormGroup({
@@ -47,6 +47,15 @@ export class ProjectDeleteDialogComponent {
     private platformUtilsService: PlatformUtilsService,
     private dialogService: DialogService
   ) {}
+
+  ngOnInit(): void {
+    if (!(this.data.projects?.length >= 1)) {
+      this.dialogRef.close();
+      throw new Error(
+        "The project delete dialog was not called with the appropriate operation values."
+      );
+    }
+  }
 
   get title() {
     return this.data.projects.length === 1 ? "deleteProject" : "deleteProjects";
@@ -97,9 +106,9 @@ export class ProjectDeleteDialogComponent {
   }
 
   private get dialogConfirmationMessage() {
-    return this.data.projects.length === 1
+    return this.data.projects?.length === 1
       ? this.i18nService.t("deleteProjectConfirmMessage", this.data.projects[0].name)
-      : this.i18nService.t("deleteProjectsConfirmMessage", this.data.projects.length.toString());
+      : this.i18nService.t("deleteProjectsConfirmMessage", this.data.projects?.length.toString());
   }
 
   private matchConfirmationMessageValidator(): ValidatorFn {

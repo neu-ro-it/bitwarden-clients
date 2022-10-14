@@ -1,5 +1,5 @@
 import { DialogRef, DIALOG_DATA } from "@angular/cdk/dialog";
-import { Component, Inject } from "@angular/core";
+import { Component, Inject, OnInit } from "@angular/core";
 
 export interface BulkStatusDetails {
   title: string;
@@ -19,6 +19,21 @@ export class BulkOperationStatus {
   selector: "sm-bulk-status-dialog",
   templateUrl: "./bulk-status-dialog.component.html",
 })
-export class BulkStatusDialogComponent {
+export class BulkStatusDialogComponent implements OnInit {
   constructor(public dialogRef: DialogRef, @Inject(DIALOG_DATA) public data: BulkStatusDetails) {}
+
+  ngOnInit(): void {
+    if (
+      !this.data.title ||
+      !this.data.subTitle ||
+      !this.data.columnTitle ||
+      !this.data.message ||
+      !(this.data.details?.length >= 1)
+    ) {
+      this.dialogRef.close();
+      throw new Error(
+        "The bulk status dialog was not called with the appropriate operation values."
+      );
+    }
+  }
 }
