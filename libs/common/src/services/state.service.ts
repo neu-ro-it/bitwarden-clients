@@ -1228,21 +1228,21 @@ export class StateService<
     );
   }
 
-  async getEnableGravitars(options?: StorageOptions): Promise<boolean> {
+  async getEnableLibravatars(options?: StorageOptions): Promise<boolean> {
     return (
       (
         await this.getAccount(
           this.reconcileOptions(options, await this.defaultOnDiskLocalOptions())
         )
-      )?.settings?.enableGravitars ?? false
+      )?.settings?.enableLibravatars ?? false
     );
   }
 
-  async setEnableGravitars(value: boolean, options?: StorageOptions): Promise<void> {
+  async setEnableLibravatars(value: boolean, options?: StorageOptions): Promise<void> {
     const account = await this.getAccount(
       this.reconcileOptions(options, await this.defaultOnDiskLocalOptions())
     );
-    account.settings.enableGravitars = value;
+    account.settings.enableLibravatars = value;
     await this.saveAccount(
       account,
       this.reconcileOptions(options, await this.defaultOnDiskLocalOptions())

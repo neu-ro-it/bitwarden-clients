@@ -1229,12 +1229,12 @@
   "faviconDesc": {
     "message": "Show a recognizable image next to each login."
   },
-  "enableGravatars": {
-    "message": "Show Gravatars",
-    "description": "Use avatar images loaded from gravatar.com."
+  "enableLibravatars": {
+    "message": "Show Libravatars",
+    "description": "Use avatar images loaded from libravatar.com."
   },
-  "enableGravatarsDesc": {
-    "message": "Use avatar images loaded from gravatar.com."
+  "enableLibravatarsDesc": {
+    "message": "Use avatar images loaded from libravatar.com."
   },
   "enableFullWidth": {
     "message": "Display full width layout",

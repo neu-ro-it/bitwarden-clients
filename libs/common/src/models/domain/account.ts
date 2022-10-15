@@ -219,7 +219,7 @@ export class AccountSettings {
   enableAutoFillOnPageLoad?: boolean;
   enableBiometric?: boolean;
   enableFullWidth?: boolean;
-  enableGravitars?: boolean;
+  enableLibravatars?: boolean;
   environmentUrls: EnvironmentUrls = new EnvironmentUrls();
   equivalentDomains?: any;
   minimizeOnCopyToClipboard?: boolean;

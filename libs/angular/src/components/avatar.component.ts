@@ -43,14 +43,14 @@ export class AvatarComponent implements OnChanges, OnInit {
   }
 
   private async generate() {
-    const enableGravatars = await this.stateService.getEnableGravitars();
-    if (enableGravatars && this.email != null) {
+    const enableLibravatars = await this.stateService.getEnableLibravatars();
+    if (enableLibravatars && this.email != null) {
       const hashBytes = await this.cryptoFunctionService.hash(
         this.email.toLowerCase().trim(),
         "md5"
       );
       const hash = Utils.fromBufferToHex(hashBytes).toLowerCase();
-      this.src = "https://www.gravatar.com/avatar/" + hash + "?s=" + this.size + "&r=pg&d=retro";
+      this.src = "https:///cdn.libravatar.org/avatar/" + hash + "?s=" + this.size + "&r=pg&d=retro";
     } else {
       let chars: string = null;
       const upperData = this.data.toUpperCase();
