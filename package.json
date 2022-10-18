@@ -159,7 +159,7 @@
     "bufferutil": "^4.0.6",
     "chalk": "^4.1.0",
     "commander": "^7.2.0",
-    "core-js": "^3.11.0",
+    "core-js": "^3.25.3",
     "date-input-polyfill": "^2.14.0",
     "duo_web_sdk": "github:duosecurity/duo_web_sdk",
     "form-data": "4.0.0",
