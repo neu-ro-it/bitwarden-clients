@@ -164,7 +164,7 @@
     "duo_web_sdk": "github:duosecurity/duo_web_sdk",
     "form-data": "4.0.0",
     "https-proxy-agent": "5.0.0",
-    "inquirer": "8.0.0",
+    "inquirer": "8.2.4",
     "jquery": "3.6.0",
     "jsdom": "^16.7.0",
     "jszip": "^3.10.0",
